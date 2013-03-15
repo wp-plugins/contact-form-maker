@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 2.3.1
+Version: 1.4.0
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -545,7 +545,7 @@ function contact_form_Licensing(){
     <p>
 This plugin is the non-commercial version of the Contact Form. Use of this plugin is free. You can add unlimited number of the fields. The limitation is on the some types of the fields (Time and Date, Select, Check box, Radio and File Upload). If you want to use those fields, you are required to purchase a license. </p>
 <br /><br />
-<a href="http://web-dorado.com/files/fromFormMaker.php" class="button-primary" target="_blank">Purchase a License</a>
+<a href="http://web-dorado.com/files/fromContactForm.php" class="button-primary" target="_blank">Purchase a License</a>
 <br /><br /><br />
 <p>After the purchasing the commercial version follow this steps:</p>
 <ol>
