@@ -34,7 +34,7 @@ WordPress Contact Form Maker is an advanced and easy-to-use tool for creating co
 -	The form can be split into sections
 -	The form allows custom CSS and Java script
 -	Each field type has additional attributes where specific properties of the field can be customized using Java Script
--	The submitted forms can be sent to custom e-mail address, as well as forwarded to the submitter’s e-mail
+-	The submitted forms can be sent to custom e-mail address, as well as forwarded to the submitters e-mail
 -	The form can be inserted into a post or a page
 -	Standard editor integration
 -	A number of different parameters for each field type
@@ -120,3 +120,12 @@ After downloading the ZIP file of the Contact Form Maker
 Once the plugin of the Contact Form Maker is activated, you'll notice a menu on the left called "Contact Form".  Here you can manage forms and submissions of the Contact Form Maker.  
 If any problem occurs with the Contact Form Maker, please  us info@web-dorado.com in order to correct the mistakes of the Contact Form Maker plugin.    
 
+== Screenshots ==
+1.  Form Maker - Sample RSVP  
+2.  Form Maker - Sample  form  
+3.  Form Maker - Manage forms  
+4.  Form Maker - Creating a new form  
+5.  Form Maker - Text input field type  
+6.  Form Maker - Captcha field type  
+7.  Form Maker - Manage submissions
+8.  Form Maker - Select Columns 
