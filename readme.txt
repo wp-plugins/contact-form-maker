@@ -196,7 +196,7 @@ We created a product which works on any browser, template and does not conflict 
 
 1.3 Updating the WordPress Contact Form Maker.		
 
-If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message saying, “All forms are updated!”.   	
+If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the "Update Forms" button. If the update is successful, you will see a notification message saying, "All forms are updated!".   	
 
 ==Contact Form Maker Step by step guide Step 2 ==        
     
@@ -204,7 +204,7 @@ If you want to update the plugin while preserving your existing forms, you need 
     
 2.1  On the left menu select Contact Form> Manager.	
 
-2.2  In the upper left corner click on the “Add a form” button.	  
+2.2  In the upper left corner click on the "Add a form" button.	  
 
 2.3   On the top of the page you can find several buttons:	
 
@@ -225,18 +225,18 @@ Custom text in e-mail for administrator: Here you can add custom texts, images, 
 
 Custom text in e-mail for user: Here you can add custom texts, images, and custom HTML to the e-mail message that is sent to the users.		
 
-Save as Copy: The button allows you to save a copy of the current contact form, which you can later find in the “Forms” section.	
+Save as Copy: The button allows you to save a copy of the current contact form, which you can later find in the "Forms" section.	
 
 2.4   On the right side you will see three fields:	
 Form Title: In this field type a title for your form. You can have an unlimited number of forms. This is a required field.	
 
-Email to send submissions to: Here you type e-mails to which submitted form information will be sent. If you need more than one e-mail address you must separate them by commas. This field is not required. In any case the submitted information is stored in “Submissions” part, where it could be managed easily. 	
+Email to send submissions to: Here you type e-mails to which submitted form information will be sent. If you need more than one e-mail address you must separate them by commas. This field is not required. In any case the submitted information is stored in "Submissions" part, where it could be managed easily. 	
 
-Theme. A distinct theme can be applied to each new form. The themes can be accessed by selecting Contact Maker > Themes on the left menu. 43 themes are available for selection. There is an option for creating new themes, which you can access by clicking “New” on the upper right corner of the section.	
+Theme. A distinct theme can be applied to each new form. The themes can be accessed by selecting Contact Maker > Themes on the left menu. 43 themes are available for selection. There is an option for creating new themes, which you can access by clicking "New" on the upper right corner of the section.	
 
 2.5   Add new fields to your form by clicking on the ADD A NEW FIELD button (see the next step).	
 
-2.6   To update the plugin while keeping your existing forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message, “All forms are updated!”		
+2.6   To update the plugin while keeping your existing forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the "Update Forms" button. If the update is successful, you will see a notification message, "All forms are updated!"		
 
 ==Contact Form Maker Step by step guide Step 3 ==  
 
@@ -273,7 +273,7 @@ Theme. A distinct theme can be applied to each new form. The themes can be acces
 	Simple Captcha This is a easy to configure Simple Captcha. The number of randomly generated symbols can be set by the value of Captcha size attribute. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Additional Attributes.	
 	Recaptcha This is an alternative option for Captcha that uses Public and Private Keys. You will need to create reCaptcha keys with the help of a dedicated tool.The tool can be found on https://www.google.com/recaptcha/admin/create.		
 
-3.9    Page Break: This can be used to break the form into distinct pages. Use Page Title to provide a title for the given page. Furthermore, the following parameters of the “Next” and “Previous” navigation buttons can be customized:	
+3.9    Page Break: This can be used to break the form into distinct pages. Use Page Title to provide a title for the given page. Furthermore, the following parameters of the "Next" and "Previous" navigation buttons can be customized:	
 	Type, Name, Class Name, Check the required fields , Additional Attributes. 	
 
 3.10    Section Break: This option allows adding a section break to the form page. 	
@@ -314,10 +314,10 @@ Alternatively, you can use Contact Form Maker without the button on the toolbar:
 
 5.5	There is a possibility to search the submissions database by all the relevant fields of the given form. Submissions can be sorted by any of the fields of the form by clicking the labels.	
 
-5.6	You can delete any of submissions by selecting them and pressing the “Delete” button on the top of the page.	
+5.6	You can delete any of submissions by selecting them and pressing the "Delete" button on the top of the page.	
 
-5.7	It is also possible to edit the submissions by clicking on the “Edit” icon on the upper right corner of the “Submissions” section.	
+5.7	It is also possible to edit the submissions by clicking on the "Edit" icon on the upper right corner of the "Submissions" section.	
 
-5.8	You can add/remove any column of the submissions by “Add/Remove Columns” button. 	
+5.8	You can add/remove any column of the submissions by "Add/Remove Columns" button. 	
 
 5.9	The submissions can be exported to the CSV and XML formats.	
