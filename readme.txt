@@ -10,7 +10,13 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WordPress Contact Form Maker is an advanced and easy-to-use tool for creating contact forms. 
 == Description ==
-
+Contact Form Maker is a sophisticated and user-friendly form builder for making application forms. You can add an unlimited number of fields, including different types of text input fields (password, address, e-mail, phone, etc.), captcha, map (multiple locations are supported), and submission buttons. The back-end interface of the WordPress Contact Form Maker is intuitive and easy-to-use. As a result, the users who are not really familiar with scripting and programming can easily create complex application forms.	
+	
+A number of parameters of the WordPress Contact Form Maker are customizable (e.g. colors and fonts, element size).
+	
+With WordPress Contact Form Maker you can build simple brief forms as well as produce complex applications forms with multiple sections and pages. 
+All modern browsers are supported.
+	
 ### Contact Form Maker
 
 
@@ -21,14 +27,13 @@ WordPress Contact Form Maker is an advanced and easy-to-use tool for creating co
 ###Features:  
 -	WordPress 3.0+
 -	7 field types
--	Custom HTML
--	Text Input (10 sub-types)
--	Captcha
--	Page break
--	Section break
--	Map
--	Button
-
+	-	Custom HTML
+	-	Text Input (10 sub-types)
+	-	Captcha
+	-	Page break
+	-	Section break
+	-	Map
+	-	Button
 -	Custom HTML between the fields
 -	Forms with multiple pages
 -	The form can be split into sections
