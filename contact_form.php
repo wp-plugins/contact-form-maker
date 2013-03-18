@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.4.0
+Version: 1.4.1
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -471,6 +471,9 @@ require_once("contact_form_ajax_functions.php");      //////////// include form 
 
 add_action('wp_ajax_formcontactwdcaptcha', 'form_contact_wd_captcha'); /// generete captcha image and save it code in session
 add_action('wp_ajax_formcontactwindow', 'form_contact_window_php'); /// openid window in post or page for editor
+
+add_action('wp_ajax_nopriv_formcontactwdcaptcha', 'form_contact_wd_captcha'); /// generete captcha image and save it code in session
+add_action('wp_ajax_nopriv_formcontactwindow', 'form_contact_window_php'); /// openid window in post or page for editor
 
 
 
