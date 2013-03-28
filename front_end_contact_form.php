@@ -1204,7 +1204,7 @@ $captcha_input=$_POST["captcha_input"];
 if(isset($_POST["recaptcha_response_field"])){
 $recaptcha_response_field=$_POST["recaptcha_response_field"];
 }
-if(isset($_POST["counter"])){
+if(isset($_POST["counter".$id])){
 $counter=$_POST["counter".$id];
 }
 $old_key=-1;
