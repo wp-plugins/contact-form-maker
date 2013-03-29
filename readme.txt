@@ -21,7 +21,7 @@ Contact Form Maker is a sophisticated and user-friendly contact form builder for
 A number of parameters of the WordPress Contact Form Maker are customizable (e.g. colors and fonts, element size).
 	
 With WordPress Contact Form Maker you can build simple brief contact forms as well as produce complex applications forms with multiple sections and pages. 
-All modern browsers are supported.
+
 	
 ### Contact Form Maker
 
