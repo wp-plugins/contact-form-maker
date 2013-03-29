@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 WordPress Contact Form Maker is an advanced and easy-to-use tool for creating  forms. 
 == Description == 
-[Contact form maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html) 
+[Contact form maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)		
 [Demo](http://wpdemo.web-dorado.com/form-maker/)  
 [Demo Admin](http://wpdemo.web-dorado.com/wp-admin/admin.php?page=Form_maker)  
 [User Manual](http://web-dorado.com/wordpress-form-maker-guide-1.html)  
@@ -32,7 +32,7 @@ With WordPress Contact Form Maker you can build simple brief contact forms as we
 
 ###Features:  
 -	WordPress 3.0+
--	7 field types
+-	7 field types of the Contact Form Maker
 	-	Custom HTML
 	-	Text Input (10 sub-types)
 	-	Captcha
