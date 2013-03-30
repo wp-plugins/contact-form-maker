@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.4.4
+Version: 1.4.5
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -245,18 +245,46 @@ function spider_contact_form_output_buffer() {
 }
 
 
-function contact_form_shotrcode($atts) {
-	$form_pro_exist=0;
-		extract(shortcode_atts(array(
-	      'id' => '0',
-     ), $atts));
-	if(!get_option('form_maker_pro_active',false)){
 
-     return contact_form_front_end($id);
+
+
+
+add_filter('the_content','Contact_Form_maker_fornt_end_main',5000);
+
+
+function Contact_Form_maker_fornt_end_main($content){
+	
+	if(!get_option('form_maker_pro_active',false)){
+	 $pattern ='[\[contact_form id="([0-9]*)"\]]';
+	 
+	 
+			$count_forms_in_post=preg_match_all ( $pattern, $content, $matches_form);
+			for($jj=0;$jj<$count_forms_in_post;$jj++)
+			{
+				$padron=$matches_form[0][$jj];
+				
+				$replacment=form_maker_front_end($matches_form[1][$jj]);		
+					$content=str_replace($padron,$replacment,$content);
+			}
+			
+		
+		 $pattern ='[\[contact_form id="([0-9]*)"\]]';
+	 
+	 
+			$count_forms_in_post=preg_match_all ( $pattern, $content, $matches_form);
+			for($jj=0;$jj<$count_forms_in_post;$jj++)
+			{
+				$padron=$matches_form[0][$jj];
+				
+				$replacment=contact_form_front_end($matches_form[1][$jj]);		
+					$content=str_replace($padron,$replacment,$content);
+			}		
 	}
-	return '[contact_form id="$atts"]';
+	return $content;
 }
-add_shortcode('contact_form', 'contact_form_shotrcode');
+
+
+
 
 
 function contact_form_scripts_method() {
