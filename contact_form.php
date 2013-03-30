@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.4.5
+Version: 1.4.6
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -255,18 +255,7 @@ add_filter('the_content','Contact_Form_maker_fornt_end_main',5000);
 function Contact_Form_maker_fornt_end_main($content){
 	
 	if(!get_option('form_maker_pro_active',false)){
-	 $pattern ='[\[contact_form id="([0-9]*)"\]]';
-	 
-	 
-			$count_forms_in_post=preg_match_all ( $pattern, $content, $matches_form);
-			for($jj=0;$jj<$count_forms_in_post;$jj++)
-			{
-				$padron=$matches_form[0][$jj];
-				
-				$replacment=form_maker_front_end($matches_form[1][$jj]);		
-					$content=str_replace($padron,$replacment,$content);
-			}
-			
+		
 		
 		 $pattern ='[\[contact_form id="([0-9]*)"\]]';
 	 
