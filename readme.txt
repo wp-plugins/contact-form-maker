@@ -306,7 +306,7 @@ Theme. A distinct theme can be applied to each new contact form. The themes can 
 
 4.3	Save the page or the post. 	
 
-Alternatively, you can use Contact Form Maker without the button on the toolbar: Add the shortcode [contact_form id=**N**] (where N is the id of the contact form, for the form with id=2, the shortcode must be [contact_form id=**2**]) to the pages and posts, where you want the form to appear.	
+Alternatively, you can use Contact Form Maker without the button on the toolbar: Add the shortcode [contact_form id="N"] (where N is the id of the contact form, for the form with id=2, the shortcode must be [contact_form id="2"]) to the pages and posts, where you want the form to appear.	
 
 ==Contact Form Maker Step by step guide Step 5 ==  
 
