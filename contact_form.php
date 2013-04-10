@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.4.6
+Version: 1.4.7
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -232,6 +232,7 @@ width:100px;
 
 
 require_once("front_end_contact_form.php");
+require_once("contact_form_maker_widget.php");
 require_once('recaptchalib.php');
 
 add_action( 'init', 'contact_form_language_load' );
