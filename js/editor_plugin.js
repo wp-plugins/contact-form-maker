@@ -1,11 +1,9 @@
 (function() {
-    tinymce.create('tinymce.plugins.contact_form_mce', {
- 
-        init : function(ed, url){
-			
+	tinymce.create('tinymce.plugins.contact_form_mce', {	
+   		init :function(ed, url){			
 			ed.addCommand('mcecontact_form_mce', function() {
 				ed.windowManager.open({
-					file :location.protocol+'//'+location.host+ajaxurl+"?action=formcontactwindow",
+					file :((ajaxurl.indexOf("://") != -1) ? ajaxurl:(location.protocol+'//'+location.host+ajaxurl))+"?action=formcontactwindow",
 					width : 400 + ed.getLang('contact_form_mce.delta_width', 0),
 					height : 250 + ed.getLang('contact_form_mce.delta_height', 0),
 					inline : 1

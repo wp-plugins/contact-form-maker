@@ -3,7 +3,10 @@ var c;
 var a=new Array();
 var plugin_url="";
 var id_ifr_editor=500;
-
+if(ajaxurl.indexOf("://") !=-1)
+var url_for_ajax=ajaxurl;
+else
+var url_for_ajax=location.protocol+'//'+location.host+ajaxurl;
 
 function active_reset(val, id)
 {
@@ -1137,13 +1140,13 @@ function change_captcha_digit(digit)
 	{	
 		captcha.setAttribute("digit", digit);
 	
-		captcha.setAttribute("src", location.protocol+'//'+location.host+ajaxurl+"?action=formcontactwdcaptcha"+"&digit="+digit+"&i=form_id_temp");
+		captcha.setAttribute("src", url_for_ajax+"?action=formcontactwdcaptcha"+"&digit="+digit+"&i=form_id_temp");
 		document.getElementById('_wd_captcha_inputform_id_temp').style.width=(document.getElementById('captcha_digit').value*10+15)+"px";
 	}
 	else
 	{
 		captcha.setAttribute("digit", "6");
-		captcha.setAttribute("src", location.protocol+'//'+location.host+ajaxurl+"?action=formcontactwdcaptcha"+"&digit=6"+"&i=form_id_temp");
+		captcha.setAttribute("src", url_for_ajax+"?action=formcontactwdcaptcha"+"&digit=6"+"&i=form_id_temp");
 		document.getElementById('_wd_captcha_inputform_id_temp').style.width=(6*10+15)+"px";
 	}
 }
@@ -11952,7 +11955,7 @@ function type_captcha(i,w_field_label, w_field_label_pos, w_digit, w_class, w_at
 	var adding = document.createElement(element);
            	adding.setAttribute("type", type);
            	adding.setAttribute("digit", w_digit);
-           	adding.setAttribute("src",location.protocol+'//'+location.host+ajaxurl+"?action=formcontactwdcaptcha"+"&digit="+w_digit+"&i=form_id_temp");
+           	adding.setAttribute("src",url_for_ajax+"?action=formcontactwdcaptcha"+"&digit="+w_digit+"&i=form_id_temp");
 			adding.setAttribute("id", "_wd_captchaform_id_temp");
 			adding.setAttribute("class", "captcha_img");
 			adding.setAttribute("onClick", "captcha_refresh('_wd_captcha','form_id_temp')");
