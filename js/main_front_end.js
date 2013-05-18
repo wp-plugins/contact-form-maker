@@ -1093,7 +1093,25 @@ function check_required(but_type, form_id)
 	if(seted)
 		create_headers(form_id);
 	
-}	
+}
+
+function form_maker_getElementsByAttribute(node,tag,attr,value){
+  var elems = (tag=="*" && node.all) ? node.all : node.getElementsByTagName(tag),
+    returnElems = new Array(),
+    nValue = (typeof value!="undefined") ? new RegExp("(^|\\s)" + value + "(\\s|$)") : null,
+    nAttr,
+    cur;
+  for (var i = 0; i < elems.length; i++) {
+    cur = elems[i];
+    nAttr = cur.getAttribute && cur.getAttribute(attr);
+    if (typeof nAttr == "string" && nAttr.length > 0) {
+      if (typeof value == "undefined" || (nValue && nValue.test(nAttr))) {
+        returnElems.push(cur);
+      }
+    }
+  }
+  return returnElems;
+}
 	
 function check(id, form_id)
 {
@@ -1105,7 +1123,8 @@ function check(id, form_id)
 	{	
 		if(seted)
 		{
-			if(form_view_curren.getElementById(i+"_type"+form_id))
+      if (form_maker_getElementsByAttribute(form_view_curren, "*", "id", "" + i + "_type" + form_id + "") != '')
+			// if(form_view_curren.getElementById(i+"_type"+form_id))
 			    if(document.getElementById(i+"_required"+form_id))
 				if(document.getElementById(i+"_required"+form_id).value=="yes")
 				{
