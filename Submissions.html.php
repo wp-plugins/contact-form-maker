@@ -309,8 +309,8 @@ if(isset($labels))
 <form action="admin.php?page=contact_form_Submits" style="overflow-x: scroll;" method="post" id="admin_form" name="admin_form">
     <input type="hidden" name="option" value="com_formmaker">
     <input type="hidden" name="task" value="submits">
-    <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo $_POST['asc_or_desc'] ?>">
-    <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo $_POST['order_by'] ?>">
+    <input type="hidden" name="asc_or_desc" id="asc_or_desc" value="<?php if(isset($_POST['asc_or_desc'])) echo esc_html($_POST['asc_or_desc']) ?>">
+    <input type="hidden" name="order_by" id="order_by" value="<?php if(isset($_POST['order_by'])) echo esc_html($_POST['order_by']) ?>">
 <br />
     <table width="95%">
 <tr>
@@ -752,7 +752,7 @@ function submitform(pressbutton)
   <td align="right"><input type="button" onclick="submitbutton('cancel')" value="Cancel" class="button-secondary action"> </td> 
   </tr>
   </tbody></table>
-<form action="admin.php?page=contact_form_Submits&id=<?php echo $_GET['id']; ?>" method="post" id="adminForm" name="adminForm">
+<form action="admin.php?page=contact_form_Submits&id=<?php echo (int) $_GET['id']; ?>" method="post" id="adminForm" name="adminForm">
 <table class="admintable">
 				<tr>
 					<td class="key">

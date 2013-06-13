@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.5
+Version: 1.5.1
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -281,7 +281,7 @@ function contact_form_scripts_method() {
 
 	if(!get_option('form_maker_pro_active',false)){
 				wp_enqueue_style("gmap_styles_",plugins_url("css/style_for_map.css",__FILE__),false); 
-				wp_enqueue_script("mootools",plugins_url("js/mootools.js",__FILE__));
+				// wp_enqueue_script("mootools",plugins_url("js/mootools.js",__FILE__));
     			wp_enqueue_script("main_g_js",plugins_url("js/main_front_end.js",__FILE__),false);
 				wp_enqueue_script("Gmap","http://maps.google.com/maps/api/js?sensor=false",false);
 				wp_enqueue_script("if_gmap",plugins_url("js/if_gmap_front_end.js",__FILE__),false);
@@ -615,7 +615,7 @@ function contact_form_admin_styles_scripts()
 {
 	if(isset($_GET['task']))
 	{
-		if($_GET['task']=="gotoedit" ||$_GET['task']=="add_form" || $_GET['task']=="edit_form" || $_GET['task']=="Save_Edit_JavaScript" || $_GET['task']=="Save_Actions_after_submission" || $_GET['task']=="Save_Custom_text_in_email_for_administrator" || $_GET['task']=="Save_Custom_text_in_email_for_user")
+		if(esc_html($_GET['task'])=="gotoedit" || esc_html($_GET['task'])=="add_form" || esc_html($_GET['task'])=="edit_form" || esc_html($_GET['task'])=="Save_Edit_JavaScript" || esc_html($_GET['task'])=="Save_Actions_after_submission" || esc_html($_GET['task'])=="Save_Custom_text_in_email_for_administrator" || esc_html($_GET['task'])=="Save_Custom_text_in_email_for_user")
 		{
 			  wp_enqueue_script('word-count');
 			  wp_enqueue_script('post');
@@ -695,7 +695,7 @@ function Manage_contact_form()
 	global $wpdb;
 	if(isset($_GET["task"]))
 	{
-		$task=$_GET["task"];
+		$task=esc_html($_GET["task"]);
 	}
 	else
 	{
@@ -703,7 +703,7 @@ function Manage_contact_form()
 	}
 	if(isset($_GET["id"]))
 	{
-		$id=$_GET["id"];
+		$id = (int) $_GET["id"];
 	}
 	else
 	{
@@ -886,9 +886,17 @@ function Manage_contact_form()
 add_action('wp_ajax_contactfrommapeditinpopup', 'spider_contact_form_map_edit');
 
 function spider_contact_form_map_edit(){
+  if (function_exists('current_user_can')) {
+    if (!current_user_can('manage_options')) {
+      die('Access Denied');
+    }
+  }
+  else {
+    die('Access Denied');
+  }
 	if(isset($_GET['long']) && isset($_GET['lat'])){
-	$long 	= $_GET['long'];
-	$lat 	= $_GET['lat'];
+	$long 	= esc_html($_GET['long']);
+	$lat 	= esc_html($_GET['lat']);
 	
 
 		?>
@@ -1328,11 +1336,18 @@ function refresh_first()
 <?php 
 die();
 }
-function  preview_contact_form()
-{
+function  preview_contact_form() {
+  if (function_exists('current_user_can')) {
+    if (!current_user_can('manage_options')) {
+      die('Access Denied');
+    }
+  }
+  else {
+    die('Access Denied');
+  }
 	global $wpdb;
 	if(isset($_GET['id']))
-	$getparams=$_GET['id'];
+	$getparams = (int) $_GET['id'];
 	$query = "SELECT css FROM ".$wpdb->prefix."formmaker_themes WHERE id=".$getparams;	
 	$css = $wpdb->get_var($query);
 	html_preview_contact_form($css);
@@ -1369,7 +1384,7 @@ function contact_form_Submits()
 	global $wpdb;
 	if(isset($_GET["task"]))
 	{
-		$task=$_GET["task"];
+		$task = esc_html($_GET["task"]);
 	}
 	else
 	{
@@ -1377,7 +1392,7 @@ function contact_form_Submits()
 	}
 	if(isset($_GET["id"]))
 	{
-		$id=$_GET["id"];
+		$id = (int) $_GET["id"];
 	}
 	else
 	{
@@ -1434,7 +1449,7 @@ function contact_form_Themes(){
 	global $wpdb;
 	if(isset($_GET["task"]))
 	{
-		$task=$_GET["task"];
+		$task = esc_html($_GET["task"]);
 	}
 	else
 	{
@@ -1442,7 +1457,7 @@ function contact_form_Themes(){
 	}
 	if(isset($_GET["id"]))
 	{
-		$id=$_GET["id"];
+		$id = (int) $_GET["id"];
 	}
 	else
 	{
@@ -1520,7 +1535,7 @@ global $wpdb;
 $base_name = plugin_basename('contact_form');
 $base_page = 'admin.php?page='.$base_name;
 if(isset($_GET['mode'])){
-$mode = trim($_GET['mode']);
+$mode = trim(esc_html($_GET['mode']));
 }
 if(!empty($_POST['do'])) {
 

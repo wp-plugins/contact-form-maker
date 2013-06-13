@@ -15,7 +15,7 @@
 		if(!$row)
 			return false;
 			if(isset($_POST['Itemid'])){
-				$Itemid=$_POST["Itemid".$id];
+				$Itemid = esc_html($_POST["Itemid" . $id]);
 			}
 			else{
 				$Itemid="";
@@ -51,17 +51,17 @@
 		$all_files=array();
 		@session_start();
         if(isset($_POST["captcha_input"])){
-		$captcha_input=$_POST["captcha_input"];
+		$captcha_input = esc_html($_POST["captcha_input"]);
 		}
 		if(isset($_POST["recaptcha_response_field"])){
-		$recaptcha_response_field=$_POST["recaptcha_response_field"];
+		$recaptcha_response_field = esc_html($_POST["recaptcha_response_field"]);
 		}
 		$id_for_old=$id;
 		if(!$form->form_front)
 		$id='';
 		if(isset($_POST["counter".$id]))
 		{	
-			$counter=$_POST["counter".$id];
+			$counter = esc_html($_POST["counter".$id]);
 			if (isset($_POST["captcha_input"]))
 			{		
 				$session_wd_captcha_code=isset($_SESSION[$id.'_wd_captcha_code'])?$_SESSION[$id.'_wd_captcha_code']:'-';
@@ -1199,13 +1199,13 @@ formLoadBody'.$id.'();';
 
 
 if(isset($_POST["captcha_input"])){
-$captcha_input=$_POST["captcha_input"];
+$captcha_input=esc_html($_POST["captcha_input"]);
 }
 if(isset($_POST["recaptcha_response_field"])){
-$recaptcha_response_field=$_POST["recaptcha_response_field"];
+$recaptcha_response_field=esc_html($_POST["recaptcha_response_field"]);
 }
 if(isset($_POST["counter".$id])){
-$counter=$_POST["counter".$id];
+$counter=esc_html($_POST["counter".$id]);
 }
 $old_key=-1;
 if(isset($counter))

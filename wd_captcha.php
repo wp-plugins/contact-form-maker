@@ -9,39 +9,33 @@
 
  // This php file returnes Captcha image in image/jpeg format therefore direct access must be allowed
  if(isset($_GET["i"]))
-$i=$_GET["i"];
+$i = (int) $_GET["i"];
 else
 $i='';
 if(isset($_GET['r2']))
-$r2=$_GET['r2'];
+$r2=(int)$_GET['r2'];
 else
 $r2=0;
 if(isset($_GET['r']))
-$rrr=$_GET['r'];
+$rrr=(int)$_GET['r'];
 else
 $rrr=0;
 $randNum=0+$r2+$rrr;
 
-if(isset($_GET["digit"]))
-$cap_width=$_GET["digit"]*10+15;
+if(isset($_GET["digit"])) {
+  $digit = (int) $_GET["digit"];
+}
 else
 {
-	$cap_width=6*10+15;
+	$digit = 6;
 }
-$cap_height=30;
-$cap_quality=100;
-if(isset($_GET["digit"]))
-$cap_length_min=$_GET["digit"];
-else
-$cap_length_min=6;
-if(isset($_GET["digit"]))
-$cap_length_max=$_GET["digit"];
-else
-$cap_length_max=6;
-$cap_digital=1;
-$cap_latin_char=1;
-
-
+$cap_width = $digit * 10 + 15;
+$cap_height = 30;
+$cap_quality = 100;
+$cap_length_min = $digit;
+$cap_length_max = $digit;
+$cap_digital = 1;
+$cap_latin_char = 1;
 
 function code_generic($_length,$_digital=1,$_latin_char=1)
 {

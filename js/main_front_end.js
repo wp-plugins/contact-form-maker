@@ -1112,7 +1112,7 @@ function form_maker_getElementsByAttribute(node,tag,attr,value){
   }
   return returnElems;
 }
-	
+
 function check(id, form_id)
 {
 	n=parseInt(document.getElementById("counter"+form_id).value);

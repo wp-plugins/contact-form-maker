@@ -25,39 +25,34 @@
 
 
  function form_contact_wd_captcha(){
-	 if(isset($_GET['action']) && $_GET['action']=='formcontactwdcaptcha'){
+	 if(isset($_GET['action']) && esc_html($_GET['action'])=='formcontactwdcaptcha'){
 	  if(isset($_GET["i"]))
-$i=$_GET["i"];
+$i=(int) $_GET["i"];
 else
 $i='';
 if(isset($_GET['r2']))
-$r2=$_GET['r2'];
+$r2=(int) $_GET['r2'];
 else
 $r2=0;
 if(isset($_GET['r']))
-$rrr=$_GET['r'];
+$rrr=(int) $_GET['r'];
 else
 $rrr=0;
 $randNum=0+$r2+$rrr;
 
-if(isset($_GET["digit"]))
-$cap_width=$_GET["digit"]*10+15;
-else
-{
-	$cap_width=6*10+15;
+if (isset($_GET["digit"])) {
+  $digit = (int) $_GET["digit"];
 }
-$cap_height=30;
-$cap_quality=100;
-if(isset($_GET["digit"]))
-$cap_length_min=$_GET["digit"];
-else
-$cap_length_min=6;
-if(isset($_GET["digit"]))
-$cap_length_max=$_GET["digit"];
-else
-$cap_length_max=6;
-$cap_digital=1;
-$cap_latin_char=1;
+else {
+	$digit = 6;
+}
+$cap_width = $digit * 10 + 15;
+$cap_height = 30;
+$cap_quality = 100;
+$cap_length_min = $digit;
+$cap_length_max = $digit;
+$cap_digital = 1;
+$cap_latin_char = 1;
 
 
 
@@ -134,7 +129,7 @@ die('');
 
 
 function form_contact_window_php(){
-	if(isset($_GET['action']) && $_GET['action']=='formcontactwindow'){
+	if(isset($_GET['action']) && esc_html($_GET['action'])=='formcontactwindow'){
 		global $wpdb;
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">

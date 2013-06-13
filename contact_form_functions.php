@@ -17,7 +17,7 @@ function display_form_lists(){
 			
 			if($_POST['asc_or_desc'])
 			{
-				$sort["sortid_by"]=$_POST['order_by'];
+				$sort["sortid_by"] = $wpdb->escape($_POST['order_by']);
 				if($_POST['asc_or_desc']==1)
 				{
 					$sort["custom_style"]="manage-column column-title sorted asc";
@@ -38,7 +38,7 @@ function display_form_lists(){
 			
 	if($_POST['page_number'])
 		{
-			$limit=($_POST['page_number']-1)*20; 
+			$limit = ((int) $_POST['page_number'] - 1) * 20; 
 		}
 		else
 		{
@@ -51,7 +51,7 @@ function display_form_lists(){
 			$limit=0;
 		}
 	if(isset($_POST['search_events_by_title'])){
-		$search_tag=$_POST['search_events_by_title'];
+		$search_tag = esc_html($_POST['search_events_by_title']);
 		}
 		
 		else
@@ -347,7 +347,8 @@ function save_as_copy(){
 	if(isset($_POST["label_order"]) && isset($_POST["title"]) && isset($_POST["form"]) && isset($_GET['id'])){
 	$no_slash_form = stripslashes($_POST['form']);
 	$no_slash_form_front=	stripslashes($_POST['form_front']);
-	$row_for_sav_as_copy=$wpdb->get_row("SELECT * FROM ".$wpdb->prefix."formmaker WHERE id=".$_GET['id']);
+  $form_id = (int) $_GET['id'];
+	$row_for_sav_as_copy=$wpdb->get_row("SELECT * FROM ".$wpdb->prefix."formmaker WHERE id=". $form_id);
 	$javascript=$row_for_sav_as_copy->javascript;
 
 	 $save_or_no= $wpdb->insert($wpdb->prefix.'formmaker', array(
@@ -382,7 +383,7 @@ function save_as_copy(){
 				'%s',
 				'%d',
 				'%d',
-				'%d',
+				'%s',
 				'%s',
 				'%s',
 				'%s',
@@ -631,10 +632,10 @@ html_Actions_after_submission($row);
 function Apply_Actions_after_submission($id){
 global $wpdb;
 if($_POST["submit_text_type"]==5)
-	$sub_te_type= $_POST["page_name"];
+	$sub_te_type= esc_html($_POST["page_name"]);
 else
 {
-	$sub_te_type= $_POST["post_name"];
+	$sub_te_type= esc_html($_POST["post_name"]);
 }
 
 $savedd=$wpdb->update($wpdb->prefix."formmaker", array(

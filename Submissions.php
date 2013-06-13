@@ -27,7 +27,7 @@ function show_submits(){
 			
 			if($_POST['asc_or_desc'])
 			{
-				$sort["sortid_by"]=$_POST['order_by'];
+				$sort["sortid_by"]=esc_html($_POST['order_by']);
 				if($_POST['asc_or_desc']==1)
 				{
 					$sort["custom_style"]="manage-column column-title sorted asc";
@@ -47,7 +47,7 @@ function show_submits(){
 			
 	if($_POST['page_number'])
 		{
-			$limit=($_POST['page_number']-1)*20; 
+			$limit = ((int) $_POST['page_number'] - 1) * 20; 
 		}
 		else
 		{
@@ -74,7 +74,7 @@ function show_submits(){
 
 	//$task	= JRequest::getCmd('task'); 
 	if(isset($_POST['form_id'])){
-	$form_id=$_POST['form_id'];
+	$form_id = (int) $_POST['form_id'];
 	
 	if($form_id){
 	
@@ -93,7 +93,7 @@ function show_submits(){
 	if(!$exists)
 		$form_id=0;
 	if(isset($_POST['order_by']) && $_POST['order_by']!="")
-	$filter_order= $_POST['order_by'];
+	$filter_order= esc_html($_POST['order_by']);
 	else
 	$filter_order='id';
 	if(isset($_POST['asc_or_desc'])){
@@ -106,14 +106,14 @@ function show_submits(){
 		$filter_order_Dir="";
 	}
 	if(isset($_POST['search_submits'])){
-	$search_submits = $_POST['search_submits'];
+	$search_submits = esc_html($_POST['search_submits']);
 	$search_submits =strtolower( $search_submits );
 	}
 	else{
 	$search_submits = "";
 	}
 	if(isset($_POST['ip_search'])){
-	$ip_search = $_POST['ip_search'];
+	$ip_search = esc_html($_POST['ip_search']);
 	$ip_search = strtolower( $ip_search );
 	}
 	else{
@@ -123,7 +123,7 @@ function show_submits(){
 	$where_choices = array();
     if(isset($_POST['startdate']))
 	{
-		$lists['startdate']= $_POST['startdate'];
+		$lists['startdate']= esc_html($_POST['startdate']);
 	}
 	else
 	{
@@ -132,7 +132,7 @@ function show_submits(){
 	
 	if(isset($_POST['enddate']))
 	{
-		$lists['enddate']= $_POST['enddate'];
+		$lists['enddate']= esc_html($_POST['enddate']);
 	}
 	else
 	{
@@ -141,7 +141,7 @@ function show_submits(){
 	
 	if(isset($_POST['hide_label_list']))
 	{
-		$lists['hide_label_list']= $_POST['hide_label_list'];
+		$lists['hide_label_list']= esc_html($_POST['hide_label_list']);
 	}
 	else
 	{
@@ -346,7 +346,7 @@ $query="DELETE FROM ".$wpdb->prefix."formmaker_submits WHERE group_id='".$id."'"
 function remov_cheched_submission()
 {
 	global $wpdb;
-	$cid=$_POST['post'];
+	$cid=esc_html($_POST['post']);
 	
   if (count( $cid )) {
 
@@ -435,9 +435,9 @@ function save_submit($id){
 	
 
 	global $wpdb;
-	$id 	= $_POST['id'];
-	$date 	= $_POST['date'];
-	$ip 	= $_POST['ip'];
+	$id 	= (int) $_POST['id'];
+	$date 	= esc_html($_POST['date']);
+	$ip 	= esc_html($_POST['ip']);
 	$form_id=$wpdb->get_var("SELECT form_id FROM ".$wpdb->prefix."formmaker_submits WHERE group_id='".$id."'");
 	$form =$wpdb->get_row("SELECT * FROM ".$wpdb->prefix."formmaker WHERE id='".$form_id."'");
 		$label_id= array();
