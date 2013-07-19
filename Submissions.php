@@ -346,12 +346,12 @@ $query="DELETE FROM ".$wpdb->prefix."formmaker_submits WHERE group_id='".$id."'"
 function remov_cheched_submission()
 {
 	global $wpdb;
-	$cid=esc_html($_POST['post']);
+	$cid=$_POST['post'];
 	
   if (count( $cid )) {
 
 
-    $cids = implode( ',', $cid );
+    $cids = esc_html(implode( ',', $cid ));
     // Create sql statement
 
     $query = 'DELETE FROM '.$wpdb->prefix.'formmaker_submits'.' WHERE group_id IN ( '. $cids .' )' ;
