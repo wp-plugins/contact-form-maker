@@ -42,20 +42,29 @@ class contact_form_maker_widget extends WP_Widget {
 
   // Widget Control Panel //
   function form($instance) {
-    $defaults = array('title' => '', 'form_id' => 0);
+    $defaults = array(
+      'title' => '',
+      'form_id' => 0
+    );
     $instance = wp_parse_args((array)$instance, $defaults);
     global $wpdb; ?>
   <p>
     <label for="<?php echo $this->get_field_id('title'); ?>">Title:</label>
-    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"name="<?php echo $this->get_field_name('title'); ?>'" type="text" value="<?php echo $instance['title']; ?>"/>
+    <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+           name="<?php echo $this->get_field_name('title'); ?>'" type="text" value="<?php echo $instance['title']; ?>"/>
     <label for="<?php echo $this->get_field_id('form_id'); ?>">Select a form:</label>
-    <select name="<?php echo $this->get_field_name('form_id'); ?>'" id="<?php echo $this->get_field_id('form_id'); ?>" style="width:225px;text-align:center;">
+    <select name="<?php echo $this->get_field_name('form_id'); ?>'" id="<?php echo $this->get_field_id('form_id'); ?>"
+            style="width:225px;text-align:center;">
       <option style="text-align:center" value="0">- Select a Form -</option>
-       <?php
-         $ids_contact_form_maker = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."formmaker order by `id` DESC",0);
-         foreach ($ids_contact_form_maker as $arr_contact_form_maker) {?>
-      <option value="<?php echo $arr_contact_form_maker->id; ?>" <?php if ($arr_contact_form_maker->id == $instance['form_id']) {echo "SELECTED";} ?>><?php echo $arr_contact_form_maker->title; ?></option>
-     <?php }?>
+      <?php
+      $ids_contact_form_maker = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker order by `id` DESC", 0);
+      foreach ($ids_contact_form_maker as $arr_contact_form_maker) {
+        ?>
+        <option
+          value="<?php echo $arr_contact_form_maker->id; ?>" <?php if ($arr_contact_form_maker->id == $instance['form_id']) {
+          echo "SELECTED";
+        } ?>><?php echo $arr_contact_form_maker->title; ?></option>
+        <?php }?>
     </select>
   <?php
   }
