@@ -2,7 +2,7 @@
 
 function contact_form_check_update() {
   global $wpdb;
-  if (get_option('contact_formmaker_cureent_version') != '2.4.4' || !get_site_option('contact_formmaker_cureent_version')) {
+  if ($wpdb->get_var("SHOW TABLES LIKE '" . $wpdb->prefix . "formmaker_sessions'") != $wpdb->prefix . "formmaker_sessions") {
     if ($wpdb->get_var("SHOW TABLES LIKE '" . $wpdb->prefix . "formmaker'") == $wpdb->prefix . "formmaker") {
       $form_properties = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "formmaker", ARRAY_A);
       foreach ($form_properties as $prop) {

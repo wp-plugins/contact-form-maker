@@ -1534,6 +1534,7 @@ jQuery(document).ready(function ($) {
     <td>
       <input type="button" onclick="submitbutton('form_options')" value="Form options" class="button-primary" />
     </td>
+    <td style="width:300px"><input type="button" onclick="submitbutton('save_as_copy')" value="Save As Copy" class="button-secondary action" /> </td>
     <td align="right"><input type="button" onclick="submitbutton('Save')" value="Save" class="button-secondary action"/>
     </td>
     <td align="right"><input type="button" onclick="submitbutton('Apply')" value="Apply"
