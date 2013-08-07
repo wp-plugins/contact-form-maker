@@ -282,7 +282,8 @@ function save_as_copy() {
         'checkout_mode' => $row_for_sav_as_copy->checkout_mode,
         'paypal_email' => $row_for_sav_as_copy->paypal_email,
         'payment_currency' => $row_for_sav_as_copy->payment_currency,
-        'tax' => $row_for_sav_as_copy->tax
+        'tax' => $row_for_sav_as_copy->tax,
+        'label_order_current' => $row_for_sav_as_copy->label_order_current
       ), array(
         '%d',
         '%s',
@@ -313,7 +314,8 @@ function save_as_copy() {
         '%s',
         '%s',
         '%s',
-        '%d'
+        '%d',
+        '%s'
       ));
     if (!$save_or_no) {
       ?>
