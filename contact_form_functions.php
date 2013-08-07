@@ -161,8 +161,22 @@ function before_reset()
           'private_key' => $_POST["private_key"],
           'recaptcha_theme' => $_POST["recaptcha_theme"],
           'javascript' => $javascript,
+          'script1' => '',
+          'script2' => '',
+          'script_user1' => '',
+          'script_user2' => '',
+          'submit_text' => '',
+          'url' => '',
+          'article_id' => 0,
+          'submit_text_type' => 0,
           'script_mail' => '%all%',
-          'script_mail_user' => '%all%'
+          'script_mail_user' => '%all%',
+          'label_order_current' => $_POST["label_order"],
+          'tax' => 0,
+          'payment_currency' => '',
+          'paypal_email' => '',
+          'checkout_mode' => 'testmode',
+          'paypal_mode' => 0
         ), array(
           '%d',
           '%s',
@@ -180,7 +194,21 @@ function before_reset()
           '%s',
           '%s',
           '%s',
-          '%s'
+          '%s',
+          '%s',
+          '%s',
+          '%s',
+          '%s',
+          '%s',
+          '%d',
+          '%s',
+          '%s',
+          '%s',
+          '%d',
+          '%s',
+          '%s',
+          '%s',
+          '%d'
         ));
       if (!$save_or_no) {
         ?>

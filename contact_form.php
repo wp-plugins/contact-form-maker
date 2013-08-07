@@ -2,7 +2,7 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.5.3
+Version: 1.5.4
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -1322,10 +1322,9 @@ function contact_form_activate() {
   }
   include 'setup_sql.php';
   set_contact_form_sql();
+  include 'update_sql.php';
   contact_form_check_update();
 }
-include 'update_sql.php';
-
 
 function contact_form_redirect() {
   if (get_option('contact_form_do_activation_redirect') == TRUE) {
