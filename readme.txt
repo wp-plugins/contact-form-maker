@@ -131,7 +131,7 @@ After downloading the ZIP file of the Contact Form Maker
 Once the plugin of the Contact Form Maker is activated, you'll notice a menu on the left called "Contact Form".  Here you can manage contact forms and submissions of the Contact Form Maker.  
 If any problem occurs with the Contact Form Maker, please contact us info@web-dorado.com in order to correct the mistakes of the Contact Form Maker plugin.    
 
-== Screenshots of the Contact Form Maker ==
+== Screenshots ==
 1.  Contact Form Maker - Sample RSVP  
 2.  Contact Form Maker - Sample  form  
 3.  Contact Form Maker - Manage forms  
