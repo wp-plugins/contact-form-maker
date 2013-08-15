@@ -18,8 +18,12 @@ function show_contact_form($id) {
     $Itemid = "";
   }
   $form_theme = $wpdb->get_var($wpdb->prepare("SELECT css FROM " . $wpdb->prefix . "formmaker_themes WHERE id=%d", $row->theme));
-  if (!$form_theme)
-    return FALSE;
+  if (!$form_theme) {
+    $form_theme = $wpdb->get_var("SELECT css FROM " . $wpdb->prefix . "formmaker_themes");
+    if (!$form_theme) {
+      return FALSE;
+    }
+  }
   $label_id = array();
   $label_type = array();
   $label_all = explode('#****#', $row->label_order);
@@ -528,7 +532,18 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
   $list = $list . '</table>';
   $list = wordwrap($list, 70, "\n", TRUE);
   // add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-  $headers = "MIME-Version: 1.0\n" . "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
+  if ($row->from_mail != '') {
+    if ($row->from_name != '') {
+      $from_mail = "From: " . $row->from_name . " <" . $row->from_mail . ">" . "\r\n";
+    }
+    else {
+      $from_mail = "From: " . $row->from_mail . " <" . $row->from_mail . ">" . "\r\n";
+    }
+  }
+  else {
+    $from_mail = '';
+  }
+  $headers = "MIME-Version: 1.0\n" . $from_mail . " Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
   for ($k = 0; $k < count($all_files); $k++) {
     // $attachment[$k] = dirname(__FILE__) . '/uploads/' . $all_files[$k]['name'];
     $attachment[$k]= $all_files[$k]['name'];

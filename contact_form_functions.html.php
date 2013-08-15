@@ -1924,6 +1924,17 @@ function html_form_options($row, $themes) {
           return;
         }
       }
+      if (form.from_mail.value != '') {
+        trimmedMail = form.from_mail.value.replace(/^\s+|\s+$/g, '');
+        emailListValid = true;
+        if (trimmedMail.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
+          alert("From Email is not a valid email address.");
+          emailListValid = false;
+        }
+        if (!emailListValid) {
+          return;
+        }
+      }
       submit_in(pressbutton);
     }
     function check_isnum(e) {
@@ -2364,7 +2375,7 @@ function html_form_options($row, $themes) {
       <table class="admintable" style="float:left">
         <tr valign="top">
           <td class="key">
-            <label>Email to send submissions to</label>
+            <label for="mail">Email to send submissions to</label>
           </td>
           <td>
             <input id="mail" name="mail" value="<?php echo $row->mail ?>" style="width:250px;"/>
@@ -2372,7 +2383,23 @@ function html_form_options($row, $themes) {
         </tr>
         <tr valign="top">
           <td class="key">
-            <label>Theme</label>
+            <label for="from_mail">From Email</label>
+          </td>
+          <td>
+            <input id="from_mail" name="from_mail" value="<?php echo $row->from_mail; ?>" style="width:250px;"/>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td class="key">
+            <label for="from_name">From Name</label>
+          </td>
+          <td>
+            <input id="from_name" name="from_name" value="<?php echo $row->from_name; ?>" style="width:250px;"/>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td class="key">
+            <label for="theme">Theme</label>
           </td>
           <td>
             <select id="theme" name="theme" style="width:260px; " onChange="set_preview()">

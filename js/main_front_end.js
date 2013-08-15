@@ -44,6 +44,17 @@ function set_sel_am_pm(select_)
 
 }
 
+function check_isnum_point(e) {
+  var chCode1 = e.which || e.keyCode;
+  if (chCode1 == 46) {
+    return true;
+  }
+	if (chCode1 > 31 && (chCode1 < 48 || chCode1 > 57)) {
+    return false;
+  }
+  return true;
+}
+
 function check_isnum(e)
 {
    	var chCode1 = e.which || e.keyCode;

@@ -3903,7 +3903,7 @@ function type_number(i, w_field_label, w_field_label_pos, w_size, w_first_val, w
   el_size.setAttribute("value", w_size);
 
   el_size.setAttribute("name", "edit_for_size");
-  el_size.setAttribute("onKeyPress", "return check_isnum(event)");
+  el_size.setAttribute("onKeyPress", "return check_isnum_point(event)");
   el_size.setAttribute("onKeyUp", "change_w_style('" + i + "_elementform_id_temp', this.value)");
 
   var el_first_value_label = document.createElement('label');
@@ -4140,7 +4140,7 @@ function type_number(i, w_field_label, w_field_label_pos, w_size, w_first_val, w
   adding.setAttribute("name", i + "_elementform_id_temp");
   adding.setAttribute("value", w_first_val);
   adding.setAttribute("title", w_title);
-  adding.setAttribute("onKeyPress", "return check_isnum(event)");
+  adding.setAttribute("onKeyPress", "return check_isnum_point(event)");
   adding.setAttribute("onFocus", 'delete_value("' + i + '_elementform_id_temp")');
   adding.setAttribute("onBlur", 'return_value("' + i + '_elementform_id_temp")');
   adding.setAttribute("onChange", 'change_value("' + i + '_elementform_id_temp")');

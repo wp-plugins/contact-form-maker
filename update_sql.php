@@ -102,6 +102,31 @@ function contact_form_check_update() {
         update_option('contact_formmaker_cureent_version', '2.4.4');
     }
   }
+  $form_properties = $wpdb->get_results("DESCRIBE " . $wpdb->prefix . "formmaker", ARRAY_A);
+  foreach ($form_properties as $prop) {
+    $exist_from_mail = (($prop['Field'] == 'from_mail') ? 1 : 0);
+    $exist_from_name = (($prop['Field'] == 'from_name') ? 1 : 0);
+  }
+  if (!$exist_from_mail) {
+    $wpdb->query("ALTER TABLE " . $wpdb->prefix . "formmaker ADD `from_mail` varchar(255) NOT NULL AFTER `recaptcha_theme`");
+  }
+  if (!$exist_from_name) {
+    $wpdb->query("ALTER TABLE " . $wpdb->prefix . "formmaker ADD `from_name` varchar(255) NOT NULL AFTER `recaptcha_theme`");
+  }
+  $form_rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker");
+  foreach ($form_rows as $form_row) {
+    $wpdb->update($wpdb->prefix . "formmaker", array(
+      'from_mail' => '',
+      'from_name' => '',
+    ), array(
+      'id' => $form_row->id,
+    ), array(
+      '%s',
+      '%s',
+    ), array(
+      '%d',
+    ));
+  }
 }
 
 ?>
