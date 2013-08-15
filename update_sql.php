@@ -116,13 +116,29 @@ function contact_form_check_update() {
   $form_rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker");
   foreach ($form_rows as $form_row) {
     $wpdb->update($wpdb->prefix . "formmaker", array(
+      'paypal_mode' => 0,
+      'checkout_mode' => 'testmode',
+      'paypal_email' => '',
+      'payment_currency' => '',
+      'tax' => 0,
+      'script_mail' => $form_row->script1 . '%all%' . $form_row->script2,
+      'script_mail_user' => $form_row->script_user1 . '%all%' . $form_row->script_user2,
+      'label_order_current' => $form_row->label_order,
       'from_mail' => '',
       'from_name' => '',
     ), array(
       'id' => $form_row->id,
     ), array(
+      '%d',
       '%s',
       '%s',
+      '%s',
+      '%d',
+      '%s',
+      '%s',
+      '%s',
+      '%s',
+      '%s'
     ), array(
       '%d',
     ));
