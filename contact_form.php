@@ -412,7 +412,7 @@ function contact_form_options_panel() {
     add_menu_page('Theme page title', 'Contact Form', 'manage_options', 'contact_form', 'Manage_contact_form', $icon_url);
     $page_form = add_submenu_page('contact_form', 'Contact Form Manager', 'Manager', 'manage_options', 'contact_form', 'Manage_contact_form');
     $page_submits = add_submenu_page('contact_form', 'Contact Form Submissions', 'Submissions', 'manage_options', 'contact_form_Submits', 'contact_form_Submits');
-    add_submenu_page('contact_form', 'Licensing', 'Licensing', 'manage_options', 'contact_form_Licensing', 'contact_form_Licensing');
+    add_submenu_page('contact_form', 'Licensing/Donation', 'Licensing/Donation', 'manage_options', 'contact_form_Licensing', 'contact_form_Licensing');
     add_submenu_page('contact_form', 'Contact Form Themes', 'Themes', 'manage_options', 'contact_form_Themes', 'contact_form_Themes');
     add_submenu_page('contact_form', 'Uninstall Contact Form ', 'Uninstall Contact Form', 'manage_options', 'Uninstall_contact_form', 'Uninstall_contact_form');
     add_action('admin_print_styles-' . $page_form, 'contact_form_admin_styles_scripts');
@@ -423,20 +423,21 @@ function contact_form_options_panel() {
 function contact_form_Licensing() {
   ?>
 <div style="width:95%">
-  <p>
-    This plugin is the non-commercial version of the Contact Form. Use of this plugin is free. You can add unlimited
+  <p>This plugin is the non-commercial version of the Contact Form. Use of this plugin is free. You can add unlimited
     number of the fields. The limitation is on the some types of the fields (Time and Date, Select, Check box, Radio, File Upload and Paypal). If you want to use those fields, you are required to purchase a license. </p>
+  <br/>
+  <a href="http://web-dorado.com/files/fromContactForm.php" class="button-primary" target="_blank">Purchase a License</a>
   <br/><br/>
-  <a href="http://web-dorado.com/files/fromContactForm.php" class="button-primary" target="_blank">Purchase a
-    License</a>
-  <br/><br/><br/>
-
   <p>After the purchasing the commercial version follow this steps:</p>
   <ol>
     <li>Deactivate Contact Form Plugin</li>
     <li>Delete Contact Form Plugin</li>
     <li>Install the downloaded commercial version of the plugin</li>
   </ol>
+  <br/>
+  <p>If you enjoy using Contact Form and find it useful, please consider making a donation. Your donation will help encourage and support the plugin's continued development and better user support.</p>
+  <br/>
+  <a href="http://web-dorado.com/files/donate_redirect.php" target="_blank"><img src="<?php echo plugins_url('images/btn_donateCC_LG.gif', __FILE__); ?>" /></a>
 </div>
 <?php
 }
