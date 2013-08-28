@@ -3,8 +3,8 @@ Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html
 Tags:  form,  forms,  contact form, contact forms,  contact form plugin,contact forms plugin, forms plugin, Contact Form Builder, contact form manager, multiple contac forms, custom  form,Contact Form Maker with recaptcha, contact form with google map, feedback form, feedback forms,contact us
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 1.5.5
+Tested up to: 3.6
+Stable tag: 1.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
