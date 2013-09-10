@@ -46,7 +46,7 @@ function set_sel_am_pm(select_)
 
 function check_isnum_point(e) {
   var chCode1 = e.which || e.keyCode;
-  if (chCode1 == 46) {
+  if (chCode1 == 46 || chCode1 == 45) {
     return true;
   }
 	if (chCode1 > 31 && (chCode1 < 48 || chCode1 > 57)) {
@@ -819,7 +819,7 @@ function page_previous(id, form_id, form_view_count, form_view_max)
 		table.removeChild(table.firstChild);
 
 	generate_page_nav(table.firstChild.id.replace(form_id+'form_view', ""),form_id, form_view_count, form_view_max);
-  window.scrollTo(0, 0);
+  window.scroll(0, form_maker_findPos(document.getElementById("form" + form_id)));
 }
 
 function page_next(id, form_id, form_view_count, form_view_max)
@@ -836,7 +836,17 @@ function page_next(id, form_id, form_view_count, form_view_max)
 		table.removeChild(table.firstChild);
 
 	generate_page_nav(table.firstChild.id.replace(form_id+'form_view', ""), form_id, form_view_count, form_view_max);
-	window.scrollTo(0, 0);
+	window.scroll(0, form_maker_findPos(document.getElementById("form" + form_id)));
+}
+
+function form_maker_findPos(obj) {
+  var curtop = 0;
+  if (obj.offsetParent) {
+      do {
+          curtop += obj.offsetTop;
+      } while (obj = obj.offsetParent);
+  return [curtop];
+  }
 }
 
 function randomSort(a,b) {

@@ -303,7 +303,7 @@ function save_submit($id) {
       if ($result) {
         //$query = "UPDATE ".$wpdb->prefix."formmaker_submits SET `element_value`='".$element_value."' WHERE group_id='".$id."' AND element_label='".$label_id_1."'";
         $wpdb->update($wpdb->prefix . "formmaker_submits", array(
-            'element_value' => $element_value,
+            'element_value' => stripslashes($element_value),
           ), array(
             'group_id' => $id,
             'element_label' => $label_id_1
@@ -318,7 +318,7 @@ function save_submit($id) {
         $wpdb->insert($wpdb->prefix . "formmaker_submits", array(
             'form_id' => $form_id,
             'element_label' => $label_id_1,
-            'element_value' => $element_value,
+            'element_value' => stripslashes($element_value),
             'group_id' => $id,
             'date' => $date,
             'ip' => $ip
@@ -347,7 +347,7 @@ function save_submit($id) {
         if ($result) {
           $query = "UPDATE " . $wpdb->prefix . "formmaker_submits SET `element_value`='" . $element_value . "' WHERE group_id='" . $id . "' AND element_label='" . $label_id_1 . "'";
           $wpdb->update($wpdb->prefix . "formmaker_submits", array(
-              'element_value' => $element_value,
+              'element_value' => stripslashes($element_value),
             ), array(
               'group_id' => $id,
               'element_label' => $label_id_1
@@ -363,7 +363,7 @@ function save_submit($id) {
           $wpdb->insert($wpdb->prefix . "formmaker_submits", array(
               'form_id' => $form_id,
               'element_label' => $label_id_1,
-              'element_value' => $element_value,
+              'element_value' => stripslashes($element_value),
               'group_id' => $id,
               'date' => $date,
               'ip' => $ip
