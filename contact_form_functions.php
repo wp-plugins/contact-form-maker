@@ -461,7 +461,7 @@ function gotoedit() {
 }
 
 // Form options.
-function form_options($id) {
+function wd_form_options($id) {
   global $wpdb;
   $row = $wpdb->get_row("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE id='" . $id . "'");
   $query = "SELECT * FROM " . $wpdb->prefix . "formmaker_themes ORDER BY title";
@@ -482,7 +482,7 @@ function Apply_form_options($id) {
     'mail' => $_POST["mail"],
     'theme' => $_POST["theme"],
     'javascript' => stripslashes($_POST["javascript"]),
-    'submit_text' => $_POST["content"],
+    'submit_text' => stripslashes($_POST["content"]),
     'url' => $_POST["url"],
     'submit_text_type' => $_POST["submit_text_type"],
     'script_mail' => stripslashes($_POST["script_mail"]),

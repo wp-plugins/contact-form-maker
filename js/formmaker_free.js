@@ -14732,7 +14732,7 @@ function refresh_pages_without_deleting(id) {
 
   var img_DUBLICATE = document.createElement("img");
   img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-  img_DUBLICATE.setAttribute("title", "Dublicate the field");
+  img_DUBLICATE.setAttribute("title", "Duplicate the field");
   img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
   img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -14969,7 +14969,7 @@ function add(key) {
 
       var img_DUBLICATE = document.createElement("img");
       img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-      img_DUBLICATE.setAttribute("title", "Dublicate the field");
+      img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -15106,7 +15106,7 @@ function add(key) {
 
       var img_DUBLICATE = document.createElement("img");
       img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-      img_DUBLICATE.setAttribute("title", "Dublicate the field");
+      img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -15552,7 +15552,7 @@ function add(key) {
 
       var img_DUBLICATE = document.createElement("img");
       img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-      img_DUBLICATE.setAttribute("title", "Dublicate the field");
+      img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -15726,7 +15726,7 @@ function add(key) {
 
       var img_DUBLICATE = document.createElement("img");
       img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-      img_DUBLICATE.setAttribute("title", "Dublicate the field");
+      img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -15954,7 +15954,7 @@ function add(key) {
 
           var img_DUBLICATE = document.createElement("img");
           img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-          img_DUBLICATE.setAttribute("title", "Dublicate the field");
+          img_DUBLICATE.setAttribute("title", "Duplicate the field");
           img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
           img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 
@@ -16182,7 +16182,7 @@ function add(key) {
 
           var img_DUBLICATE = document.createElement("img");
           img_DUBLICATE.setAttribute("src", plugin_url + "/images/dublicate.png");
-          img_DUBLICATE.setAttribute("title", "Dublicate the field");
+          img_DUBLICATE.setAttribute("title", "Duplicate the field");
           img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
           img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
 

@@ -804,7 +804,10 @@ jQuery(document).ready(function ($) {
                   <td align="center" onClick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')" style="background-color: rgb(114, 113, 113) !important;" id="table_paypal" class="field_buttons"><img src="<?php echo plugins_url("images/paypal.png",__FILE__); ?>" style="margin:5px" id="img_paypal"/></td>
                 </tr>
                 <tr>
-                  <td align="center" onClick="addRow('button')" colspan=2 id="table_button" class="field_buttons"><img
+                  <td align="center" onClick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')" style="cursor:pointer; background-color: rgb(114, 113, 113) !important;" class="field_buttons" id="table_survey">
+                    <img src="<?php echo plugins_url("images/survey.png", __FILE__); ?>" style="margin:5px" id="img_survey"/>
+                  </td>
+                  <td align="center" onClick="addRow('button')" id="table_button" class="field_buttons"><img
                     src="<?php echo plugins_url("images/button.png", __FILE__); ?>" style="margin:5px" id="img_button"/>
                   </td>
                 </tr>
@@ -1641,7 +1644,10 @@ jQuery(document).ready(function ($) {
                   </td>
                 </tr>
                 <tr>
-                  <td align="center" onClick="addRow('button')" colspan=2 style="cursor:pointer" id="table_button"
+                  <td align="center" onClick="alert('This field type is disabled in free version. If you need this functionality, you need to buy the commercial version.')" style="cursor:pointer; background-color: rgb(114, 113, 113) !important;" class="field_buttons" id="table_survey">
+                    <img src="<?php echo plugins_url("images/survey.png", __FILE__); ?>" style="margin:5px" id="img_survey"/>
+                  </td>
+                  <td align="center" onClick="addRow('button')" style="cursor:pointer" id="table_button"
                       class="field_buttons"><img src="<?php echo plugins_url("images/button.png", __FILE__) ?>"
                                                  style="margin:5px" id="img_button"/></td>
                 </tr>

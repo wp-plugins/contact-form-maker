@@ -707,7 +707,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
           $new_script = str_replace("%all%", $list, $new_script);
         }
         $body = $new_script;        
-        $send = wp_mail($recipient, $subject, stripslashes($body), $headers, $attachment);
+        $send = wp_mail(str_replace(' ', '', $recipient), $subject, stripslashes($body), $headers, $attachment);
       }
       if ($row->mail) {
         if ($c) {
@@ -873,7 +873,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
           }
           $body = $new_script;
           $mode = 1;
-          $send = wp_mail($recipient, $subject, stripslashes($body), $headers, $attachment);
+          $send = wp_mail(str_replace(' ', '', $recipient), $subject, stripslashes($body), $headers, $attachment);
           $row_mail_one_time = 0;
         }
       }
@@ -1037,7 +1037,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
         $new_script = str_replace("%all%", $list, $new_script);
       }
       $body = $new_script;
-      $send = wp_mail($recipient, $subject, stripslashes($body), $headers, $attachment);
+      $send = wp_mail(str_replace(' ', '', $recipient), $subject, stripslashes($body), $headers, $attachment);
     }
   }
   if ($row->mail) {
@@ -1347,7 +1347,7 @@ formLoadBody' . $id . '();';
       $recaptcha_response_field = esc_html($_POST["recaptcha_response_field"]);
     }
     if (isset($_POST["counter" . $id])) {
-      $counter = esc_html($_POST["counter" . $id]);
+      $counter = $_POST["counter" . $id];
     }
     $old_key = -1;
     if (isset($counter)) {
@@ -1554,12 +1554,12 @@ formLoadBody' . $id . '();';
             }
           case "type_date_fields":
             {
-            $date_fields = explode('-', $_POST[$label_id[$key] . "_element" . $id]);
+            // $date_fields = explode('-', $_POST[$label_id[$key] . "_element" . $id]);
             $form_maker_front_end .= "if(document.getElementById('" . $label_id[$key] . "_day" . $id . "'))
 	{
-		document.getElementById('" . $label_id[$key] . "_day" . $id . "').value='" . $date_fields[0] . "';
-		document.getElementById('" . $label_id[$key] . "_month" . $id . "').value='" . $date_fields[1] . "';
-		document.getElementById('" . $label_id[$key] . "_year" . $id . "').value='" . $date_fields[2] . "';
+		document.getElementById('" . $label_id[$key] . "_day" . $id . "').value='" . $_POST[$label_id[$key] . "_day" . $id] . "';
+		document.getElementById('" . $label_id[$key] . "_month" . $id . "').value='" . $_POST[$label_id[$key] . "_month" . $id] . "';
+		document.getElementById('" . $label_id[$key] . "_year" . $id . "').value='" . $_POST[$label_id[$key] . "_year" . $id] . "';
 	}";
             break;
             }

@@ -2,10 +2,17 @@
 /*
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
-Version: 1.5.7
+Version: 1.5.8
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
+
+function contact_form_sesseion_path() {
+  @session_start();
+  session_save_path(ABSPATH . 'wp-content/plugins/contact-form-maker/session');
+}
+add_action('init', 'contact_form_sesseion_path');
+
 //// load languages
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// css
 $first_css = ".wdform_table1
@@ -207,12 +214,6 @@ function contact_form_language_load() {
   load_plugin_textdomain('form_maker', FALSE, basename(dirname(__FILE__)) . '/languages');
 }
 
-function contact_form_sesseion_path() {
-  @session_start();
-  session_save_path(ABSPATH . 'wp-content/plugins/contact-form-maker');
-}
-add_action('init', 'contact_form_sesseion_path');
-
 function spider_contact_form_output_buffer() {
   ob_start();
 }
@@ -242,7 +243,7 @@ function Contact_Form_maker_fornt_end_main($content) {
 function contact_form_scripts_method() {
   if (!get_option('form_maker_pro_active', FALSE)) {
     wp_enqueue_style("gmap_styles_", plugins_url("css/style_for_map.css", __FILE__), FALSE);
-    wp_enqueue_script("main_g_js", plugins_url("js/main_front_end.js", __FILE__), FALSE);
+    wp_enqueue_script("contact_main_g_js", plugins_url("js/main_front_end.js", __FILE__), FALSE);
     wp_enqueue_script("Gmap", "http://maps.google.com/maps/api/js?sensor=false", FALSE);
     wp_enqueue_script("if_gmap", plugins_url("js/if_gmap_front_end.js", __FILE__), FALSE);
     wp_enqueue_script("Calendar", plugins_url("js/calendar.js", __FILE__), FALSE);
@@ -267,7 +268,7 @@ function print_massage_contact_form($content) {
   if (is_plugin_active('wordpress-seo/wp-seo.php') && $_SESSION['form_submit_type']) {
     global $check_seo;
     if ($check_seo++ != 1) {
-      return;
+      // return;
     }
   }
   if (!get_option('form_maker_pro_active', FALSE)) {
@@ -568,7 +569,7 @@ function Manage_contact_form() {
         save_form();
         $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
       }
-      form_options($id);
+      wd_form_options($id);
       break;
     case "Save_form_options" :
       Apply_form_options($id);
@@ -576,7 +577,7 @@ function Manage_contact_form() {
       break;
     case "Apply_form_options" :
       Apply_form_options($id);
-      form_options($id);
+      wd_form_options($id);
       break;
     case "save_as_copy":
       save_as_copy();
