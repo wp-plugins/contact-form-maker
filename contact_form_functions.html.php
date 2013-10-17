@@ -939,12 +939,16 @@ jQuery(document).ready(function ($) {
           <td width="0%"></td>
           <td align="right"><img src="<?php echo plugins_url("images/minus.png", __FILE__); ?>"
                                  title="Show or hide the page" class="page_toolbar" onclick="show_or_hide('1')"
+                                 onmouseover="chnage_icons_src(this,'minus')"  onmouseout="chnage_icons_src(this,'minus')" 
                                  id="show_page_img_1"/></td>
           <td><img src="<?php echo plugins_url("images/page_delete.png", __FILE__); ?>" title="Delete the page"
+                   onmouseover="chnage_icons_src(this,'page_delete')"  onmouseout="chnage_icons_src(this,'page_delete')" 
                    class="page_toolbar" onclick="remove_page('1')"/></td>
           <td><img src="<?php echo plugins_url("images/page_delete_all.png", __FILE__); ?>"
+                   onmouseover="chnage_icons_src(this,'page_delete_all')"  onmouseout="chnage_icons_src(this,'page_delete_all')" 
                    title="Delete the page with fields" class="page_toolbar" onclick="remove_page_all('1')"/></td>
           <td><img src="<?php echo plugins_url("images/page_edit.png", __FILE__); ?>" title="Edit the page"
+                   onmouseover="chnage_icons_src(this,'page_edit')"  onmouseout="chnage_icons_src(this,'page_edit')" 
                    class="page_toolbar" onclick="edit_page_break('1')"/></td>
         </tr>
         </tbody>

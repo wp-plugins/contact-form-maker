@@ -10,6 +10,15 @@ if (ajaxurl.indexOf("://") != -1) {
 else {
   var url_for_ajax = location.protocol + '//' + location.host + ajaxurl;
 }
+
+function chnage_icons_src(img, icon) {
+  if (img.src.indexOf("hover") != -1) {
+    img.src =  plugin_url + '/images/' + icon + ".png";
+  }
+  else {
+    img.src =  plugin_url + '/images/' + icon + "_hover.png";
+  }
+}
 /**
  * Remove witespaces from childNodes.
  */
@@ -14344,10 +14353,16 @@ function make_pagebreak_button(next_or_previous, title, type, class_, id) {
 }
 
 function show_or_hide(id) {
-  if (!jQuery("#form_id_tempform_view" + id).is(":visible"))
-    show_form_view(id);
-  else
-    hide_form_view(id);
+  if (!jQuery("#form_id_tempform_view" + id).is(":visible")) {
+		show_form_view(id);
+		jQuery("#show_page_img_"+id).attr("onmouseover", "chnage_icons_src(this,'minus')");
+		jQuery("#show_page_img_"+id).attr("onmouseout", "chnage_icons_src(this,'minus')");
+	}
+	else {
+		hide_form_view(id);
+		jQuery("#show_page_img_"+id).attr("onmouseover", "chnage_icons_src(this,'plus')");
+		jQuery("#show_page_img_"+id).attr("onmouseout", "chnage_icons_src(this,'plus')");
+	}
 }
 
 function show_form_view(id) {
@@ -14704,11 +14719,12 @@ function refresh_pages_without_deleting(id) {
 
   var img_X = document.createElement("img");
   img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-  img_X.setAttribute("height", "17");
+  // img_X.setAttribute("height", "17");
   img_X.setAttribute("title", "Remove the field");
   img_X.style.cssText = "cursor:pointer; margin:2px";
   img_X.setAttribute("onclick", 'remove_section_break("' + i + '")');
-
+  img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+  img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
   var td_X = document.createElement("td");
   td_X.setAttribute("id", "X_" + i);
   td_X.setAttribute("valign", "middle");
@@ -14723,6 +14739,8 @@ function refresh_pages_without_deleting(id) {
 //					img_EDIT.setAttribute("height", "17");
   img_EDIT.style.cssText = "margin:2px;cursor:pointer";
   img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+  img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+  img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
   var td_EDIT = document.createElement("td");
   td_EDIT.setAttribute("id", "edit_" + i);
@@ -14735,6 +14753,8 @@ function refresh_pages_without_deleting(id) {
   img_DUBLICATE.setAttribute("title", "Duplicate the field");
   img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
   img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+  img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+  img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
   var td_DUBLICATE = document.createElement("td");
   td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -14916,10 +14936,12 @@ function add(key) {
       destroyChildren(tr);
       var img_X = document.createElement("img");
       img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-      img_X.setAttribute("height", "17");
+      // img_X.setAttribute("height", "17");
       img_X.setAttribute("title", "Remove the field");
       img_X.style.cssText = "cursor:pointer; margin:2px";
       img_X.setAttribute("onclick", 'remove_section_break("' + i + '")');
+      img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+      img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
       var td_X = document.createElement("td");
       td_X.setAttribute("id", "X_" + i);
@@ -14934,6 +14956,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
       img_UP.style.cssText = "cursor:pointer";
       img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+      img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+      img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
       var td_UP = document.createElement("td");
       td_UP.setAttribute("id", "up_" + i);
@@ -14947,6 +14971,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
       img_DOWN.style.cssText = "margin:2px;cursor:pointer";
       img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+      img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+      img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
       var td_DOWN = document.createElement("td");
       td_DOWN.setAttribute("id", "down_" + i);
@@ -14960,6 +14986,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
       img_EDIT.style.cssText = "margin:2px;cursor:pointer";
       img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+      img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+      img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
       var td_EDIT = document.createElement("td");
       td_EDIT.setAttribute("id", "edit_" + i);
@@ -14972,6 +15000,8 @@ function add(key) {
       img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+      img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+      img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
       var td_DUBLICATE = document.createElement("td");
       td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -14984,6 +15014,8 @@ function add(key) {
       img_PAGEUP.setAttribute("title", "Move the field to the upper page");
       img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+      img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+      img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
       var td_PAGEDOWN = document.createElement("td");
       td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -14996,6 +15028,8 @@ function add(key) {
       img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
       img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+      img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+      img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
       var td_PAGEUP = document.createElement("td");
       td_PAGEUP.setAttribute("id", "dublicate_" + i);
@@ -15052,10 +15086,12 @@ function add(key) {
 
       var img_X = document.createElement("img");
       img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-      img_X.setAttribute("height", "17");
+      // img_X.setAttribute("height", "17");
       img_X.setAttribute("title", "Remove the field");
       img_X.style.cssText = "cursor:pointer; margin:2px";
       img_X.setAttribute("onclick", 'remove_section_break("' + i + '")');
+      img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+      img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
       var td_X = document.createElement("td");
       td_X.setAttribute("id", "X_" + i);
@@ -15070,6 +15106,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
       img_UP.style.cssText = "cursor:pointer";
       img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+      img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+      img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
       var td_UP = document.createElement("td");
       td_UP.setAttribute("id", "up_" + i);
@@ -15083,6 +15121,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
       img_DOWN.style.cssText = "margin:2px;cursor:pointer";
       img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+      img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+      img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
       var td_DOWN = document.createElement("td");
       td_DOWN.setAttribute("id", "down_" + i);
@@ -15097,6 +15137,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
       img_EDIT.style.cssText = "margin:2px;cursor:pointer";
       img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+      img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+			img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
       var td_EDIT = document.createElement("td");
       td_EDIT.setAttribute("id", "edit_" + i);
@@ -15109,6 +15151,8 @@ function add(key) {
       img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+      img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+      img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
       var td_DUBLICATE = document.createElement("td");
       td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -15121,6 +15165,8 @@ function add(key) {
       img_PAGEUP.setAttribute("title", "Move the field to the upper page");
       img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+      img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+      img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
       var td_PAGEDOWN = document.createElement("td");
       td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -15133,6 +15179,8 @@ function add(key) {
       img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
       img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+      img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+      img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
       var td_PAGEUP = document.createElement("td");
       td_PAGEUP.setAttribute("id", "dublicate_" + i);
@@ -15281,6 +15329,8 @@ function add(key) {
         img_EDIT.setAttribute("title", "Edit the pagination options");
         img_EDIT.style.cssText = "margin-left:40px; cursor:pointer";
         img_EDIT.setAttribute("onclick", 'el_page_navigation()');
+        img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"page_edit")');
+        img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"page_edit")');
 
         var td_EDIT = document.getElementById("edit_page_navigation");
         td_EDIT.appendChild(img_EDIT);
@@ -15324,6 +15374,8 @@ function add(key) {
       img.setAttribute("class", "page_toolbar");
       img.setAttribute('id', 'show_page_img_' + form_view);
       img.setAttribute('onClick', 'show_or_hide("' + form_view + '")');
+      img.setAttribute("onmouseover", 'chnage_icons_src(this,"minus")');
+			img.setAttribute("onmouseout", 'chnage_icons_src(this,"minus")');
 
 
       var img_X = document.createElement("img");
@@ -15331,6 +15383,8 @@ function add(key) {
       img_X.setAttribute('title', 'Delete the page');
       img_X.setAttribute("class", "page_toolbar");
       img_X.setAttribute("onclick", 'remove_page("' + form_view + '")');
+      img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"page_delete")');
+      img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"page_delete")');
 
       var td_X = document.createElement("td");
       td_X.appendChild(img_X);
@@ -15340,6 +15394,8 @@ function add(key) {
       img_X_all.setAttribute('title', 'Delete the page with fields');
       img_X_all.setAttribute("class", "page_toolbar");
       img_X_all.setAttribute("onclick", 'remove_page_all("' + form_view + '")');
+      img_X_all.setAttribute("onmouseover", 'chnage_icons_src(this,"page_delete_all")');
+			img_X_all.setAttribute("onmouseout", 'chnage_icons_src(this,"page_delete_all")');
 
       var td_X_all = document.createElement("td");
       td_X_all.appendChild(img_X_all);
@@ -15349,6 +15405,8 @@ function add(key) {
       img_EDIT.setAttribute('title', 'Edit the page');
       img_EDIT.setAttribute("class", "page_toolbar");
       img_EDIT.setAttribute("onclick", 'edit_page_break("' + form_view + '")');
+      img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"page_edit")');
+			img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"page_edit")');
 
       var td_EDIT = document.createElement("td");
       td_EDIT.appendChild(img_EDIT);
@@ -15473,10 +15531,12 @@ function add(key) {
       destroyChildren(tr);
       var img_X = document.createElement("img");
       img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-      img_X.setAttribute("height", "17");
+      // img_X.setAttribute("height", "17");
       img_X.setAttribute("title", "Remove the field");
       img_X.style.cssText = "cursor:pointer; margin:2px";
       img_X.setAttribute("onclick", 'remove_row("' + i + '")');
+      img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+      img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
       var td_X = document.createElement("td");
       td_X.setAttribute("id", "X_" + i);
@@ -15491,6 +15551,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
       img_UP.style.cssText = "cursor:pointer";
       img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+      img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+      img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
       var td_UP = document.createElement("td");
       td_UP.setAttribute("id", "up_" + i);
@@ -15504,6 +15566,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
       img_DOWN.style.cssText = "margin:2px;cursor:pointer";
       img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+      img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+      img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
       var td_DOWN = document.createElement("td");
       td_DOWN.setAttribute("id", "down_" + i);
@@ -15517,6 +15581,8 @@ function add(key) {
 //					img_RIGHT.setAttribute("height", "17");
       img_RIGHT.style.cssText = "cursor:pointer";
       img_RIGHT.setAttribute("onclick", 'right_row("' + i + '")');
+      img_RIGHT.setAttribute("onmouseover", 'chnage_icons_src(this,"right")');
+      img_RIGHT.setAttribute("onmouseout", 'chnage_icons_src(this,"right")');
 
       var td_RIGHT = document.createElement("td");
       td_RIGHT.setAttribute("id", "right_" + i);
@@ -15530,6 +15596,8 @@ function add(key) {
 //					img_LEFT.setAttribute("height", "17");
       img_LEFT.style.cssText = "margin:2px;cursor:pointer";
       img_LEFT.setAttribute("onclick", 'left_row("' + i + '")');
+      img_LEFT.setAttribute("onmouseover", 'chnage_icons_src(this,"left")');
+      img_LEFT.setAttribute("onmouseout", 'chnage_icons_src(this,"left")');
 
       var td_LEFT = document.createElement("td");
       td_LEFT.setAttribute("id", "left_" + i);
@@ -15543,6 +15611,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
       img_EDIT.style.cssText = "margin:2px;cursor:pointer";
       img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+      img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+			img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
       var td_EDIT = document.createElement("td");
       td_EDIT.setAttribute("id", "edit_" + i);
@@ -15555,6 +15625,8 @@ function add(key) {
       img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+      img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+      img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
       var td_DUBLICATE = document.createElement("td");
       td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -15567,6 +15639,8 @@ function add(key) {
       img_PAGEUP.setAttribute("title", "Move the field to the upper page");
       img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+      img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+      img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
       var td_PAGEDOWN = document.createElement("td");
       td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -15579,6 +15653,8 @@ function add(key) {
       img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
       img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+      img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+      img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
       var td_PAGEUP = document.createElement("td");
       td_PAGEUP.setAttribute("id", "dublicate_" + i);
@@ -15647,10 +15723,12 @@ function add(key) {
 
       var img_X = document.createElement("img");
       img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-      img_X.setAttribute("height", "17");
+      // img_X.setAttribute("height", "17");
       img_X.setAttribute("title", "Remove the field");
       img_X.style.cssText = "cursor:pointer; margin:2px";
       img_X.setAttribute("onclick", 'remove_row("' + i + '")');
+      img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+      img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
       var td_X = document.createElement("td");
       td_X.setAttribute("id", "X_" + i);
@@ -15665,6 +15743,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
       img_UP.style.cssText = "cursor:pointer";
       img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+      img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+      img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
       var td_UP = document.createElement("td");
       td_UP.setAttribute("id", "up_" + i);
@@ -15678,6 +15758,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
       img_DOWN.style.cssText = "margin:2px;cursor:pointer";
       img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+      img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+      img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
       var td_DOWN = document.createElement("td");
       td_DOWN.setAttribute("id", "down_" + i);
@@ -15691,6 +15773,8 @@ function add(key) {
 //					img_RIGHT.setAttribute("height", "17");
       img_RIGHT.style.cssText = "cursor:pointer";
       img_RIGHT.setAttribute("onclick", 'right_row("' + i + '")');
+      img_RIGHT.setAttribute("onmouseover", 'chnage_icons_src(this,"right")');
+      img_RIGHT.setAttribute("onmouseout", 'chnage_icons_src(this,"right")');
 
       var td_RIGHT = document.createElement("td");
       td_RIGHT.setAttribute("id", "right_" + i);
@@ -15704,6 +15788,8 @@ function add(key) {
 //					img_LEFT.setAttribute("height", "17");
       img_LEFT.style.cssText = "margin:2px;cursor:pointer";
       img_LEFT.setAttribute("onclick", 'left_row("' + i + '")');
+      img_LEFT.setAttribute("onmouseover", 'chnage_icons_src(this,"left")');
+      img_LEFT.setAttribute("onmouseout", 'chnage_icons_src(this,"left")');
 
       var td_LEFT = document.createElement("td");
       td_LEFT.setAttribute("id", "left_" + i);
@@ -15717,6 +15803,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
       img_EDIT.style.cssText = "margin:2px;cursor:pointer";
       img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+      img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+			img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
       var td_EDIT = document.createElement("td");
       td_EDIT.setAttribute("id", "edit_" + i);
@@ -15729,6 +15817,8 @@ function add(key) {
       img_DUBLICATE.setAttribute("title", "Duplicate the field");
       img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
       img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+      img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+      img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
       var td_DUBLICATE = document.createElement("td");
       td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -15741,6 +15831,8 @@ function add(key) {
       img_PAGEUP.setAttribute("title", "Move the field to the upper page");
       img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+      img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+      img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
       var td_PAGEDOWN = document.createElement("td");
       td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -15753,6 +15845,8 @@ function add(key) {
       img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
       img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
       img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+      img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+      img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
       var td_PAGEUP = document.createElement("td");
       td_PAGEUP.setAttribute("id", "dublicate_" + i);
@@ -15875,10 +15969,12 @@ function add(key) {
           tr.setAttribute('type', type);
           var img_X = document.createElement("img");
           img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-          img_X.setAttribute("height", "17");
+          // img_X.setAttribute("height", "17");
           img_X.setAttribute("title", "Remove the field");
           img_X.style.cssText = "cursor:pointer; margin:2px";
           img_X.setAttribute("onclick", 'remove_row("' + i + '")');
+          img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+          img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
           var td_X = document.createElement("td");
           td_X.setAttribute("id", "X_" + i);
@@ -15893,6 +15989,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
           img_UP.style.cssText = "cursor:pointer";
           img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+          img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+					img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
           var td_UP = document.createElement("td");
           td_UP.setAttribute("id", "up_" + i);
@@ -15906,6 +16004,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
           img_DOWN.style.cssText = "margin:2px;cursor:pointer";
           img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+          img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+					img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
           var td_DOWN = document.createElement("td");
           td_DOWN.setAttribute("id", "down_" + i);
@@ -15919,6 +16019,8 @@ function add(key) {
 //					img_RIGHT.setAttribute("height", "17");
           img_RIGHT.style.cssText = "cursor:pointer";
           img_RIGHT.setAttribute("onclick", 'right_row("' + i + '")');
+          img_RIGHT.setAttribute("onmouseover", 'chnage_icons_src(this,"right")');
+					img_RIGHT.setAttribute("onmouseout", 'chnage_icons_src(this,"right")');
 
           var td_RIGHT = document.createElement("td");
           td_RIGHT.setAttribute("id", "right_" + i);
@@ -15932,6 +16034,8 @@ function add(key) {
 //					img_LEFT.setAttribute("height", "17");
           img_LEFT.style.cssText = "margin:2px;cursor:pointer";
           img_LEFT.setAttribute("onclick", 'left_row("' + i + '")');
+          img_LEFT.setAttribute("onmouseover", 'chnage_icons_src(this,"left")');
+          img_LEFT.setAttribute("onmouseout", 'chnage_icons_src(this,"left")');
 
           var td_LEFT = document.createElement("td");
           td_LEFT.setAttribute("id", "left_" + i);
@@ -15945,6 +16049,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
           img_EDIT.style.cssText = "margin:2px;cursor:pointer";
           img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+          img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+          img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
           var td_EDIT = document.createElement("td");
           td_EDIT.setAttribute("id", "edit_" + i);
@@ -15957,6 +16063,8 @@ function add(key) {
           img_DUBLICATE.setAttribute("title", "Duplicate the field");
           img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
           img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+          img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+					img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
           var td_DUBLICATE = document.createElement("td");
           td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -15969,6 +16077,8 @@ function add(key) {
           img_PAGEUP.setAttribute("title", "Move the field to the upper page");
           img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
           img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+          img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+					img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
           var td_PAGEDOWN = document.createElement("td");
           td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -15981,6 +16091,8 @@ function add(key) {
           img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
           img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
           img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+          img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+					img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
           var td_PAGEUP = document.createElement("td");
           td_PAGEUP.setAttribute("id", "dublicate_" + i);
@@ -16103,10 +16215,12 @@ function add(key) {
 
           var img_X = document.createElement("img");
           img_X.setAttribute("src", plugin_url + "/images/delete_el.png");
-          img_X.setAttribute("height", "17");
+          // img_X.setAttribute("height", "17");
           img_X.setAttribute("title", "Remove the field");
           img_X.style.cssText = "cursor:pointer; margin:2px";
           img_X.setAttribute("onclick", 'remove_row("' + i + '")');
+          img_X.setAttribute("onmouseover", 'chnage_icons_src(this,"delete_el")');
+          img_X.setAttribute("onmouseout", 'chnage_icons_src(this,"delete_el")');
 
           var td_X = document.createElement("td");
           td_X.setAttribute("id", "X_" + i);
@@ -16121,6 +16235,8 @@ function add(key) {
 //					img_UP.setAttribute("height", "17");
           img_UP.style.cssText = "cursor:pointer";
           img_UP.setAttribute("onclick", 'up_row("' + i + '")');
+          img_UP.setAttribute("onmouseover", 'chnage_icons_src(this,"up")');
+					img_UP.setAttribute("onmouseout", 'chnage_icons_src(this,"up")');
 
           var td_UP = document.createElement("td");
           td_UP.setAttribute("id", "up_" + i);
@@ -16134,6 +16250,8 @@ function add(key) {
 //					img_DOWN.setAttribute("height", "17");
           img_DOWN.style.cssText = "margin:2px;cursor:pointer";
           img_DOWN.setAttribute("onclick", 'down_row("' + i + '")');
+          img_DOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"down")');
+					img_DOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"down")');
 
           var td_DOWN = document.createElement("td");
           td_DOWN.setAttribute("id", "down_" + i);
@@ -16147,6 +16265,8 @@ function add(key) {
 //					img_RIGHT.setAttribute("height", "17");
           img_RIGHT.style.cssText = "cursor:pointer";
           img_RIGHT.setAttribute("onclick", 'right_row("' + i + '")');
+          img_RIGHT.setAttribute("onmouseover", 'chnage_icons_src(this,"right")');
+					img_RIGHT.setAttribute("onmouseout", 'chnage_icons_src(this,"right")');
 
           var td_RIGHT = document.createElement("td");
           td_RIGHT.setAttribute("id", "right_" + i);
@@ -16160,6 +16280,8 @@ function add(key) {
 //					img_LEFT.setAttribute("height", "17");
           img_LEFT.style.cssText = "margin:2px;cursor:pointer";
           img_LEFT.setAttribute("onclick", 'left_row("' + i + '")');
+          img_LEFT.setAttribute("onmouseover", 'chnage_icons_src(this,"left")');
+          img_LEFT.setAttribute("onmouseout", 'chnage_icons_src(this,"left")');
 
           var td_LEFT = document.createElement("td");
           td_LEFT.setAttribute("id", "left_" + i);
@@ -16173,6 +16295,8 @@ function add(key) {
 //					img_EDIT.setAttribute("height", "17");
           img_EDIT.style.cssText = "margin:2px;cursor:pointer";
           img_EDIT.setAttribute("onclick", 'edit("' + i + '")');
+          img_EDIT.setAttribute("onmouseover", 'chnage_icons_src(this,"edit")');
+          img_EDIT.setAttribute("onmouseout", 'chnage_icons_src(this,"edit")');
 
           var td_EDIT = document.createElement("td");
           td_EDIT.setAttribute("id", "edit_" + i);
@@ -16185,6 +16309,8 @@ function add(key) {
           img_DUBLICATE.setAttribute("title", "Duplicate the field");
           img_DUBLICATE.style.cssText = "margin:2px;cursor:pointer";
           img_DUBLICATE.setAttribute("onclick", 'dublicate("' + i + '")');
+          img_DUBLICATE.setAttribute("onmouseover", 'chnage_icons_src(this,"dublicate")');
+					img_DUBLICATE.setAttribute("onmouseout", 'chnage_icons_src(this,"dublicate")');
 
           var td_DUBLICATE = document.createElement("td");
           td_DUBLICATE.setAttribute("id", "dublicate_" + i);
@@ -16197,6 +16323,8 @@ function add(key) {
           img_PAGEUP.setAttribute("title", "Move the field to the upper page");
           img_PAGEUP.style.cssText = "margin:2px;cursor:pointer";
           img_PAGEUP.setAttribute("onclick", 'page_up("' + i + '")');
+          img_PAGEUP.setAttribute("onmouseover", 'chnage_icons_src(this,"page_up")');
+					img_PAGEUP.setAttribute("onmouseout", 'chnage_icons_src(this,"page_up")');
 
           var td_PAGEDOWN = document.createElement("td");
           td_PAGEDOWN.setAttribute("id", "page_up_" + i);
@@ -16209,6 +16337,8 @@ function add(key) {
           img_PAGEDOWN.setAttribute("title", "Move the field to the lower  page");
           img_PAGEDOWN.style.cssText = "margin:2px;cursor:pointer";
           img_PAGEDOWN.setAttribute("onclick", 'page_down("' + i + '")');
+          img_PAGEDOWN.setAttribute("onmouseover", 'chnage_icons_src(this,"page_down")');
+					img_PAGEDOWN.setAttribute("onmouseout", 'chnage_icons_src(this,"page_down")');
 
           var td_PAGEUP = document.createElement("td");
           td_PAGEUP.setAttribute("id", "dublicate_" + i);
