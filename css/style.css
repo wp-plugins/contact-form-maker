@@ -26,9 +26,9 @@ background-color:#0E83EB;
 
 .element_toolbar
 {
-margin:0px;
-padding:0px;
-background-color:#F0F0F0
+margin: 0px;
+padding: 0px;
+background-color: rgba(0, 0, 0, 0);
 }
 
 .element_toolbar img

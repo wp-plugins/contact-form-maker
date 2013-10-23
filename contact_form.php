@@ -3,7 +3,7 @@
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
 Description: WordPress Contact Form Maker is an advanced and easy-to-use tool for creating forms. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
-Version: 1.5.9
+Version: 1.6.0
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -251,6 +251,7 @@ function contact_form_scripts_method() {
     wp_enqueue_script("calendar-setup", plugins_url("js/calendar-setup.js", __FILE__), FALSE);
     wp_enqueue_script("calendar_function", plugins_url("js/calendar_function.js", __FILE__), FALSE);
     wp_enqueue_style("Css", plugins_url("js/calendar-jos.css", __FILE__), FALSE);
+    wp_enqueue_script("jquery", plugins_url("js/jquery-1.9.1.js", __FILE__), array(), '1.9.1');
   }
 }
 
@@ -461,11 +462,13 @@ function contact_form_submits_styles_scripts() {
     if (function_exists('wp_tiny_mce'))
       wp_tiny_mce();
   wp_enqueue_script('utils');
+  wp_enqueue_script("main", plugins_url("js/main.js", __FILE__));
   wp_enqueue_script("mootools", plugins_url("js/mootools.js", __FILE__));
   wp_enqueue_script("f_calendar", plugins_url("js/calendar.js", __FILE__));
   wp_enqueue_script("f_calendar_functions", plugins_url("js/calendar_function.js", __FILE__));
   wp_enqueue_script("f_calendar_setup", plugins_url("js/calendar-setup.js", __FILE__));
   wp_enqueue_style("calendar-jos", plugins_url("js/calendar-jos.css", __FILE__));
+  wp_enqueue_script("jquery", plugins_url("js/jquery-1.9.1.js", __FILE__), array(), '1.9.1');
 }
 
 function contact_form_admin_styles_scripts() {
@@ -507,6 +510,7 @@ function contact_form_admin_styles_scripts() {
       wp_enqueue_script("f_calendar_functions", plugins_url("js/calendar_function.js", __FILE__));
       wp_enqueue_script("f_calendar_setup", plugins_url("js/calendar-setup.js", __FILE__));
       wp_enqueue_style("calendar-jos", plugins_url("js/calendar-jos.css", __FILE__));
+      wp_enqueue_script("jquery", plugins_url("js/jquery-1.9.1.js", __FILE__), array(), '1.9.1');
     }
   }
 }
@@ -654,18 +658,15 @@ function spider_contact_form_map_edit() {
 ///////////////////////////////////////////////////////////////////////////////////
 add_action('wp_ajax_frommakerpreview', 'preview_contact_form');
 function html_preview_contact_form($css) {
-  /**
-   * @package SpiderFC
-   * @author Web-Dorado
-   * @copyright (C) 2011 Web-Dorado. All rights reserved.
-   * @license GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
-   **/
   $cmpnt_js_path = plugins_url('js', __FILE__);
   $id = 'form_id_temp';
   ?>
 <script src="<?php echo $cmpnt_js_path . "/if_gmap_back_end.js"; ?>"></script>
 <script src="<?php echo $cmpnt_js_path . "/main.js"; ?>"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="<?php echo $cmpnt_js_path . "/jquery-1.9.1.js"; ?>"></script>
+<script src="<?php echo $cmpnt_js_path . "/main_front_end.js"; ?>"></script>
+<link media="all" type="text/css" href="<?php echo plugins_url('', __FILE__) . "/css/jquery-ui-spinner.css"; ?>" rel="stylesheet">
 <style>
     <?php
     $cmpnt_js_path = plugins_url('', __FILE__);
@@ -901,12 +902,18 @@ function refresh_first() {
         }
         case "type_address":
         {
-          remove_add_(i + "_street1form_id_temp");
-          remove_add_(i + "_street2form_id_temp");
-          remove_add_(i + "_cityform_id_temp");
-          remove_add_(i + "_stateform_id_temp");
-          remove_add_(i + "_postalform_id_temp");
-          remove_add_(i + "_countryform_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('street1')=='no')
+            remove_add_(i+"_street1form_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('street2')=='no')	
+            remove_add_(i+"_street2form_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('city')=='no')
+            remove_add_(i+"_cityform_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('state')=='no')
+            remove_add_(i+"_stateform_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('postal')=='no')
+            remove_add_(i+"_postalform_id_temp");
+          if(document.getElementById(i+"_disable_fieldsform_id_temp").getAttribute('country')=='no')
+            remove_add_(i+"_countryform_id_temp");
 
           break;
 

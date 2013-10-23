@@ -307,13 +307,13 @@ function contact_form_save_db($counter, $id) {
     }
     if ($type == "type_address")
       if ($value == '*#*#*#')
-        break;
+        continue;
     $unique_element = $_POST[$i . "_unique" . $id];
     if ($unique_element == 'yes') {
       $unique = $wpdb->get_col($wpdb->prepare("SELECT id FROM " . $wpdb->prefix . "formmaker_submits WHERE form_id= %d  and element_label= %s and element_value= %s", $id_old, $i, addslashes($value)));
       if ($unique) {
         echo "<script> alert('" . addslashes(__('This field %s requires a unique entry and this value was already submitted.', 'form_maker')) . "'.replace('%s','" . $label_label[$key] . "'));</script>";
-        return ($max + 1);
+        return array($max + 1);
       }
     }
     $ip = $_SERVER['REMOTE_ADDR'];
@@ -366,7 +366,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
   $label_type = array();
   $cc = array();
   $row_mail_one_time = 1;
-  $label_all = explode('#****#', $row->label_order);
+  $label_all = explode('#****#', $row->label_order_current);
   $label_all = array_slice($label_all, 0, count($label_all) - 1);
   foreach ($label_all as $key => $label_each) {
     $label_id_each = explode('#**id**#', $label_each);
@@ -456,21 +456,25 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
             }
           case "type_address":
             {
-            $street1 = $_POST[$i . "_street1" . $id];
-            if (isset($_POST[$i . "_street1" . $id])) {
+            if (isset($_POST[$i . "_street1" . $id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_street1" . $id] . '</td></tr>';
-              $i++;
+            $i++;
+            if (isset($_POST[$i."_street2".$id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_street2" . $id] . '</td></tr>';
-              $i++;
+            $i++;
+            if (isset($_POST[$i."_city".$id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_city" . $id] . '</td></tr>';
-              $i++;
+            $i++;
+            if (isset($_POST[$i."_state".$id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_state" . $id] . '</td></tr>';
-              $i++;
+            $i++;
+            if (isset($_POST[$i."_postal".$id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_postal" . $id] . '</td></tr>';
-              $i++;
+            $i++;
+            if (isset($_POST[$i."_country".$id]))
               $list = $list . '<tr valign="top"><td >' . $label_order_original[$i] . '</td><td >' . $_POST[$i . "_country" . $id] . '</td></tr>';
-              $i++;
-            }
+            $i++;
+
             break;
             }
           case "type_date_fields":
@@ -623,7 +627,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
                   if (isset($element_first)) {
                     $element_title = $_POST[$key."_element_title".$id];
                     if (isset($element_title)) {
-                      $new_value = $_POST[$key."_element_title".$id].' '.$_POST[$key."_element_first".$id].' '.$_POST[$i."_element_last".$id].' '.$_POST[$i."_element_middle".$id];
+                      $new_value = $_POST[$key."_element_title".$id].' '.$_POST[$key."_element_first".$id].' '.$_POST[$key."_element_last".$id].' '.$_POST[$key."_element_middle".$id];
                     }
                     else {
                       $new_value = $_POST[$key."_element_first".$id].' '.$_POST[$key."_element_last".$id];
@@ -632,21 +636,30 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
                   break;		
                 }
                 case "type_address": {
-                  $street1 = $_POST[$key."_street1".$id];
-                  if (isset($street1)) {
+                  if (isset($_POST[$key."_street1".$id])) {
                     $new_value = $new_value.$_POST[$key."_street1".$id];
-                    $key++;
+                    break;
+                  }
+                  if (isset($_POST[$key."_street2".$id])) {
                     $new_value = $new_value.$_POST[$key."_street2".$id];
-                    $key++;
+                    break;
+                  }
+                  if (isset($_POST[$key."_city".$id])) {
                     $new_value = $new_value.$_POST[$key."_city".$id];
-                    $key++;
+                    break;
+                  }
+                  if (isset($_POST[$key."_state".$id])) {
                     $new_value = $new_value.$_POST[$key."_state".$id];
-                    $key++;
+                    break;
+                  }
+                  if (isset($_POST[$key."_postal".$id])) {
                     $new_value = $new_value.$_POST[$key."_postal".$id];
-                    $key++;
+                    break;
+                  }
+                  if (isset($_POST[$key."_country".$id])) {
                     $new_value = $new_value.$_POST[$key."_country".$id];
-                    $key++;			
-                  }		
+                    break;
+                  }
                   break;
                 }
                 case "type_date_fields": {
@@ -788,7 +801,7 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
                     if (isset($element_first)) {
                       $element_title = $_POST[$key."_element_title".$id];
                       if (isset($element_title)) {
-                        $new_value = $_POST[$key."_element_title".$id].' '.$_POST[$key."_element_first".$id].' '.$_POST[$i."_element_last".$id].' '.$_POST[$i."_element_middle".$id];
+                        $new_value = $_POST[$key."_element_title".$id].' '.$_POST[$key."_element_first".$id].' '.$_POST[$key."_element_last".$id].' '.$_POST[$key."_element_middle".$id];
                       }
                       else {
                         $new_value = $_POST[$key."_element_first".$id].' '.$_POST[$key."_element_last".$id];
@@ -797,21 +810,30 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
                     break;		
                   }
                   case "type_address": {
-                    $street1 = $_POST[$key."_street1".$id];
-                    if (isset($street1)) {
+                    if (isset($_POST[$key."_street1".$id])) {
                       $new_value = $new_value.$_POST[$key."_street1".$id];
-                      $key++;
+                      break;
+                    }
+                    if (isset($_POST[$key."_street2".$id])) {
                       $new_value=$new_value.$_POST[$key."_street2".$id];
-                      $key++;
+                      break;
+                    }
+                    if (isset($_POST[$key."_city".$id])) {
                       $new_value=$new_value.$_POST[$key."_city".$id];
-                      $key++;
+                      break;
+                    }
+                    if (isset($_POST[$key."_state".$id])) {
                       $new_value=$new_value.$_POST[$key."_state".$id];
-                      $key++;
+                      break;
+                    }
+                    if (isset($_POST[$key."_postal".$id])) {
                       $new_value=$new_value.$_POST[$key."_postal".$id];
-                      $key++;
+                      break;
+                    }
+                    if (isset($_POST[$key."_country".$id])) {
                       $new_value=$new_value.$_POST[$key."_country".$id];
-                      $key++;			
-                    }		
+                      break;
+                    }
                     break;
                   }
                   case "type_date_fields": {
@@ -962,22 +984,30 @@ function contact_form_gen_mail($counter, $all_files, $id, $str) {
                 break;
               }
               case "type_address": {
-                $street1 = $_POST[$key."_street1".$id];
-                if (isset($street1)) {
+                if (isset($_POST[$key."_street1".$id])) {
                   $new_value = $new_value.$_POST[$key."_street1".$id];
-                  $key++;
-                  $new_value = $new_value.$_POST[$key."_street2".$id];
-                  $key++;
-                  $new_value = $new_value.$_POST[$key."_city".$id];
-                  $key++;
-                  $new_value = $new_value.$_POST[$key."_state".$id];
-                  $key++;
-                  $new_value = $new_value.$_POST[$key."_postal".$id];
-                  $key++;
-                  $new_value = $new_value.$_POST[$key."_country".$id];
-                  $key++;
+                  break;
                 }
-                break;
+                if (isset($_POST[$key."_street2".$id])) {
+                  $new_value = $new_value.$_POST[$key."_street2".$id];
+                  break;
+                }
+                if (isset($_POST[$key."_city".$id])) {
+                  $new_value = $new_value.$_POST[$key."_city".$id];
+                  break;
+                }
+                if (isset($_POST[$key."_state".$id])) {
+                  $new_value = $new_value.$_POST[$key."_state".$id];
+                  break;
+                }
+                if (isset($_POST[$key."_postal".$id])) {
+                  $new_value = $new_value.$_POST[$key."_postal".$id];
+                  break;
+                }
+                if (isset($_POST[$key."_country".$id])) {
+                  $new_value = $new_value.$_POST[$key."_country".$id];
+                  break;
+                }
               }
               case "type_date_fields": {
                 $day = $_POST[$key."_day".$id];

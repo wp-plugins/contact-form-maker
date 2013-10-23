@@ -447,17 +447,19 @@ function submitbutton(pressbutton) {
 
                 if (tr.getAttribute('type') == "type_address") {
                   addr_id = parseInt(tr.id);
-                  tox = tox + addr_id + '#**id**#' + 'Street Line' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Street Line2' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'City' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'State' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Postal' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Country' + '#**label**#' + tr.getAttribute('type') + '#****#';
+                  id_for_country = addr_id;								
+									if (document.getElementById(id_for_country+"_mini_label_street1"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_street1").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';addr_id++;
+                  if (document.getElementById(id_for_country+"_mini_label_street2"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_street2").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';addr_id++;
+                  if (document.getElementById(id_for_country+"_mini_label_city"))		
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_city").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++;
+                  if (document.getElementById(id_for_country+"_mini_label_state"))			
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_state").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++;
+                  if (document.getElementById(id_for_country+"_mini_label_postal"))			
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_postal").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++;
+                  if (document.getElementById(id_for_country+"_mini_label_country"))	
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_country").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#'; 
                 }
                 else
                   tox = tox + tr.id + '#**id**#' + l_label + '#**label**#' + tr.getAttribute('type') + '#****#';
@@ -556,14 +558,14 @@ var thickDims, tbWidth, tbHeight;
 jQuery(document).ready(function ($) {
 
   thickDims = function () {
-    var tbWindow = $('#TB_window'), H = $(window).height(), W = $(window).width(), w, h;
+    var tbWindow = jQuery('#TB_window'), H = jQuery(window).height(), W = jQuery(window).width(), w, h;
 
     w = (tbWidth && tbWidth < W - 90) ? tbWidth : W - 40;
     h = (tbHeight && tbHeight < H - 60) ? tbHeight : H - 40;
 
     if (tbWindow.size()) {
       tbWindow.width(w).height(h);
-      $('#TB_iframeContent').width(w).height(h - 27);
+      jQuery('#TB_iframeContent').width(w).height(h - 27);
       tbWindow.css({'margin-left':'-' + parseInt((w / 2), 10) + 'px'});
       if (typeof document.body.style.maxWidth != 'undefined')
         tbWindow.css({'top':(H - h) / 2, 'margin-top':'0'});
@@ -571,47 +573,47 @@ jQuery(document).ready(function ($) {
   };
 
   thickDims();
-  $(window).resize(function () {
+  jQuery(window).resize(function () {
     thickDims()
   });
 
-  $('a.thickbox-preview').click(function () {
+  jQuery('a.thickbox-preview').click(function () {
     tb_click.call(this);
 
-    var alink = $(this).parents('.available-theme').find('.activatelink'), link = '', href = $(this).attr('href'), url, text;
+    var alink = jQuery(this).parents('.available-theme').find('.activatelink'), link = '', href = jQuery(this).attr('href'), url, text;
 
     if (tbWidth = href.match(/&tbWidth=[0-9]+/))
       tbWidth = parseInt(tbWidth[0].replace(/[^0-9]+/g, ''), 10);
     else
-      tbWidth = $(window).width() - 120;
+      tbWidth = jQuery(window).width() - 120;
 
     if (tbHeight = href.match(/&tbHeight=[0-9]+/))
       tbHeight = parseInt(tbHeight[0].replace(/[^0-9]+/g, ''), 10);
     else
-      tbHeight = $(window).height() - 120;
+      tbHeight = jQuery(window).height() - 120;
 
     if (alink.length) {
       url = alink.attr('href') || '';
       text = alink.attr('title') || '';
       link = '&nbsp; <a href="' + url + '" target="_top" class="tb-theme-preview-link">' + text + '</a>';
     } else {
-      text = $(this).attr('title') || '';
+      text = jQuery(this).attr('title') || '';
       link = '&nbsp; <span class="tb-theme-preview-link">' + text + '</span>';
     }
 
-    $('#TB_title').css({'background-color':'#222', 'color':'#dfdfdf'});
-    $('#TB_closeAjaxWindow').css({'float':'left'});
-    $('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
+    jQuery('#TB_title').css({'background-color':'#222', 'color':'#dfdfdf'});
+    jQuery('#TB_closeAjaxWindow').css({'float':'left'});
+    jQuery('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
 
-    $('#TB_iframeContent').width('100%');
+    jQuery('#TB_iframeContent').width('100%');
     thickDims();
 
     return false;
   });
 
   // Theme details
-  $('.theme-detail').click(function () {
-    $(this).siblings('.themedetaildiv').toggle();
+  jQuery('.theme-detail').click(function () {
+    jQuery(this).siblings('.themedetaildiv').toggle();
     return false;
   });
 
@@ -1010,7 +1012,7 @@ function submitbutton(pressbutton) {
   l_id_removed = [];
 
   for (x = 0; x < l_id_array.length; x++) {
-    l_id_removed[x] = true;
+    l_id_removed[l_id_array[x]] = true;
   }
 
   for (t = 1; t <= form_view_max; t++) {
@@ -1037,38 +1039,50 @@ function submitbutton(pressbutton) {
                 l_type = tr.getAttribute('type');
                 for (z = 0; z < l_id_array.length; z++) {
                   if (l_id_array[z] == l_id) {
-                    l_id_removed[z] = false;
                     if (l_type_array[z] == "type_address") {
-                      z++;
-                      l_id_removed[z] = false;
-                      z++;
-                      l_id_removed[z] = false;
-                      z++;
-                      l_id_removed[z] = false;
-                      z++;
-                      l_id_removed[z] = false;
-                      z++;
-                      l_id_removed[z] = false;
+                      if (document.getElementById(l_id + "_mini_label_street1")) {
+                        l_id_removed[l_id_array[z]] = false;
+                      }
+                      if (document.getElementById(l_id+"_mini_label_street2")) {
+                        l_id_removed[parseInt(l_id_array[z]) + 1] = false;
+                      }
+                      if (document.getElementById(l_id+"_mini_label_city")) {
+                        l_id_removed[parseInt(l_id_array[z]) + 2] = false;	
+                      }
+                      if (document.getElementById(l_id+"_mini_label_state")) {
+                        l_id_removed[parseInt(l_id_array[z]) + 3] = false;
+                      }
+                      if (document.getElementById(l_id+"_mini_label_postal")) {
+                        l_id_removed[parseInt(l_id_array[z]) + 4] = false;
+                      }
+                      if (document.getElementById(l_id+"_mini_label_country")) {
+                        l_id_removed[parseInt(l_id_array[z]) + 5] = false;	
+                      }
+                      z = z + 5;
+                    }
+                    else {
+                      l_id_removed[l_id] = false;
                     }
                   }
                 }
-
-                if (tr.getAttribute('type') == "type_address") {
-                  addr_id = parseInt(tr.id);
-                  tox = tox + addr_id + '#**id**#' + 'Street Line' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Street Line2' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'City' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'State' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Postal' + '#**label**#' + tr.getAttribute('type') + '#****#';
-                  addr_id++;
-                  tox = tox + addr_id + '#**id**#' + 'Country' + '#**label**#' + tr.getAttribute('type') + '#****#';
+                if (tr.getAttribute('type')=="type_address") {
+                  addr_id=parseInt(tr.id);
+                  id_for_country= addr_id;
+                  if(document.getElementById(id_for_country+"_mini_label_street1"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_street1").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';addr_id++; 
+                  if(document.getElementById(id_for_country+"_mini_label_street2"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_street2").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';addr_id++; 
+                  if(document.getElementById(id_for_country+"_mini_label_city"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_city").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++; 
+                  if(document.getElementById(id_for_country+"_mini_label_state"))
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_state").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++;
+                  if(document.getElementById(id_for_country+"_mini_label_postal"))									
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_postal").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#';	addr_id++; 
+                  if(document.getElementById(id_for_country+"_mini_label_country"))									
+                    tox=tox+addr_id+'#**id**#'+document.getElementById(id_for_country+"_mini_label_country").innerHTML+'#**label**#'+tr.getAttribute('type')+'#****#'; 
                 }
                 else {
-                  tox = tox + l_id + '#**id**#' + l_label + '#**label**#' + l_type + '#****#';
+                  tox=tox+l_id+'#**id**#'+l_label+'#**label**#'+l_type+'#****#';
                 }
               }
             }
@@ -1078,7 +1092,7 @@ function submitbutton(pressbutton) {
   }
   document.getElementById('label_order_current').value = tox;
   for (x = 0; x < l_id_array.length; x++) {
-    if (l_id_removed[x]) {
+    if (l_id_removed[l_id_array[x]]) {
       tox = tox + l_id_array[x] + '#**id**#' + l_label_array[x] + '#**label**#' + l_type_array[x] + '#****#';
     }
   }
@@ -1256,12 +1270,20 @@ function refresh_() {
         }
         case "type_address":
         {
-          remove_add_(i + "_street1form_id_temp");
-          remove_add_(i + "_street2form_id_temp");
-          remove_add_(i + "_cityform_id_temp");
-          remove_add_(i + "_stateform_id_temp");
-          remove_add_(i + "_postalform_id_temp");
-          remove_add_(i + "_countryform_id_temp");
+          if (document.getElementById(id_for_country+"_disable_fieldsform_id_temp")) {
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('street1')=='no')
+              remove_add_(i+"_street1form_id_temp");
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('street2')=='no')	
+              remove_add_(i+"_street2form_id_temp");
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('city')=='no')
+              remove_add_(i+"_cityform_id_temp");
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('state')=='no')
+              remove_add_(i+"_stateform_id_temp");
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('postal')=='no')
+              remove_add_(i+"_postalform_id_temp");
+            if(document.getElementById(id_for_country+"_disable_fieldsform_id_temp").getAttribute('country')=='no')
+              remove_add_(i+"_countryform_id_temp");
+          }
 
           break;
 
@@ -1407,52 +1429,52 @@ function enable2() {
 var thickDims, tbWidth, tbHeight;
 jQuery(document).ready(function ($) {
   thickDims = function () {
-    var tbWindow = $('#TB_window'), H = $(window).height(), W = $(window).width(), w, h;
+    var tbWindow = jQuery('#TB_window'), H = jQuery(window).height(), W = jQuery(window).width(), w, h;
     w = (tbWidth && tbWidth < W - 90) ? tbWidth : W - 40;
     h = (tbHeight && tbHeight < H - 60) ? tbHeight : H - 40;
     if (tbWindow.size()) {
       tbWindow.width(w).height(h);
-      $('#TB_iframeContent').width(w).height(h - 27);
+      jQuery('#TB_iframeContent').width(w).height(h - 27);
       tbWindow.css({'margin-left':'-' + parseInt((w / 2), 10) + 'px'});
       if (typeof document.body.style.maxWidth != 'undefined')
         tbWindow.css({'top':(H - h) / 2, 'margin-top':'0'});
     }
   };
   thickDims();
-  $(window).resize(function () {
+  jQuery(window).resize(function () {
     thickDims()
   });
-  $('a.thickbox-preview').click(function () {
+  jQuery('a.thickbox-preview').click(function () {
     tb_click.call(this);
-    var alink = $(this).parents('.available-theme').find('.activatelink'), link = '', href = $(this).attr('href'), url, text;
+    var alink = jQuery(this).parents('.available-theme').find('.activatelink'), link = '', href = jQuery(this).attr('href'), url, text;
     if (tbWidth = href.match(/&tbWidth=[0-9]+/))
       tbWidth = parseInt(tbWidth[0].replace(/[^0-9]+/g, ''), 10);
     else
-      tbWidth = $(window).width() - 120;
+      tbWidth = jQuery(window).width() - 120;
     if (tbHeight = href.match(/&tbHeight=[0-9]+/))
       tbHeight = parseInt(tbHeight[0].replace(/[^0-9]+/g, ''), 10);
     else
-      tbHeight = $(window).height() - 120;
+      tbHeight = jQuery(window).height() - 120;
 
     if (alink.length) {
       url = alink.attr('href') || '';
       text = alink.attr('title') || '';
       link = '&nbsp; <a href="' + url + '" target="_top" class="tb-theme-preview-link">' + text + '</a>';
     } else {
-      text = $(this).attr('title') || '';
+      text = jQuery(this).attr('title') || '';
       link = '&nbsp; <span class="tb-theme-preview-link">' + text + '</span>';
     }
-    $('#TB_title').css({'background-color':'#222', 'color':'#dfdfdf'});
-    $('#TB_closeAjaxWindow').css({'float':'left'});
-    $('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
-    $('#TB_iframeContent').width('100%');
+    jQuery('#TB_title').css({'background-color':'#222', 'color':'#dfdfdf'});
+    jQuery('#TB_closeAjaxWindow').css({'float':'left'});
+    jQuery('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
+    jQuery('#TB_iframeContent').width('100%');
     thickDims();
     return false;
   });
 
   // Theme details
-  $('.theme-detail').click(function () {
-    $(this).siblings('.themedetaildiv').toggle();
+  jQuery('.theme-detail').click(function () {
+    jQuery(this).siblings('.themedetaildiv').toggle();
     return false;
   });
 
@@ -1806,7 +1828,320 @@ jQuery(document).ready(function ($) {
             singleClick:true,
             firstDay:0
           });
+        else
+       if(document.getElementById(t+"_typeform_id_temp").value=="type_name"){
+		var myu = t;
+        jQuery(document).ready(function() {	
 
+		jQuery("#"+myu+"_mini_label_first").click(function() {		
+	
+		if (jQuery(this).children('input').length == 0) {	
+
+			var first = "<input type='text' id='first' class='first' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+				jQuery(this).html(first);							
+				jQuery("input.first").focus();			
+				jQuery("input.first").blur(function() {	
+			
+			var id_for_blur = document.getElementById('first').parentNode.id.split('_');
+			var value = jQuery(this).val();			
+		jQuery("#"+id_for_blur[0]+"_mini_label_first").text(value);		
+		});	
+	}	
+	});	    
+     	
+		jQuery("label#"+myu+"_mini_label_last").click(function() {	
+	if (jQuery(this).children('input').length == 0) {	
+	
+		var last = "<input type='text' id='last' class='last'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(last);			
+			jQuery("input.last").focus();					
+			jQuery("input.last").blur(function() {	
+			var id_for_blur = document.getElementById('last').parentNode.id.split('_');			
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_mini_label_last").text(value);	
+		});	
+		 
+	}	
+	});
+	
+		jQuery("label#"+myu+"_mini_label_title").click(function() {		
+		if (jQuery(this).children('input').length == 0) {				
+			var title = "<input type='text' id='title' class='title' size='10' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+				jQuery(this).html(title);							
+				jQuery("input.title").focus();			
+				jQuery("input.title").blur(function() {	
+				var id_for_blur = document.getElementById('title').parentNode.id.split('_');
+			var value = jQuery(this).val();			
+
+
+		jQuery("#"+id_for_blur[0]+"_mini_label_title").text(value);		
+		});	
+	}	
+	
+	});		
+
+
+	jQuery("label#"+myu+"_mini_label_middle").click(function() {	
+	if (jQuery(this).children('input').length == 0) {		
+		var middle = "<input type='text' id='middle' class='middle'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(middle);			
+			jQuery("input.middle").focus();					
+			jQuery("input.middle").blur(function() {	
+            var id_for_blur = document.getElementById('middle').parentNode.id.split('_');			
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_mini_label_middle").text(value);	
+		});	
+	}	
+	});
+	
+	});		
+		 }						
+		else
+       if(document.getElementById(t+"_typeform_id_temp").value=="type_address"){
+		var myu = t;
+       
+	jQuery(document).ready(function() {		
+	jQuery("label#"+myu+"_mini_label_street1").click(function() {			
+
+		if (jQuery(this).children('input').length == 0) {				
+		var street1 = "<input type='text' id='street1' class='street1' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+		jQuery(this).html(street1);					
+		jQuery("input.street1").focus();		
+		jQuery("input.street1").blur(function() {	
+		var id_for_blur = document.getElementById('street1').parentNode.id.split('_');
+		var value = jQuery(this).val();			
+		jQuery("#"+id_for_blur[0]+"_mini_label_street1").text(value);		
+		});		
+		}	
+		});		
+	
+	jQuery("label#"+myu+"_mini_label_street2").click(function() {		
+	if (jQuery(this).children('input').length == 0) {		
+	var street2 = "<input type='text' id='street2' class='street2'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+	jQuery(this).html(street2);					
+	jQuery("input.street2").focus();		
+	jQuery("input.street2").blur(function() {	
+	var id_for_blur = document.getElementById('street2').parentNode.id.split('_');
+	var value = jQuery(this).val();			
+	jQuery("#"+id_for_blur[0]+"_mini_label_street2").text(value);		
+	});		
+	}	
+	});	
+	
+	
+	jQuery("label#"+myu+"_mini_label_city").click(function() {	
+		if (jQuery(this).children('input').length == 0) {	
+		var city = "<input type='text' id='city' class='city'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+		jQuery(this).html(city);			
+		jQuery("input.city").focus();				
+		jQuery("input.city").blur(function() {	
+		var id_for_blur = document.getElementById('city').parentNode.id.split('_');		
+		var value = jQuery(this).val();		
+		jQuery("#"+id_for_blur[0]+"_mini_label_city").text(value);		
+	});		
+	}	
+	});	
+	
+	jQuery("label#"+myu+"_mini_label_state").click(function() {		
+		if (jQuery(this).children('input').length == 0) {	
+		var state = "<input type='text' id='state' class='state'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(state);		
+			jQuery("input.state").focus();		
+			jQuery("input.state").blur(function() {	
+		var id_for_blur = document.getElementById('state').parentNode.id.split('_');					
+		var value = jQuery(this).val();			
+	jQuery("#"+id_for_blur[0]+"_mini_label_state").text(value);	
+	});	
+	}
+	});		
+
+	jQuery("label#"+myu+"_mini_label_postal").click(function() {		
+	if (jQuery(this).children('input').length == 0) {			
+	var postal = "<input type='text' id='postal' class='postal'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+	jQuery(this).html(postal);			
+	jQuery("input.postal").focus();			
+	jQuery("input.postal").blur(function() {
+    var id_for_blur = document.getElementById('postal').parentNode.id.split('_');	
+	var value = jQuery(this).val();		
+	jQuery("#"+id_for_blur[0]+"_mini_label_postal").text(value);		
+	});	
+	}
+	});	
+	
+	
+	jQuery("label#"+myu+"_mini_label_country").click(function() {		
+		if (jQuery(this).children('input').length == 0) {		
+			var country = "<input type='country' id='country' class='country'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+			jQuery(this).html(country);		
+			jQuery("input.country").focus();	
+			jQuery("input.country").blur(function() {	
+			var id_for_blur = document.getElementById('country').parentNode.id.split('_');				
+			var value = jQuery(this).val();			
+			jQuery("#"+id_for_blur[0]+"_mini_label_country").text(value);			
+			});	
+		}	
+	});
+	});	
+
+	   }						
+		else
+       if(document.getElementById(t+"_typeform_id_temp").value=="type_phone"){
+		var myu = t;
+      
+	jQuery(document).ready(function() {	
+	jQuery("label#"+myu+"_mini_label_area_code").click(function() {		
+	if (jQuery(this).children('input').length == 0) {		
+
+		var area_code = "<input type='text' id='area_code' class='area_code' size='10' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";		
+
+		jQuery(this).html(area_code);		
+		jQuery("input.area_code").focus();		
+		jQuery("input.area_code").blur(function() {	
+		var id_for_blur = document.getElementById('area_code').parentNode.id.split('_');
+		var value = jQuery(this).val();			
+		jQuery("#"+id_for_blur[0]+"_mini_label_area_code").text(value);		
+		});		
+	}	
+	});	
+
+	
+	jQuery("label#"+myu+"_mini_label_phone_number").click(function() {		
+
+	if (jQuery(this).children('input').length == 0) {			
+		var phone_number = "<input type='text' id='phone_number' class='phone_number'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";						
+
+		jQuery(this).html(phone_number);					
+
+		jQuery("input.phone_number").focus();			
+		jQuery("input.phone_number").blur(function() {		
+		var id_for_blur = document.getElementById('phone_number').parentNode.id.split('_');
+		var value = jQuery(this).val();			
+		jQuery("#"+id_for_blur[0]+"_mini_label_phone_number").text(value);		
+		});	
+	}	
+	});
+	
+	});	
+		 }						
+		else
+       if(document.getElementById(t+"_typeform_id_temp").value=="type_date_fields"){
+		var myu = t;
+      
+	jQuery(document).ready(function() {	
+	jQuery("label#"+myu+"_day_label").click(function() {		
+		if (jQuery(this).children('input').length == 0) {				
+			var day = "<input type='text' id='day' class='day' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+				jQuery(this).html(day);							
+				jQuery("input.day").focus();			
+				jQuery("input.day").blur(function() {	
+			var id_for_blur = document.getElementById('day').parentNode.id.split('_');
+			var value = jQuery(this).val();			
+
+		jQuery("#"+id_for_blur[0]+"_day_label").text(value);		
+		});	
+	}	
+	});		
+
+
+	jQuery("label#"+myu+"_month_label").click(function() {	
+	if (jQuery(this).children('input').length == 0) {		
+		var month = "<input type='text' id='month' class='month' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(month);			
+			jQuery("input.month").focus();					
+			jQuery("input.month").blur(function() {	
+			var id_for_blur = document.getElementById('month').parentNode.id.split('_');			
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_month_label").text(value);	
+		});	
+	}	
+	});
+	
+		jQuery("label#"+myu+"_year_label").click(function() {	
+	if (jQuery(this).children('input').length == 0) {		
+		var year = "<input type='text' id='year' class='year' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(year);			
+			jQuery("input.year").focus();					
+			jQuery("input.year").blur(function() {	
+		var id_for_blur = document.getElementById('year').parentNode.id.split('_');				
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_year_label").text(value);	
+		});	
+	}	
+	});
+	
+	});	
+
+	
+		 }						
+			else
+       if(document.getElementById(t+"_typeform_id_temp").value=="type_time"){
+		var myu = t;
+      
+jQuery(document).ready(function() {	
+	jQuery("label#"+myu+"_mini_label_hh").click(function() {		
+		if (jQuery(this).children('input').length == 0) {				
+			var hh = "<input type='text' id='hh' class='hh' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+				jQuery(this).html(hh);							
+				jQuery("input.hh").focus();			
+				jQuery("input.hh").blur(function() {	
+				var id_for_blur = document.getElementById('hh').parentNode.id.split('_');	
+			var value = jQuery(this).val();			
+
+
+		jQuery("#"+id_for_blur[0]+"_mini_label_hh").text(value);		
+		});	
+	}	
+	});		
+
+
+	jQuery("label#"+myu+"_mini_label_mm").click(function() {	
+	if (jQuery(this).children('input').length == 0) {		
+		var mm = "<input type='text' id='mm' class='mm' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(mm);			
+			jQuery("input.mm").focus();					
+			jQuery("input.mm").blur(function() {
+            var id_for_blur = document.getElementById('mm').parentNode.id.split('_');				
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_mini_label_mm").text(value);	
+		});	
+	}	
+	});
+	
+		jQuery("label#"+myu+"_mini_label_ss").click(function() {	
+	if (jQuery(this).children('input').length == 0) {		
+		var ss = "<input type='text' id='ss' class='ss' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+			jQuery(this).html(ss);			
+			jQuery("input.ss").focus();					
+			jQuery("input.ss").blur(function() {
+   var id_for_blur = document.getElementById('ss').parentNode.id.split('_');				
+			var value = jQuery(this).val();			
+			
+			jQuery("#"+id_for_blur[0]+"_mini_label_ss").text(value);	
+		});	
+	}	
+	});
+	
+		jQuery("label#"+myu+"_mini_label_am_pm").click(function() {		
+		if (jQuery(this).children('input').length == 0) {				
+			var am_pm = "<input type='text' id='am_pm' class='am_pm' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+				jQuery(this).html(am_pm);							
+				jQuery("input.am_pm").focus();			
+				jQuery("input.am_pm").blur(function() {	
+		    var id_for_blur = document.getElementById('am_pm').parentNode.id.split('_');	
+			var value = jQuery(this).val();			
+
+		jQuery("#"+id_for_blur[0]+"_mini_label_am_pm").text(value);		
+		});	
+	}	
+	});	
+	});
+		
+		 }	
       }
 
 
@@ -2032,12 +2367,12 @@ function html_form_options($row, $themes) {
     var thickDims, tbWidth, tbHeight;
     jQuery(document).ready(function($) {
       thickDims = function() {
-        var tbWindow = $('#TB_window'), H = $(window).height(), W = $(window).width(), w, h;
+        var tbWindow = jQuery('#TB_window'), H = jQuery(window).height(), W = jQuery(window).width(), w, h;
         w = (tbWidth && tbWidth < W - 90) ? tbWidth : W - 40;
         h = (tbHeight && tbHeight < H - 60) ? tbHeight : H - 40;
         if (tbWindow.size()) {
           tbWindow.width(w).height(h);
-          $('#TB_iframeContent').width(w).height(h - 27);
+          jQuery('#TB_iframeContent').width(w).height(h - 27);
           tbWindow.css({'margin-left': '-' + parseInt((w / 2),10) + 'px'});
           if (typeof document.body.style.maxWidth != 'undefined') {
             tbWindow.css({'top':(H-h)/2,'margin-top':'0'});
@@ -2045,21 +2380,21 @@ function html_form_options($row, $themes) {
         }
       };
       thickDims();
-      $(window).resize(function() { thickDims() });
-      $('a.thickbox-preview').click( function() {
+      jQuery(window).resize(function() { thickDims() });
+      jQuery('a.thickbox-preview').click( function() {
         tb_click.call(this);
-        var alink = $(this).parents('.available-theme').find('.activatelink'), link = '', href = $(this).attr('href'), url, text;
+        var alink = jQuery(this).parents('.available-theme').find('.activatelink'), link = '', href = jQuery(this).attr('href'), url, text;
         if (tbWidth = href.match(/&tbWidth=[0-9]+/)) {
           tbWidth = parseInt(tbWidth[0].replace(/[^0-9]+/g, ''), 10);
         }
         else {
-          tbWidth = $(window).width() - 120;
+          tbWidth = jQuery(window).width() - 120;
         }
         if (tbHeight = href.match(/&tbHeight=[0-9]+/)) {
           tbHeight = parseInt(tbHeight[0].replace(/[^0-9]+/g, ''), 10);
         }
         else {
-          tbHeight = $(window).height() - 120;
+          tbHeight = jQuery(window).height() - 120;
         }
         if (alink.length) {
           url = alink.attr('href') || '';
@@ -2067,19 +2402,19 @@ function html_form_options($row, $themes) {
           link = '&nbsp; <a href="' + url + '" target="_top" class="tb-theme-preview-link">' + text + '</a>';
         }
         else {
-          text = $(this).attr('title') || '';
+          text = jQuery(this).attr('title') || '';
           link = '&nbsp; <span class="tb-theme-preview-link">' + text + '</span>';
         }
-        $('#TB_title').css({'background-color':'#222','color':'#dfdfdf'});
-        $('#TB_closeAjaxWindow').css({'float':'left'});
-        $('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
-        $('#TB_iframeContent').width('100%');
+        jQuery('#TB_title').css({'background-color':'#222','color':'#dfdfdf'});
+        jQuery('#TB_closeAjaxWindow').css({'float':'left'});
+        jQuery('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
+        jQuery('#TB_iframeContent').width('100%');
         thickDims();
         return false;
       });
       // Theme details.
-      $('.theme-detail').click(function () {
-        $(this).siblings('.themedetaildiv').toggle();
+      jQuery('.theme-detail').click(function () {
+        jQuery(this).siblings('.themedetaildiv').toggle();
         return false;
       });
     });

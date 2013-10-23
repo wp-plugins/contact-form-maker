@@ -910,6 +910,184 @@ function set_required(id) {
   }
 }
 
+
+function disable_fields(id, field) {	
+	var div = document.getElementById(id + "_div_address");		
+	if (field) {
+		if (document.getElementById("el_"+field).checked==true) {
+			document.getElementById(id+"_disable_fieldsform_id_temp").setAttribute(field, "yes");
+    }
+		else {
+			document.getElementById(id+"_disable_fieldsform_id_temp").setAttribute(field, "no");
+    }
+	}
+  div.innerHTML = '';
+  var hidden_labels = new Array();
+  var address_fields = ['street1','street2','city','state','postal','country']
+  var left_right = 0;
+  for (l = 0; l < 6; l++) {
+    if (document.getElementById(id+'_disable_fieldsform_id_temp').getAttribute(address_fields[l])=='no') {
+      if (address_fields[l]=='street1' || address_fields[l]=='street2') {
+        var street = document.createElement('input');
+        street.setAttribute("type", 'text');
+        street.style.cssText = "width:100%";
+        street.setAttribute("id", id+"_"+address_fields[l]+"form_id_temp");
+        street.setAttribute("name", (parseInt(id)+l)+"_"+address_fields[l]+"form_id_temp");
+        street.setAttribute("onChange", "change_value('"+id+"_"+address_fields[l]+"form_id_temp')");
+        var street_label = document.createElement('label');
+        street_label.setAttribute("class", "mini_label");	
+        street_label.setAttribute("id", id+"_mini_label_"+address_fields[l]);
+        street_label.style.cssText = "display:block;";
+        street_label.innerHTML=document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+        w_mini_labels[l] = document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+        var span_addres = document.createElement('span');
+        span_addres.style.cssText = "float:left; width:100%;  padding-bottom: 8px; display:block";	
+        span_addres.appendChild(street);
+        span_addres.appendChild(street_label);
+        div.appendChild(span_addres);				
+      }
+      else {
+        left_right++;
+        if (address_fields[l] != 'country') {
+          var field = document.createElement('input');
+          field.setAttribute("type", 'text');
+          field.style.cssText = "width:100%";
+          field.setAttribute("id", id+"_"+address_fields[l]+"form_id_temp");
+          field.setAttribute("name", (parseInt(id)+l)+"_"+address_fields[l]+"form_id_temp");
+          field.setAttribute("onChange", "change_value('"+id+"_"+address_fields[l]+"form_id_temp')");
+          var field_label = document.createElement('label');
+          field_label.setAttribute("class", "mini_label");		
+          field_label.setAttribute("id", id+"_mini_label_"+address_fields[l]);
+          field_label.style.cssText = "display:block;";
+          field_label.innerHTML=document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+          w_mini_labels[l] = document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+        }
+        else {
+          var field = document.createElement('select');
+          field.setAttribute("type", 'text');
+          field.style.cssText = "width:100%";
+          field.setAttribute("id", id+"_countryform_id_temp");
+          field.setAttribute("name", (parseInt(id)+l)+"_countryform_id_temp");
+          field.setAttribute("onChange", "change_value('"+id+"_countryform_id_temp')");
+          var field_label = document.createElement('label');
+          field_label.setAttribute("class", "mini_label");	
+          field_label.setAttribute("id", id+"_mini_label_country");
+          field_label.style.cssText = "display:block;";
+          field_label.innerHTML=document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+          w_mini_labels[l] = document.getElementById('el_'+address_fields[l]+"_label").innerHTML;
+          var option_ = document.createElement('option');
+          option_.setAttribute("value", "");
+          option_.innerHTML = "";
+          field.appendChild(option_);
+          coutries=["Afghanistan","Albania",	"Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Central African Republic","Chad","Chile","China","Colombi","Comoros","Congo (Brazzaville)","Congo","Costa Rica","Cote d'Ivoire","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","East Timor (Timor Timur)","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Fiji","Finland","France","Gabon","Gambia, The","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Korea, North","Korea, South","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepa","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia and Montenegro","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","Spain","Sri Lanka","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];	
+          for (r = 0; r < coutries.length; r++) {
+            var option_ = document.createElement('option');
+            option_.setAttribute("value", coutries[r]);
+            option_.innerHTML=coutries[r];
+            field.appendChild(option_);
+          }
+        }
+        if (left_right % 2 != 0) {
+          var span_addres = document.createElement('span');
+          span_addres.style.cssText = "float:left; width:48%; padding-bottom: 8px;";
+        }
+        else {
+          var span_addres = document.createElement('span');
+          span_addres.style.cssText = "float:right; width:48%; padding-bottom: 8px;";
+        }
+        span_addres.appendChild(field);
+        span_addres.appendChild(field_label);
+        div.appendChild(span_addres);
+      }
+    }
+    else {
+      var hidden_field = document.createElement('input');
+      hidden_field.setAttribute("type", 'hidden');
+      hidden_field.setAttribute("id", id+"_"+address_fields[l]+"form_id_temp");
+      hidden_field.setAttribute("value", document.getElementById("el_"+address_fields[l]+"_label").innerHTML);
+      hidden_field.setAttribute("id_for_label", parseInt(id)+l); 
+      hidden_labels.push(hidden_field);
+    }
+    for (k = 0; k < hidden_labels.length; k++) {
+      div.appendChild(hidden_labels[k]);
+    }
+	}
+  jQuery(document).ready(function() {
+    jQuery("label#"+id+"_mini_label_street1").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var street1 = "<input type='text' class='street1' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(street1);					
+        jQuery("input.street1").focus();		
+        jQuery("input.street1").blur(function() {	
+          var value = jQuery(this).val();			
+          jQuery("#"+id+"_mini_label_street1").text(value);		
+          document.getElementById('el_street1_label').innerHTML=	value;	
+        });		
+      }	
+    });
+    jQuery("label#"+id+"_mini_label_street2").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var street2 = "<input type='text' class='street2'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(street2);					
+        jQuery("input.street2").focus();		
+        jQuery("input.street2").blur(function() {	
+          var value = jQuery(this).val();			
+          jQuery("#"+id+"_mini_label_street2").text(value);
+          document.getElementById('el_street2_label').innerHTML=	value;		
+        });		
+      }	
+    });
+    jQuery("label#"+id+"_mini_label_city").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var city = "<input type='text' class='city'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(city);			
+        jQuery("input.city").focus();				
+        jQuery("input.city").blur(function() {			
+          var value = jQuery(this).val();		
+          jQuery("#"+id+"_mini_label_city").text(value);	
+          document.getElementById('el_city_label').innerHTML=	value;		
+        });
+      }
+    });
+    jQuery("label#"+id+"_mini_label_state").click(function() {		
+      if (jQuery(this).children('input').length == 0) {	
+        var state = "<input type='text' class='state'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(state);		
+        jQuery("input.state").focus();		
+        jQuery("input.state").blur(function() {		
+          var value = jQuery(this).val();			
+          jQuery("#"+id+"_mini_label_state").text(value);
+          document.getElementById('el_state_label').innerHTML=	value;		
+        });	
+      }
+    });
+    jQuery("label#"+id+"_mini_label_postal").click(function() {
+      if (jQuery(this).children('input').length == 0) {			
+        var postal = "<input type='text' class='postal'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(postal);			
+        jQuery("input.postal").focus();			
+        jQuery("input.postal").blur(function() {			
+          var value = jQuery(this).val();		
+          jQuery("#"+id+"_mini_label_postal").text(value);	
+          document.getElementById('el_postal_label').innerHTML=	value;		
+        });	
+      }
+    });	
+    jQuery("label#"+id+"_mini_label_country").click(function() {
+      if (jQuery(this).children('input').length == 0) {		
+        var country = "<input type='text' class='country'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(country);
+        jQuery("input.country").focus();
+        jQuery("input.country").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+id+"_mini_label_country").text(value);
+          document.getElementById('el_country_label').innerHTML = value;
+        });
+      }
+    });
+	});
+}
+
 function set_unique(id) {
   if (document.getElementById(id).value == "yes") {
     document.getElementById(id).setAttribute("value", "no");
@@ -953,84 +1131,49 @@ function show_other_input(num) {
 }
 
 function set_allow_other(num, type) {
-  if (document.getElementById(num + '_allow_otherform_id_temp').value == "yes") {
-    document.getElementById(num + '_allow_otherform_id_temp').setAttribute("value", "no");
-    for (k = 0; k < 50; k++)
-      if (document.getElementById(num + "_elementform_id_temp" + k))
-        if (document.getElementById(num + "_elementform_id_temp" + k).getAttribute('other'))
-          if (document.getElementById(num + "_elementform_id_temp" + k).getAttribute('other') == 1) {
-            remove_choise(k, num);
-            break;
-          }
-
-  }
-  else {
-    document.getElementById(num + '_allow_otherform_id_temp').setAttribute("value", "yes");
-    var q = 0;
-    if (document.getElementById(num + '_hor')) {
-      q = 1;
-      flow_ver(num);
+	if (document.getElementById(num+'_allow_otherform_id_temp').value == "yes") {
+		document.getElementById(num+'_allow_otherform_id_temp').setAttribute("value", "no");
+		for (k = 0; k < 50; k++) {
+			if (document.getElementById("el_choices" + k)) {
+				if (document.getElementById("el_choices" + k).getAttribute('other')) {
+					if (document.getElementById("el_choices" + k).getAttribute('other') == 1) {
+						remove_choise(k, num, type);
+						break;
+					}
+        }
+      }
     }
-    j++;
-    element = 'input';
-
-    var table = document.getElementById(num + '_table_little');
-    var tr = document.createElement('tr');
-    tr.setAttribute("id", num + "_element_tr" + j);
-    var td = document.createElement('td');
-    td.setAttribute("valign", "top");
-    td.setAttribute("id", num + "_td_little" + j);
-    td.setAttribute("idi", j);
-    var adding = document.createElement(element);
-    adding.setAttribute("type", type);
-    adding.setAttribute("value", "other");
-    adding.setAttribute("other", "1");
-    adding.setAttribute("id", num + "_elementform_id_temp" + j);
-    if (type == "checkbox") {
-      adding.setAttribute("onClick", "if(set_checked('" + num + "','" + j + "','form_id_temp')) show_other_input('" + num + "','form_id_temp');");
-      adding.setAttribute("name", num + "_elementform_id_temp" + j);
-    }
-    else {
-      adding.setAttribute("onClick", "set_default('" + num + "','" + j + "','form_id_temp'); show_other_input('" + num + "','form_id_temp');");
-      adding.setAttribute("name", num + "_elementform_id_temp");
-    }
-
-
-    var label_adding = document.createElement('label');
-    label_adding.setAttribute("id", num + "_label_element" + j);
-    label_adding.setAttribute("class", "ch_rad_label");
-    label_adding.setAttribute("for", num + "_elementform_id_temp" + j);
-    label_adding.innerHTML = "other";
-    td.appendChild(adding);
-    td.appendChild(label_adding);
-    tr.appendChild(td);
-    table.appendChild(tr);
-
+	}
+	else {
+		document.getElementById(num+'_allow_otherform_id_temp').setAttribute("value", "yes");
+		j++;
     var choices_td = document.getElementById('choices');
     var br = document.createElement('br');
-    br.setAttribute("id", "br" + j);
+    br.setAttribute("id", "br"+j);
     var el_choices = document.createElement('input');
-    el_choices.setAttribute("id", "el_choices" + j);
+    el_choices.setAttribute("id", "el_choices"+j);
     el_choices.setAttribute("type", "text");
     el_choices.setAttribute("value", "other");
-    el_choices.style.cssText = "width:100px; margin:0; padding:0; border-width: 1px";
-    el_choices.setAttribute("onKeyUp", "change_label('" + num + "_label_element" + j + "', this.value); change_in_value('" + num + "_elementform_id_temp" + j + "', this.value)");
-
+    el_choices.setAttribute("other", "1");
+    el_choices.style.cssText =   "width:100px; margin:0; padding:0; border-width: 1px";
+    el_choices.setAttribute("onKeyUp", "change_label('"+num+"_label_element"+j+"', this.value); change_in_value('"+num+"_elementform_id_temp"+j+"', this.value)");
     var el_choices_remove = document.createElement('img');
-    el_choices_remove.setAttribute("id", "el_choices" + j + "_remove");
-    el_choices_remove.setAttribute("src", plugin_url + '/images/delete.png');
-    el_choices_remove.style.cssText = 'cursor:pointer;vertical-align:middle; margin:3px; display:none';
+    el_choices_remove.setAttribute("id", "el_choices"+j+"_remove");
+    el_choices_remove.setAttribute("src", plugin_url+'/images/delete.png');
+    el_choices_remove.style.cssText =  'cursor:pointer;vertical-align:middle; margin:3px; display:none';
     el_choices_remove.setAttribute("align", 'top');
-    el_choices_remove.setAttribute("onClick", "remove_choise('" + j + "','" + num + "')");
-
+    el_choices_remove.setAttribute("onClick", "remove_choise('"+j+"','"+num+"','"+type+"')");
     choices_td.appendChild(br);
     choices_td.appendChild(el_choices);
     choices_td.appendChild(el_choices_remove);
-    refresh_attr(num, 'type_checkbox');
-    if (q == 1) {
-      flow_hor(num);
+    if (type == 'checkbox') {
+      refresh_attr(num, 'type_checkbox');
     }
-  }
+    if (type == 'radio') {
+			refresh_attr(num, 'type_radio');
+    }
+    refresh_rowcol(num, type);
+	}
 }
 
 function flow_hor(id) {
@@ -1148,10 +1291,11 @@ function second_yes(id, w_ss) {
   ss.setAttribute("id", id + "_ssform_id_temp");
   ss.setAttribute("name", id + "_ssform_id_temp");
   ss.setAttribute("onKeyPress", "return check_second(event, '" + id + "_ssform_id_temp')");
-  ss.setAttribute("onKeyUp", "change_second('" + id + "_ssform_id_temp')");
+  ss.setAttribute("onKeyUp", "change_second(event, '"+id+"_ssform_id_temp')");
   ss.setAttribute("onBlur", "add_0('" + id + "_ssform_id_temp')");
   var ss_label = document.createElement('label');
   ss_label.setAttribute("class", "mini_label");
+  ss_label.setAttribute("id", id+"_mini_label_ss");
   ss_label.innerHTML = "SS";
 
   td_time_input3.appendChild(ss);
@@ -1174,10 +1318,22 @@ function second_yes(id, w_ss) {
     text_box.appendChild(td_time_label3);
   }
   refresh_attr(id, 'type_time');
+  jQuery(document).ready(function() {
+		jQuery("label#"+id+"_mini_label_ss").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var ss = "<input type='text' class='ss' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(ss);
+        jQuery("input.ss").focus();
+        jQuery("input.ss").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+id+"_mini_label_ss").text(value);
+        });
+      }
+    });
+	});
 }
 
 function check_isnum(e) {
-
   var chCode1 = e.which || e.keyCode;
   if (chCode1 > 31 && (chCode1 < 48 || chCode1 > 57))
     return false;
@@ -2101,7 +2257,8 @@ function format_12(num, am_or_pm, w_hh, w_mm, w_ss) {
 
   var am_pm_label = document.createElement('label');
   am_pm_label.setAttribute("class", "mini_label");
-  am_pm_label.innerHTML = "AM/PM";
+  am_pm_label.setAttribute("id", num+"_mini_label_am_pm");
+  am_pm_label.innerHTML=w_mini_labels[3];
 
   am_pm_select.appendChild(am_option);
   am_pm_select.appendChild(pm_option);
@@ -2117,6 +2274,19 @@ function format_12(num, am_or_pm, w_hh, w_mm, w_ss) {
     document.getElementById(num + '_ssform_id_temp').value = w_ss;
 
   refresh_attr(num, 'type_time');
+  jQuery(document).ready(function() {
+    jQuery("label#"+num+"_mini_label_am_pm").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var am_pm = "<input type='text' class='am_pm' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(am_pm);				
+        jQuery("input.am_pm").focus();
+        jQuery("input.am_pm").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+num+"_mini_label_am_pm").text(value);
+        });
+      }	
+    });		
+	});
 }
 
 function format_24(num) {
@@ -2168,7 +2338,8 @@ function format_extended(num) {
 
   var title_label = document.createElement('label');
   title_label.setAttribute("class", "mini_label");
-  title_label.innerHTML = "<!--repstart-->Title<!--repend-->";
+  title_label.setAttribute("id", num+"_mini_label_title");
+  title_label.innerHTML= w_mini_labels[0];
 
   var middle = document.createElement('input');
   middle.setAttribute("type", 'text');
@@ -2184,7 +2355,8 @@ function format_extended(num) {
 
   var middle_label = document.createElement('label');
   middle_label.setAttribute("class", "mini_label");
-  middle_label.innerHTML = "<!--repstart-->Middle<!--repend-->";
+  middle_label.setAttribute("id", num+"_mini_label_middle");
+  middle_label.innerHTML=w_mini_labels[3];
 
   first_input = document.getElementById(num + '_td_name_input_first');
   last_input = document.getElementById(num + '_td_name_input_last');
@@ -2227,6 +2399,30 @@ function format_extended(num) {
   parent.appendChild(el_first_value_middle);
 
   refresh_attr(num, 'type_name');
+  jQuery(document).ready(function() {
+    jQuery("label#"+num+"_mini_label_title").click(function() {
+      if (jQuery(this).children('input').length == 0) {				
+        var title = "<input type='text' class='title' size='10' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(title);				
+        jQuery("input.title").focus();
+        jQuery("input.title").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+num+"_mini_label_title").text(value);
+        });
+      }
+    });
+    jQuery("label#"+num+"_mini_label_middle").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var middle = "<input type='text' class='middle'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(middle);
+        jQuery("input.middle").focus();
+        jQuery("input.middle").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+num+"_mini_label_middle").text(value);
+        });
+      }
+    });
+	});
 }
 
 function format_normal(num) {
@@ -2256,7 +2452,12 @@ function format_normal(num) {
 }
 
 function type_section_break(i, w_editor) {
-
+  var pos=document.getElementsByName("el_pos");
+  pos[0].setAttribute("disabled", "disabled");
+  pos[1].setAttribute("disabled", "disabled");
+  pos[2].setAttribute("disabled", "disabled");
+	var sel_el_pos=document.getElementById("sel_el_pos");
+  sel_el_pos.setAttribute("disabled", "disabled");
   document.getElementById("element_type").value = "type_section_break";
   delete_last_child();
 // edit table	
@@ -5036,7 +5237,7 @@ function type_textarea(i, w_field_label, w_field_label_pos, w_size_w, w_size_h, 
   refresh_attr(i, 'type_text');
 }
 
-function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_required, w_unique, w_class, w_attr_name, w_attr_value) {
+function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_mini_labels, w_required, w_unique, w_class, w_attr_name, w_attr_value) {
   document.getElementById("element_type").value = "type_phone";
 
   delete_last_child();
@@ -5326,12 +5527,11 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
   edit_main_td3_1.appendChild(gic);
   edit_main_td3_1.appendChild(el_first_value_phone);
 
+  edit_main_td7.appendChild(el_size_label);
+	edit_main_td7_1.appendChild(el_size);
 
   edit_main_td4.appendChild(el_style_label);
   edit_main_td4_1.appendChild(el_style_textarea);
-
-  edit_main_td7.appendChild(el_size_label);
-  edit_main_td7_1.appendChild(el_size);
 
   edit_main_td5.appendChild(el_required_label);
   edit_main_td5_1.appendChild(el_required);
@@ -5397,7 +5597,10 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
 
   var table = document.createElement('table');
   table.setAttribute("id", i + "_elemet_tableform_id_temp");
-
+  var div_for_editable_labels = document.createElement('div');
+  div_for_editable_labels.setAttribute("style", "margin-left:4px; color:red;");
+  edit_labels = document.createTextNode("The labels of the fields are editable. Please, click the label to edit.");
+  div_for_editable_labels.appendChild(edit_labels);
 
   var tr = document.createElement('tr');
 
@@ -5479,7 +5682,8 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
 
   var first_label = document.createElement('label');
   first_label.setAttribute("class", "mini_label");
-  first_label.innerHTML = "<!--repstart-->Area Code<!--repend-->";
+  first_label.setAttribute("id", i+"_mini_label_area_code");
+  first_label.innerHTML= w_mini_labels[0];
 
   var last = document.createElement('input');
   last.setAttribute("type", 'text');
@@ -5501,7 +5705,8 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
 
   var last_label = document.createElement('label');
   last_label.setAttribute("class", "mini_label");
-  last_label.innerHTML = "<!--repstart-->Phone Number<!--repend-->";
+  last_label.setAttribute("id", i+"_mini_label_phone_number");
+  last_label.innerHTML=w_mini_labels[1];
 
   var main_td = document.getElementById('show_table');
 
@@ -5531,6 +5736,7 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
 
   div.appendChild(table);
   div.appendChild(br3);
+  div.appendChild(div_for_editable_labels);
   main_td.appendChild(div);
 
   if (w_field_label_pos == "top")
@@ -5538,9 +5744,33 @@ function type_phone(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_
 
   change_class(w_class, i);
   refresh_attr(i, 'type_name');
+  jQuery(document).ready(function() {
+    jQuery("label#"+i+"_mini_label_area_code").click(function() {
+    if (jQuery(this).children('input').length == 0) {
+      var area_code = "<input type='text' class='area_code' size='10' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+      jQuery(this).html(area_code);
+      jQuery("input.area_code").focus();
+      jQuery("input.area_code").blur(function() {
+        var value = jQuery(this).val();
+        jQuery("#"+i+"_mini_label_area_code").text(value);
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_phone_number").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var phone_number = "<input type='text' class='phone_number'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(phone_number);
+        jQuery("input.phone_number").focus();
+        jQuery("input.phone_number").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_phone_number").text(value);
+        });
+      }
+    });
+  });
 }
 
-function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value) {
+function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_mini_labels, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value) {
   document.getElementById("element_type").value = "type_name";
 
   delete_last_child();
@@ -5948,6 +6178,10 @@ function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_
 
   var div = document.createElement('div');
   div.setAttribute("id", "main_div");
+  var div_for_editable_labels = document.createElement('div');
+  div_for_editable_labels.setAttribute("style", "margin-left:4px; color:red;");
+  edit_labels = document.createTextNode("The labels of the fields are editable. Please, click the label to edit.");
+  div_for_editable_labels.appendChild(edit_labels);
 
   var table = document.createElement('table');
   table.setAttribute("id", i + "_elemet_tableform_id_temp");
@@ -6025,7 +6259,8 @@ function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_
 
   var first_label = document.createElement('label');
   first_label.setAttribute("class", "mini_label");
-  first_label.innerHTML = "<!--repstart-->First<!--repend-->";
+  first_label.setAttribute("id", i+"_mini_label_first");
+  first_label.innerHTML = w_mini_labels[1];
 
   var last = document.createElement('input');
   last.setAttribute("type", 'text');
@@ -6047,7 +6282,8 @@ function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_
 
   var last_label = document.createElement('label');
   last_label.setAttribute("class", "mini_label");
-  last_label.innerHTML = "<!--repstart-->Last<!--repend-->";
+  last_label.setAttribute("id", i+"_mini_label_last");
+		last_label.innerHTML= w_mini_labels[2];
 
   var main_td = document.getElementById('show_table');
 
@@ -6076,6 +6312,7 @@ function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_
 
   div.appendChild(table);
   div.appendChild(br3);
+  div.appendChild(div_for_editable_labels);
   main_td.appendChild(div);
 
   if (w_field_label_pos == "top")
@@ -6085,9 +6322,33 @@ function type_name(i, w_field_label, w_field_label_pos, w_first_val, w_title, w_
     format_extended(i);
   change_class(w_class, i);
   refresh_attr(i, 'type_name');
+  jQuery(document).ready(function() {
+    jQuery("label#"+i+"_mini_label_first").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var first = "<input type='text' class='first' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(first);
+        jQuery("input.first").focus();
+        jQuery("input.first").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_first").text(value);
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_last").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var last = "<input type='text' class='last'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(last);
+        jQuery("input.last").focus();
+        jQuery("input.last").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_last").text(value);
+        });
+      }
+    });
+	});
 }
 
-function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w_class, w_attr_name, w_attr_value) {
+function type_address(i, w_field_label, w_field_label_pos, w_size, w_mini_labels, w_disabled_fields, w_required, w_class, w_attr_name, w_attr_value) {
 
   document.getElementById("element_type").value = "type_address";
 
@@ -6217,7 +6478,58 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
   el_size.setAttribute("name", "edit_for_size");
   el_size.setAttribute("onKeyPress", "return check_isnum(event)");
   el_size.setAttribute("onKeyUp", "change_w_style('" + i + "_div_address', this.value);");
-
+  var el_disable_field_label = document.createElement('label');
+	        el_disable_field_label.style.cssText ="color:#00aeef; font-weight:bold; font-size: 13px";
+		el_disable_field_label.innerHTML = "Disable Field(s)";
+	
+	
+	var el_disable_address1 = document.createElement('input');
+            el_disable_address1.setAttribute("id", "el_street1");
+            el_disable_address1.setAttribute("type", "checkbox");
+            el_disable_address1.setAttribute("value", "no");
+            el_disable_address1.setAttribute("onclick", "disable_fields('"+i+"','street1')");
+	if(w_disabled_fields[0]=="yes")
+                el_disable_address1.setAttribute("checked", "checked");	
+	
+	var el_disable_address2 = document.createElement('input');
+            el_disable_address2.setAttribute("id", "el_street2");
+            el_disable_address2.setAttribute("type", "checkbox");
+            el_disable_address2.setAttribute("value", "no");
+            el_disable_address2.setAttribute("onclick", "disable_fields('"+i+"','street2')");
+	if(w_disabled_fields[1]=="yes")
+                el_disable_address2.setAttribute("checked", "checked");	
+	
+	var el_disable_city = document.createElement('input');
+            el_disable_city.setAttribute("id", "el_city");
+            el_disable_city.setAttribute("type", "checkbox");
+            el_disable_city.setAttribute("value", "no");
+            el_disable_city.setAttribute("onclick", "disable_fields('"+i+"','city')");
+	if(w_disabled_fields[2]=="yes")
+                el_disable_city.setAttribute("checked", "checked");	
+	
+	var el_disable_state = document.createElement('input');
+            el_disable_state.setAttribute("id", "el_state");
+            el_disable_state.setAttribute("type", "checkbox");
+            el_disable_state.setAttribute("value", "no");
+            el_disable_state.setAttribute("onclick", "disable_fields('"+i+"','state')");
+	if(w_disabled_fields[3]=="yes")
+                el_disable_state.setAttribute("checked", "checked");	
+	
+	var el_disable_postal = document.createElement('input');
+            el_disable_postal.setAttribute("id", "el_postal");
+            el_disable_postal.setAttribute("type", "checkbox");
+            el_disable_postal.setAttribute("value", "no");
+            el_disable_postal.setAttribute("onclick", "disable_fields('"+i+"','postal')");
+	if(w_disabled_fields[4]=="yes")
+                el_disable_postal.setAttribute("checked", "checked");
+	
+	var el_disable_country = document.createElement('input');
+                el_disable_country.setAttribute("id", "el_country");
+                el_disable_country.setAttribute("type", "checkbox");
+                el_disable_country.setAttribute("value", "no");
+                el_disable_country.setAttribute("onclick", "disable_fields('"+i+"','country')");
+	if(w_disabled_fields[5]=="yes")
+                el_disable_country.setAttribute("checked", "checked");
 
   var el_required_label = document.createElement('label');
   el_required_label.style.cssText = "color:#00aeef; font-weight:bold; font-size: 13px";
@@ -6320,9 +6632,44 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
     el_attr_td_name.appendChild(el_attr_name);
     el_attr_td_value.appendChild(el_attr_value);
     el_attr_td_X.appendChild(el_attr_remove);
-
   }
-
+  var el_street1 = document.createTextNode(w_mini_labels[0]);
+	var el_street2 = document.createTextNode(w_mini_labels[1]);
+	var el_city = document.createTextNode(w_mini_labels[2]);
+	var el_state = document.createTextNode(w_mini_labels[3]);
+	var el_postal = document.createTextNode(w_mini_labels[4]);
+	var el_country = document.createTextNode(w_mini_labels[5]);
+	
+	var el_street1_label = document.createElement('label');
+		el_street1_label.setAttribute("id", "el_street1_label");
+	
+	var el_street2_label = document.createElement('label');
+		el_street2_label.setAttribute("id", "el_street2_label");
+	
+	var el_city_label = document.createElement('label');
+		el_city_label.setAttribute("id", "el_city_label");
+	
+	var el_state_label = document.createElement('label');
+		el_state_label.setAttribute("id", "el_state_label");
+	
+	var el_postal_label = document.createElement('label');
+		el_postal_label.setAttribute("id", "el_postal_label");
+	
+	var el_country_label = document.createElement('label');
+		el_country_label.setAttribute("id", "el_country_label");
+	
+	el_street1_label.appendChild(el_street1);
+	el_street2_label.appendChild(el_street2);
+	el_city_label.appendChild(el_city);
+	el_state_label.appendChild(el_state);
+	el_postal_label.appendChild(el_postal);
+	el_country_label.appendChild(el_country);
+	var br_ = document.createElement('br');
+	var br1_ = document.createElement('br');
+	var br2_ = document.createElement('br');
+	var br3_ = document.createElement('br');
+	var br4_ = document.createElement('br');
+	var br5_ = document.createElement('br');
 
   var t = document.getElementById('edit_table');
 
@@ -6360,9 +6707,25 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   edit_main_td5.appendChild(el_required_label);
   edit_main_td5_1.appendChild(el_required);
-
-  /*	edit_main_td8.appendChild(el_unique_label);
-   edit_main_td8.appendChild(el_unique);*/
+  edit_main_td8.appendChild(el_disable_field_label);
+	edit_main_td8_1.appendChild(el_disable_address1);
+	edit_main_td8_1.appendChild(el_street1_label);
+	edit_main_td8_1.appendChild(br_);
+	edit_main_td8_1.appendChild(el_disable_address2);
+	edit_main_td8_1.appendChild(el_street2_label);
+	edit_main_td8_1.appendChild(br1_);
+	edit_main_td8_1.appendChild(el_disable_city);
+	edit_main_td8_1.appendChild(el_city_label);
+	edit_main_td8_1.appendChild(br2_);
+	edit_main_td8_1.appendChild(el_disable_state);
+	edit_main_td8_1.appendChild(el_state_label);
+	edit_main_td8_1.appendChild(br3_);
+	edit_main_td8_1.appendChild(el_disable_postal);
+	edit_main_td8_1.appendChild(el_postal_label);
+	edit_main_td8_1.appendChild(br4_);
+	edit_main_td8_1.appendChild(el_disable_country);
+	edit_main_td8_1.appendChild(el_country_label);
+	edit_main_td8_1.appendChild(br5_);
 
   edit_main_td6.appendChild(el_attr_label);
   edit_main_td6.appendChild(el_attr_add);
@@ -6383,14 +6746,16 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
   edit_main_tr5.appendChild(edit_main_td5_1);
   edit_main_tr6.appendChild(edit_main_td6);
   edit_main_tr6.appendChild(edit_main_td6_1);
-  //edit_main_tr8.appendChild(edit_main_td8);
+  edit_main_tr8.appendChild(edit_main_td8);
+	edit_main_tr8.appendChild(edit_main_td8_1);
   edit_main_table.appendChild(edit_main_tr1);
   edit_main_table.appendChild(edit_main_tr2);
   edit_main_table.appendChild(edit_main_tr7);
   //edit_main_table.appendChild(edit_main_tr3);
   edit_main_table.appendChild(edit_main_tr4);
   edit_main_table.appendChild(edit_main_tr5);
-  //edit_main_table.appendChild(edit_main_tr8);
+  edit_main_table.appendChild(edit_main_tr8);
+	edit_main_table.appendChild(edit_main_tr5);
   edit_main_table.appendChild(edit_main_tr6);
   edit_div.appendChild(edit_main_table);
 
@@ -6409,14 +6774,26 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
   adding_required.setAttribute("value", w_required);
   adding_required.setAttribute("name", i + "_requiredform_id_temp");
   adding_required.setAttribute("id", i + "_requiredform_id_temp");
-
+  var adding_country= document.createElement("input");
+  adding_country.setAttribute("type", "hidden");
+  adding_country.setAttribute("name", i+"_disable_fieldsform_id_temp");
+  adding_country.setAttribute("id", i+"_disable_fieldsform_id_temp");	
+  adding_country.setAttribute("street1", w_disabled_fields[0]);
+  adding_country.setAttribute("street2", w_disabled_fields[1]);
+  adding_country.setAttribute("city", w_disabled_fields[2]);
+  adding_country.setAttribute("state", w_disabled_fields[3]);
+  adding_country.setAttribute("postal", w_disabled_fields[4]);
+  adding_country.setAttribute("country", w_disabled_fields[5]);
 
   var div = document.createElement('div');
   div.setAttribute("id", "main_div");
 
   var table = document.createElement('table');
   table.setAttribute("id", i + "_elemet_tableform_id_temp");
-
+  var div_for_editable_labels = document.createElement('div');
+  div_for_editable_labels.setAttribute("style", "margin-left:4px; color:red;");
+  edit_labels = document.createTextNode("The labels of the fields are editable. Please, click the label to edit.");
+  div_for_editable_labels.appendChild(edit_labels);
 
   var tr = document.createElement('tr');
 
@@ -6480,8 +6857,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var street1_label = document.createElement('label');
   street1_label.setAttribute("class", "mini_label");
+  street1_label.setAttribute("id", i+"_mini_label_street1");
   street1_label.style.cssText = "display:block;";
-  street1_label.innerHTML = "<!--repstart-->Street Address<!--repend-->";
+  street1_label.innerHTML=w_mini_labels[0];
 
   var street2 = document.createElement('input');
   street2.setAttribute("type", 'text');
@@ -6492,8 +6870,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var street2_label = document.createElement('label');
   street2_label.setAttribute("class", "mini_label");
+  street2_label.setAttribute("id", i+"_mini_label_street2");
   street2_label.style.cssText = "display:block;";
-  street2_label.innerHTML = "<!--repstart-->Street Address Line 2<!--repend-->";
+  street2_label.innerHTML=w_mini_labels[1];
 
   var city = document.createElement('input');
   city.setAttribute("type", 'text');
@@ -6504,8 +6883,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var city_label = document.createElement('label');
   city_label.setAttribute("class", "mini_label");
+  city_label.setAttribute("id", i+"_mini_label_city");
   city_label.style.cssText = "display:block;";
-  city_label.innerHTML = "<!--repstart-->City<!--repend-->";
+  city_label.innerHTML= w_mini_labels[2];
 
   var state = document.createElement('input');
   state.setAttribute("type", 'text');
@@ -6516,9 +6896,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var state_label = document.createElement('label');
   state_label.setAttribute("class", "mini_label");
+  state_label.setAttribute("id", i+"_mini_label_state");
   state_label.style.cssText = "display:block;";
-  state_label.innerHTML = "<!--repstart-->State / Province / Region<!--repend-->";
-
+  state_label.innerHTML = w_mini_labels[3];
 
   var postal = document.createElement('input');
   postal.setAttribute("type", 'text');
@@ -6529,8 +6909,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var postal_label = document.createElement('label');
   postal_label.setAttribute("class", "mini_label");
+  postal_label.setAttribute("id", i+"_mini_label_postal");
   postal_label.style.cssText = "display:block;";
-  postal_label.innerHTML = "<!--repstart-->Postal / Zip Code<!--repend-->";
+  postal_label.innerHTML=w_mini_labels[4];
 
   var country = document.createElement('select');
   country.setAttribute("type", 'text');
@@ -6541,8 +6922,9 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   var country_label = document.createElement('label');
   country_label.setAttribute("class", "mini_label");
+  country_label.setAttribute("id", i+"_mini_label_country");
   country_label.style.cssText = "display:block;";
-  country_label.innerHTML = "<!--repstart-->Country<!--repend-->";
+  country_label.innerHTML=w_mini_labels[5];
 
 
   var option_ = document.createElement('option');
@@ -6583,16 +6965,23 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
   span_addres4_2.appendChild(country_label);
 
 
-  div_address.appendChild(span_addres1);
-  div_address.appendChild(span_addres2);
-  div_address.appendChild(span_addres3_1);
-  div_address.appendChild(span_addres3_2);
-  div_address.appendChild(span_addres4_1);
-  div_address.appendChild(span_addres4_2);
+  if(w_disabled_fields[0]=="no")
+			div_address.appendChild(span_addres1);
+		if(w_disabled_fields[1]=="no")
+			div_address.appendChild(span_addres2);	
+		if(w_disabled_fields[2]=="no")
+			div_address.appendChild(span_addres3_1);	
+		if(w_disabled_fields[3]=="no")
+			div_address.appendChild(span_addres3_2);
+		if(w_disabled_fields[4]=="no")
+			div_address.appendChild(span_addres4_1);
+		if(w_disabled_fields[5]=="no")		
+			div_address.appendChild(span_addres4_2);
 
 
   td2.appendChild(adding_type);
   td2.appendChild(adding_required);
+  td2.appendChild(adding_country);
   td2.appendChild(div_address);
   tr.appendChild(td1);
   tr.appendChild(td2);
@@ -6600,12 +6989,87 @@ function type_address(i, w_field_label, w_field_label_pos, w_size, w_required, w
 
   div.appendChild(table);
   div.appendChild(br3);
+  div.appendChild(div_for_editable_labels);
   main_td.appendChild(div);
 
   if (w_field_label_pos == "top")
     label_top(i);
   change_class(w_class, i);
   refresh_attr(i, 'type_address');
+  jQuery(document).ready(function() {		
+    jQuery("label#"+i+"_mini_label_street1").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var street1 = "<input type='text' class='street1' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(street1);		
+        jQuery("input.street1").focus();
+        jQuery("input.street1").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_street1").text(value);
+          document.getElementById('el_street1_label').innerHTML = value;
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_street2").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var street2 = "<input type='text' class='street2'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(street2);
+        jQuery("input.street2").focus();
+        jQuery("input.street2").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_street2").text(value);
+          document.getElementById('el_street2_label').innerHTML = value;
+        });		
+      }	
+    });
+    jQuery("label#"+i+"_mini_label_city").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var city = "<input type='text' class='city'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(city);
+        jQuery("input.city").focus();
+        jQuery("input.city").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_city").text(value);
+          document.getElementById('el_city_label').innerHTML = value;
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_state").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var state = "<input type='text' class='state'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(state);
+        jQuery("input.state").focus();
+        jQuery("input.state").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_state").text(value);
+          document.getElementById('el_state_label').innerHTML = value;
+        });	
+      }
+    });
+    jQuery("label#"+i+"_mini_label_postal").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var postal = "<input type='text' class='postal'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(postal);
+        jQuery("input.postal").focus();
+        jQuery("input.postal").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_postal").text(value);
+          document.getElementById('el_postal_label').innerHTML = value;
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_country").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var country = "<input type='text' class='country'  style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(country);
+        jQuery("input.country").focus();
+        jQuery("input.country").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_country").text(value);
+          document.getElementById('el_country_label').innerHTML = value;
+        });	
+      }	
+    });
+	});
 }
 
 function type_submitter_mail(i, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_send, w_required, w_unique, w_class, w_attr_name, w_attr_value) {
@@ -8193,7 +8657,7 @@ function type_radio(i, w_field_label, w_field_label_pos, w_flow, w_choices, w_ch
 
 }
 
-function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_sec, w_hh, w_mm, w_ss, w_required, w_class, w_attr_name, w_attr_value) {
+function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_sec, w_hh, w_mm, w_ss, w_mini_labels, w_required, w_class, w_attr_name, w_attr_value) {
 
   document.getElementById("element_type").value = "type_time";
 
@@ -8544,7 +9008,10 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
   adding_required.setAttribute("id", i + "_requiredform_id_temp");
   var div = document.createElement('div');
   div.setAttribute("id", "main_div");
-
+  var div_for_editable_labels = document.createElement('div');
+  div_for_editable_labels.setAttribute("style", "margin-left:4px; color:red;");
+  edit_labels = document.createTextNode("The labels of the fields are editable. Please, click the label to edit.");
+  div_for_editable_labels.appendChild(edit_labels);
   var table = document.createElement('table');
   table.setAttribute("id", i + "_elemet_tableform_id_temp");
 
@@ -8627,7 +9094,8 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
 
   var hh_label = document.createElement('label');
   hh_label.setAttribute("class", "mini_label");
-  hh_label.innerHTML = "HH";
+  hh_label.setAttribute("id", i+"_mini_label_hh");
+  hh_label.innerHTML = w_mini_labels[0];
 
   var hh_ = document.createElement('span');
   hh_.setAttribute("class", 'wdform_colon');
@@ -8647,7 +9115,8 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
 
   var mm_label = document.createElement('label');
   mm_label.setAttribute("class", "mini_label");
-  mm_label.innerHTML = "MM";
+  mm_label.setAttribute("id", i+"_mini_label_mm");
+  mm_label.innerHTML = w_mini_labels[1];
 
   var mm_ = document.createElement('span');
   mm_.style.cssText = "font-style:bold; vertical-align:middle";
@@ -8662,15 +9131,15 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
   ss.setAttribute("id", i + "_ssform_id_temp");
   ss.setAttribute("name", i + "_ssform_id_temp");
   ss.setAttribute("onKeyPress", "return check_second(event, '" + i + "_ssform_id_temp')");
-  ss.setAttribute("onKeyUp", "change_second('" + i + "_ssform_id_temp')");
+  ss.setAttribute("onKeyUp", "change_second(event, '"+i+"_ssform_id_temp')");
   ss.setAttribute("onBlur", "add_0('" + i + "_ssform_id_temp')");
 
   var ss_label = document.createElement('label');
   ss_label.setAttribute("class", "mini_label");
-  ss_label.innerHTML = "SS";
+  ss_label.setAttribute("id", i+"_mini_label_ss");
+  ss_label.innerHTML = w_mini_labels[2];
 
   var main_td = document.getElementById('show_table');
-
 
   td1.appendChild(label);
   td1.appendChild(required);
@@ -8707,6 +9176,7 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
 
   div.appendChild(table);
   div.appendChild(br3);
+  div.appendChild(div_for_editable_labels);
   main_td.appendChild(div);
 
   if (w_field_label_pos == "top")
@@ -8718,6 +9188,41 @@ function type_time(i, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_
     second_no(i);
   change_class(w_class, i);
   refresh_attr(i, 'type_time');
+  jQuery(document).ready(function() {
+    jQuery("label#"+i+"_mini_label_hh").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var hh = "<input type='text' class='hh' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(hh);							
+        jQuery("input.hh").focus();			
+        jQuery("input.hh").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_hh").text(value);
+        });
+      }
+    });
+    jQuery("label#"+i+"_mini_label_mm").click(function() {	
+      if (jQuery(this).children('input').length == 0) {		
+        var mm = "<input type='text' class='mm' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(mm);			
+        jQuery("input.mm").focus();					
+        jQuery("input.mm").blur(function() {			
+          var value = jQuery(this).val();			
+          jQuery("#"+i+"_mini_label_mm").text(value);	
+        });
+      }
+    });
+		jQuery("label#"+i+"_mini_label_ss").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var ss = "<input type='text' class='ss' size='4' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(ss);
+        jQuery("input.ss").focus();
+        jQuery("input.ss").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_mini_label_ss").text(value);
+        });
+      }
+    });
+	});
 }
 
 function type_date(i, w_field_label, w_field_label_pos, w_date, w_required, w_class, w_format, w_but_val, w_attr_name, w_attr_value) {
@@ -9534,7 +10039,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_day_field_size_input.setAttribute("onKeyUp", "change_w_style('" + i + "_dayform_id_temp', this.value)");
   //el_day_field_size_input.setAttribute("onKeyUp", "change_w_style('"+i+"_elementform_id_temp', this.value)");
 
-  var el_day_field_text_label = document.createElement('label');
+  /*var el_day_field_text_label = document.createElement('label');
   el_day_field_text_label.style.cssText = "color:#00aeef; font-weight:bold; font-size: 13px";
   el_day_field_text_label.innerHTML = "Day label";
 
@@ -9543,7 +10048,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_day_field_text_input.setAttribute("type", "text");
   el_day_field_text_input.setAttribute("value", w_day_label);
   //el_day_field_size_input.setAttribute("onKeyPress", "return check_isnum(event)");
-  el_day_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_day_label', this.value)");
+  el_day_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_day_label', this.value)");*/
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -9586,7 +10091,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_month_field_size_input.setAttribute("onKeyPress", "return check_isnum(event)");
   el_month_field_size_input.setAttribute("onKeyUp", "change_w_style('" + i + "_monthform_id_temp', this.value)");
 
-  var el_month_field_text_label = document.createElement('label');
+  /*var el_month_field_text_label = document.createElement('label');
   el_month_field_text_label.style.cssText = "color:#00aeef; font-weight:bold; font-size: 13px";
   el_month_field_text_label.innerHTML = "Month label";
 
@@ -9595,7 +10100,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_month_field_text_input.setAttribute("type", "text");
   el_month_field_text_input.setAttribute("value", w_month_label);
   //el_month_field_size_input.setAttribute("onKeyPress", "return check_isnum(event)");
-  el_month_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_month_label', this.value)");
+  el_month_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_month_label', this.value)");*/
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -9660,7 +10165,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_year_field_size_input.setAttribute("onKeyPress", "return check_isnum(event)");
   el_year_field_size_input.setAttribute("onKeyUp", "change_w_style('" + i + "_yearform_id_temp', this.value)");
 
-  var el_year_field_text_label = document.createElement('label');
+  /*var el_year_field_text_label = document.createElement('label');
   el_year_field_text_label.style.cssText = "color:#00aeef; font-weight:bold; font-size: 13px";
   el_year_field_text_label.innerHTML = "Year label";
 
@@ -9669,7 +10174,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   el_year_field_text_input.setAttribute("type", "text");
   el_year_field_text_input.setAttribute("value", w_year_label);
   //el_year_field_size_input.setAttribute("onKeyPress", "return check_isnum(event)");
-  el_year_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_year_label', this.value)");
+  el_year_field_text_input.setAttribute("onKeyUp", "change_w_label('" + i + "_year_label', this.value)");*/
 
 
 ///////////////////////////////
@@ -9823,8 +10328,8 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   edit_main_td4.appendChild(el_day_field_type_label);
   edit_main_td4.appendChild(br);
   edit_main_td4.appendChild(el_day_field_size_label);
-  edit_main_td4.appendChild(br1);
-  edit_main_td4.appendChild(el_day_field_text_label);
+  // edit_main_td4.appendChild(br1);
+  // edit_main_td4.appendChild(el_day_field_text_label);
 
   edit_main_td4_1.appendChild(el_day_field_type_input1);
   edit_main_td4_1.appendChild(Text_1);
@@ -9832,23 +10337,23 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   edit_main_td4_1.appendChild(Select_1);
   edit_main_td4_1.appendChild(br4);
   edit_main_td4_1.appendChild(el_day_field_size_input);
-  edit_main_td4_1.appendChild(br5);
-  edit_main_td4_1.appendChild(el_day_field_text_input);
+  // edit_main_td4_1.appendChild(br5);
+  // edit_main_td4_1.appendChild(el_day_field_text_input);
 
 
   edit_main_td8.appendChild(el_month_field_type_label);
   edit_main_td8.appendChild(br11);
   edit_main_td8.appendChild(el_month_field_size_label);
-  edit_main_td8.appendChild(br12);
-  edit_main_td8.appendChild(el_month_field_text_label);
+  // edit_main_td8.appendChild(br12);
+  // edit_main_td8.appendChild(el_month_field_text_label);
   edit_main_td8_1.appendChild(el_month_field_type_input1);
   edit_main_td8_1.appendChild(Text_2);
   edit_main_td8_1.appendChild(el_month_field_type_input2);
   edit_main_td8_1.appendChild(Select_2);
   edit_main_td8_1.appendChild(br6);
   edit_main_td8_1.appendChild(el_month_field_size_input);
-  edit_main_td8_1.appendChild(br7);
-  edit_main_td8_1.appendChild(el_month_field_text_input);
+  // edit_main_td8_1.appendChild(br7);
+  // edit_main_td8_1.appendChild(el_month_field_text_input);
 
 
   edit_main_td9.appendChild(el_year_field_type_label);
@@ -9856,8 +10361,8 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   edit_main_td9.appendChild(el_year_field_interval_label);
   edit_main_td9.appendChild(br14);
   edit_main_td9.appendChild(el_year_field_size_label);
-  edit_main_td9.appendChild(br15);
-  edit_main_td9.appendChild(el_year_field_text_label);
+  // edit_main_td9.appendChild(br15);
+  // edit_main_td9.appendChild(el_year_field_text_label);
   edit_main_td9_1.appendChild(el_year_field_type_input1);
   edit_main_td9_1.appendChild(Text_3);
   edit_main_td9_1.appendChild(el_year_field_type_input2);
@@ -9868,8 +10373,8 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
   edit_main_td9_1.appendChild(el_year_field_interval_to_input);
   edit_main_td9_1.appendChild(br9);
   edit_main_td9_1.appendChild(el_year_field_size_input);
-  edit_main_td9_1.appendChild(br10);
-  edit_main_td9_1.appendChild(el_year_field_text_input);
+  // edit_main_td9_1.appendChild(br10);
+  // edit_main_td9_1.appendChild(el_year_field_text_input);
 
 
   //////////////////////////////////////////////////////////////////////////
@@ -9932,7 +10437,10 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
 
   var div = document.createElement('div');
   div.setAttribute("id", "main_div");
-
+  var div_for_editable_labels = document.createElement('div');
+  div_for_editable_labels.setAttribute("style", "margin-left:4px; color:red;");
+  edit_labels = document.createTextNode("The labels of the fields are editable. Please, click the label to edit.");
+  div_for_editable_labels.appendChild(edit_labels);
   var table = document.createElement('table');
   table.setAttribute("id", i + "_elemet_tableform_id_temp");
 
@@ -10112,6 +10620,7 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
 
   div.appendChild(table);
   div.appendChild(br3);
+  div.appendChild(div_for_editable_labels);
   main_td.appendChild(div);
 
   if (w_field_label_pos == "top")
@@ -10125,10 +10634,43 @@ function type_date_fields(i, w_field_label, w_field_label_pos, w_day, w_month, w
 
   if (w_year_type == "SELECT")
     field_to_select(i, 'year');
-
-
   change_class(w_class, i);
   refresh_attr(i, 'type_date_fields');
+  jQuery(document).ready(function() {	
+    jQuery("label#"+i+"_day_label").click(function() {
+      if (jQuery(this).children('input').length == 0) {
+        var day = "<input type='text' class='day' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";
+        jQuery(this).html(day);							
+        jQuery("input.day").focus();			
+        jQuery("input.day").blur(function() {
+          var value = jQuery(this).val();
+          jQuery("#"+i+"_day_label").text(value);
+        });
+      }
+    });
+    jQuery("label#"+i+"_month_label").click(function() {	
+      if (jQuery(this).children('input').length == 0) {		
+        var month = "<input type='text' class='month' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(month);			
+        jQuery("input.month").focus();					
+        jQuery("input.month").blur(function() {			
+          var value = jQuery(this).val();			
+          jQuery("#"+i+"_month_label").text(value);	
+        });	
+      }	
+    });
+    jQuery("label#"+i+"_year_label").click(function() {	
+      if (jQuery(this).children('input').length == 0) {		
+        var year = "<input type='text' class='year' size='8' style='outline:none; border:none; background:none;' value=\""+jQuery(this).text()+"\">";	
+        jQuery(this).html(year);			
+        jQuery("input.year").focus();					
+        jQuery("input.year").blur(function() {			
+          var value = jQuery(this).val();			
+          jQuery("#"+i+"_year_label").text(value);
+        });
+      }
+    });
+	});
 }
 
 function type_own_select(i, w_field_label, w_field_label_pos, w_size, w_choices, w_choices_checked, w_required, w_class, w_attr_name, w_attr_value, w_choices_disabled) {
@@ -13859,13 +14401,16 @@ function go_to_type_name(new_id) {
   w_attr_value = [];
   w_first_val = ['', ''];
   w_title = ['', ''];
-  type_name(new_id, 'Name:', 'left', w_first_val, w_title, '100', 'normal', 'no', 'no', '', w_attr_name, w_attr_value)
+  w_mini_labels = ['Title','First','Last','Middle'];
+  type_name(new_id, 'Name:', 'left', w_first_val, w_title, w_mini_labels, '100', 'normal', 'no', 'no', '', w_attr_name, w_attr_value)
 }
 
 function go_to_type_address(new_id) {
   w_attr_name = [];
   w_attr_value = [];
-  type_address(new_id, 'Address:', 'left', '300', 'no', 'wdform_address', w_attr_name, w_attr_value)
+  w_mini_labels = ['Street Address', 'Street Address Line 2', 'City', 'State / Province / Region', 'Postal / Zip Code', 'Country',];
+	w_disabled_fields = ['no', 'no', 'no', 'no', 'no', 'no'];
+	type_address(new_id, 'Address:', 'left', '300', w_mini_labels, w_disabled_fields, 'no', 'wdform_address', w_attr_name, w_attr_value);
 }
 
 function go_to_type_phone(new_id) {
@@ -13873,7 +14418,8 @@ function go_to_type_phone(new_id) {
   w_attr_value = [];
   w_first_val = ['', ''];
   w_title = ['', ''];
-  type_phone(new_id, 'Phone:', 'left', '135', w_first_val, w_title, 'no', 'no', '', w_attr_name, w_attr_value)
+  w_mini_labels = ['Area Code','Phone Number'];
+	type_phone(new_id, 'Phone:', 'left', '135', w_first_val, w_title, w_mini_labels, 'no', 'no', '', w_attr_name, w_attr_value);
 }
 
 function go_to_type_submitter_mail(new_id) {
@@ -13883,11 +14429,10 @@ function go_to_type_submitter_mail(new_id) {
 }
 
 function go_to_type_time(new_id) {
-
   w_attr_name = [];
   w_attr_value = [];
-
-  type_time(new_id, 'Time:', 'left', '24', '0', '1', '', '', '', 'no', '', w_attr_name, w_attr_value);
+  w_mini_labels = ['HH','MM','SS', 'AM/PM'];
+	type_time(new_id, 'Time:', 'left', '24', '0', '1','','','', w_mini_labels, 'no', '',w_attr_name, w_attr_value);
 
 }
 
@@ -13937,7 +14482,7 @@ function el_checkbox() {
 
   w_attr_name = [];
   w_attr_value = [];
-  type_checkbox(new_id, 'Checkbox:', 'left', 'ver', w_choices, w_choices_checked, 'no', 'no', '0', '', w_attr_name, w_attr_value);
+  type_checkbox(new_id,'Checkbox:', 'left', 'ver', w_choices, w_choices_checked, '1', 'no', 'no', '0', '',w_attr_name, w_attr_value);
 }
 
 function el_radio() {
@@ -13962,7 +14507,7 @@ function el_radio() {
   w_attr_name = [];
   w_attr_value = [];
 
-  type_radio(new_id, 'Radio:', 'left', 'ver', w_choices, w_choices_checked, 'no', 'no', 'no', '0', '', w_attr_name, w_attr_value);
+  type_radio(new_id,'Radio:', 'left', 'ver', w_choices, w_choices_checked, '1', 'no', 'no','0','',w_attr_name, w_attr_value);
 }
 
 function el_time_and_date() {
@@ -16580,39 +17125,142 @@ function edit(id) {
       w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
       s = document.getElementById(id + "_element_lastform_id_temp").style.width;
       w_size = s.substring(0, s.length - 2);
-
+      w_mini_labels= [document.getElementById(id+"_mini_label_area_code").innerHTML, document.getElementById(id+"_mini_label_phone_number").innerHTML];
       atrs = return_attributes(id + '_element_firstform_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_phone(id, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_required, w_unique, w_class, w_attr_name, w_attr_value);
+      type_phone(id, w_field_label, w_field_label_pos, w_size,  w_first_val, w_title, w_mini_labels, w_required, w_unique, w_class, w_attr_name, w_attr_value);
       break;
     }
     case 'type_name':
     {
-      if (document.getElementById(id + '_element_middleform_id_temp'))
+      if (document.getElementById(id + '_element_middleform_id_temp')) {
         w_name_format = "extended";
-      else
+      }
+      else {
         w_name_format = "normal";
-
-      w_first_val = [document.getElementById(id + "_element_firstform_id_temp").value, document.getElementById(id + "_element_lastform_id_temp").value];
-      w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
-
+      }
+      if (w_name_format == "normal") {
+        w_first_val = [document.getElementById(id + "_element_firstform_id_temp").value, document.getElementById(id + "_element_lastform_id_temp").value];
+        w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
+      }
+      else {
+        w_first_val=[document.getElementById(id+"_element_firstform_id_temp").value, document.getElementById(id+"_element_lastform_id_temp").value, document.getElementById(id+"_element_titleform_id_temp").value, document.getElementById(id+"_element_middleform_id_temp").value];
+        w_title=[document.getElementById(id+"_element_firstform_id_temp").title, document.getElementById(id+"_element_lastform_id_temp").title, document.getElementById(id+"_element_titleform_id_temp").title,
+        document.getElementById(id+"_element_middleform_id_temp").title];
+      }
+      if (document.getElementById(id+"_mini_label_title")) {
+				w_mini_title = document.getElementById(id+"_mini_label_title").innerHTML;
+      }
+      else {
+				w_mini_title = "Title";
+      }
+      if (document.getElementById(id+"_mini_label_middle")) {
+				w_mini_middle = document.getElementById(id+"_mini_label_middle").innerHTML;
+      }
+			else {
+				w_mini_middle = "Middle";
+      }
+      w_mini_labels = [w_mini_title, document.getElementById(id+"_mini_label_first").innerHTML,document.getElementById(id+"_mini_label_last").innerHTML, w_mini_middle];
       s = document.getElementById(id + "_element_firstform_id_temp").style.width;
       w_size = s.substring(0, s.length - 2);
       atrs = return_attributes(id + '_element_firstform_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_name(id, w_field_label, w_field_label_pos, w_first_val, w_title, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value);
+      type_name(id, w_field_label, w_field_label_pos,w_first_val, w_title, w_mini_labels, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value);
       break;
     }
     case 'type_address':
     {
       s = document.getElementById(id + "_div_address").style.width;
       w_size = s.substring(0, s.length - 2);
+      if(document.getElementById(id+"_mini_label_street1")) {
+					w_street1= document.getElementById(id+"_mini_label_street1").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_street1form_id_temp")) {
+            w_street1 = document.getElementById(id+"_street1form_id_temp").value;
+          }
+          else {
+            w_street1 = '';
+          }
+        }
+				if (document.getElementById(id+"_mini_label_street2")) {
+					w_street2= document.getElementById(id+"_mini_label_street2").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_street2form_id_temp")) {
+            w_street2 = document.getElementById(id+"_street2form_id_temp").value;
+          }
+          else {
+            w_street2 = '';
+          }
+        }
+					
+				if (document.getElementById(id+"_mini_label_city")) {
+					w_city= document.getElementById(id+"_mini_label_city").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_cityform_id_temp")) {
+            w_city = document.getElementById(id+"_cityform_id_temp").value;
+          }
+          else {
+            w_city = '';
+          }
+        }
+
+				if (document.getElementById(id+"_mini_label_state")) {
+					w_state= document.getElementById(id+"_mini_label_state").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_stateform_id_temp")) {
+            w_state = document.getElementById(id+"_stateform_id_temp").value;
+          }
+          else {
+            w_state = '';
+          }
+        }
+				if (document.getElementById(id+"_mini_label_postal")) {
+					w_postal= document.getElementById(id+"_mini_label_postal").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_postalform_id_temp")) {
+            w_postal = document.getElementById(id+"_postalform_id_temp").value;
+          }
+          else {
+            w_postal = '';
+          }
+        }
+					
+				if (document.getElementById(id+"_mini_label_country")) {
+					w_country= document.getElementById(id+"_mini_label_country").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_countryform_id_temp")) {
+            w_country = document.getElementById(id+"_countryform_id_temp").value;
+          }
+          else {
+            w_country = '';
+          }
+        }
+				w_mini_labels=[w_street1, w_street2, w_city, w_state, w_postal, w_country];
+				var disabled_input = document.getElementById(id+"_disable_fieldsform_id_temp");
+				
+					w_street1_dis= disabled_input.getAttribute('street1');
+					w_street2_dis= disabled_input.getAttribute('street2');
+					w_city_dis= disabled_input.getAttribute('city');
+					w_state_dis= disabled_input.getAttribute('state');
+					w_postal_dis= disabled_input.getAttribute('postal');
+					w_country_dis= disabled_input.getAttribute('country');
+				
+						
+				w_disabled_fields=[w_street1_dis, w_street2_dis, w_city_dis, w_state_dis, w_postal_dis, w_country_dis];
+
       atrs = return_attributes(id + '_street1form_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_address(id, w_field_label, w_field_label_pos, w_size, w_required, w_class, w_attr_name, w_attr_value);
+      type_address(id, w_field_label, w_field_label_pos, w_size, w_mini_labels, w_disabled_fields, w_required, w_class, w_attr_name, w_attr_value);
+      disable_fields(id);
       break;
     }
 
@@ -16701,10 +17349,12 @@ function edit(id) {
       if (document.getElementById(id + '_am_pm_select')) {
         w_am_pm = document.getElementById(id + '_am_pmform_id_temp').value;
         w_time_type = "12";
+        w_mini_labels = [document.getElementById(id+'_mini_label_hh').innerHTML, document.getElementById(id+'_mini_label_mm').innerHTML, document.getElementById(id+'_mini_label_ss').innerHTML, document.getElementById(id+'_mini_label_am_pm').innerHTML];
       }
       else {
         w_am_pm = 0;
         w_time_type = "24";
+        w_mini_labels = [document.getElementById(id+'_mini_label_hh').innerHTML, document.getElementById(id+'_mini_label_mm').innerHTML, document.getElementById(id+'_mini_label_ss').innerHTML,'AM/PM'];
       }
       type_time(id, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_sec, w_hh, w_mm, w_ss, w_required, w_class, w_attr_name, w_attr_value);
       break;
@@ -17019,12 +17669,11 @@ function dublicate(id) {
       w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
       s = document.getElementById(id + "_element_lastform_id_temp").style.width;
       w_size = s.substring(0, s.length - 2);
-
+      w_mini_labels= [document.getElementById(id+"_mini_label_area_code").innerHTML, document.getElementById(id+"_mini_label_phone_number").innerHTML];
       atrs = return_attributes(id + '_element_firstform_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_phone(gen, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_required, w_unique, w_class, w_attr_name, w_attr_value);
-      
+      type_phone(gen, w_field_label, w_field_label_pos, w_size, w_first_val, w_title, w_mini_labels, w_required, w_unique, w_class, w_attr_name, w_attr_value);
       break;
     }
     case 'type_name':
@@ -17033,17 +17682,32 @@ function dublicate(id) {
         w_name_format = "extended";
       else
         w_name_format = "normal";
-
-      w_first_val = [document.getElementById(id + "_element_firstform_id_temp").value, document.getElementById(id + "_element_lastform_id_temp").value];
-      w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
-
-
+      if (w_name_format == "normal") {
+        w_first_val = [document.getElementById(id + "_element_firstform_id_temp").value, document.getElementById(id + "_element_lastform_id_temp").value];
+        w_title = [document.getElementById(id + "_element_firstform_id_temp").title, document.getElementById(id + "_element_lastform_id_temp").title];
+      }
+      else {
+        w_first_val=[document.getElementById(id+"_element_firstform_id_temp").value, document.getElementById(id+"_element_lastform_id_temp").value, document.getElementById(id+"_element_titleform_id_temp").value, document.getElementById(id+"_element_middleform_id_temp").value];
+        w_title=[document.getElementById(id+"_element_firstform_id_temp").title, document.getElementById(id+"_element_lastform_id_temp").title, document.getElementById(id+"_element_titleform_id_temp").title,
+        document.getElementById(id+"_element_middleform_id_temp").title];
+      }
+      if(document.getElementById(id+"_mini_label_title"))
+				w_mini_title = document.getElementById(id+"_mini_label_title").innerHTML;
+      else
+				w_mini_title = "Title";
+				
+      if(document.getElementById(id+"_mini_label_middle"))
+				w_mini_middle = document.getElementById(id+"_mini_label_middle").innerHTML;
+      else
+				w_mini_middle = "Middle";
+				
+				w_mini_labels = [ w_mini_title, document.getElementById(id+"_mini_label_first").innerHTML,document.getElementById(id+"_mini_label_last").innerHTML, w_mini_middle];
       s = document.getElementById(id + "_element_firstform_id_temp").style.width;
       w_size = s.substring(0, s.length - 2);
       atrs = return_attributes(id + '_element_firstform_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_name(gen, w_field_label, w_field_label_pos, w_first_val, w_title, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value);
+      type_name(gen, w_field_label, w_field_label_pos, w_first_val, w_title, w_mini_labels, w_size, w_name_format, w_required, w_unique, w_class, w_attr_name, w_attr_value);
       
       break;
     }
@@ -17051,11 +17715,89 @@ function dublicate(id) {
     {
       s = document.getElementById(id + "_div_address").style.width;
       w_size = s.substring(0, s.length - 2);
+      if(document.getElementById(id+"_mini_label_street1")) {
+					w_street1= document.getElementById(id+"_mini_label_street1").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_street1form_id_temp")) {
+            w_street1 = document.getElementById(id+"_street1form_id_temp").value;
+          }
+          else {
+            w_street1 = '';
+          }
+        }
+				if (document.getElementById(id+"_mini_label_street2")) {
+					w_street2= document.getElementById(id+"_mini_label_street2").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_street2form_id_temp")) {
+            w_street2 = document.getElementById(id+"_street2form_id_temp").value;
+          }
+          else {
+            w_street2 = '';
+          }
+        }
+					
+				if (document.getElementById(id+"_mini_label_city")) {
+					w_city= document.getElementById(id+"_mini_label_city").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_cityform_id_temp")) {
+            w_city = document.getElementById(id+"_cityform_id_temp").value;
+          }
+          else {
+            w_city = '';
+          }
+        }
+
+				if (document.getElementById(id+"_mini_label_state")) {
+					w_state= document.getElementById(id+"_mini_label_state").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_stateform_id_temp")) {
+            w_state = document.getElementById(id+"_stateform_id_temp").value;
+          }
+          else {
+            w_state = '';
+          }
+        }
+				if (document.getElementById(id+"_mini_label_postal")) {
+					w_postal= document.getElementById(id+"_mini_label_postal").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_postalform_id_temp")) {
+            w_postal = document.getElementById(id+"_postalform_id_temp").value;
+          }
+          else {
+            w_postal = '';
+          }
+        }
+					
+				if (document.getElementById(id+"_mini_label_country")) {
+					w_country= document.getElementById(id+"_mini_label_country").innerHTML;
+        }
+				else {
+          if (document.getElementById(id+"_countryform_id_temp")) {
+            w_country = document.getElementById(id+"_countryform_id_temp").value;
+          }
+          else {
+            w_country = '';
+          }
+        }
+				w_mini_labels=[w_street1, w_street2, w_city, w_state, w_postal, w_country];
+				var disabled_input = document.getElementById(id+"_disable_fieldsform_id_temp");
+					w_street1_dis= disabled_input.getAttribute('street1');
+					w_street2_dis= disabled_input.getAttribute('street2');
+					w_city_dis= disabled_input.getAttribute('city');
+					w_state_dis= disabled_input.getAttribute('state');
+					w_postal_dis= disabled_input.getAttribute('postal');
+					w_country_dis= disabled_input.getAttribute('country');
+				w_disabled_fields=[w_street1_dis, w_street2_dis, w_city_dis, w_state_dis, w_postal_dis, w_country_dis];
       atrs = return_attributes(id + '_street1form_id_temp');
       w_attr_name = atrs[0];
       w_attr_value = atrs[1];
-      type_address(gen, w_field_label, w_field_label_pos, w_size, w_required, w_class, w_attr_name, w_attr_value);
-      
+      type_address(gen, w_field_label, w_field_label_pos, w_size, w_mini_labels, w_disabled_fields, w_required, w_class, w_attr_name, w_attr_value);
+      disable_fields(id);
       break;
     }
 
@@ -17147,10 +17889,12 @@ function dublicate(id) {
       if (document.getElementById(id + '_am_pm_select')) {
         w_am_pm = document.getElementById(id + '_am_pmform_id_temp').value;
         w_time_type = "12";
+        w_mini_labels = [document.getElementById(id+'_mini_label_hh').innerHTML, document.getElementById(id+'_mini_label_mm').innerHTML, document.getElementById(id+'_mini_label_ss').innerHTML, document.getElementById(id+'_mini_label_am_pm').innerHTML];
       }
       else {
         w_am_pm = 0;
         w_time_type = "24";
+        w_mini_labels = [document.getElementById(id+'_mini_label_hh').innerHTML, document.getElementById(id+'_mini_label_mm').innerHTML, document.getElementById(id+'_mini_label_ss').innerHTML, 'AM/PM'];
       }
       type_time(gen, w_field_label, w_field_label_pos, w_time_type, w_am_pm, w_sec, w_hh, w_mm, w_ss, w_required, w_class, w_attr_name, w_attr_value);
       
