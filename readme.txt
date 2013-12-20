@@ -181,7 +181,7 @@ If you want to update the plugin while preserving your existing forms, you need 
 
 
 ==Contact Form Maker Step by step guide==    
-= Step 1: Installing the [wordpress contact form](http://wordpress.org/plugins/contact-form-maker/) =    
+### Step 1: Installing the [wordpress contact form](http://wordpress.org/plugins/contact-form-maker/)    
 
 1.1 Minimum requirements.  
 Wordpress 3.0+  
