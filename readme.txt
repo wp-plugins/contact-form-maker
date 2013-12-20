@@ -303,7 +303,7 @@ Matrix: This field can be used for inserting a matrix in the contact form. Type 
 Submit and Reset: This field can be used for inserting a submit/reset button into the contact form. You can display reset button by checking the box called Display reset button. Type the name of the submit and reset buttons in Submit button label and Reset button label. The field also has several attributes: Class Name and Additional Attributes.  
 Custom: This field can be used for inserting custom buttons into the contact form. Type the name of each button in button name field. You can define click functions for each button. The field also has several attributes: Class Name and Additional Attributes.  
 
-= Step 5: Publishing the created contact form.=    
+= Step 5: Publishing the created contact form. =    
 
 To insert a contact form into a Page or a Post.  
 
