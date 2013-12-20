@@ -3,64 +3,60 @@ Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html
 Tags:  form,  forms,  contact form, contact forms,  contact form plugin,contact forms plugin, forms plugin, Contact Form Builder, contact form manager, multiple contac forms, custom  form,Contact Form Maker with recaptcha, contact form with google map, feedback form, feedback forms,contact us
 Requires at least: 3.0
-Tested up to: 3.7.1
-Stable tag: 1.6.0
+Tested up to: 3.8
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordPress Contact Form Maker is an advanced and easy-to-use tool for creating  forms. 
-== Description == 
-[Contact form maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)		
-[Demo](http://wpdemo.web-dorado.com/form-maker/)  
-[Demo Admin](http://wpdemo.web-dorado.com/wp-admin/admin.php?page=Form_maker)  
-[User Manual](http://web-dorado.com/wordpress-form-maker-guide-1.html)  
-[Frequently Asked Questions](http://web-dorado.com/forum/form-maker/316-form-maker-faq.html)  
-[Support Forum](http://web-dorado.com/forum/26-form-maker.html)  
-Contact Form Maker is a sophisticated and user-friendly contact form builder for making application forms. You can add an unlimited number of form fields, including different types of text input form fields (password, address, e-mail, phone, etc.), captcha, map (multiple locations are supported), and form submission buttons. The back-end interface of the WordPress Contact Form Maker is intuitive and easy-to-use. As a result, the users who are not really familiar with scripting and programming can easily create complex application contact forms.	
-	
-A number of parameters of the WordPress Contact Form Maker are customizable (e.g. colors and fonts, element size).
-	
-With WordPress Contact Form Maker you can build simple brief contact forms as well as produce complex applications forms with multiple sections and pages. 
+WordPress Contact Form Maker is a simple form maker, which allows the user with almost no knowledge of programming to create and edit different type of forms.  
 
-	
-### Contact Form Maker
+== Description ==
 
+### [WordPress Contact Form Maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)    
 
+WordPress Contact Form Maker is a simple form maker, which allows the user with almost no knowledge of programming to create and edit different type of forms. The product is similar to the WordPress Form Maker using most of its functionality, whereas there are also some differences. If want to build complicated forms with various field types like Date, Time, Single choice, Multiple choice, etc., than you can use [WordPress Form Builder](http://wordpress.org/extend/plugins/form-maker).  
 
-###IMPORTANT: If you think you found a bug in the Contact Form Maker or have any problem or question concerning Contact Form Maker, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).
+The number of fields for the Contact Form Maker is unlimited and having large amount of fields will not cause any malfunctioning of the form. You can add different types of form fields, including inputs (e.g. e-mail, password, textarea, text input and etc.), Captcha (as well as possibility of adding Google standard ReCaptcha), custom and standard buttons, as well as Map field.  
+
+WordPress Contact Form Maker uses simple and easy to manage backend interface, thus the users which are not able to make code-level changes, will be able to make customization and changes using parameters.  
+
+This form builder will be equally fit the needs of the novice and experienced developers and designers.  
+
+The product has cross-browser compatibility, which allows using the Contact form for with any browser.  
+
+###IMPORTANT: If you think you found a bug in the Contact Form Maker or have any problem or question concerning Contact Form Maker, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).  
 
 
 ###Features of the Contact Form Maker  
--	WordPress 3.0+
--	7 field types of the Contact Form Maker
-	-	Custom HTML
-	-	Text Input (10 sub-types)
-	-	Captcha
-	-	Page break
-	-	Section break
-	-	Map
-	-	Button
--	Custom HTML between the fields of the Contact Form
--	Contact Forms with multiple pages
--	The contact form can be split into sections
--	The contact form allows custom CSS and Java script
--	Each field of the type has additional attributes where specific properties of the Contact Form field can be customized using Java Script
--	The submitted contact forms can be sent to custom e-mail address, as well as forwarded to the submitters e-mail
--	The contact form can be inserted into a post or a page
--	Standard editor integration in the Contact Form 
--	A number of different parameters for each field type in the Contact Form
--	Submission data validation in the Contact Form
--	Submission statistics in the Contact Form
--	10 built-in  form templates
--	Form and field preview in back-end
--	Required Fields in the Contact Form
--	Hidden Fields in the Contact Form
+
+*   WordPress 3.0+  
+*   7 field types of the Contact Form Maker  
+	*   Custom HTML  
+	*   Text Input (10 sub-types)  
+	*   Captcha  
+	*   Page break  
+	*   Section break  
+	*   Map  
+	*   Button  
+*   Possibility to add Custom HTML between the fields  
+*   Pagination  
+*   Support for section break  
+*   Possibility of add custom CSS and Javascript  
+*   Additional attributes for each field to add certain properties using Java Script  
+*   Submissions are send to the provided admin address(es) and submitter (optional)  
+*   Custom text for admin and users  
+*   Shortcode for easier input of the created form into Pages/Posts  
+*   Chance to add custom HTML  
+*   Detailed parameters for each field type  
+*   Data validation before the submission of the form  
+*   Detailed Submissions field including the submissions of all forms  
+*   10 built-in templates  
+*   Required and hidden fields for advanced forms  
 
 
- 
-### Supported languages Of the Contact Form Maker
+### Supported languages Of the Contact Form Maker  
 
- *If you need language of the Contact Form Maker which is not included in this list, please contact us and we will do the translation of Contact Form Maker within 3 days. If you find some mistakes in the translation of the Contact Form Maker, please contact  us and we will correct it within 3 days.*
+ *If you need language of the Contact Form Maker which is not included in this list, please contact us and we will do the translation of Contact Form Maker within 3 days. If you find some mistakes in the translation of the Contact Form Maker, please contact  us and we will correct it within 3 days.*  
 
  Afrikaans (af)  
 Albanian (sq)  
@@ -110,224 +106,243 @@ Turkish (tr_TR)
 Ukrainian (uk_UA)  
 Vietnamese (vi)  
 
-== The Installation of Contact Form Maker==
+== Installation ==    
 
-####Thank you for your interest Contact Form Maker.
+####Thank you for your interest Contact Form Maker.  
 
-Minimum requirements of Contact Form Maker.    
-    
--	Wordpress 3.0+    
--	PHP 5.x    
--	MySQL 5.x    
+### Minimum requirements.  
+*   Wordpress 3.0+  
+*   PHP 5.x  
+*   MySQL 5.x  
 
-After downloading the ZIP file of the Contact Form Maker 
-1.    Login to your WordPress site administrator panel and head over the 'Plugins' menu  in order to install Contact Form Maker 
-2.    Click 'Add New'(in order to add the plugin of the Contact Form Maker)  
-3.    Choose the 'Upload' option in order to install Contact Form Maker
-4.    Click **Choose file** (**Browse**) and select the Contact Form Maker zip file in order.   
-5.    Click **Install Now** button to install the Contact Form Maker.    
-6.    Once the installation of the Contact Form Maker is completed, activate the plugin of the Contact Form Maker.    
+### Perform a new installation  
 
-Once the plugin of the Contact Form Maker is activated, you'll notice a menu on the left called "Contact Form".  Here you can manage contact forms and submissions of the Contact Form Maker.  
-If any problem occurs with the Contact Form Maker, please contact us info@web-dorado.com in order to correct the mistakes of the Contact Form Maker plugin.    
+After downloading the ZIP file,  
+
+1. Log in to the administrator panel.  
+1. Go to Plugins Add > New > Upload.  
+1. Click “Choose file” (“Browse”) and select the downloaded zip file.  
+*For Mac Users*  
+*Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
+1. Click “Install Now” button.  
+1. Click “Activate Plugin” button for activating the plugin.  
+
+If any problem occurs, please contact us at  [info@web-dorado.com](mailto:info@web-dorado.com).  
+
+### Updating the contact form.  
+
+If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Form Maker option of the plugin) and install the new plugin. Afterwards, go to Form Maker>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message saying, “All forms are updated!”.  
+
 
 == Screenshots ==
 1.  Contact Form Maker - Sample RSVP  
-2.  Contact Form Maker - Sample  form  
+2.  Contact Form Maker - Sample  contact form  
 3.  Contact Form Maker - Manage forms  
-4.  Contact Form Maker - Creating a new conact form  
+4.  Contact Form Maker - Creating a new conact contact form  
 5.  Contact Form Maker - Text input field type  
 6.  Contact Form Maker - Captcha field type  
-7.  Contact Form Maker - Manage submissions
-8.  Contact Form Maker - Select Columns 
+7.  Contact Form Maker - Manage submissions  
+8.  Contact Form Maker - Select Columns  
+
+== Changelog ==
+
+= 1.6.1 =
+*  Added featured plugins  
+= 1.6.0 =
+*  From Name, From Email in Form options  
+= 1.5.0 =
+*  Survey Tools (Star Rating, Scale Rating, Spinner, Slider, Range, Grading, Matrix)  
+= 1.4.0 = 
+*  Customizable Email message for Administrator and Users  
+= 1.3.0 =
+*  Actions after contact form Submission:  
+-	Stay on form:   
+-	To go to Post,Page after the form submission:  
+-	Custom text after the contact form submission:   
+-	URL: The user is redirected to the provided URL after the contact form submission.  
+*  Edit javascript of the contact form:  
+*  Save as the copy of the contact form:  
+*  Themes: There are 43 standard themes included in Form Maker  
+*  New contact form fields:  
+-	Address field  
+-	Address mark on map contact form field  
+-	Number contact form field  
+-	Phone contact form field  
+-	Date 3 different contact form field  
+-	Time contact form field  
+-	Country list contact form field  
+-	Recapthca contact form field  
+*  Pagebreak of the Form Maker: This can be used to break the contact form into distinct pages.  
+*  Section Break of the Form Maker: This option allows adding a section break to the contact form page.  
+*  For each contact form certain types of statistical data are available in the Form Maker:  
+*  Entries of a contact form: The number of submitted forms in the Form Maker.  
+*  Views of a contact form: The number of times the contact form has been viewed.  
+*  Conversion Rate of a contact form: The percentage of submitted forms to the overall number of views.  
+
+
+==Contact Form Maker Step by step guide==    
+= Step 1: Installing the [wordpress contact form](http://wordpress.org/plugins/contact-form-maker/) =    
+
+1.1 Minimum requirements.  
+Wordpress 3.0+  
+PHP 5.x  
+MySQL 5.x  
+
+1.2 Perform a new installation.  
+Log in to the administrator panel.  
+Go to Plugins Add > New > Upload.  
+Click “Choose file” (“Browse”) and select the Form Maker zip file.  
+*For Mac Users*  
+*Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
+Click “Install Now” button.  
+If the installation succeeded you will see the message in the picture. If any problem occurs, please contact us at info@web-dorado.com.  
+Click “Activate Plugin” button for activating the plugin.  
+ 
+
+1.3 Updating the contact form.  
+
+If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Form Maker option of the plugin) and install the new plugin. Afterwards, go to Form Maker>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message saying, “All forms are updated!”.  
+
+
+= Step 2: Creating a new contact form =    
+
+2.1 On the left menu select Form Maker > Manager  
+2.2 In the upper left corner click on the “Add a form” button.  
+2.3 Form Title. Specify a title for the contact form.  
+
+
+= Step 3: Configuring Form Options =    
+
+3.1 General Options  
+3.1.1 Email to send submissions to. Here you provide e-mails to which submitted contact form information is sent. If you need more than one e-mail address, you must separate them by commas. This field is not required. In any case, the submitted information is stored in “Submissions” part, where it can be easily managed.  
+3.1.2 Email From. Here you define the email address from which the users receive the submission email (sender’s email).  
+3.1.3 From Name. Here you define the sender’s name which is shown in submission email.  
+3.1.4 Theme. A distinct theme can be applied to each new contact form. The themes can be accessed by selecting FormMaker > Themes on the top menu. 41 themes are available for selection. There is an option for creating new themes, which you can access by clicking “New” on the upper right corner of the section.  
+
+3.2 Actions after Submission  
+Here you can select the action that takes place after contact form submission. Following options are available:  
+- Stay on contact form: The user stays on the contact form page.  
+- Article: The user is redirected to the selected article.  
+- Custom text: Custom text is displayed on the screen.  
+- URL: The user is redirected to the provided URL.  
+3.3 Payment Options  
+3.3.1 Turn on PayPal. Allows making PayPal paymentsusing Form Maker.  
+3.3.2 Checkout Mode. Choose the checkout mode:  
+Production (https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/goingLive/)  
+Test Mode (https://developer.paypal.com/webapps/developer/docs/integration/direct/test-the-api/)  
+3.3.3 PayPal Email. Enter your PayPal email.  
+3.3.4 PayPal Currency. Choose your PayPal currency.  
+3.3.5 Tax. Add the tax amount if any.  
+3.4 JavaScript  
+Here you can define new JavaScript functions, which can be applied to the contact form. Three empty event functions are included:  
+- before_load(): before the contact form is loaded  
+- before_submit(): before the contact form is submitted  
+- before_reset(): before the contact form is reset  
+3.5 Custom Text in Email  
+For Administrator. Here you can add custom texts, images, and custom HTML to the e-mail message that is sent to the administrator, as well as choose which fields of the submitted contact form are included in the e-mail (set to ‘all’ by default).  
+For User. Here you can add custom texts, images, and custom HTML to the e-mail message that is sent to the users, as well as choose which fields of the submitted contact form are included in the e-mail (set to ‘all’ by default).  
+
+= Step 4: Description of the contact form fields =    
 
-== Frequently Asked Questions of the Contact Form Maker ==
+4.1 Custom HTML:An HTML editor. You can insert your own HTML content to your WordPress contact form.  
 
-## Click here to see the Contact Form Maker Frequently Asked Questions 
+4.2 Text Input: At first choose the Field Type according to your preference. There are several options:  
+Simple Text: This can be used for typing some text. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes  
 
-= 1. What is Contact Form Maker? =
+Password: This field can be used for adding a password field to your contact form. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Allow only unique values, Additional Attributes  
+Text Area: This field can be used for typing some text. The difference between Text Area and Simple Text is that Simple Text has only one row while Text Area can have several rows. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes  
+Name: This can be used for typing a name. Default field labels can be edited clicking on the field label and typing in a custom label. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Value If Empty, Field Size, Name Format, Class Name, Required, Allow only unique values, Additional Attributes  
+Address: This field can be used for adding an address. Default field labels can be edited clicking on the label and typing in a custom label. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Overall Size, Class Name, Disable Fields, Required, Additional Attributes  
+Address (Mark on Map):This filed can be used for adding an address by directly marking it on the map. It has several attributes: Field Label, Field Label Position, Default Location, Map Size, Marker Info, Class Name, Additional Attributes  
+E-mail:This field can be used for typing the submitter’s e-mail. The submitted e-mail validation is checked. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Send mail to submitter, Required, Allow only unique values, Additional Attributes.  
+Number: This field can be used to provide numbers for different purposes (e.g. serial number). It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes  
+Phone: This field can be used to provide a phone number. Default field labels can be edited clicking on the label and typing in a custom label. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Value If Empty, Field Size, Class Name, Required, Allow only unique values, Additional Attributes  
+Hidden Field: This field can be used to store additional information that does not need to be displayed. It has several attributes : Field ld, Field Name, Field Value, Additional Attributes.  
+4.3 Time and Date: Choose the Field Type according to your preference. There are several options:  
+Date (single field with a picker): This field can be used for typing a date or choosing by the picker. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Date format, Date Picker Label, Class Name, Required, Additional Attributes.  
+Date (3 separate fields): This field can be used for typing a date in 3 field format(day, month, year). Default field labels can be edited clicking on the field label and typing in a custom label. Each of the 3 fields can be set as text input or select list. Each of the 3 fields has the attributes Field Size and Field Label. For year field the select list interval can be defined. These 3 fields can be separated in the format set by the fields separator attribute. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Required, Additional Attributes.  
+Time: This field can be used for typing a time. Default field labels can be edited clicking on the field label and typing in a custom label. Time can be shown in 24 hour or 12 hour formats by setting the time format attribute. The seconds preview can be enabled/disabled by setting the Display Seconds attribute. The field has several standard attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Required, Additional Attributes.  
+4.4 Select: Choose the Field Type according to your preference. There are several options:  
+Custom select: This field can be used for selecting the values from a list. The list can be defined by Options attribute. You can easily add and remove list items. The checked items are considered as empty values. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Additional Attributes.  
+Country list: This field can be used for selecting a country from a list. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Additional Attributes.  
+4.5 Checkbox: This field can be used for selecting the values from a list of checkboxes. The list can be defined by Options attribute. You can easily add and remove list items. The list can be displayed in horizontal/vertical positions by setting the Relative Position attribute. You can use Rows/Columns field if you want the options to be displayed in a row/column (depending on the positioning choice). The number of rows/columns should be specified. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Randomize in frontend, Allow other, Additional Attributes.  
 
-Contact Form Maker is a brilliant extension for creating online contact forms for your Joomla! and WordPress site. When you create a contact form with Contact Form Maker, it automatically builds the database and scripts needed information for the contact form. So you can create contact forms without the knowledge of HTML, CSS or any programming language.
+4.6Radio:This field can be used for selecting the values from a list of radio buttons. The list can be defined by Options attribute. You can use Rows/Columns field if you want the options to be displayed in a row/column (depending on the positioning choice). The number of rows/columns should be specified. You can easily add and remove list items. The list can be displayed in horizontal/vertical positions by setting the Relative Position attribute.The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Randomize in frontend, Allow other, Additional Attributes.  
 
+4.7 File Upload: This field can be used for uploading a file. The size of the uploaded file can be limited by setting the value of Maximum Size attribute in KB. The upload folder can be mentioned by setting the Destination attribute. Only files with extensions listed in Allowed file extensions attribute can be uploaded. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Required, Additional Attributes.  
 
-= 2. What can I build with Contact Form Maker? =
+4.8 Captcha:This field can be used for the ensuring that the submission is generated by a person. Choose the Field Type according to your preference. There are several options:  
+Simple Captcha This is a easy to configure Simple Captcha. The number of randomly generated symbols can be set by the value of Captcha size attribute. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Additional Attributes.  
+Recaptcha This is an alternative option for Captcha that uses Public and Private Keys. You will need to create reCaptcha keys with the help of a dedicated tool.The tool can be found on https://www.google.com/recaptcha/admin/create.  
 
-Generally the possibilities of creating different new amazing Contact forms are limited only by your will or imagination. See below the several examples of usage of Contact Form Maker.
-- Contact form
-- Mailing list form
-- Survey form
-- Job application form
-- Workshop registration form
-- Bug tracker form
-- Wedding planner form
-- Quizzes/Testes forms
-- Real estate applications form
-- Invitation/RSVP add invitation to the product demo forms
-- Online orders forms  
+4.9 Page Break: This can be used to break the contact form into distinct pages. Use Page Title to provide a title for the given page. Furthermore, the following parameters of the “Next” and “Previous” navigation buttons can be customized:  
+Type, Name, Class Name, Check the required fields , Additional Attributes.  
 
+4.10 Section Break: This option allows adding a section break to the contact form page.  
 
-= 3. Why would I want to use Contact Form Maker? =
+4.11 Map: This field can be used for pointing out some position on the map. The position of the marker is fixed at the front end. Multiple locations can be selected by clicking the + button. The field has several attributes:  
+Location, Map Size, Marker Info, Class Name, Additional Attributes.  
 
-Any site administrator aims to collect as more information and feedback from the site user as it is possible. The most effective mechanism for collecting data from people is contact forms. The process of creating a contact form and related databases is complicated, resource and time consuming. The whole process of creating a contact form may last days, if no weeks. The Joomla Contact Form Maker is the best choice for skipping all these steps effectively.
+4.12 PayPal: Choose the Field Type. The following options are available:  
+Amount (Price) This field is for indicating the amount of payment. Default field labels can be edited clicking on the field label and typing in a custom label. You can configure the following attributes: Field Label, Field Label Position, Range, Value If Empty, Field Size, Class Name, Required, Hide Cents, and Additional Attributes.  
+Select This field can be used for selecting a product/service for which the payment is being made. The list (each item consists of “Product name” and its “Price”)can be specified by the Options attribute. You can easily add and remove list items. There is also a Product Properties parameter, where you can add different properties (e.g. size) by specifying the type, the name, and adding options for selection. The checked items are considered as empty values. You can configure the following attributes: Field Label, Field Label Position, Field Size, Class Name, Required, and Additional Attributes.  
+Checkbox This field can be used for selecting multiple products/services for which the payment is being made. The options (each item consists of “Product name” and its “Price”) can be specified by the Options attribute. You can easily add and remove list items. There is also a quantity property parameter where the quantity of products/services can be specified. Moreover, there is a Product Properties parameter, where you can add different properties (e.g. size) by specifying the type, the name, and adding options for selection. You can configure the following attributes: Field Label, Field Label Position, Relative Position, Class Name, Required, and Additional Attributes.  
+Radio This field can be used for selecting the product/service for which the payment is being made. The options (each item consists of “Product name” and its “Price”) can be specified by the Options attribute. You can easily add and remove list items. There is also a quantity property parameter where the quantity of products/services can be specified. Moreover, there is a Product Properties parameter, where you can add different properties (e.g. size) by specifying the type, the name, and adding options for selection. You can configure the following attributes: Field Label, Field Label Position, Relative Position, Class Name, Required, and Additional Attributes.  
+Shipping This field can be used for selecting the shipping option for the selected product. The options (each item consists of a “Type” and “Price” parameters) can be specified by the Options attribute. You can easily add and remove list items. You can configure the following attributes: Field Label, Field Label Position, Relative Position, Class Name, Required, and Additional Attributes.  
+Total This field calculates the total sum to be paid via PayPal, including the payments for the shipping and taxes (if applicable).  
 
+4.13 Survey Tools: Choose the Field Type according to your preferences. There are several options:  
+Star Rating: This field can be used for inserting star rating field in the contact form. Type the name of the field to be displayed with the rating system. The field has several attributes: Field Label Position, Star Amount, Star Color, Class Name, Required, and Additional Attributes.  
+Scale Rating: This field can be used for inserting scale rating in the contact form. Type the name of the field to be displayed with the rating system.Default field labels for lowest/highest satisfaction/grading can be edited clicking on the field label and typing in a custom label. The field has several attributes: Field Label Position, Scale Amount, Class Name, Required, and Additional Attributes.  
+Spinner: This field can be used for inserting spinner as a rating system in the contact form. Type the name of the field to be displayed with the rating system. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Width, Min Value, Max Value, Step, Class Name, Required, and Additional Attributes.  
+Slider: This field can be used for inserting slider as a rating system in the contact form. Type the name of the field to be displayed with the rating system. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Width, Min Value, Max Value, Class Name, Required, and Additional Attributes.  
+Range: This field can be used for inserting range system in the contact form. Type the name of the field to be displayed with the range system. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Width, Step, Class Name, Required, and Additional Attributes.  
+Grading: This field can be used for inserting grading system in the contact form. Type the name of the field to be displayed with the grading system. The field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Total, Items, Class Name, Required, and Additional Attributes.  
+Matrix: This field can be used for inserting a matrix in the contact form. Type the name of the field to be displayed with the matrix. The field has several attributes: Field Label, Field Label Position, Input Type, Rows, Columns, Class Name, Required, and Additional Attributes.  
+4.14 Submit Button: Choose the Field Type according to your preference. There are several options:  
+Submit and Reset: This field can be used for inserting a submit/reset button into the contact form. You can display reset button by checking the box called Display reset button. Type the name of the submit and reset buttons in Submit button label and Reset button label. The field also has several attributes: Class Name and Additional Attributes.  
+Custom: This field can be used for inserting custom buttons into the contact form. Type the name of each button in button name field. You can define click functions for each button. The field also has several attributes: Class Name and Additional Attributes.  
 
-= 4. I bought Contact Form Maker, but I have not received an email for confirmation and for downloading contact Form Maker  =
+= Step 5: Publishing the created contact form.=    
 
-Usually confirmation e-mail for downloading Contact Form Maker arrives during a minute after the purchase of Contact Form Maker. You can also check spam and junk folders. If the confirmation e-mail for downloading contact Form Maker does not arrive during half an hour, please contact us. We will do our best to solve the problem as soon as possible and will also send the purchased Contact Form Maker by e-mail.
+To insert a contact form into a Page or a Post.  
 
 
-= 5. Does the Contact Form Maker work on the localhost. =
+  
+  5.1. Press the button named Insert Form Maker in a post or a page you want to show the contact form.  
 
-Yes, Contact Form Maker works in any server where MYSQL and PHP are supported.
+  5.2. Select a contact form from the list.  
 
 
-= 6. Contact Form Maker does not work or works in an improper way. What should I do? = 
-We created Contact Form Maker which works on any browser, template and does not conflict with other extensions. However, if a problem arises with the Contact Form Maker, contact us telling the link of the website where the problem with the Contact Form Maker has occurred. We will try to answer within 24 hours.
+  
+  5.3. Save the page or the post.  
 
+Alternatively, you can use Form Maker without the button on the toolbar: Add the shortcode [wd_contact_form id="N"] (where N is the id of the contact form, for the contact form with id=2, the shortcode must be [wd_contact_form id="2"]) to the pages and posts, where you want the contact form to appear.  
 
+  
+= Step 6: Managing submissions of the contact form. =    
+  
+6.1 On the left menu select Form Maker > Submissions  
 
-==Contact Form Maker Step by step guide Step 1 ==    
-= Installing Contact Form Maker =    
-    
-1.1 Minimum requirements of Contact Form Maker.    
-    
--	Wordpress 3.0+    
--	PHP 5.x    
--	MySQL 5.x    
-    
-1.2 Perform a new installation for Contact Form Maker	
-    
-1.	Log in to the administrator panel.	
-2.	Go to Plugins Add > New > Upload.	
-3.	Click **Choose file** (**Browse**) and select the Contact Form Maker zip file.	
-4.	Click **Install Now** button for installing Contact Form Maker.	
-5.	If the installation of the Contact Form Maker succeeded you will see the message in the picture. If any problem occurs with the Contact form Maker, please contact us info@web-dorado.com.	
-6.	Click **Activate Plugin** button for activating the Contact Form Maker plugin. 	
+6.2 In order to manage a contact form's submissions, select the contact form from the list.  
 
-1.3 Updating the WordPress Contact Form Maker.		
+6.3 For each contact form certain types of statistical data are available:  
+- Entries: The number of submitted forms.  
+- Views: The number of times the contact form has been viewed.  
+- Conversion Rate: The percentage of submitted forms to the overall number of views.  
 
-If you want to update Contact Form Maker while preserving your existing contact forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new Contact Form Maker. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the "Update Forms" button. If the update of the Contact Form Maker is successful, you will see a notification message saying, "All contact forms are updated!".   	
+6.4 For the forms that contain checkboxes or radio buttons a separate statistics is available. It shows how many times a particular checkbox/radio button has been checked, and what is the ratio of that number to the overall number of checks.  
 
-==Contact Form Maker Step by step guide Step 2 ==        
-    
-= Creating a new WordPress Contact Form Maker=    
-    
-2.1  On the left menu select Contact Form> Manager.	
+6.5 There is a possibility to search the submissions database by all the relevant fields of the given contact form. Submissions can be sorted by any of the fields of the contact form by clicking the labels.  
 
-2.2  In the upper left corner click on the "Add a form" button.	  
 
-2.3   On the top of the page you can find several buttons:	
+6.6 You can delete any of submissions by selecting them and pressing the “Delete” button on the top of the page.  
 
-Preview: Using this button, you can preview the contact form in its current state to see how Contact form will appear on the website.	
+6.7 It is also possible to edit the submissions by clicking on the “Edit” icon on the upper right corner of the “Submissions” section.  
 
-Actions after Submission: Here you can select the action that takes place after contact form submission. Following options are available:	
--	Stay on contact form: The user stays on the contact form page.	
--	Article: The user is redirected to the selected article.	
--	Custom text: Custom text is displayed on the screen.	
--	URL: The user is redirected to the provided URL.	
-	
-Edit JavaScript: Here you can define new JavaScript functions, which can be applied to the contact form. Three empty event functions are included:	
--	before_load(): before the contact form is loaded	
--	before_submit(): before the contact form is submitted	
--	before_reset(): before the contact form is reset	
 
-Custom text in e-mail for administrator: Here you can add custom texts, images, and custom HTML to the e-mail message to your Contact Form that is sent to the administrator.	
+6.8 You can add/remove any column of the submissions by “Add/Remove Columns” button.  
 
-Custom text in e-mail for user: Here you can add custom texts, images, and custom HTML to the e-mail message to your Contact Form that is sent to the users.		
+  
 
-Save as Copy: The button allows you to save a copy of the current contact form, which you can later find in the "Contact Forms" section.	
-
-2.4   On the right side you will see three fields:	
- Contact Form Title: In this field type a title for your contact form. You can have an unlimited number of contact forms. This is a required field for the contact Form	
-
-Email to send submissions to: Here you type e-mails to which submitted contact form information will be sent. If you need more than one e-mail address for sending the submitted contact form information, you must separate them by commas. This contact form field is not required. In any case the submitted Contact Form information is stored in "Submissions" part, where it could be managed easily. 	
-
-Theme. A distinct theme can be applied to each new contact form. The themes can be accessed by selecting Contact Form Maker > Themes on the left menu. 43 themes are available for selection for Contact Form. There is an option for creating new themes in the Contact Form Maker, which you can access by clicking "New" on the upper right corner of the section.	
-
-2.5   Add new fields to your contact form by clicking on the ADD A NEW FIELD button (see the next step).	
-
-2.6   To update the Contact Form Maker while keeping your existing contact forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new Contact Form Maker plugin. Afterwards, go to Contact Form>Manager and on the upper hand of the screen click on the "Update Forms" button. If the update is successful, you will see a notification message, "All forms are updated!"		
-
-==Contact Form Maker Step by step guide Step 3 ==  
-
-= Description of the Contact Form Maker Fields =          
-
-3.1   Custom HTML:An HTML editor. You can insert your own HTML content to your WordPress Contact Form.		
-
-3.2   Text Input: At first choose the Contact Form Field Type according to your preference. There are several options:		
-	Simple Text: This field of contact form can be used for typing some text. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size,Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes	
-	Password: This field of contact form can be used for adding a password field to your contact form. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Allow only unique values, Additional Attributes	
-	Text Area: This field of contact form can be used for typing some text. The difference between Text Area and Simple Text in Contact Forms is that Simple Text has only one row while Text Area can have several rows. It has several attributes: Field Id, Field Name, Field Label,Field Label Position, Field Size, Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes	
-	Name: This field of contact form can be used for typing a name. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Value If Empty, Field Size, Name Format, Class Name, Required, Allow only unique values, Additional Attributes	
-	Address: This field of contact form can be used for adding an address. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Overall Size, Class Name, Required, Additional Attributes	
-	Address (Mark on Map): This filed of contact form can be used for adding an address by directly marking it on the map in contact form. It has several attributes: Field Label, ield Label Position, Default Location, Map Size, Marker Info, Class Name, Additional Attributes		
-	E-mail:This field of contact form can be used for typing the submitter�s e-mail. The submitted e-mail validation of the Contact form is checked. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Send mail to submitter, Required, Allow only unique values, Additional Attributes.	
-	Number: This field of contact form can be used to provide numbers for different purposes (e.g. serial number) in contact form. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Value If Empty, Class Name, Required, Allow only unique values, Additional Attributes	
-	Phone: This field of contact form can be used to provide a phone number. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Value If Empty, Field Size, Class Name, Required, Allow only unique values, Additional Attributes		
-	Hidden Field: This field of contact form can be used to store additional information that does not need to be displayed in contact form. It has several attributes : Field ld, Field Name, Field Value, Additional Attributes.		
-
-3.3    Time and Date: Choose the Field Type of contact form according to your preference. There are several options:	
-	Date (single field with a picker): This field of contact form can be used for typing a date or choosing by the picker in contact form. It has several attributes: Field Id, Field Name, Field Label, ield Label Position, Date format, Date Picker Label, Class Name, Required, Additional Attributes.		
-	Date (3 separate fields): This field of contact form  can be used for typing a date in 3 field format(day, month, year) in contact form . Each of the 3 fields can be set as text input or select list.  Each of the 3 fields has the attributes Contact form Field Size and Contact form Field Label.  For year Contact form field the select list interval can be defined. These 3 Contact form fields can be separated in the format set by the fields separator attribute. The Contact form field has several attributes: Field Id, Field Name, Field Label, Field Label Position, Class Name, Required, Additional Attributes.	
-	Time: This field of contact form  can be used for typing a time in contact form. Time can be shown in 24 hour or 12 hour formats by setting the time format attribute in contact form. The seconds preview can be enabled/disabled by setting the Display Seconds attribute in contact form. The field has several standard attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Class Name, Required, Additional Attributes.	
-3.4    Select: Choose the Field Type of contact form according to your preference. There are several options:	
-	Custom select: This field of contact form  can be used for selecting the values from a list in contact form. The list can be defined by Options attribute. You can easily add and remove list items in contact form. The checked items are considered as empty values. The field has several attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Contact form Field Size, Class Name, Required, Additional Attributes.	
-	Country list: This field of contact form  can be used for selecting a country from a list in contact form. It has several attributes: Field Id, Field Name, Field Label, Field Label Position, Field Size, Class Name, Required, Additional Attributes.		
-3.5    Checkbox: This field of contact form can be used for selecting the values from a list of checkboxes in contact form. The list can be defined by Options attribute. You can easily add and remove list items. The list can be displayed in horizontal/vertical positions by setting the Relative Position attribute.The field has several attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Contact form Field Size, Class Name, Required, Randomize in frontend, Allow other, Additional Attributes. 	
-	
-3.6    Radio: This field of contact form can be used for selecting the values from a list of radio buttons in contact form. The list can be defined by Options attribute. You can easily add and remove list items. The list can be displayed in horizontal/vertical positions by setting the Relative Position attribute.The field has several attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Contact form Field Size, Class Name, Required, Randomize in frontend, Allow other, Additional Attributes. 	
-
-3.7    File Upload: This field of contact form  can be used for uploading a file in contact form. The size of the uploaded file can be limited by setting the value of Maximum Size attribute in KB in contact form. The upload folder can be mentioned by setting the Destination attribute. Only files with extensions listed in Allowed file extensions attribute can be uploaded. The field has several attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Class Name, Required, Additional Attributes. 	
-
-3.8    Captcha:This field  of contact form can be used for the ensuring that the submission is generated by a person. Choose the Field Type according to your preference. There are several options:	
-	Simple Captcha: This is an easy way to configure Simple Captcha for Contact form. The number of randomly generated symbols can be set by the value of Captcha size attribute. The field has several attributes: Contact form Field Id, Contact form Field Name, Contact form Field Label, Contact form Field Label Position, Class Name, Additional Attributes.	
-	Recaptcha This is an alternative option for Captcha that uses Public and Private Keys in contact form. You will need to create reCaptcha keys for your Contact form with the help of a dedicated tool.The tool can be found on https://www.google.com/recaptcha/admin/create.		
-
-3.9    Page Break: This can be used to break the contact form into distinct pages. Use Page Title to provide a title for the given page. Furthermore, the following parameters of the "Next" and "Previous" navigation buttons can be customized:	
-	Type, Name, Class Name, Check the required fields , Additional Attributes. 	
-
-3.10    Section Break: This Contact form option allows adding a section break to the contact form page. 	
-
-3.11    Map: This field of the contact form can be used for pointing out some position on the map. The position of the marker is fixed at the front end. Multiple locations can be selected by clicking the + button. The Contact form field has several attributes:	
-	Location, Map Size, Marker Info, Class Name, Additional Attributes. 	
-
-3.12    Button: Choose the Field of the contact form Type according to your preference. There are several options:		
-	Submit and Reset: This field can be used for inserting a submit/reset buttons. You can display reset button by checking the box called Display reset button in contact form. Type the name of the submit and reset buttons in Submit button label and Reset button label. The field also has several attributes: Class Name and Additional Attributes.	
-	Custom: This field of contact form can be used for inserting custom buttons. Type the name of each button in button name field. You can define click functions for each button. The  field of the contact form also has several attributes: Class Name and Additional Attributes.	
-
-==Contact Form Maker Step by step guide Step 4 ==  
-
-= Publishing the Created Contact Form =   
-
-4.1	Press the button named Insert Contact Form in a post or a page you want to show the contact form.	
-
-4.2	Select a contact  form from the list.	
-
-4.3	Save the page or the post . 	
-
-Alternatively, you can use Contact Form Maker without the button on the toolbar: Add the shortcode [contact_form id="N"] (where N is the id of the contact form, for the form with id=2, the shortcode must be [contact_form id="2"]) to the pages and posts, where you want the contact form to appear.	
-
-==Contact Form Maker Step by step guide Step 5 ==  
-
-= Managing Submissions =   
-
-5.1	On the left menu select Contact Form> Submissions	
-
-5.2	In order to manage a contact forms submissions, select the contact form from the list.	
-
-5.3	For each contact form certain types of statistical data are available:	
--	Entries: The number of submitted contact forms.	
--	Views: The number of times the contact form has been viewed.	
--	Converasion Rate: The percentage of submitted contact forms to the overall number of views.	
-
-5.4	For the contact forms that contain checkboxes or radio buttons a separate statistics is available in contact form. It shows how many times a particular checkbox/radio button of the Contact form has been checked, and what is the ratio of that number to the overall number of checks of the Contact form.	
-
-5.5	There is a possibility to search the submissions database by all the relevant contact form fields of the given contact form. Submissions can be sorted by any of the fields of the contact form by clicking the labels.	
-
-5.6	You can delete any of submissions of the contact form by selecting them and pressing the "Delete" button on the top of the page in the Contact form.	
-
-5.7	It is also possible to edit the submissions of the contact form by clicking on the "Edit" icon on the upper right corner of the "Submissions" section.	
-
-5.8	You can add/remove any column of the submissions of the contact form by "Add/Remove Columns" button. 	
-
-5.9	The submissions of the contact form, can be exported to the CSV and XML formats.	
+6.9 The submissions can be exported to the CSV and XML formats.
