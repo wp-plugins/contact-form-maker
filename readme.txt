@@ -108,7 +108,7 @@ Vietnamese (vi)
 
 == Installation ==    
 
-####Thank you for your interest Contact Form Maker.  
+####Thank you for your interest in [WordPress Contact Form](http://wordpress.org/plugins/contact-form-maker/).  
 
 ### Minimum requirements.  
 *   Wordpress 3.0+  
@@ -135,7 +135,7 @@ If you want to update the plugin while preserving your existing forms, you need 
 
 
 == Screenshots ==
-1.  Contact Form Maker - Sample RSVP  
+1.  [WordPress Contact Form](http://wordpress.org/plugins/contact-form-maker/) - Sample RSVP  
 2.  Contact Form Maker - Sample  contact form  
 3.  Contact Form Maker - Manage forms  
 4.  Contact Form Maker - Creating a new conact contact form  
@@ -155,7 +155,7 @@ If you want to update the plugin while preserving your existing forms, you need 
 = 1.4.0 = 
 *  Customizable Email message for Administrator and Users  
 = 1.3.0 =
-*  Actions after contact form Submission:  
+*  Actions after [WordPress Contact Form](http://wordpress.org/plugins/contact-form-maker/) Submission:  
 -	Stay on form:   
 -	To go to Post,Page after the form submission:  
 -	Custom text after the contact form submission:   
