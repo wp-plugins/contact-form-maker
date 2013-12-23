@@ -8,19 +8,19 @@ Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WordPress Contact Form Maker is a simple form maker, which allows the user with almost no knowledge of programming to create and edit different type of forms.  
+WordPress Contact Form Maker is a simple contact form builder, which allows the user with almost no knowledge of programming to create and edit different type of contact forms.  
 
 == Description ==
 
 ### [WordPress Contact Form Maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)    
 
-WordPress Contact Form Maker is a simple form maker, which allows the user with almost no knowledge of programming to create and edit different type of forms. The product is similar to the WordPress Form Maker using most of its functionality, whereas there are also some differences. If want to build complicated forms with various field types like Date, Time, Single choice, Multiple choice, etc., than you can use [WordPress Form Builder](http://wordpress.org/extend/plugins/form-maker).  
+WordPress Contact Form Maker is a simple contact form builder, which allows the user with almost no knowledge of programming to create and edit different type of contact forms. The product is similar to the WordPress Form Maker using most of its functionality, whereas there are also some differences. If want to build complicated contact forms with various field types like Date, Time, Single choice, Multiple choice, etc., than you can use [WordPress Form Builder](http://wordpress.org/extend/plugins/form-maker).  
 
-The number of fields for the Contact Form Maker is unlimited and having large amount of fields will not cause any malfunctioning of the form. You can add different types of form fields, including inputs (e.g. e-mail, password, textarea, text input and etc.), Captcha (as well as possibility of adding Google standard ReCaptcha), custom and standard buttons, as well as Map field.  
+The number of fields for the Contact Form Maker is unlimited and having large amount of fields will not cause any malfunctioning of the contact form. You can add different types of contact form fields, including inputs (e.g. e-mail, password, textarea, text input and etc.), Captcha (as well as possibility of adding Google standard ReCaptcha), custom and standard buttons, as well as Map field.  
 
 WordPress Contact Form Maker uses simple and easy to manage backend interface, thus the users which are not able to make code-level changes, will be able to make customization and changes using parameters.  
 
-This form builder will be equally fit the needs of the novice and experienced developers and designers.  
+This contact form builder will be equally fit the needs of the novice and experienced developers and designers.  
 
 The product has cross-browser compatibility, which allows using the Contact form for with any browser.  
 
@@ -45,13 +45,13 @@ The product has cross-browser compatibility, which allows using the Contact form
 *   Additional attributes for each field to add certain properties using Java Script  
 *   Submissions are send to the provided admin address(es) and submitter (optional)  
 *   Custom text for admin and users  
-*   Shortcode for easier input of the created form into Pages/Posts  
+*   Shortcode for easier input of the created contact form into Pages/Posts  
 *   Chance to add custom HTML  
 *   Detailed parameters for each field type  
-*   Data validation before the submission of the form  
-*   Detailed Submissions field including the submissions of all forms  
+*   Data validation before the submission of the contact form  
+*   Detailed Submissions field including the submissions of all contact forms  
 *   10 built-in templates  
-*   Required and hidden fields for advanced forms  
+*   Required and hidden fields for advanced contact forms  
 
 
 ### Supported languages Of the Contact Form Maker  
@@ -131,13 +131,13 @@ If any problem occurs, please contact us at  [info@web-dorado.com](mailto:info@w
 
 ### Updating the contact form.  
 
-If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Form Maker option of the plugin) and install the new plugin. Afterwards, go to Form Maker>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message saying, “All forms are updated!”.  
+If you want to update the plugin while preserving your existing contact forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form Maker>Manager and on the upper hand of the screen click on the “Update Contact Forms” button. If the update is successful, you will see a notification message saying, “All Contact forms are updated!”.  
 
 
 == Screenshots ==
 1.  [WordPress Contact Form](http://wordpress.org/plugins/contact-form-maker/) - Sample RSVP  
-2.  Contact Form Maker - Sample  contact form  
-3.  Contact Form Maker - Manage forms  
+2.  Contact Form Maker - Sample contact form  
+3.  Contact Form Maker - Manage contact forms  
 4.  Contact Form Maker - Creating a new conact contact form  
 5.  Contact Form Maker - Text input field type  
 6.  Contact Form Maker - Captcha field type  
@@ -149,20 +149,20 @@ If you want to update the plugin while preserving your existing forms, you need 
 = 1.6.1 =
 *  Added featured plugins  
 = 1.6.0 =
-*  From Name, From Email in Form options  
+*  From Name, From Email in Contact Form options  
 = 1.5.0 =
 *  Survey Tools (Star Rating, Scale Rating, Spinner, Slider, Range, Grading, Matrix)  
 = 1.4.0 = 
 *  Customizable Email message for Administrator and Users  
 = 1.3.0 =
 *  Actions after [WordPress Contact Form](http://wordpress.org/plugins/contact-form-maker/) Submission:  
--	Stay on form:   
--	To go to Post,Page after the form submission:  
+-	Stay on contact form:   
+-	To go to Post,Page after the contact form submission:  
 -	Custom text after the contact form submission:   
 -	URL: The user is redirected to the provided URL after the contact form submission.  
 *  Edit javascript of the contact form:  
 *  Save as the copy of the contact form:  
-*  Themes: There are 43 standard themes included in Form Maker  
+*  Themes: There are 43 standard themes included in Contact Form Maker  
 *  New contact form fields:  
 -	Address field  
 -	Address mark on map contact form field  
@@ -172,12 +172,12 @@ If you want to update the plugin while preserving your existing forms, you need 
 -	Time contact form field  
 -	Country list contact form field  
 -	Recapthca contact form field  
-*  Pagebreak of the Form Maker: This can be used to break the contact form into distinct pages.  
-*  Section Break of the Form Maker: This option allows adding a section break to the contact form page.  
-*  For each contact form certain types of statistical data are available in the Form Maker:  
-*  Entries of a contact form: The number of submitted forms in the Form Maker.  
+*  Pagebreak of the Contact Form Maker: This can be used to break the contact form into distinct pages.  
+*  Section Break of the Contact Form Maker: This option allows adding a section break to the contact form page.  
+*  For each contact form certain types of statistical data are available in the Contact Form Maker:  
+*  Entries of a contact form: The number of submitted contact forms in the Contact Form Maker.  
 *  Views of a contact form: The number of times the contact form has been viewed.  
-*  Conversion Rate of a contact form: The percentage of submitted forms to the overall number of views.  
+*  Conversion Rate of a contact form: The percentage of submitted contact forms to the overall number of views.  
 
 
 ==Contact Form Maker Step by step guide==    
@@ -191,7 +191,7 @@ MySQL 5.x
 1.2 Perform a new installation.  
 Log in to the administrator panel.  
 Go to Plugins Add > New > Upload.  
-Click “Choose file” (“Browse”) and select the Form Maker zip file.  
+Click “Choose file” (“Browse”) and select the Contact Form Maker zip file.  
 *For Mac Users*  
 *Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
 Click “Install Now” button.  
@@ -201,23 +201,23 @@ Click “Activate Plugin” button for activating the plugin.
 
 1.3 Updating the contact form.  
 
-If you want to update the plugin while preserving your existing forms, you need to deactivate and delete the Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Form Maker option of the plugin) and install the new plugin. Afterwards, go to Form Maker>Manager and on the upper hand of the screen click on the “Update Forms” button. If the update is successful, you will see a notification message saying, “All forms are updated!”.  
+If you want to update the plugin while preserving your existing contact forms, you need to deactivate and delete the Contact Form Maker from the list of installed plugins (Do not uninstall it using the Uninstall Contact Form Maker option of the plugin) and install the new plugin. Afterwards, go to Contact Form Maker>Manager and on the upper hand of the screen click on the “Update Contact Forms” button. If the update is successful, you will see a notification message saying, “All Contact forms are updated!”.  
 
 
 = Step 2: Creating a new contact form =    
 
-2.1 On the left menu select Form Maker > Manager  
+2.1 On the left menu select Contact Form Maker > Manager  
 2.2 In the upper left corner click on the “Add a form” button.  
-2.3 Form Title. Specify a title for the contact form.  
+2.3 Contact Form Title. Specify a title for the contact form.  
 
 
-= Step 3: Configuring Form Options =    
+= Step 3: Configuring Contact Form Options =    
 
 3.1 General Options  
 3.1.1 Email to send submissions to. Here you provide e-mails to which submitted contact form information is sent. If you need more than one e-mail address, you must separate them by commas. This field is not required. In any case, the submitted information is stored in “Submissions” part, where it can be easily managed.  
 3.1.2 Email From. Here you define the email address from which the users receive the submission email (sender’s email).  
 3.1.3 From Name. Here you define the sender’s name which is shown in submission email.  
-3.1.4 Theme. A distinct theme can be applied to each new contact form. The themes can be accessed by selecting FormMaker > Themes on the top menu. 41 themes are available for selection. There is an option for creating new themes, which you can access by clicking “New” on the upper right corner of the section.  
+3.1.4 Theme. A distinct theme can be applied to each new contact form. The themes can be accessed by selecting Contact Form Maker > Themes on the top menu. 41 themes are available for selection. There is an option for creating new themes, which you can access by clicking “New” on the upper right corner of the section.  
 
 3.2 Actions after Submission  
 Here you can select the action that takes place after contact form submission. Following options are available:  
@@ -226,7 +226,7 @@ Here you can select the action that takes place after contact form submission. F
 - Custom text: Custom text is displayed on the screen.  
 - URL: The user is redirected to the provided URL.  
 3.3 Payment Options  
-3.3.1 Turn on PayPal. Allows making PayPal paymentsusing Form Maker.  
+3.3.1 Turn on PayPal. Allows making PayPal paymentsusing Contact Form Maker.  
 3.3.2 Checkout Mode. Choose the checkout mode:  
 Production (https://developer.paypal.com/webapps/developer/docs/classic/lifecycle/goingLive/)  
 Test Mode (https://developer.paypal.com/webapps/developer/docs/integration/direct/test-the-api/)  
@@ -309,7 +309,7 @@ To insert a contact form into a Page or a Post.
 
 
   
-  5.1. Press the button named Insert Form Maker in a post or a page you want to show the contact form.  
+  5.1. Press the button named Insert Contact Form Maker in a post or a page you want to show the contact form.  
 
   5.2. Select a contact form from the list.  
 
@@ -317,21 +317,21 @@ To insert a contact form into a Page or a Post.
   
   5.3. Save the page or the post.  
 
-Alternatively, you can use Form Maker without the button on the toolbar: Add the shortcode [wd_contact_form id="N"] (where N is the id of the contact form, for the contact form with id=2, the shortcode must be [wd_contact_form id="2"]) to the pages and posts, where you want the contact form to appear.  
+Alternatively, you can use Contact Form Maker without the button on the toolbar: Add the shortcode [wd_contact_form id="N"] (where N is the id of the contact form, for the contact form with id=2, the shortcode must be [wd_contact_form id="2"]) to the pages and posts, where you want the contact form to appear.  
 
   
 = Step 6: Managing submissions of the contact form. =    
   
-6.1 On the left menu select Form Maker > Submissions  
+6.1 On the left menu select Contact Form Maker > Submissions  
 
 6.2 In order to manage a contact form's submissions, select the contact form from the list.  
 
 6.3 For each contact form certain types of statistical data are available:  
-- Entries: The number of submitted forms.  
+- Entries: The number of submitted contact forms.  
 - Views: The number of times the contact form has been viewed.  
-- Conversion Rate: The percentage of submitted forms to the overall number of views.  
+- Conversion Rate: The percentage of submitted contact forms to the overall number of views.  
 
-6.4 For the forms that contain checkboxes or radio buttons a separate statistics is available. It shows how many times a particular checkbox/radio button has been checked, and what is the ratio of that number to the overall number of checks.  
+6.4 For the contact forms that contain checkboxes or radio buttons a separate statistics is available. It shows how many times a particular checkbox/radio button has been checked, and what is the ratio of that number to the overall number of checks.  
 
 6.5 There is a possibility to search the submissions database by all the relevant fields of the given contact form. Submissions can be sorted by any of the fields of the contact form by clicking the labels.  
 
