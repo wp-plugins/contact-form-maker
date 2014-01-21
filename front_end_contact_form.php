@@ -321,7 +321,7 @@ function contact_form_save_db($counter, $id) {
     $save_or_no = $wpdb->insert($r, array(
         'form_id' => $id_old,
         'element_label' => $i,
-        'element_value' => stripslashes($value),
+        'element_value' => stripslashes(esc_html($value)),
         'group_id' => ($max + 1),
         'date' => date('Y-m-d H:i:s'),
         'ip' => $ip,
