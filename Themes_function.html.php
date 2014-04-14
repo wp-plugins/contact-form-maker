@@ -32,11 +32,8 @@ function html_add_theme($def_theme) {
   <tr>
     <td colspan="11">
       <div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
-        <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank"
-           style="color:red; text-decoration:none;">
-          <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com"
-               width="215"><br>
-          Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank" style="text-decoration:none;">
+          <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com" width="215">
         </a>
       </div>
     </td>
@@ -139,9 +136,7 @@ function html_show_theme($rows, $pageNav, $sort) {
         <div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
           <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank"
              style="color:red; text-decoration:none;">
-            <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com"
-                 width="215"><br>
-            Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+            <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com" width="215">
           </a>
       </td>
     </tr>
@@ -274,9 +269,7 @@ function html_edit_theme($row, $id) {
       <div style="text-align:right;font-size:16px;padding:20px; padding-right:50px; width:100%">
         <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank"
            style="color:red; text-decoration:none;">
-          <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com"
-               width="215"><br>
-          Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com" width="215">
         </a>
       </div>
     </td>

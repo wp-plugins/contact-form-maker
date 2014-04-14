@@ -33,6 +33,8 @@
 	border-bottom-right-radius:3px;
 }
 
+#main_featured_plugins_page #featured-plugins-list  li.photo-gallery  .product {background:url("images/photo-gallery.jpg") left center no-repeat;}
+#main_featured_plugins_page #featured-plugins-list  li.twitter-widget .product {background:url("images/twitter-widget.jpg") left center no-repeat;}
 #main_featured_plugins_page #featured-plugins-list  li.form-maker  .product {background:url(images/form.jpg) left center no-repeat;}
 #main_featured_plugins_page #featured-plugins-list  li.catalog  .product {background:url(images/catalog.jpg) left center no-repeat;}
 #main_featured_plugins_page #featured-plugins-list  li.contact-maker  .product {background:url(images/contact.maker.jpg) left center no-repeat;}

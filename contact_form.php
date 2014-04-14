@@ -3,7 +3,7 @@
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
 Description: WordPress Contact Form Maker is an advanced and easy-to-use tool for creating forms. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
-Version: 1.6.2
+Version: 1.6.3
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -435,9 +435,8 @@ function contact_form_Featured_Plugins() {
 			<tr>
 				<td colspan="2" style="height: 70px;"><h3 style="margin: 0px;font-family:Segoe UI;padding-bottom: 15px;color: rgb(111, 111, 111); font-size:18pt;">Featured Plugins</h3></td>
 				<td  align="right" style="font-size:16px;">
-                           <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank" style="color:red; text-decoration:none;">
-                              <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com" width="215"><br>
-                                 Get the full version&nbsp;&nbsp;&nbsp;&nbsp;
+                           <a href="http://web-dorado.com/files/fromContactForm.php" target="_blank" style="text-decoration:none;">
+                              <img src="<?php echo plugins_url('images/header.png', __FILE__); ?>" border="0" alt="www.web-dorado.com" width="215">
                            </a>
                 </td>
 			</tr>
@@ -456,6 +455,19 @@ function contact_form_Featured_Plugins() {
 							<a target="_blank" href="http://web-dorado.com/products/wordpress-form.html" class="download">Download</a>
 					</div>
 				</li>
+        <li class="photo-gallery">
+          <div class="product">
+            <div class="title">
+              <strong class="heading">Photo Gallery</strong>
+              <p>WordPress Photo Gallery plugin</p>
+            </div>
+          </div>
+          <div class="description">
+              <p>Photo Gallery is a fully responsive WordPress Gallery plugin with advanced functionality. 
+              It allows having different image galleries for your posts and pages, as well as different widgets.</p>
+              <a target="_blank" href="http://web-dorado.com/products/wordpress-photo-gallery-plugin.html" class="download">Download</a>
+          </div>
+        </li>
 				<li class="spider-calendar">
 					<div class="product">
 						<div class="title">
@@ -516,7 +528,19 @@ function contact_form_Featured_Plugins() {
 							<a target="_blank" href="http://web-dorado.com/products/wordpress-facebook.html" class="download">Download</a>
 					</div>
 				</li>
-                <li class="faq">
+        <li class="twitter-widget">
+          <div class="product">
+            <div class="title">
+              <strong class="heading">Widget Twitter</strong>
+              <p>WordPress Widget Twitter plugin</p>
+            </div>
+          </div>
+          <div class="description">
+            <p>The Widget Twitter plugin lets you to fully integrate your WordPress site with your Twitter account.</p>
+            <a target="_blank" href="http://web-dorado.com/products/wordpress-twitter-integration-plugin.html" class="download">Download</a>
+          </div>
+        </li>
+        <li class="faq">
 					<div class="product">
 						<div class="title">
 							<strong class="heading">Spider FAQ</strong>
@@ -528,7 +552,7 @@ function contact_form_Featured_Plugins() {
 							<a target="_blank" href="http://web-dorado.com/products/wordpress-faq-plugin.html" class="download">Download</a>
 					</div>
 				</li>
-                <li class="zoom">
+        <li class="zoom">
 					<div class="product">
 						<div class="title">
 							<strong class="heading">Zoom</strong>
