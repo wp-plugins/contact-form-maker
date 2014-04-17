@@ -129,8 +129,6 @@ function form_contact_window_php() {
             src="<?php echo get_option("siteurl"); ?>/wp-includes/js/jquery/jquery.js"></script>
     <script language="javascript" type="text/javascript"
             src="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/tiny_mce_popup.js"></script>
-    <link rel="stylesheet"
-          href="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/themes/advanced/skins/wp_theme/dialog.css?ver=342-20110630100">
     <script language="javascript" type="text/javascript"
             src="<?php echo get_option("siteurl"); ?>/wp-includes/js/tinymce/utils/mctabs.js"></script>
     <script language="javascript" type="text/javascript"
@@ -154,11 +152,11 @@ function form_contact_window_php() {
     <div id="Single_product_panel" class="panel current">
       <table>
         <tr>
-          <td style="height:100px; width:100px; vertical-align:top;">
+          <td style="vertical-align: middle;">
             Select a Form
           </td>
-          <td style="vertical-align:top">
-            <select name="Form_Makername" id="Form_Makername" style="width:250px; text-align:center">
+          <td style="vertical-align: middle;">
+            <select name="Form_Makername" id="Form_Makername" style="width:230px; text-align:center">
               <option style="text-align:center" value="- Select Form -" selected="selected">- Select a Form -</option>
               <?php    $ids_Form_Maker = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE `id` IN(" . get_option('contact_form_forms', 0) . ") order by `id` DESC", 0);
               foreach ($ids_Form_Maker as $arr_Form_Maker) {
@@ -187,8 +185,9 @@ function form_contact_window_php() {
       else {
         var tagtext;
         tagtext = '[wd_contact_form id="' + document.getElementById('Form_Makername').value + '"]';
-        window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, tagtext);
-        tinyMCEPopup.editor.execCommand('mceRepaint');
+        // window.tinyMCE.execInstanceCommand('content', 'mceInsertContent', false, tagtext);
+        // tinyMCEPopup.editor.execCommand('mceRepaint');
+        window.tinyMCE.execCommand('mceInsertContent', false, tagtext);
         tinyMCEPopup.close();
       }
     }

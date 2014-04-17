@@ -1,6 +1,6 @@
 (function() {
 	tinymce.create('tinymce.plugins.contact_form_mce', {	
-   		init :function(ed, url){			
+    init :function(ed, url) {
 			ed.addCommand('mcecontact_form_mce', function() {
 				ed.windowManager.open({
 					file :((ajaxurl.indexOf("://") != -1) ? ajaxurl:(location.protocol+'//'+location.host+ajaxurl))+"?action=formcontactwindow",
@@ -11,12 +11,12 @@
 					plugin_url : url // Plugin absolute URL
 				});
 			});
-            ed.addButton('contact_form_mce', {
-            title : 'Insert Contact Form',
-			cmd : 'mcecontact_form_mce',
-            });
-        }
-    });
-    tinymce.PluginManager.add('contact_form_mce', tinymce.plugins.contact_form_mce);
- 
+      ed.addButton('contact_form_mce', {
+        title : 'Insert Contact Form',
+        cmd : 'mcecontact_form_mce',
+        image: plugin_url + '/images/form_maker_edit_but.png'
+      });
+    }
+  });
+  tinymce.PluginManager.add('contact_form_mce', tinymce.plugins.contact_form_mce);
 })();

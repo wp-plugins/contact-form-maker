@@ -3,7 +3,7 @@
 Plugin Name: Contact Form FREE
 Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
 Description: WordPress Contact Form Maker is an advanced and easy-to-use tool for creating forms. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
-Version: 1.6.3
+Version: 1.6.4
 Author: http://web-dorado.com/
 License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
 */
@@ -400,11 +400,7 @@ add_action('wp_ajax_nopriv_formcontactwdcaptcha', 'form_contact_wd_captcha'); //
 add_action('wp_ajax_nopriv_formcontactwindow', 'form_contact_window_php'); /// openid window in post or page for editor
 ////////////////////////////////////////////////////////////////////////////
 function add_button_style_contact_form() {
-  echo '<style type="text/css">
-.wp_themeSkin span.mce_contact_form_mce {background:url(' . plugins_url('images/formmakerLogo.png', __FILE__) . ') no-repeat !important;}
-.wp_themeSkin .mceButtonEnabled:hover span.mce_contact_form_mce,.wp_themeSkin .mceButtonActive span.mce_contact_form_mce
-{background:url(' . plugins_url('images/formmakerLogoHover.png', __FILE__) . ') no-repeat !important;}
-</style>';
+  echo '<script>var plugin_url = "' . plugins_url('', __FILE__) . '";</script>';
 }
 
 add_action('admin_head', 'add_button_style_contact_form');
