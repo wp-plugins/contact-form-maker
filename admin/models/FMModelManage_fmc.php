@@ -132,7 +132,7 @@ class FMModelManage_fmc {
         $label = $labels[$ids_key];
         $type = $types[$ids_key];
         $params = $paramss[$ids_key];
-        if (strpos($form, '%'.$id.' - '.$label.'%')) {
+        if (strpos($form, '%'.$id.' - '.$label.'%') || strpos($form, '%'.$id.' -'.$label.'%')) {
           $rep = '';
           $param = array();
           $param['attributes'] = '';
@@ -1728,6 +1728,7 @@ class FMModelManage_fmc {
             }
           }
           $form = str_replace('%' . $id . ' - ' . $labels[$ids_key] . '%', $rep, $form);
+          $form = str_replace('%' . $id . ' -' . $labels[$ids_key] . '%', $rep, $form);
           $row->form_front = $form;
         }
       }

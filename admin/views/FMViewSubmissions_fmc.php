@@ -1921,9 +1921,7 @@ class  FMViewSubmissions_fmc {
                   $param['attributes'] = $param['attributes'].' '.$attr;
               }
               
-              $rep ='<div type="type_hidden" class="wdform-field">
-              <div class="wdform-label-section" style="float:left; width: 150px;"><span class="wdform-label">' . $label . '</span></div>
-              <div class="wdform-label-section" style="display: table-cell;"></div><div class="wdform-element-section" style="display: table-cell;"><input type="text" value="'.$element_value.'" id="wdform_'.$id1.'_element'.$form_id.'" name="'.$param['w_name'].'" '.$param['attributes'].'></div></div>';
+              $rep ='<div type="type_hidden" class="wdform-field"><div class="wdform-label-section" style="float:left; width: 150px;"><span class="wdform-label">' . $label . '</span></div><div class="wdform-element-section" style="display: table-cell;"><input type="text" value="'.$element_value.'" id="wdform_'.$id1.'_element'.$form_id.'" name="'.$param['w_name'].'" '.$param['attributes'].'></div></div>';
               
               break;
             }

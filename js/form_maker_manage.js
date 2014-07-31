@@ -347,12 +347,27 @@ function refresh_old() {
 }
 
 function form_maker_options_tabs(id) {
+  if (spider_check_email('mail') || spider_check_email('from_mail') || spider_check_email('reply_to') || spider_check_email('mail_from_user') || spider_check_email('reply_to_user') || spider_check_email('mail_from_other') || spider_check_email('reply_to_other') || spider_check_email('paypal_email')) {
+    return false;
+  }
   jQuery("#fieldset_id").val(id);
   jQuery(".fm_fieldset_active").removeClass("fm_fieldset_active").addClass("fm_fieldset_deactive");
   jQuery("#" + id + "_fieldset").removeClass("fm_fieldset_deactive").addClass("fm_fieldset_active");
   jQuery(".fm_fieldset_tab").removeClass("active");
   jQuery("#" + id).addClass("active");
   return false;
+}
+
+function codemirror_for_javascript() {
+  var editor = CodeMirror.fromTextArea(document.getElementById("form_javascript"), {
+  lineNumbers: true,
+  lineWrapping: true,
+  mode: "javascript"
+  });
+  
+  CodeMirror.commands["selectAll"](editor);
+  editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
+  editor.scrollTo(0,0);
 }
 
 function set_type(type) {
@@ -641,7 +656,7 @@ function add_condition_fields(num, ids1, labels1, types1, params1)
 	
 	var labels_select = document.createElement('select');
 		labels_select.setAttribute("id", "field_labels"+num+'_'+m);
-		labels_select.setAttribute("onchange", "change_choices(options[selectedIndex].id+'_"+m+"','"+ids1+"','"+types1+"','"+params1+"')");
+		labels_select.setAttribute("onchange", "change_choices(options[selectedIndex].id+'_"+m+"','"+ids1+"','"+types1+"','"+params1.replace(/\'/g,"\\'")+"')");
 		labels_select.style.cssText="width:350px; vertical-align:top;";
 
 	for(k=0; k<labels.length; k++)	
@@ -875,7 +890,7 @@ function add_condition(ids1, labels1, types1, params1, all_ids, all_labels)
 
 	var add_img = document.createElement('img');
 		add_img.setAttribute('src',fmc_plugin_url + '/images/add.png');
-		add_img.setAttribute('onClick','add_condition_fields("'+num+'", "'+ids1+'", "'+labels1+'", "'+types1+'", "'+params1+'")');
+		add_img.setAttribute('onClick','add_condition_fields("'+num+'", "'+ids1+'", "'+labels1+'", "'+types1.replace(/\'/g,"\\'")+'", "'+params1.replace(/\'/g,"\\'")+'")');
 		add_img.style.cssText = "cursor: pointer; vertical-align: middle;";
 	
 	var delete_img = document.createElement('img');

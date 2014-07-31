@@ -162,6 +162,15 @@ function contact_from_maker_insert() {
     PRIMARY KEY (`id`)
   ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker_sessions);
+  
+  $formmaker_query = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_query` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `form_id` int(11) NOT NULL,
+    `query` text NOT NULL,
+    `details` text NOT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+  $wpdb->query($formmaker_query);
   return;
 }
 

@@ -3,7 +3,7 @@
  * Plugin Name: Contact Form Maker
  * Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
  * Description: This plugin is a modern and advanced tool for easy and fast creating of a WordPress Form. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
- * Version: 1.7.10
+ * Version: 1.7.13
  * Author: http://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -28,8 +28,8 @@ function form_maker_options_panel_cfm() {
   add_action('admin_print_scripts-' . $blocked_ips_page, 'form_maker_manage_scripts_cfm');
 
   $themes_page = add_submenu_page('manage_fmc', 'Themes', 'Themes', 'manage_options', 'themes_fmc', 'form_maker_cfm');
-  add_action('admin_print_styles-' . $themes_page, 'form_maker_styles_cfm');
-  add_action('admin_print_scripts-' . $themes_page, 'form_maker_scripts_cfm');
+  add_action('admin_print_styles-' . $themes_page, 'form_maker_manage_styles_cfm');
+  add_action('admin_print_scripts-' . $themes_page, 'form_maker_manage_scripts_cfm');
 
   $licensing_plugins_page = add_submenu_page('manage_fmc', 'Licensing/Donation', 'Licensing/Donation', 'manage_options', 'licensing_fmc', 'form_maker_cfm');
 
@@ -156,34 +156,7 @@ function Contact_Form_maker_fornt_end_main($content) {
 }
 add_filter('the_content', 'Contact_Form_maker_fornt_end_main', 5000);
 
-function xapel_shortcode_1_fmc($content) {
-  $pattern = '[\[contact_form id="([0-9]*)"\]]';
-  $count_forms_in_post = preg_match_all($pattern, $content, $matches_form);
-  if ($count_forms_in_post) {
-    require_once (WD_FMC_DIR . '/frontend/controllers/FMControllerForm_maker_fmc.php');
-    $controller = new FMControllerForm_maker_fmc();
-    for ($jj = 0; $jj < $count_forms_in_post; $jj++) {
-      $padron = $matches_form[0][$jj];
-      $replacment = $controller->execute($matches_form[1][$jj]);
-      $replacment = '[contact_form_for_repace id="' . $matches_form[1][$jj] . '"]';
-      $content = str_replace($padron, $replacment, $content);
-    }
-  }
-  $pattern = '[\[wd_contact_form id="([0-9]*)"\]]';
-  $count_forms_in_post = preg_match_all($pattern, $content, $matches_form);
-  if ($count_forms_in_post) {
-    require_once (WD_FMC_DIR . '/frontend/controllers/FMControllerForm_maker_fmc.php');
-    $controller = new FMControllerForm_maker_fmc();
-    for ($jj = 0; $jj < $count_forms_in_post; $jj++) {
-      $padron = $matches_form[0][$jj];
-      $replacment = $controller->execute($matches_form[1][$jj]);
-      $replacment = '[contact_form_for_repace id="' . $matches_form[1][$jj] . '"]';
-      $content = str_replace($padron, $replacment, $content);
-    }
-  }
-  return $content;
-}
-//add_filter('the_content', 'xapel_shortcode_1_fmc', 1);
+
 
 // Add the Contact Form Maker button to editor.
 add_action('wp_ajax_formcontactwindow', 'form_maker_ajax_cfm');
@@ -207,7 +180,7 @@ if (class_exists('WP_Widget')) {
 // Activate plugin.
 function form_maker_activate_cfm() {
   $version = get_option("wd_form_maker_version");
-  $new_version = '1.7.6';
+  $new_version = '1.7.13';
   if (!$version) {
     add_option("wd_form_maker_version", $new_version, '', 'no');
     global $wpdb;

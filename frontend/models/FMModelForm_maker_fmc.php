@@ -170,6 +170,7 @@ class FMModelForm_maker_fmc {
       array_push($label_type, $label_order_each[1]);
     }
     $max = $wpdb->get_var("SELECT MAX( group_id ) FROM " . $wpdb->prefix . "formmaker_submits");
+    $fvals=array();
     if ($old == FALSE || ($old == TRUE && $form->form == '')) {
 			foreach ($label_type as $key => $type) {
 				$value = '';
@@ -669,6 +670,7 @@ class FMModelForm_maker_fmc {
             }
           }
           $save_or_no = TRUE;
+          $fvals['{'.$i.'}']=str_replace(array("***map***", "*@@url@@*", "@@@@@@@@@", "@@@", "***grading***", "***br***"), array(" ", "", " ", " ", " ", ", "), addslashes($value));
           if ($form->savedb) {
             $save_or_no = $wpdb->insert($wpdb->prefix . "formmaker_submits", array(
               'form_id' => $id,
@@ -1145,6 +1147,40 @@ class FMModelForm_maker_fmc {
       }
     }
 
+		$queries = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker_query WHERE form_id=".$id);
+		if($queries)
+		{
+			foreach($queries as $query)
+			{
+				$temp		= explode('***wdfcon_typewdf***',$query->details);
+				$con_type	= $temp[0];
+				$temp		= explode('***wdfcon_methodwdf***',$temp[1]);
+				$con_method	= $temp[0];
+				$temp		= explode('***wdftablewdf***',$temp[1]);
+				$table_cur	= $temp[0];
+				$temp		= explode('***wdfhostwdf***',$temp[1]);
+				$host		= $temp[0];
+				$temp		= explode('***wdfportwdf***',$temp[1]);
+				$port		= $temp[0];
+				$temp		= explode('***wdfusernamewdf***',$temp[1]);
+				$username	= $temp[0];
+				$temp		= explode('***wdfpasswordwdf***',$temp[1]);
+				$password	= $temp[0];
+				$temp		= explode('***wdfdatabasewdf***',$temp[1]);
+				$database	= $temp[0];
+				
+				$query=str_replace(array_keys($fvals), $fvals ,$query->query);				
+				if($con_type == 'remote')
+				{ 
+					$wpdb_temp = new wpdb($username, $password, $database, $host);
+          $wpdb_temp->query($query);				
+				}
+				else {
+          $wpdb->query($query);
+        }
+			}
+      // $wpdb= new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+		}
     $str = '';
     
     if ($form->paypal_mode)	{

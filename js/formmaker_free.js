@@ -2364,8 +2364,8 @@ function close_window() {
   document.getElementById('edit_table').innerHTML = "";
   document.getElementById('show_table').innerHTML = "";
   document.getElementById('main_editor').style.display = "none";
-  if (document.getElementById('form_maker_editor_ifr')) {
-    ifr_id = 'form_maker_editor_ifr';
+  if (document.getElementById("form_maker_editor_ifr")) {
+    ifr_id = "form_maker_editor_ifr";
     ifr = getIFrameDocument(ifr_id);
     ifr.body.innerHTML = "";
   }
@@ -3396,22 +3396,21 @@ function remove_option(id, num) {
   choices_td.removeChild(br);
 }
 
-function getIFrameDocument(aID) { 
-  var rv = null;
-  // If contentDocument exists, W3C compliant (Mozilla).
-  if (document.getElementById(aID).contentDocument) {
-    rv = document.getElementById(aID).contentDocument; 
-  }
-  else {
-    // IE.
-    rv = document.frames[aID].document;
-  } 
-  return rv; 
+function getIFrameDocument(aID){ 
+var rv = null; 
+// if contentDocument exists, W3C compliant (Mozilla) 
+if (document.getElementById(aID) && document.getElementById(aID).contentDocument){
+rv = document.getElementById(aID).contentDocument; 
+} else if (document.getElementById(aID)) {
+// IE 
+rv = document.frames[aID].document; 
+} 
+return rv; 
 }
 
 function delete_last_child() {
-  if (document.getElementById('form_maker_editor_ifr')) {
-    ifr_id = 'form_maker_editor_ifr';
+  if (document.getElementById("form_maker_editor_ifr")) {
+    ifr_id = "form_maker_editor_ifr";
     ifr = getIFrameDocument(ifr_id);
     ifr.body.innerHTML = "";
   }
@@ -3643,8 +3642,8 @@ function type_section_break(i, w_editor) {
   document.getElementById('main_editor').style.display="block";
   document.getElementById('main_editor').style.left=iReturnLeft + 195 + "px";
   document.getElementById('main_editor').style.top=iReturnTop + 70 + "px";
-  if (document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display == "none") {
-    ifr_id = 'form_maker_editor_ifr';
+  if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+    ifr_id = "form_maker_editor_ifr";
     ifr = getIFrameDocument(ifr_id);
     ifr.body.innerHTML = w_editor;
   }
@@ -3682,8 +3681,8 @@ function type_editor(i, w_editor){
 		
 		
 		
-		if (document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display=="none") {
-			ifr_id='form_maker_editor_ifr';
+		if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+      ifr_id = "form_maker_editor_ifr";
 			ifr=getIFrameDocument(ifr_id);
 			ifr.body.innerHTML=w_editor;
 		}
@@ -25026,9 +25025,8 @@ function add(key) {
 					
 
 
-		if(document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display=="none")
-		{
-				ifr_id='form_maker_editor_ifr';
+		if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+      ifr_id = "form_maker_editor_ifr";
 				ifr=getIFrameDocument(ifr_id)
 				in_editor.innerHTML=ifr.body.innerHTML;
 		}
@@ -25534,9 +25532,8 @@ function add(key) {
 					in_editor.setAttribute('class', 'toolbar_padding');
 					
 
-		if(document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display=="none")
-		{
-				ifr_id='form_maker_editor_ifr';
+		if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+      ifr_id = "form_maker_editor_ifr";
 				ifr=getIFrameDocument(ifr_id);
 				in_editor.innerHTML=ifr.body.innerHTML;
 		}
@@ -25732,9 +25729,8 @@ function add(key) {
 					
 
 
-		if(document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display=="none")
-		{
-				ifr_id='form_maker_editor_ifr';
+		if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+      ifr_id = "form_maker_editor_ifr";
 				ifr=getIFrameDocument(ifr_id)
 				in_editor.innerHTML=ifr.body.innerHTML;
 		}

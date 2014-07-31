@@ -158,6 +158,14 @@ class FMViewThemes_fmc {
     $row = $this->model->get_row_data($id, $reset);
     $page_title = (($id != 0) ? 'Edit theme ' . $row->title : 'Create new theme');
     ?>
+    <style>
+    .CodeMirror {
+      border: 1px solid #ccc;
+      font-size: 12px;
+      margin-bottom: 6px;
+      background: white;
+    }
+    </style>
     <div style="clear: both; float: left; width: 99%;">
       <div style="float:left; font-size: 14px; font-weight: bold;">
         This section allows you to edit form themes.
@@ -193,6 +201,17 @@ class FMViewThemes_fmc {
       <input type="hidden" id="current_id" name="current_id" value="<?php echo $row->id; ?>"/>
       <input type="hidden" id="default" name="default" value="<?php echo $row->default; ?>"/>
     </form>
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("css"), {
+      lineNumbers: true,
+      lineWrapping: true,
+      mode: "css"
+      });
+      
+      CodeMirror.commands["selectAll"](editor);
+      editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
+      editor.scrollTo(0,0);      
+    </script>
     <?php
   }
 

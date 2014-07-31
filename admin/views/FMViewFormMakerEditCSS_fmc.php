@@ -32,6 +32,24 @@ class FMViewFormMakerEditCSS_fmc {
     <link media="all" type="text/css" href="<?php echo get_admin_url(); ?>css/colors<?php echo ((get_bloginfo('version') < '3.8') ? '-fresh' : ''); ?>.min.css" id="colors-css" rel="stylesheet">
     <link media="all" type="text/css" href="<?php echo WD_FMC_URL . '/css/form_maker_tables.css'; ?>" rel="stylesheet">
     <script src="<?php echo WD_FMC_URL . '/js/form_maker_admin.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/codemirror.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/formatting.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/css.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/clike.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/javascript.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/htmlmixed.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/xml.js'; ?>" type="text/javascript"></script>
+    <script src="<?php echo WD_FMC_URL . '/js/layout/php.js'; ?>" type="text/javascript"></script>
+    <link media="all" type="text/css" href="<?php echo WD_FM_URL . '/css/codemirror.css'; ?>" rel="stylesheet">
+    
+    <style>
+      .CodeMirror {
+        border: 1px solid #ccc;
+        font-size: 12px;
+        margin-bottom: 6px;
+        background: white;
+      }
+    </style>
 
     <form id="fm_theme" class="wrap wp-core-ui" method="post" action="#" style="width: 99%; margin: 5px 0 0 5px;">
       <div style="float: right; margin: 0 5px 0 0;">
@@ -67,6 +85,18 @@ class FMViewFormMakerEditCSS_fmc {
       <input type="hidden" id="default" name="default" value="<?php echo $row->default; ?>" />
       <input type="hidden" name="form_id" id="form_id" value="<?php echo $form_id; ?>" />
     </form>
+    <script>
+      var editor = CodeMirror.fromTextArea(
+        document.getElementById("css"), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: "css"
+      });
+      
+      CodeMirror.commands["selectAll"](editor);
+      editor.autoFormatRange(editor.getCursor(true), editor.getCursor(false));
+      editor.scrollTo(0,0);
+    </script>
     <?php
     die();
   }

@@ -207,8 +207,8 @@ class FMViewForm_maker_fmc {
 					
 					foreach($cond_params as $key=>$param)
 					{
-						$params_value = explode('***',html_entity_decode($param));
-	
+						$params_value = explode('***',wp_specialchars_decode($param, 'single'));
+            if(isset($type_and_id[$params_value[0]]))
 						switch($type_and_id[$params_value[0]])
 						{
 							case "type_text":
@@ -1361,6 +1361,11 @@ class FMViewForm_maker_fmc {
               if($is_other) {
                 $onload_js .='show_other_input("wdform_'.$id1.'","'.$form_id.'"); jQuery("#wdform_'.$id1.'_other_input'.$form_id.'").val("'.(isset($_POST['wdform_'.$id1."_other_input".$form_id]) ? $_POST['wdform_'.$id1."_other_input".$form_id] : '').'");';
               }
+              if($param['w_randomize']=='yes')
+              {
+                $onload_js .='jQuery("#form'.$form_id.' div[wdid='.$id1.'] .wdform-element-section> div").shuffle();
+                ';
+              }
               $onsubmit_js.='
                 jQuery("<input type=\"hidden\" name=\"wdform_'.$id1.'_allow_other'.$form_id.'\" value = \"'.$param['w_allow_other'].'\" />").appendTo("#form'.$form_id.'");
                 jQuery("<input type=\"hidden\" name=\"wdform_'.$id1.'_allow_other_num'.$form_id.'\" value = \"'.$param['w_allow_other_num'].'\" />").appendTo("#form'.$form_id.'");
@@ -1446,7 +1451,11 @@ class FMViewForm_maker_fmc {
               if($is_other) {
                 $onload_js .='show_other_input("wdform_'.$id1.'","'.$form_id.'"); jQuery("#wdform_'.$id1.'_other_input'.$form_id.'").val("'.(isset($_POST['wdform_'.$id1."_other_input".$form_id]) ? $_POST['wdform_'.$id1."_other_input".$form_id] : '').'");';
               }
-              
+              if($param['w_randomize']=='yes')
+              {
+                $onload_js .='jQuery("#form'.$form_id.' div[wdid='.$id1.'] .wdform-element-section> div").shuffle();
+                ';
+              }
               $onsubmit_js.='
                 jQuery("<input type=\"hidden\" name=\"wdform_'.$id1.'_allow_other'.$form_id.'\" value = \"'.$param['w_allow_other'].'\" />").appendTo("#form'.$form_id.'");
                 jQuery("<input type=\"hidden\" name=\"wdform_'.$id1.'_allow_other_num'.$form_id.'\" value = \"'.$param['w_allow_other_num'].'\" />").appendTo("#form'.$form_id.'");
@@ -1782,7 +1791,6 @@ class FMViewForm_maker_fmc {
               }
               else {
                 $w_year_type = '<input type="text" value="'.$param['w_year'].'" id="wdform_'.$id1.'_year'.$form_id.'" name="wdform_'.$id1.'_year'.$form_id.'" from="'.$param['w_from'].'" to="'.$param['w_to'].'" style="width: '.$param['w_day_size'].'px;" '.$param['attributes'].'>';
-                $onload_js .='jQuery("#wdform_'.$id1.'_year'.$form_id.'").blur(function() {check_year2(this)});';
                 $onload_js .='jQuery("#wdform_'.$id1.'_year'.$form_id.'").keypress(function() {return check_year1(event, this)});';
                 $onload_js .='jQuery("#wdform_'.$id1.'_year'.$form_id.'").change(function() {change_year(this)});';
               }
@@ -3156,6 +3164,25 @@ class FMViewForm_maker_fmc {
             jQuery(this).parent().css('width','');
           }
         });
+        
+        (function(jQuery){
+          jQuery.fn.shuffle = function() {
+            var allElems = this.get(),
+              getRandom = function(max) {
+                return Math.floor(Math.random() * max);
+              },
+              shuffled = jQuery.map(allElems, function(){
+                var random = getRandom(allElems.length),
+                  randEl = jQuery(allElems[random]).clone(true)[0];
+                allElems.splice(random, 1);
+                return randEl;
+               });
+            this.each(function(i){
+              jQuery(this).replaceWith(jQuery(shuffled[i]));
+            });
+            return jQuery(shuffled);
+          };
+        })(jQuery);
         
         <?php echo $onload_js; ?>
         <?php echo $condition_js; ?>

@@ -291,6 +291,9 @@ class FMViewManage_fmc {
                       if (document.getElementById(id+'_element_labelform_id_temp').innerHTML) {
                         w_field_label = document.getElementById(id + '_element_labelform_id_temp').innerHTML.replace(/(\r\n|\n|\r)/gm," ");
                       }
+                      else {
+                        w_field_label = " ";
+                      }
                       if (document.getElementById(id + '_label_sectionform_id_temp')) {
                         if (document.getElementById(id + '_label_sectionform_id_temp').style.display == "block") {
                           w_field_label_pos = "top";
@@ -1140,18 +1143,9 @@ class FMViewManage_fmc {
           }
           document.getElementById('araqel').value = 1;
         }
-        function formAddToOnload() { 
-          if (formOldFunctionOnLoad) {
-            formOldFunctionOnLoad();
-          }
+        jQuery(window).load(function () {
           formOnload();
-        }
-        function formLoadBody() {
-          formOldFunctionOnLoad = window.onload;
-          window.onload = formOnload;
-        }
-        var formOldFunctionOnLoad = null;
-        formLoadBody();
+        });
       </script>
         <?php
       }
@@ -2182,18 +2176,9 @@ class FMViewManage_fmc {
           document.getElementById('form').value=document.getElementById('take').innerHTML;
           document.getElementById('araqel').value = 1;
         }
-        function formAddToOnload() { 
-          if (formOldFunctionOnLoad) {
-            formOldFunctionOnLoad();
-          }
+        jQuery(window).load(function () {
           formOnload();
-        }
-        function formLoadBody() {
-          formOldFunctionOnLoad = window.onload;
-          window.onload = formAddToOnload;
-        }
-        var formOldFunctionOnLoad = null;
-        formLoadBody();
+        });
       </script>
 
       <input type="hidden" name="option" value="com_formmaker" />
@@ -2670,6 +2655,14 @@ class FMViewManage_fmc {
         document.getElementById('condition').value = field_condition;
       }      
     </script>
+    <style>
+    .CodeMirror {
+      border: 1px solid #ccc;
+      font-size: 12px;
+      margin-bottom: 6px;
+      background: white;
+    }
+    </style>
     <div style="clear: both; float: left; width: 99%;">
       <div style="float:left; font-size: 14px; font-weight: bold;">
         This section allows you to edit form options.
@@ -2718,7 +2711,7 @@ class FMViewManage_fmc {
               <a id="payment" class="fm_fieldset_tab" onclick="form_maker_options_tabs('payment')" href="#">Payment Options</a>
             </li>
             <li>
-              <a id="javascript" class="fm_fieldset_tab" onclick="form_maker_options_tabs('javascript')" href="#">JavaScript</a>
+              <a id="javascript" class="fm_fieldset_tab" onclick="form_maker_options_tabs('javascript'); codemirror_for_javascript();" href="#">JavaScript</a>
             </li>
             <li>
               <a id="conditions" class="fm_fieldset_tab" onclick="form_maker_options_tabs('conditions')" href="#">Conditional Fields</a>
@@ -3561,7 +3554,7 @@ class FMViewManage_fmc {
 										else
 										$w_choice = $w_choices_array[$m];
 											
-										if(in_array($w_choice,$multiselect))
+										if(in_array(esc_html($w_choice),$multiselect))
 										{
 											$selected = 'selected="selected"';
 										}	
@@ -3644,6 +3637,11 @@ class FMViewManage_fmc {
           document.getElementById('mail_subject_user_labels').addEventListener('mouseout',hide_email_labels,true);
         }
       });
+      function wd_fm_apply_options() {
+        set_condition();
+        spider_set_input_value('task', 'apply_options');
+        document.getElementById('adminForm').submit();
+      }
     </script>
     <?php
   }

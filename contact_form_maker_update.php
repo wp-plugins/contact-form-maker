@@ -78,6 +78,16 @@ function contact_form_maker_update($version) {
 
     $wpdb->query('UPDATE ' . $wpdb->prefix . 'formmaker SET `mail_mode` = 1, `mail_mode_user` = 1, `mail_attachment` = 1, `mail_attachment_user` = 1');
   }
+  if (version_compare($version, '1.7.13') == -1) {
+    $formmaker_query = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_query` (
+      `id` int(11) NOT NULL AUTO_INCREMENT,
+      `form_id` int(11) NOT NULL,
+      `query` text NOT NULL,
+      `details` text NOT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+    $wpdb->query($formmaker_query);
+  }
   return;
 }
 
