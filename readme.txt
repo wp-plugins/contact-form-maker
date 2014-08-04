@@ -56,7 +56,7 @@ The product has cross-browser compatibility, which allows using the Contact form
 
 ### Supported languages Of the Contact Form Maker  
 
- *If you need language of the Contact Form Maker which is not included in this list, please contact us and we will do the translation of Contact Form Maker within 3 days. If you find some mistakes in the translation of the Contact Form Maker, please contact  us and we will correct it within 3 days.*  
+ *If you need language of the Contact Form Maker which is not included in this list, please contact us and we will do the translation of Contact Form Maker within 3 days. If you find any mistakes in the translation of the Contact Form Maker, please contact us and we will make relevant corrections within 3 days.*  
 
  Afrikaans (af)  
 Albanian (sq)  
