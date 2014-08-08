@@ -133,7 +133,7 @@ class FMModelGenerete_csv {
               }
             }
             elseif (strpos($t->element_value, "***map***")) {
-              $data_temp[stripslashes($label_titles[$h])] = 'Longitude:' . substr(str_replace("***map***", ', Latitude:', $t->element_value), 0, -2);
+              $data_temp[stripslashes($label_titles[$h])] = 'Longitude:' . str_replace("***map***", ', Latitude:', $t->element_value);
             }
             elseif (strpos($t->element_value, "***star_rating***")) {
               $element = str_replace("***star_rating***", '', $t->element_value);

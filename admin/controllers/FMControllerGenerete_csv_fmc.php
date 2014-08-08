@@ -1,6 +1,6 @@
 <?php
 
-class FMControllerGenerete_csv {
+class FMControllerGenerete_csv_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   // Events                                                                             //
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -23,10 +23,10 @@ class FMControllerGenerete_csv {
   }
 
   public function display() {
-    require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_csv.php";
+    require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_csv_fmc.php";
     $model = new FMModelGenerete_csv();
 
-    require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_csv.php";
+    require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_csv_fmc.php";
     $view = new FMViewGenerete_csv($model);
     $view->display();
   }

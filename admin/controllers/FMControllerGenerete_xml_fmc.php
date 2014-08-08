@@ -1,6 +1,6 @@
 <?php
 
-class FMControllerGenerete_xml {
+class FMControllerGenerete_xml_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   // Events                                                                             //
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -23,10 +23,10 @@ class FMControllerGenerete_xml {
   }
 
   public function display() {
-    require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_xml.php";
+    require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_xml_fmc.php";
     $model = new FMModelGenerete_xml();
 
-    require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_xml.php";
+    require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_xml_fmc.php";
     $view = new FMViewGenerete_xml($model);
     $view->display();
   }

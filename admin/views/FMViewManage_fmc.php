@@ -250,26 +250,21 @@ class FMViewManage_fmc {
                       if (wdtype == "type_address") {
                         addr_id = parseInt(wdid);
                         id_for_country = addr_id;
-                        if (document.getElementById(id_for_country + "_mini_label_street1")) {
+                        if (document.getElementById(id_for_country + "_mini_label_street1"))
                           tox = tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_street1").innerHTML + '#**label**#type_address#****#';
-                          addr_id++; 
-                        }
-                        if (document.getElementById(id_for_country + "_mini_label_street2")) {
+                        addr_id++; 
+                        if (document.getElementById(id_for_country + "_mini_label_street2"))
                           tox = tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_street2").innerHTML + '#**label**#type_address#****#';
-                          addr_id++;
-                        }
-                        if (document.getElementById(id_for_country+"_mini_label_city")) {
+                        addr_id++;
+                        if (document.getElementById(id_for_country+"_mini_label_city"))
                           tox = tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_city").innerHTML + '#**label**#type_address#****#';
-                          addr_id++;
-                        }
-                        if (document.getElementById(id_for_country + "_mini_label_state")) {
+                        addr_id++;
+                        if (document.getElementById(id_for_country + "_mini_label_state"))
                           tox = tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_state").innerHTML + '#**label**#type_address#****#';
-                          addr_id++;
-                        }
-                        if (document.getElementById(id_for_country + "_mini_label_postal")) {
+                        addr_id++;
+                        if (document.getElementById(id_for_country + "_mini_label_postal"))
                           tox = tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_postal").innerHTML + '#**label**#type_address#****#';
-                          addr_id++;
-                        }
+                        addr_id++;
                         if (document.getElementById(id_for_country+"_mini_label_country")) {
                           tox=tox + addr_id + '#**id**#' + document.getElementById(id_for_country + "_mini_label_country").innerHTML + '#**label**#type_address#****#';
                         }
