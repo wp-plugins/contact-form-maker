@@ -1691,7 +1691,7 @@ class FMViewForm_maker_fmc {
               if($required) {
                 $rep.='<span class="wdform-required">'.$required_sym.'</span>';
               }
-              $rep.='</div><div class="wdform-element-section '.$param['w_class'].'" style="'.$param['w_field_label_pos2'].';"><input type="text" value="'.$param['w_date'].'" class="wdform-date" id="wdform_'.$id1.'_element'.$form_id.'" name="wdform_'.$id1.'_element'.$form_id.'" maxlength="10" '.$param['attributes'].'><input id="wdform_'.$id1.'_button'.$form_id.'" class="wdform-calendar-button" type="reset" value="'.$param['w_but_val'].'" format="'.$param['w_format'].'" onclick="return showCalendar(\'wdform_'.$id1.'_element'.$form_id.'\' , \'%Y-%m-%d\')" '.$param['attributes'].' ></div></div>';
+              $rep.='</div><div class="wdform-element-section '.$param['w_class'].'" style="'.$param['w_field_label_pos2'].';"><input type="text" value="'.$param['w_date'].'" class="wdform-date" id="wdform_'.$id1.'_element'.$form_id.'" name="wdform_'.$id1.'_element'.$form_id.'" maxlength="10" '.$param['attributes'].'><input id="wdform_'.$id1.'_button'.$form_id.'" class="wdform-calendar-button" type="reset" value="'.$param['w_but_val'].'" format="'.$param['w_format'].'" onclick="return showCalendar(\'wdform_'.$id1.'_element'.$form_id.'\' , \''.$param['w_format'].'\')" '.$param['attributes'].' ></div></div>';
               
               if($required) {
                 $check_js.='
@@ -3193,18 +3193,9 @@ class FMViewForm_maker_fmc {
         }
       }
 
-      function formAddToOnload<?php echo $id ?>() {
-        if (formOldFunctionOnLoad<?php echo $id ?>) {
-          formOldFunctionOnLoad<?php echo $id ?>();
-        }
+      jQuery(window).load(function () {
         formOnload<?php echo $id ?>();
-      }
-      function formLoadBody<?php echo $id ?>() {
-        formOldFunctionOnLoad<?php echo $id ?> = window.onload;
-        window.onload = formAddToOnload<?php echo $id ?>;
-      }
-      var formOldFunctionOnLoad<?php echo $id ?> = null;
-      formLoadBody<?php echo $id ?>();
+      });
 
       form_view_count<?php echo $id ?>=0;
       jQuery(document).ready(function () {
@@ -3528,18 +3519,9 @@ class FMViewForm_maker_fmc {
        }
     }';
       $form_maker_front_end .= '
-        function formAddToOnload' . $id . '() {
-          if (formOldFunctionOnLoad' . $id . ') {
-            formOldFunctionOnLoad' . $id . '();
-          }
+        jQuery(window).load(function () {
           formOnload' . $id . '();
-        }
-        function formLoadBody' . $id . '() {
-          formOldFunctionOnLoad' . $id . ' = window.onload;
-          window.onload = formAddToOnload' . $id . ';
-        }
-        var formOldFunctionOnLoad' . $id . ' = null;
-        formLoadBody' . $id . '();';
+        });';
       if (isset($_POST["counter" . $id])) {
         $counter = esc_html($_POST["counter" . $id]);
       }

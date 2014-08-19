@@ -1854,14 +1854,14 @@ class FMModelForm_maker_fmc {
 					$replyto = $row->reply_to_user;
         }
         $attachment_user = array(); 	
-				if($row->mail_attachment_user) {
-					for($k=0; $k<count($all_files); $k++) {
-						if(isset($all_files[$k]['tmp_name'][$k])) {
-              $attachment_user[k]=$all_files[$k]['tmp_name'];
+				if ($row->mail_attachment_user) {
+					for ($k = 0; $k < count($all_files); $k++) {
+						if (isset($all_files[$k]['tmp_name'])) {
+              $attachment_user[$k] = $all_files[$k]['tmp_name'];
             }
 					}
         }
-				if($row->mail_mode_user) {
+				if ($row->mail_mode_user) {
           $content_type = "text/html";
 					$mode = 1;
 					$list_user = wordwrap($list, 70, "\n", true);
@@ -1967,14 +1967,15 @@ class FMModelForm_maker_fmc {
           $fromname = $row->from_mail;
         }
         $attachment = array(); 
-				if($row->mail_attachment) {
-          for($k=0;$k<count($all_files);$k++) {
-            if(isset($all_files[$k]['tmp_name'][$k]))
-              $attachment[k]=$all_files[$k]['tmp_name'];
+				if ($row->mail_attachment) {
+          for ($k = 0; $k < count($all_files); $k++) {
+            if (isset($all_files[$k]['tmp_name'])) {
+              $attachment[$k]=$all_files[$k]['tmp_name'];
+            }
           }
         }
 				
-				if($row->mail_mode) {
+				if ($row->mail_mode) {
           $content_type = "text/html";
 					$mode = 1; 
 					$list = wordwrap($list, 70, "\n", true);
