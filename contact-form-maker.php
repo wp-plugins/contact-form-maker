@@ -3,7 +3,7 @@
  * Plugin Name: Contact Form Maker
  * Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
  * Description: This plugin is a modern and advanced tool for easy and fast creating of a WordPress Form. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
- * Version: 1.7.15
+ * Version: 1.7.16
  * Author: http://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -64,6 +64,7 @@ add_action('wp_ajax_nopriv_formcontactwdcaptcha', 'form_maker_ajax_cfm'); // Gen
 add_action('wp_ajax_fromeditcountryinpopup_fmc', 'form_maker_ajax_cfm'); // Open country list.
 add_action('wp_ajax_product_option_fmc', 'form_maker_ajax_cfm'); // Open product options on add paypal field.
 add_action('wp_ajax_frommapeditinpopup_fmc', 'form_maker_ajax_cfm'); // Open map in submissions.
+add_action('wp_ajax_fromipinfoinpopup_fmc', 'form_maker_ajax_cfm'); // Open ip in submissions.
 add_action('wp_ajax_show_matrix_fmc', 'form_maker_ajax_cfm'); // Edit matrix in submissions.
 add_action('wp_ajax_FormMakerEditCSS_fmc', 'form_maker_ajax_cfm'); // Edit css from form options.
 
@@ -180,7 +181,7 @@ if (class_exists('WP_Widget')) {
 // Activate plugin.
 function form_maker_activate_cfm() {
   $version = get_option("wd_form_maker_version");
-  $new_version = '1.7.14';
+  $new_version = '1.7.16';
   if (!$version) {
     add_option("wd_form_maker_version", $new_version, '', 'no');
     global $wpdb;

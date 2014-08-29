@@ -347,7 +347,7 @@ function refresh_old() {
 }
 
 function form_maker_options_tabs(id) {
-  if (spider_check_email('mail') || spider_check_email('from_mail') || spider_check_email('reply_to') || spider_check_email('mail_from_user') || spider_check_email('reply_to_user') || spider_check_email('mail_from_other') || spider_check_email('reply_to_other') || spider_check_email('paypal_email')) {
+  if (spider_check_email('mailToAdd') || spider_check_email('from_mail') || spider_check_email('reply_to') || spider_check_email('mail_from_user') || spider_check_email('reply_to_user') || spider_check_email('mail_from_other') || spider_check_email('reply_to_other') || spider_check_email('paypal_email')) {
     return false;
   }
   jQuery("#fieldset_id").val(id);
@@ -941,4 +941,20 @@ function check_isnum_point(e) {
     return false;
   }
 	return true;
+}
+
+function cfm_create_input(toAdd_id, value_id, parent_id, cfm_url) {
+  var value = jQuery("#" + value_id).val();
+  if (value) {
+    jQuery("#" + value_id).attr("style", "width: 250px;");
+    var mail_div = jQuery("<div>").attr("class", "fm_mail_div").prependTo("#" + parent_id).text(value);
+    jQuery("<img>").attr("src", cfm_url + "/images/delete.png").attr("class", "fm_delete_img").attr("onclick", "fm_delete_mail(this, '" + value + "')").attr("title", "Delete Email").appendTo(mail_div);
+    jQuery("#" + value_id).val("");
+    jQuery("#" + toAdd_id).val(jQuery("#" + toAdd_id).val() + value + ",");
+  }
+}
+
+function fm_delete_mail(img, value) {
+  jQuery(img).parent().remove();
+  jQuery("#mail").val(jQuery("#mail").val().replace(value + ',', ''));
 }

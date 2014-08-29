@@ -1,3 +1,7 @@
+.wdform_map img {
+  max-width: none !important;
+}
+
 .wdform_row .wdform-field .wdform_map {
  width: inherit !important;
 }

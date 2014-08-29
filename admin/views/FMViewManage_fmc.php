@@ -2672,7 +2672,7 @@ class FMViewManage_fmc {
     <form class="wrap" method="post" action="admin.php?page=manage_fmc" style="float: left; width: 99%;" name="adminForm" id="adminForm">
       <h2><?php echo $page_title; ?></h2>
       <div style="float: right; margin: 0 5px 0 0;">
-        <input class="button-secondary" type="submit" onclick="if (spider_check_email('mail') ||
+        <input class="button-secondary" type="submit" onclick="if (spider_check_email('mailToAdd') ||
                                                                    spider_check_email('from_mail') ||
                                                                    spider_check_email('reply_to') ||
                                                                    spider_check_email('mail_from_user') ||
@@ -2680,7 +2680,7 @@ class FMViewManage_fmc {
                                                                    spider_check_email('mail_from_other') ||
                                                                    spider_check_email('reply_to_other') ||
                                                                    spider_check_email('paypal_email')) {return false;}; set_condition(); spider_set_input_value('task', 'save_options')" value="Save"/>
-        <input class="button-secondary" type="submit" onclick="if (spider_check_email('mail') ||
+        <input class="button-secondary" type="submit" onclick="if (spider_check_email('mailToAdd') ||
                                                                    spider_check_email('from_mail') ||
                                                                    spider_check_email('reply_to') ||
                                                                    spider_check_email('mail_from_user') ||
@@ -2762,7 +2762,7 @@ class FMViewManage_fmc {
               <label for="requiredmark">Required fields mark</label>
             </td>
             <td class="fm_options_value">
-              <input id="requiredmark" name="requiredmark" value="<?php echo $row->requiredmark; ?>" style="width:250px;" />
+              <input type="text" id="requiredmark" name="requiredmark" value="<?php echo $row->requiredmark; ?>" style="width:250px;" />
             </td>
           </tr>
         </table>
@@ -2771,10 +2771,10 @@ class FMViewManage_fmc {
         <legend style="color: #0B55C4; font-weight: bold;">Email Options</legend>
         <table class="admintable">
           <tr valign="top">
-            <td style="padding: 15px;">
+            <td style="padding: 5px; width:75px;">
               <label>Send E-mail</label>
             </td>
-            <td style="padding: 15px;">
+            <td style="padding: 5px;">
               <input type="radio" name="sendemail" id="sendemail_yes" value="1" <?php echo ($row->sendemail) ? "checked" : ""; ?> /><label for="sendemail_yes">Yes</label>
               <input type="radio" name="sendemail" id="sendemail_no" value="0" <?php echo (!$row->sendemail) ? "checked" : ""; ?> /><label for="sendemail_no">No</label>
             </td>
@@ -2788,7 +2788,31 @@ class FMViewManage_fmc {
                 <label for="mail">Email to send submissions to</label>
               </td>
               <td class="fm_options_value">
-                <input id="mail" name="mail" value="<?php echo $row->mail; ?>" style="width:250px;" />
+                <input type="text" id="mailToAdd" name="mailToAdd" style="width: 250px;" />
+                <input type="hidden" id="mail" name="mail" value="<?php echo $row->mail . ($row->mail && (substr($row->mail, -1) != ',') ? ',' : ''); ?>" />
+                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" 
+				     style="vertical-align: middle; cursor: pointer;"
+                     title="Add more emails"
+                     onclick="if (spider_check_email('mailToAdd')) {return false;};cfm_create_input('mail', 'mailToAdd', 'cfm_mail_div', '<?php echo WD_FMC_URL; ?>')" />
+                <div id="cfm_mail_div">
+                  <?php
+                  $mail_array = explode(',', $row->mail);
+                  foreach ($mail_array as $mail) {
+                    if ($mail && $mail != ',') {
+                      ?>
+                      <div class="fm_mail_input">
+                        <?php echo $mail; ?>
+                        <img src="<?php echo WD_FMC_URL; ?>/images/delete.png" class="fm_delete_img" onclick="fm_delete_mail(this, '<?php echo $mail; ?>')" title="Delete Email" />
+                      </div>
+                      <?php
+                    }
+                  }
+                  ?>
+                </div> 
+
+
+
+				
               </td>
             </tr>
             <tr valign="top">
@@ -2815,7 +2839,7 @@ class FMViewManage_fmc {
                   <input type="radio" id="other" name="from_mail" value="other" <?php echo ($is_other) ? 'checked="checked"' : ''; ?> onclick="wdshow('mail_from_other')" />
                   <label for="other">Other</label>
                 </div>
-								<input style="width: <?php echo ($fields_count == 1) ? '250px' : '235px; margin-left: 15px' ?>; display: <?php echo ($is_other) ? 'block;' : 'none;'; ?>" id="mail_from_other" name="mail_from_other" value="<?php echo ($is_other) ? $row->from_mail : ''; ?>" />
+								<input type="text" style="width: <?php echo ($fields_count == 1) ? '250px' : '235px; margin-left: 15px' ?>; display: <?php echo ($is_other) ? 'block;' : 'none;'; ?>" id="mail_from_other" name="mail_from_other" value="<?php echo ($is_other) ? $row->from_mail : ''; ?>" />
               </td>
             </tr>
             <tr valign="top">
@@ -2823,8 +2847,8 @@ class FMViewManage_fmc {
                 <label for="from_name">From Name</label>
               </td>
               <td class="fm_options_value">
-                <input id="from_name" name="from_name" value="<?php echo $row->from_name; ?>" style="width: 230px;" />
-                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_labels').style.display='block';" style="vertical-align: middle; display:inline-block; margin:0px; float:none;">
+                <input type="text" id="from_name" name="from_name" value="<?php echo $row->from_name; ?>" style="width: 230px;" />
+                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('from_name')";
 								echo '<div style="position:relative; top:-3px;"><div id="mail_from_labels" class="email_labels" style="display:none;">';							
@@ -2874,7 +2898,7 @@ class FMViewManage_fmc {
                   <input type="radio" id="other1" name="reply_to" value="other" <?php echo ($is_other) ? 'checked="checked"' : ''; ?> onclick="wdshow('reply_to_other')" />
                   <label for="other1">Other</label>
                 </div>
-								<input style="width: <?php echo ($fields_count == 1) ? '250px' : '235px; margin-left: 15px'; ?>; display: <?php echo ($is_other) ? 'block;' : 'none;'; ?>" id="reply_to_other" name="reply_to_other" value="<?php echo ($is_other && $row->reply_to) ? $row->reply_to : ''; ?>" />
+								<input type="text" style="width: <?php echo ($fields_count == 1) ? '250px' : '235px; margin-left: 15px'; ?>; display: <?php echo ($is_other) ? 'block;' : 'none;'; ?>" id="reply_to_other" name="reply_to_other" value="<?php echo ($is_other && $row->reply_to) ? $row->reply_to : ''; ?>" />
               </td>
             </tr>
             <tr valign="top">
@@ -2882,7 +2906,7 @@ class FMViewManage_fmc {
 								<label> CC: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_cc" name="mail_cc" value="<?php echo $row->mail_cc ?>" style="width:250px;" />
+								<input type="text" id="mail_cc" name="mail_cc" value="<?php echo $row->mail_cc ?>" style="width:250px;" />
 							</td>
 						</tr>
 						<tr valign="top">
@@ -2890,7 +2914,7 @@ class FMViewManage_fmc {
 								<label> BCC: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_bcc" name="mail_bcc" value="<?php echo $row->mail_bcc ?>" style="width:250px;" />
+								<input type="text" id="mail_bcc" name="mail_bcc" value="<?php echo $row->mail_bcc ?>" style="width:250px;" />
 							</td>
 						</tr>
 						<tr valign="top">
@@ -2898,8 +2922,8 @@ class FMViewManage_fmc {
 								<label> Subject: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_subject" name="mail_subject" value="<?php echo $row->mail_subject ?>" style="width:230px;" />
-								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_labels').style.display='block';" style="vertical-align: middle; display:inline-block; margin:0px; float:none;">
+								<input type="text" id="mail_subject" name="mail_subject" value="<?php echo $row->mail_subject ?>" style="width:230px;" />
+								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('mail_subject')";
 								echo '<div style="position:relative; top:-3px;"><div id="mail_subject_labels" class="email_labels" style="display:none;">';							
@@ -3012,7 +3036,7 @@ class FMViewManage_fmc {
                 <label for="mail_from_user">Email From</label>
               </td>
               <td class="fm_options_value">
-                <input id="mail_from_user" name="mail_from_user" value="<?php echo $row->mail_from_user; ?>" style="width: 250px;" />
+                <input type="text" id="mail_from_user" name="mail_from_user" value="<?php echo $row->mail_from_user; ?>" style="width: 250px;" />
               </td>
             </tr>
             <tr valign="top">
@@ -3020,8 +3044,8 @@ class FMViewManage_fmc {
                 <label for="mail_from_name_user">From Name</label>
               </td>
               <td class="fm_options_value">
-                <input id="mail_from_name_user" name="mail_from_name_user" value="<?php echo $row->mail_from_name_user; ?>" style="width: 230px;"/>
-                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_name_user_labels').style.display='block';" style="vertical-align: middle; display:inline-block; margin:0px; float:none;">
+                <input type="text" id="mail_from_name_user" name="mail_from_name_user" value="<?php echo $row->mail_from_name_user; ?>" style="width: 230px;"/>
+                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_name_user_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
                 <?php 
                 $choise = "document.getElementById('mail_from_name_user')";
                 echo '<div style="position:relative; top:-3px;"><div id="mail_from_name_user_labels" class="email_labels" style="display:none;">';							
@@ -3052,7 +3076,7 @@ class FMViewManage_fmc {
                 <label for="reply_to_user">Reply to<br />(if different from "Email Form")</label>
               </td>
               <td class="fm_options_value">
-                <input id="reply_to_user" name="reply_to_user" value="<?php echo $row->reply_to_user; ?>" style="width:250px;"/>
+                <input type="text" id="reply_to_user" name="reply_to_user" value="<?php echo $row->reply_to_user; ?>" style="width:250px;"/>
               </td>
             </tr>
             <tr valign="top">
@@ -3060,7 +3084,7 @@ class FMViewManage_fmc {
 								<label> CC: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_cc_user" name="mail_cc_user" value="<?php echo $row->mail_cc_user ?>" style="width:250px;" />
+								<input type="text" id="mail_cc_user" name="mail_cc_user" value="<?php echo $row->mail_cc_user ?>" style="width:250px;" />
 							</td>
 						</tr>
 						<tr valign="top">
@@ -3068,7 +3092,7 @@ class FMViewManage_fmc {
 								<label> BCC: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_bcc_user" name="mail_bcc_user" value="<?php echo $row->mail_bcc_user ?>" style="width:250px;" />
+								<input type="text" id="mail_bcc_user" name="mail_bcc_user" value="<?php echo $row->mail_bcc_user ?>" style="width:250px;" />
 							</td>
 						</tr>
 						<tr valign="top">
@@ -3076,8 +3100,8 @@ class FMViewManage_fmc {
 								<label> Subject: </label>
 							</td>
 							<td class="fm_options_value">
-								<input id="mail_subject_user" name="mail_subject_user" value="<?php echo $row->mail_subject_user ?>" style="width:230px;" />
-								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_user_labels').style.display='block';" style="vertical-align: middle; display:inline-block; margin:0px; float:none;">
+								<input type="text" id="mail_subject_user" name="mail_subject_user" value="<?php echo $row->mail_subject_user ?>" style="width:230px;" />
+								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_user_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('mail_subject_user')";
 								echo '<div style="position:relative; top:-3px;"><div id="mail_subject_user_labels" class="email_labels" style="display:none;">';							
@@ -3432,7 +3456,7 @@ class FMViewManage_fmc {
 					?>
 					<div>
 					<span style="font-size:13px;">Add Condition<span/>
-					<img src="<?php echo WD_FMC_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo addslashes($chose_labels); ?>', '<?php echo $chose_types; ?>', '<?php echo $chose_paramss; ?>', '<?php echo $all_ids_cond; ?>', '<?php echo addslashes($all_labels_cond); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
+					<img src="<?php echo WD_FM_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo addslashes($chose_paramss); ?>', '<?php echo $all_ids_cond; ?>', '<?php echo htmlspecialchars(addslashes($all_labels_cond)); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
 					</div>
 					<?php
 

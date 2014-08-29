@@ -309,6 +309,9 @@ function before_reset() {
     $requiredmark = (isset($_POST['requiredmark']) ? esc_html(stripslashes($_POST['requiredmark'])) : '*');
     $sendemail = (isset($_POST['sendemail']) ? esc_html(stripslashes($_POST['sendemail'])) : 1);
     $mail = (isset($_POST['mail']) ? esc_html(stripslashes($_POST['mail'])) : '');
+    if (isset($_POST['mailToAdd']) && esc_html(stripslashes($_POST['mailToAdd'])) != '') {
+      $mail .= esc_html(stripslashes($_POST['mailToAdd'])) . ',';
+    }
     $from_mail = (isset($_POST['from_mail']) ? esc_html(stripslashes($_POST['from_mail'])) : '');
     $from_name = (isset($_POST['from_name']) ? esc_html(stripslashes($_POST['from_name'])) : '');
     $reply_to = (isset($_POST['reply_to']) ? esc_html(stripslashes($_POST['reply_to'])) : '');

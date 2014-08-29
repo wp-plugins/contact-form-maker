@@ -114,6 +114,9 @@ table.admintable td.paramlist_key {
   text-align: right;
   width: 200px;
 }
+table.admintable {
+  width: 100%;
+}
 .submenu-box {
   background-color: #F4F4F4;
   border: 1px solid #CCCCCC;
@@ -595,4 +598,15 @@ div.wd_preview a {
   background-color: #FFFFFF;
   border: 1px solid #cccccc !important;
   padding: 15px;
+}
+
+.fm_options_label {
+  width: 170px;
+}
+
+.fm_delete_img {
+  cursor: pointer;
+  margin: 0 0 0 2px;
+  padding: 0;
+  vertical-align: middle;
 }

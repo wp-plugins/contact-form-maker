@@ -17,10 +17,10 @@ class FMModelSubmissions_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   // Public Methods                                                                     //
   ////////////////////////////////////////////////////////////////////////////////////////
-  public function check_ip($ip) {
+  public function blocked_ips() {
     global $wpdb;
-    $ip = $wpdb->get_var($wpdb->prepare('SELECT ip FROM ' . $wpdb->prefix . 'formmaker_blocked WHERE ip="%s"', $ip));
-    return $ip;
+    $ips = $wpdb->get_col('SELECT ip FROM ' . $wpdb->prefix . 'formmaker_blocked');
+    return $ips;
   }
 
   public function get_form_titles() {

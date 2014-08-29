@@ -50,6 +50,7 @@ class  FMViewSubmissions_fmc {
     $group_id_s = $this->model->sort_group_ids(count($sorted_label_names),$group_ids);  
     $ka_fielderov_search = (($lists['ip_search'] || $lists['startdate'] || $lists['enddate']) ? TRUE : FALSE);
     $is_stats = false;
+    $blocked_ips = $this->model->blocked_ips();
 	
     ?>
     <script type="text/javascript">
@@ -286,7 +287,7 @@ class  FMViewSubmissions_fmc {
                   <span class="sorting-indicator"></span>
                 </a>
               </th>
-              <th scope="col" id="submitterip_fc" class="table_large_col submitterip_fc <?php if ($order_by == "ip")echo $oder_class; else echo $oder_class_default;  ?>" <?php echo $style_ip;?>>
+              <th scope="col" id="submitterip_fc" class="table_medium_col_uncenter submitterip_fc <?php if ($order_by == "ip")echo $oder_class; else echo $oder_class_default;  ?>" <?php echo $style_ip;?>>
                 <a href="" onclick="spider_set_input_value('order_by', 'ip');
                                     spider_set_input_value('asc_or_desc', '<?php echo ((isset($_POST['asc_or_desc']) && isset($_POST['order_by']) && (esc_html(stripslashes($_POST['order_by'])) == 'ip') && esc_html(stripslashes($_POST['asc_or_desc'])) == 'asc') ? 'desc' : 'asc'); ?>');
                                     spider_form_submit(event, 'admin_form')">
@@ -356,7 +357,7 @@ class  FMViewSubmissions_fmc {
                   </tr>
                 </table>
               </th>
-              <th class="table_large_col submitterip_fc" <?php echo $style_ip; ?>>
+              <th class="table_medium_col_uncenter submitterip_fc" <?php echo $style_ip; ?>>
                 <input type="text" name="ip_search" id="ip_search" value="<?php echo $lists['ip_search']; ?>" onChange="this.form.submit();" />
               </th>
               <?php
@@ -424,13 +425,6 @@ class  FMViewSubmissions_fmc {
             $alternate = (!isset($alternate) || $alternate == 'class="alternate"') ? '' : 'class="alternate"';
             $temp = $this->model->array_for_group_id($group_id_s[$www], $rows);
             $data = $temp[0];
-            $query = @unserialize(file_get_contents('http://ip-api.com/php/' . $data->ip));
-            if ($query && $query['status'] == 'success' && $query['countryCode']) {
-              $country_flag = '<img src="' .  WD_FMC_URL . '/images/flags/' . strtolower($query['countryCode']) . '.png" class="sub-align" alt="' . $query['country'] . '" title="' . $query['country'] . '" />';
-            }
-            else {
-              $country_flag = '';
-            }
             ?>
             <tr <?php echo $alternate; ?>>
               <td class="table_small_col count_col sub-align"><?php echo $www + 1; ?></td>
@@ -461,14 +455,8 @@ class  FMViewSubmissions_fmc {
                                     spider_form_submit(event, 'admin_form');" ><?php echo $data->date ;?>
                 </a>
               </td>
-              <td class="table_large_col submitterip_fc sub-align" id="submitterip_fc" <?php echo $style_ip; ?>>
-                <a href="" onclick="spider_set_input_value('task', 'edit');						  
-                                    spider_set_input_value('current_id', <?php echo $data->group_id; ?>);
-                                    spider_form_submit(event, 'admin_form');" class="sub-align" <?php echo ($this->model->check_ip($data->ip) == NULL) ? '' : 'style="color: #FF0000;"'; ?>><?php echo $data->ip; ?>
-                </a>
-                <?php
-                echo $country_flag;
-                ?>
+              <td class="table_medium_col_uncenter submitterip_fc sub-align" id="submitterip_fc" <?php echo $style_ip; ?>>
+                <a class="thickbox-preview" href="<?php echo add_query_arg(array('action' => 'fromipinfoinpopup_fmc', 'data_ip' => $data->ip, 'width' => '400', 'height' => '300', 'TB_iframe' => '1'), admin_url('admin-ajax.php')); ?>" title="Show submitter information"><?php echo $data->ip; ?></a>
               </td>
               <?php
               for ($h = 0; $h < $m; $h++) {

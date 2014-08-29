@@ -117,7 +117,7 @@ class FMModelManage_fmc {
       $labels = array();
       $paramss = array();
       $fields = explode('*:*new_field*:*', $row->form_fields);
-      $fields = array_slice($fields, 0, count($fields) - 1);   
+      $fields = array_slice($fields, 0, count($fields) - 1);
       foreach ($fields as $field) {
         $temp=explode('*:*id*:*',$field);
         array_push($ids, $temp[0]);
