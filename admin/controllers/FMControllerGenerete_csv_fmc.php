@@ -24,10 +24,10 @@ class FMControllerGenerete_csv_fmc {
 
   public function display() {
     require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_csv_fmc.php";
-    $model = new FMModelGenerete_csv();
+    $model = new FMModelGenerete_csv_fmc();
 
     require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_csv_fmc.php";
-    $view = new FMViewGenerete_csv($model);
+    $view = new FMViewGenerete_csv_fmc($model);
     $view->display();
   }
 

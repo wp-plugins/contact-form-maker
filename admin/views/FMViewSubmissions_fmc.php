@@ -456,7 +456,7 @@ class  FMViewSubmissions_fmc {
                 </a>
               </td>
               <td class="table_medium_col_uncenter submitterip_fc sub-align" id="submitterip_fc" <?php echo $style_ip; ?>>
-                <a class="thickbox-preview" href="<?php echo add_query_arg(array('action' => 'fromipinfoinpopup_fmc', 'data_ip' => $data->ip, 'width' => '400', 'height' => '300', 'TB_iframe' => '1'), admin_url('admin-ajax.php')); ?>" title="Show submitter information"><?php echo $data->ip; ?></a>
+                <a class="thickbox-preview" href="<?php echo add_query_arg(array('action' => 'fromipinfoinpopup_fmc', 'data_ip' => $data->ip, 'width' => '400', 'height' => '300', 'TB_iframe' => '1'), admin_url('admin-ajax.php')); ?>" title="Show submitter information" <?php echo (!in_array($data->ip, $blocked_ips)) ? '' : 'style="color: #FF0000;"'; ?>><?php echo $data->ip; ?></a>
               </td>
               <?php
               for ($h = 0; $h < $m; $h++) {

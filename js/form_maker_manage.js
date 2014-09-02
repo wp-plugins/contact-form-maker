@@ -890,7 +890,7 @@ function add_condition(ids1, labels1, types1, params1, all_ids, all_labels)
 
 	var add_img = document.createElement('img');
 		add_img.setAttribute('src',fmc_plugin_url + '/images/add.png');
-		add_img.setAttribute('onClick','add_condition_fields("'+num+'", "'+ids1+'", "'+labels1+'", "'+types1.replace(/\'/g,"\\'")+'", "'+params1.replace(/\'/g,"\\'")+'")');
+		add_img.setAttribute('onClick','add_condition_fields("'+num+'", "'+ids1+'", "'+labels1.replace(/\'/g,"\\'").replace(/\"/g,"&quot;")+'", "'+types1.replace(/\'/g,"\\'")+'", "'+params1.replace(/\'/g,"\\'")+'")');
 		add_img.style.cssText = "cursor: pointer; vertical-align: middle;";
 	
 	var delete_img = document.createElement('img');

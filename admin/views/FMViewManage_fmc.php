@@ -434,7 +434,7 @@ class FMViewManage_fmc {
       </div>
 
       <div class="formmaker_table" width="100%">
-        <div style="float: left; text-align: center;"><br />
+        <div style="float: left; text-align: left;"><br />
           <span class="cfm_logo cfm_black">Contact</span>
           <span class="cfm_logo cfm_white">Form</span>
           <span class="cfm_logo cfm_black">Maker</span><br /><br />
@@ -1368,7 +1368,7 @@ class FMViewManage_fmc {
       </div>
 
       <div class="formmaker_table" width="100%">
-        <div style="float: left; text-align: center;"><br />
+        <div style="float: left; text-align: left;"><br />
           <span class="cfm_logo cfm_black">Contact</span>
           <span class="cfm_logo cfm_white">Form</span>
           <span class="cfm_logo cfm_black">Maker</span><br /><br />
@@ -3456,7 +3456,7 @@ class FMViewManage_fmc {
 					?>
 					<div>
 					<span style="font-size:13px;">Add Condition<span/>
-					<img src="<?php echo WD_FM_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo addslashes($chose_paramss); ?>', '<?php echo $all_ids_cond; ?>', '<?php echo htmlspecialchars(addslashes($all_labels_cond)); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
+					<img src="<?php echo WD_FM_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>', '<?php echo $all_ids_cond; ?>', '<?php echo htmlspecialchars(addslashes($all_labels_cond)); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
 					</div>
 					<?php
 
@@ -3492,7 +3492,7 @@ class FMViewManage_fmc {
 							</select> 
 							
 							<span>of the following match:</span>	
-							<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" title="add" onclick="add_condition_fields(<?php echo $k; ?>,'<?php echo $chose_ids; ?>', '<?php echo addslashes($chose_labels); ?>', '<?php echo $chose_types; ?>', '<?php echo $chose_paramss; ?>')" style="cursor: pointer; vertical-align: middle;">
+							<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" title="add" onclick="add_condition_fields(<?php echo $k; ?>,'<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>')" style="cursor: pointer; vertical-align: middle;">
 							
 							<img src="<?php echo WD_FMC_URL . '/images/page_delete.png'; ?>" onclick="delete_condition('<?php echo $k; ?>')" style="cursor: pointer; vertical-align: middle;">
 						</div>
@@ -3512,7 +3512,7 @@ class FMViewManage_fmc {
 							
 								?>
 								<div id="condition_div<?php echo $k; ?>_<?php echo $key; ?>">
-								<select id="field_labels<?php echo $k; ?>_<?php echo $key; ?>" onchange="change_choices(this.options[this.selectedIndex].id+'_<?php echo $key; ?>','<?php echo $chose_ids; ?>', '<?php echo $chose_types; ?>', '<?php echo $chose_paramss; ?>')" style="width:350px;"/>
+								<select id="field_labels<?php echo $k; ?>_<?php echo $key; ?>" onchange="change_choices(this.options[this.selectedIndex].id+'_<?php echo $key; ?>','<?php echo $chose_ids; ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>')" style="width:350px;"/>
 									<?php 
 									foreach($labels as $key1 => $value) 		
 									{ 		

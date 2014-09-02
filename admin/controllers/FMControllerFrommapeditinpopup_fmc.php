@@ -1,6 +1,6 @@
 <?php
 
-class FMControllerFrommapeditinpopup {
+class FMControllerFrommapeditinpopup_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   // Events                                                                             //
   ////////////////////////////////////////////////////////////////////////////////////////
@@ -23,11 +23,11 @@ class FMControllerFrommapeditinpopup {
   }
 
   public function display() {
-    require_once WD_FMC_DIR . "/admin/models/FMModelFrommapeditinpopup.php";
-    $model = new FMModelFrommapeditinpopup();
+    require_once WD_FMC_DIR . "/admin/models/FMModelFrommapeditinpopup_fmc.php";
+    $model = new FMModelFrommapeditinpopup_fmc();
 
-    require_once WD_FMC_DIR . "/admin/views/FMViewFrommapeditinpopup.php";
-    $view = new FMViewFrommapeditinpopup($model);
+    require_once WD_FMC_DIR . "/admin/views/FMViewFrommapeditinpopup_fmc.php";
+    $view = new FMViewFrommapeditinpopup_fmc($model);
     $view->display();
   }
 

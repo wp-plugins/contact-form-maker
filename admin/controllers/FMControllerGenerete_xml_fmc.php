@@ -24,10 +24,10 @@ class FMControllerGenerete_xml_fmc {
 
   public function display() {
     require_once WD_FMC_DIR . "/admin/models/FMModelGenerete_xml_fmc.php";
-    $model = new FMModelGenerete_xml();
+    $model = new FMModelGenerete_xml_fmc();
 
     require_once WD_FMC_DIR . "/admin/views/FMViewGenerete_xml_fmc.php";
-    $view = new FMViewGenerete_xml($model);
+    $view = new FMViewGenerete_xml_fmc($model);
     $view->display();
   }
 
