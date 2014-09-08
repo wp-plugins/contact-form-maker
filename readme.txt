@@ -22,7 +22,6 @@ WordPress Contact Form Maker uses simple and easy to manage backend interface, t
 This contact form builder will be equally fit the needs of the novice and experienced developers and designers.  
 
 The product has cross-browser compatibility, which allows using the Contact form for with any browser.  
-
 ###IMPORTANT: If you think you found a bug in the Contact Form Maker or have any problem or question concerning Contact Form Maker, do not hesitate to contact us at [info@web-dorado.com](mailto:info@web-dorado.com).  
 
 
