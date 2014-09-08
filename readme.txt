@@ -3,7 +3,7 @@ Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html
 Tags:  form,  forms,  contact form, contact forms,  contact form plugin,contact forms plugin, forms plugin, Contact Form Builder, contact form manager, multiple contac forms, custom  form,Contact form maker with recaptcha, contact form with google map, feedback form, feedback forms, contact us
 Requires at least: 3.0
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 1.7.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,8 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 WordPress Contact Form Maker is a simple contact form builder, which allows the user with almost no knowledge of programming to create and edit different type of contact forms.  
 
 == Description ==
-
-### [WordPress Contact Form Maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)    
+# [WordPress Contact Form Maker](http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html)  
 
 WordPress Contact Form Maker is a simple contact form builder, which allows the user with almost no knowledge of programming to create and edit different type of contact forms. The product is similar to the WordPress Form Maker using most of its functionality, whereas there are also some differences. If want to build complicated contact forms with various field types like Date, Time, Single choice, Multiple choice, etc., than you can use [WordPress Form Builder](http://wordpress.org/extend/plugins/form-maker).  
 
