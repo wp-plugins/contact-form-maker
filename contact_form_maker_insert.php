@@ -55,7 +55,7 @@ function contact_from_maker_insert() {
     `mail_attachment` tinyint(4) NOT NULL DEFAULT '1',
     `mail_attachment_user` tinyint(4) NOT NULL DEFAULT '1',
     PRIMARY KEY (`id`)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+  ) DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker);
   $plugin_path = WD_FMC_URL;
   install_demo_forms_fmc();
@@ -68,7 +68,7 @@ function contact_from_maker_insert() {
     `date` datetime NOT NULL,
     `ip` varchar(32) NOT NULL,
     PRIMARY KEY (`id`)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+  ) DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker_submits);
 
   $formmaker_themes = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_themes` (
@@ -77,7 +77,7 @@ function contact_from_maker_insert() {
     `css` text NOT NULL,
     `default` tinyint(4) NOT NULL,
     PRIMARY KEY (`id`)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+  ) DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker_themes);
 
   $formmaker_blocked = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_blocked` (
@@ -132,7 +132,7 @@ function contact_from_maker_insert() {
     `form_id` int(11) NOT NULL,
     `views` int(50) NOT NULL,
     PRIMARY KEY (`form_id`)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+  ) DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker_views);
 
   $formmaker_sessions = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_sessions` (
@@ -160,7 +160,7 @@ function contact_from_maker_insert() {
     `total` float NOT NULL,
     `currency` varchar(24) NOT NULL,
     PRIMARY KEY (`id`)
-  ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
+  ) DEFAULT CHARSET=utf8;";
   $wpdb->query($formmaker_sessions);
   
   $formmaker_query = "CREATE TABLE IF NOT EXISTS `" . $wpdb->prefix . "formmaker_query` (

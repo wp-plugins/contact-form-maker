@@ -164,7 +164,7 @@ function contact_form_maker_update_until_mvc() {
       `total` varchar(200) NOT NULL,
       `currency` varchar(24) NOT NULL,
       PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17";
+    ) DEFAULT CHARSET=utf8 AUTO_INCREMENT=17";
     $wpdb->query($form_maker_sessions_table);
     $form_rows = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker");
     foreach ($form_rows as $form_row) {

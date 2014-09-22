@@ -1165,7 +1165,7 @@ class FMViewForm_maker_fmc {
               }
               if (isset($w_disabled_fields[5]) && $w_disabled_fields[5]=='no') {
                 $g++;
-                $address_fields .= '<span style="float: '.(($g%2==0) ? 'right' : 'left').'; width: 48%; padding-bottom: 8px;display: inline-block;"><select type="text" id="wdform_'.$id1.'_country'.$form_id.'" name="wdform_'.($id1+5).'_country'.$form_id.'" style="width:100%" '.$param['attributes'].'>'.$w_options.'</select><label class="mini_label">'.$w_mini_labels[5].'</span>';
+                $address_fields .= '<span style="float: '.(($g%2==0) ? 'right' : 'left').'; width: 48%; padding-bottom: 8px;display: inline-block;"><select type="text" id="wdform_'.$id1.'_country'.$form_id.'" name="wdform_'.($id1+5).'_country'.$form_id.'" style="width:100%" '.$param['attributes'].'>'.$w_options.'</select><label class="mini_label">'.$w_mini_labels[5].'</label></span>';
               }				
               $rep.='</div><div class="wdform-element-section '.$param['w_class'].'" style="'.$param['w_field_label_pos2'].' width: '.$param['w_size'].'px;"><div>
               '.$address_fields.'</div></div></div>';
@@ -1988,10 +1988,10 @@ class FMViewForm_maker_fmc {
               $param['w_field_label_pos1'] = ($param['w_field_label_pos']=="left" ? "float: left;" : "");	
               $param['w_field_label_pos2'] = ($param['w_field_label_pos']=="left" ? "" : "display:block;");
 
-              $rep ='<div type="type_mark_map" class="wdform-field" style="width:'.$wdformfieldsize.'px"><div class="wdform-label-section" style="'.$param['w_field_label_pos1'].'; width: '.$param['w_field_label_size'].'px;"><span class="wdform-label">'.$label.'</span></div><div class="wdform-element-section '.$param['w_class'].'" style="'.$param['w_field_label_pos2'].' width: '.$param['w_width'].'px;"><input type="hidden" id="wdform_'.$id1.'_long'.$form_id.'" name="wdform_'.$id1.'_long'.$form_id.'" value="'.$param['w_long'].'"><input type="hidden" id="wdform_'.$id1.'_lat'.$form_id.'" name="wdform_'.$id1.'_lat'.$form_id.'" value="'.$param['w_lat'].'"><div id="wdform_'.$id1.'_element'.$form_id.'" long0="'.$param['w_long'].'" lat0="'.$param['w_lat'].'" zoom="'.$param['w_zoom'].'" info0="'.$param['w_info'].'" center_x="'.$param['w_center_x'].'" center_y="'.$param['w_center_y'].'" style="width: 100%; height: '.$param['w_height'].'px;" '.$param['attributes'].'></div></div></div>	';
+              $rep ='<div type="type_mark_map" class="wdform-field" style="width:'.$wdformfieldsize.'px"><div class="wdform-label-section" style="'.$param['w_field_label_pos1'].'; width: '.$param['w_field_label_size'].'px;"><span class="wdform-label">'.$label.'</span></div><div class="wdform-element-section '.$param['w_class'].'" style="'.$param['w_field_label_pos2'].' width: '.$param['w_width'].'px;"><input type="hidden" id="wdform_'.$id1.'_long'.$form_id.'" name="wdform_'.$id1.'_long'.$form_id.'" value="'.$param['w_long'].'"><input type="hidden" id="wdform_'.$id1.'_lat'.$form_id.'" name="wdform_'.$id1.'_lat'.$form_id.'" value="'.$param['w_lat'].'"><div id="wdform_'.$id1.'_element'.$form_id.'" long0="'.$param['w_long'].'" lat0="'.$param['w_lat'].'" zoom="'.$param['w_zoom'].'" info0="'.str_replace(array("\r\n", "\n", "\r"), '<br />', $param['w_info']).'" center_x="'.$param['w_center_x'].'" center_y="'.$param['w_center_y'].'" style="width: 100%; height: '.$param['w_height'].'px;" '.$param['attributes'].'></div></div></div>	';
               
               $onload_js .='if_gmap_init("wdform_'.$id1.'", '.$form_id.');';
-              $onload_js .='add_marker_on_map("wdform_'.$id1.'", 0, "'.$param['w_long'].'", "'.$param['w_lat'].'", "'.$param['w_info'].'", '.$form_id.',true);';
+              $onload_js .='add_marker_on_map("wdform_'.$id1.'", 0, "'.$param['w_long'].'", "'.$param['w_lat'].'", "'.str_replace(array("\r\n", "\n", "\r"), '<br />', $param['w_info']).'", '.$form_id.',true);';
               
               break;
             }
@@ -2017,7 +2017,7 @@ class FMViewForm_maker_fmc {
               $param['w_lat']	= explode('***',$param['w_lat']);
               $param['w_info']	= explode('***',$param['w_info']);
               foreach($param['w_long'] as $key => $w_long ) {
-                $marker.='long'.$key.'="'.$w_long.'" lat'.$key.'="'.$param['w_lat'][$key].'" info'.$key.'="'.$param['w_info'][$key].'"';
+                $marker.='long'.$key.'="'.$w_long.'" lat'.$key.'="'.$param['w_lat'][$key].'" info'.$key.'="'.str_replace(array("\r\n", "\n", "\r"), '<br />', $param['w_info'][$key]).'"';
               }
 
               $rep ='<div type="type_map" class="wdform-field"  style="width:'.($param['w_width']).'px"><div class="wdform-label-section" style="display: table-cell;"><span id="wdform_'.$id1.'_element_label'.$form_id.'" style="display: none;">'.$label.'</span></div><div class="wdform-element-section '.$param['w_class'].'" style="width: '.$param['w_width'].'px;"><div id="wdform_'.$id1.'_element'.$form_id.'" zoom="'.$param['w_zoom'].'" center_x="'.$param['w_center_x'].'" center_y="'.$param['w_center_y'].'" style="width: 100%; height: '.$param['w_height'].'px;" '.$marker.' '.$param['attributes'].'></div></div></div>';
@@ -2025,7 +2025,7 @@ class FMViewForm_maker_fmc {
               $onload_js .='if_gmap_init("wdform_'.$id1.'", '.$form_id.');';
               
               foreach($param['w_long'] as $key => $w_long ) {
-                $onload_js .='add_marker_on_map("wdform_'.$id1.'",'.$key.', "'.$w_long.'", "'.$param['w_lat'][$key].'", "'.$param['w_info'][$key].'", '.$form_id.',false);';
+                $onload_js .='add_marker_on_map("wdform_'.$id1.'",'.$key.', "'.$w_long.'", "'.$param['w_lat'][$key].'", "'.str_replace(array("\r\n", "\n", "\r"), '<br />', $param['w_info'][$key]).'", '.$form_id.',false);';
               }
               break;
             }

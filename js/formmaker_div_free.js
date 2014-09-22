@@ -2598,6 +2598,7 @@ function change_func(id, label) {
 }
 
 function change_in_value(id, label) {
+  label = label.replace(/"/g, "&quot;");
 	document.getElementById(id).setAttribute("value", label);
 }
 
@@ -29307,6 +29308,7 @@ function gen_form_fields()
 						if(document.getElementById(id+"_elementform_id_temp"+k).getAttribute('other')=='1')
 							w_allow_other_num=tt;
 					w_choices[tt]=document.getElementById(id+"_elementform_id_temp"+k).value;
+          w_choices[tt] = w_choices[tt].replace(/"/g, "&quot;");
 					if(w_choices[tt][w_choices[tt].length-1]==' ')
 						w_choices[tt]=w_choices[tt].substring(0, w_choices[tt].length-1);
 					w_choices_checked[tt]=document.getElementById(id+"_elementform_id_temp"+k).checked;
