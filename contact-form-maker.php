@@ -3,8 +3,9 @@
  * Plugin Name: Contact Form Maker
  * Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
  * Description: This plugin is a modern and advanced tool for easy and fast creating of a WordPress Form. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
- * Version: 1.7.18
- * Author: http://web-dorado.com/
+ * Version: 1.7.19
+ * Author: WebDorado
+ * Author URI: http://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 define('WD_FMC_DIR', WP_PLUGIN_DIR . "/" . plugin_basename(dirname(__FILE__)));
@@ -33,8 +34,7 @@ function form_maker_options_panel_cfm() {
 
   $licensing_plugins_page = add_submenu_page('manage_fmc', 'Licensing/Donation', 'Licensing/Donation', 'manage_options', 'licensing_fmc', 'form_maker_cfm');
 
-  $featured_plugins_page = add_submenu_page('manage_fmc', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'featured_plugins_fmc', 'form_maker_cfm');
-  add_action('admin_print_styles-' . $featured_plugins_page, 'form_maker_featured_plugins_styles_cfm');
+  add_submenu_page('manage_fmc', 'Featured Plugins', 'Featured Plugins', 'manage_options', 'featured_plugins_fmc', 'fmc_featured');
 
   $uninstall_page = add_submenu_page('manage_fmc', 'Uninstall', 'Uninstall', 'manage_options', 'uninstall_fmc', 'form_maker_cfm');
   add_action('admin_print_styles-' . $uninstall_page, 'form_maker_styles_cfm');
@@ -44,14 +44,29 @@ function form_maker_options_panel_cfm() {
 add_action('admin_menu', 'form_maker_options_panel_cfm');
 
 function form_maker_cfm() {
+  if (function_exists('current_user_can')) {
+    if (!current_user_can('manage_options')) {
+      die('Access Denied');
+    }
+  }
+  else {
+    die('Access Denied');
+  }
   require_once(WD_FMC_DIR . '/framework/WDW_FMC_Library.php');
   $page = WDW_FMC_Library::get('page');
-  if (($page != '') && (($page == 'manage_fmc') || ($page == 'submissions_fmc') || ($page == 'blocked_ips_fmc') || ($page == 'themes_fmc') || ($page == 'licensing_fmc') || ($page == 'featured_plugins_fmc') || ($page == 'uninstall_fmc') || ($page == 'formcontactwindow'))) {
+  if (($page != '') && (($page == 'manage_fmc') || ($page == 'submissions_fmc') || ($page == 'blocked_ips_fmc') || ($page == 'themes_fmc') || ($page == 'licensing_fmc') || ($page == 'uninstall_fmc') || ($page == 'formcontactwindow'))) {
     require_once (WD_FMC_DIR . '/admin/controllers/FMController' . ucfirst(strtolower($page)) . '.php');
     $controller_class = 'FMController' . ucfirst(strtolower($page));
     $controller = new $controller_class();
     $controller->execute();
   }
+}
+
+function fmc_featured() {
+  require_once(WD_FMC_DIR . '/featured/featured.php');
+  wp_register_style('fmc_featured', WD_FMC_URL . '/featured/style.css', array(), get_option("wd_form_maker_version"));
+  wp_print_styles('fmc_featured');
+  spider_featured('contact-form-maker');
 }
 
 add_action('wp_ajax_get_stats_fmc', 'form_maker_cfm'); //Show statistics
@@ -156,14 +171,6 @@ add_action('wp_ajax_formcontactwindow', 'form_maker_ajax_cfm');
 add_filter('mce_external_plugins', 'form_maker_register_cfm');
 add_filter('mce_buttons', 'form_maker_add_button_cfm', 0);
 
-for ($ii = 0; $ii < 100; $ii++) {
-  remove_filter('the_content', 'do_shortcode', $ii);
-  remove_filter('the_content', 'wpautop', $ii);
-}
-add_filter('the_content', 'wpautop', 10);
-add_filter('the_content', 'do_shortcode', 11);
-
-
 // Contact Form Maker Widget.
 if (class_exists('WP_Widget')) {
   require_once(WD_FMC_DIR . '/admin/controllers/FMControllerWidget_fmc.php');
@@ -173,7 +180,7 @@ if (class_exists('WP_Widget')) {
 // Activate plugin.
 function form_maker_activate_cfm() {
   $version = get_option("wd_form_maker_version");
-  $new_version = '1.7.18';
+  $new_version = '1.7.19';
   if (!$version) {
     add_option("wd_form_maker_version", $new_version, '', 'no');
     global $wpdb;
@@ -300,11 +307,6 @@ function form_maker_cfm_submissions_scripts() {
   ));
 }
 
-// Contact Form Maker Featured plugins page styles.
-function form_maker_featured_plugins_styles_cfm() {
-  wp_enqueue_style('Featured_Plugins', WD_FMC_URL . '/css/form_maker_featured_plugins.css');
-}
-
 function form_maker_styles_cfm() {
   wp_enqueue_style('form_maker_tables', WD_FMC_URL . '/css/form_maker_tables.css', array(), get_option("wd_form_maker_version"));
 }
@@ -363,7 +365,7 @@ add_action('wp_enqueue_scripts', 'form_maker_front_end_scripts_cfm');
 
 // Languages localization.
 function form_maker_language_load_cfm() {
-  load_plugin_textdomain('form_maker_cfm', FALSE, basename(dirname(__FILE__)) . '/languages');
+  load_plugin_textdomain('form_maker', FALSE, basename(dirname(__FILE__)) . '/languages');
 }
 add_action('init', 'form_maker_language_load_cfm');
 
