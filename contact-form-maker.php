@@ -3,7 +3,7 @@
  * Plugin Name: Contact Form Maker
  * Plugin URI: http://web-dorado.com/products/form-maker-wordpress.html
  * Description: This plugin is a modern and advanced tool for easy and fast creating of a WordPress Form. The backend interface is intuitive and user friendly which allows users far from scripting and programming to create WordPress Forms.
- * Version: 1.7.19
+ * Version: 1.7.20
  * Author: WebDorado
  * Author URI: http://web-dorado.com/
  * License: GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
@@ -136,25 +136,25 @@ function Contact_Form_maker_fornt_end_main($content) {
   global $contact_form_maker_generate_action;
   if (!get_option('form_maker_pro_active', FALSE)) {
   if ($contact_form_maker_generate_action) {
-    $pattern = '[\[wd_contact_form id="([0-9]*)"\]]';
+    $pattern = '[\[wd_contact_form id=("|&#8221;)([0-9]*)("|&#8243;)\]]';
     $count_forms_in_post = preg_match_all($pattern, $content, $matches_form);
     if ($count_forms_in_post) {
       require_once (WD_FMC_DIR . '/frontend/controllers/FMControllerForm_maker_fmc.php');
       $controller = new FMControllerForm_maker_fmc();
       for ($jj = 0; $jj < $count_forms_in_post; $jj++) {
         $padron = $matches_form[0][$jj];
-        $replacment = $controller->execute($matches_form[1][$jj]);
+        $replacment = $controller->execute($matches_form[2][$jj]);
         $content = str_replace($padron, $replacment, $content);
       }
     }
-    $pattern = '[\[contact_form id="([0-9]*)"\]]';
+    $pattern = '[\[contact_form id=("|&#8221;)([0-9]*)("|&#8243;)\]]';
     $count_forms_in_post = preg_match_all($pattern, $content, $matches_form);
     if ($count_forms_in_post) {
       require_once (WD_FMC_DIR . '/frontend/controllers/FMControllerForm_maker_fmc.php');
       $controller = new FMControllerForm_maker_fmc();
       for ($jj = 0; $jj < $count_forms_in_post; $jj++) {
         $padron = $matches_form[0][$jj];
-        $replacment = $controller->execute($matches_form[1][$jj]);
+        $replacment = $controller->execute($matches_form[2][$jj]);
         $content = str_replace($padron, $replacment, $content);
       }
     }
