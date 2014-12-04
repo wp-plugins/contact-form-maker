@@ -74,6 +74,9 @@ class FMModelSubmissions_fmc {
     $lists['startdate'] = ((isset($_POST['startdate'])) ? esc_html(stripslashes($_POST['startdate'])) : '');
     $lists['enddate'] = ((isset($_POST['enddate'])) ? esc_html(stripslashes($_POST['enddate'])) : '');
     $lists['ip_search'] = ((isset($_POST['ip_search'])) ? esc_html(stripslashes($_POST['ip_search'])) : '');
+	
+	$lists['username_search'] = ((isset($_POST['username_search'])) ? esc_html(stripslashes($_POST['username_search'])) : '');
+	$lists['useremail_search'] = ((isset($_POST['useremail_search'])) ? esc_html(stripslashes($_POST['useremail_search'])) : '');
     if ($lists['ip_search']) {
       $where[] = 'ip LIKE "%' . $lists['ip_search'] . '%"';
     }
@@ -83,11 +86,21 @@ class FMModelSubmissions_fmc {
     if ($lists['enddate'] != '') {
       $where[] = " `date`<='" . $lists['enddate'] . " 23:59:59' ";
     }
+	
+	
+	if ($lists['username_search']) {
+      	$where[] = 'user_id_wd IN (SELECT ID FROM ' . $wpdb->prefix . 'users WHERE display_name LIKE "%'.$lists['username_search'].'%")';
+    }
+	if ($lists['useremail_search']) {
+      $where[] = 'user_id_wd IN (SELECT ID FROM ' . $wpdb->prefix . 'users WHERE user_email LIKE "%'.$lists['useremail_search'].'%")';
+    }
     $where[] = 'form_id=' . $form_id . '';
     $where = (count($where) ? ' ' . implode(' AND ', $where) : ''); 
     if ($order_by == 'group_id' or $order_by == 'date' or $order_by == 'ip') { 
       $orderby = ' ORDER BY ' . $order_by . ' ' . $asc_or_desc . '';
-    }
+    }elseif($order_by == 'display_name' or $order_by == 'user_email'){
+	  $orderby 	= ' ORDER BY (SELECT '.$order_by.' FROM ' . $wpdb->prefix . 'users WHERE ID=user_id_wd) '. $asc_or_desc .'';
+	}
     else {
       $orderby = "";
     }

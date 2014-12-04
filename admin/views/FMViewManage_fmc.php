@@ -186,6 +186,10 @@ class FMViewManage_fmc {
         document.getElementById('take').style.display = "none";
         document.getElementById('page_bar').style.display = "none";
         document.getElementById('saving').style.display = "block";
+        jQuery('.wdform_section .wdform_column').each(function() {
+          if(!jQuery(this).html())
+            jQuery(this).remove();
+        });
         remove_whitespace(document.getElementById('take'));
         l_id_array = [<?php echo $labels['id']?>];
         l_label_array = [<?php echo $labels['label']?>];
@@ -535,7 +539,7 @@ class FMViewManage_fmc {
                           <input type="radio" value="before" name="el_pos" id="pos_before" onclick="Enable()"/>
                           Before
                           <select style="width: 100px; margin-left: 5px;" id="sel_el_pos" onclick="change_before()" disabled="disabled"></select>
-                          <img alt="ADD" title="add" style="cursor:pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/save.png'; ?>" onClick="add(0)"/>
+                          <img alt="ADD" title="add" style="cursor:pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/save.png'; ?>" onClick="add(0, false)"/>
                           <img alt="CANCEL" title="cancel" style="cursor: pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/cancel_but.png'; ?>" onClick="close_window()"/>
                           <hr style=" margin-bottom:10px" />
                         </td>
@@ -575,7 +579,13 @@ class FMViewManage_fmc {
         <?php
       }
       ?>
-      <br /><br />
+      <br />
+      <div style="margin-left:5px;">
+        <label for="enable_sortable" style="font-size: 14px; font-weight: bold;">Enable Drag & Drop</label>
+        <input type="checkbox" name="sortable" id="enable_sortable" value="<?php echo $row->sortable; ?>" onclick="enable_drag(this)" <?php if($row->sortable==1) echo 'checked="checked"'; ?> />
+        <div>You can use drag and drop to move the fields up/down for the change of the order and left/right for creating columns within the form.</div>
+      </div>
+      <br />
       <fieldset>
         <legend><h2 style="color: #00aeef;">Form</h2></legend>
         <div id="saving" style="display:none;">
@@ -1141,9 +1151,36 @@ class FMViewManage_fmc {
         jQuery(window).load(function () {
           formOnload();
         });
+        jQuery(function() {
+
+          jQuery('.wdform_section .wdform_column:last-child').each(function() {
+              jQuery(this).parent().append(jQuery('<div></div>').addClass("wdform_column"));		
+            });
+            
+          sortable_columns();
+          if(<?php echo $row->sortable ?>==1)	
+          {
+            jQuery( ".wdform_arrows" ).hide();
+            all_sortable_events();
+          }
+          else
+            jQuery('.wdform_column').sortable( "disable" );	
+          
+        });
       </script>
         <?php
       }
+      else { ?>
+        <script type="text/javascript">
+          jQuery(function() {
+            jQuery('.wdform_section .wdform_column:last-child').each(function() {
+                jQuery(this).parent().append(jQuery('<div></div>').addClass("wdform_column"));		
+              });
+            sortable_columns();
+            all_sortable_events();
+          });
+        </script>
+      <?php }
       ?>
 
       <input type="hidden" name="option" value="com_formmaker" />
@@ -1470,7 +1507,7 @@ class FMViewManage_fmc {
                           <input type="radio" value="before" name="el_pos" id="pos_before" onclick="Enable()"/>
                           Before
                           <select style="width: 100px; margin-left: 5px;" id="sel_el_pos" disabled="disabled"></select>
-                          <img alt="ADD" title="add" style="cursor:pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/save.png'; ?>" onClick="add(0)"/>
+                          <img alt="ADD" title="add" style="cursor:pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/save.png'; ?>" onClick="add(0, false)"/>
                           <img alt="CANCEL" title="cancel" style="cursor: pointer; vertical-align:middle; margin:5px" src="<?php echo WD_FMC_URL . '/images/cancel_but.png'; ?>" onClick="close_window()"/>
                           <hr style=" margin-bottom:10px" />
                         </td>
@@ -1510,7 +1547,8 @@ class FMViewManage_fmc {
         <?php
       }
       ?>
-      <br /><br />
+      <br />      
+      <br />
       <fieldset>
         <legend><h2 style="color: #00aeef;">Form</h2></legend>
         <table width="100%" style="margin:8px">
@@ -2582,6 +2620,8 @@ class FMViewManage_fmc {
   public function form_options($id) {
     $row = $this->model->get_row_data($id);
     $themes = $this->model->get_theme_rows_data();
+    $queries = $this->model->get_queries_rows_data($id);
+    $userGroups = get_editable_roles();
     $page_title = $row->title . ' form options';
     $label_id = array();
     $label_label = array();
@@ -2716,7 +2756,7 @@ class FMViewManage_fmc {
       </div>
       <fieldset id="general_fieldset" class="adminform fm_fieldset_deactive">
         <legend style="color:#0B55C4;font-weight: bold;">General Options</legend>
-        <table class="admintable" style="float: left;">
+        <table class="admintable">
           <tr valign="top">
             <td class="fm_options_label">
               <label>Published</label>
@@ -2766,15 +2806,228 @@ class FMViewManage_fmc {
             </td>
           </tr>
         </table>
+        <div class="error" style="padding: 5px; font-size: 14px;">Front end submissions are disabled in free version.</div>
+        <fieldset class="adminform">
+          <legend style="color:#0B55C4;font-weight: bold;">Front end submissions access level</legend>
+          <table>
+            <tr>
+              <td class="key">
+                <label for="name">
+                  Allow User to see submissions:
+                </label>
+              </td>
+              <td>
+                <?php
+                $checked_UserGroup=explode(',',$row->user_id_wd);
+                $i = 0;
+                foreach($userGroups as $val => $uG) {
+                  echo '<input disabled="disabled" type="checkbox" value="'.$val .'"  id="user_'.$i.'"';                  
+                  if(in_array($val ,$checked_UserGroup))
+                    echo 'checked="checked"';                  
+                  echo 'onchange="acces_level('.count($userGroups).')"/><label for="user_'.$i.'">'.$uG["name"].'</label><br>';
+                  $i++;
+                }
+                ?>
+                <input disabled="disabled" type="checkbox" value="guest"  id="user_<?php echo $i; ?>" onchange="acces_level(<?php echo count($userGroups); ?>)"<?php echo (in_array('guest', $checked_UserGroup) ? 'checked="checked"' : '') ?>/><label for="user_<?php echo $i; ?>">Guest</label>
+                <input disabled="disabled" type="hidden" name="user_id_wd" value="<?php echo $row->user_id_wd ?>" id="user_id_wd" />
+              </td>
+            </tr>              
+          </table>
+        </fieldset>
+        <?php
+          $labels_for_submissions = $this->model->get_labels($id);
+          $payment_info = $this->model->is_paypal($id);
+          
+          $labels_id_for_submissions= array();
+          $label_titles_for_submissions=array();
+          $labels_type_for_submissions= array();
+          if($labels_for_submissions)
+          {
+            $label_id_for_submissions= array();
+            $label_order_original_for_submissions= array();
+            $label_type_for_submissions= array();
+            
+            if(strpos($row->label_order, 'type_paypal_'))
+            {
+              $row->label_order=$row->label_order."item_total#**id**#Item Total#**label**#type_paypal_payment_total#****#total#**id**#Total#**label**#type_paypal_payment_total#****#0#**id**#Payment Status#**label**#type_paypal_payment_status#****#";
+            }
+            
+            $label_all_for_submissions	= explode('#****#',$row->label_order);
+            $label_all_for_submissions 	= array_slice($label_all_for_submissions,0, count($label_all_for_submissions)-1);   
+            
+            foreach($label_all_for_submissions as $key => $label_each) 
+            {
+              $label_id_each=explode('#**id**#',$label_each);
+              array_push($label_id_for_submissions, $label_id_each[0]);
+              
+              $label_order_each=explode('#**label**#', $label_id_each[1]);
+              
+              array_push($label_order_original_for_submissions, $label_order_each[0]);
+              array_push($label_type_for_submissions, $label_order_each[1]);
+            }
+            
+            foreach($label_id_for_submissions as $key => $label) {
+              if(in_array($label, $labels_for_submissions))
+              {
+                array_push($labels_type_for_submissions, $label_type_for_submissions[$key]);
+                array_push($labels_id_for_submissions, $label);
+                array_push($label_titles_for_submissions, $label_order_original_for_submissions[$key]);
+              }
+            }
+          }
+        
+          $stats_labels = array();
+          $stats_labels_ids = array();
+          foreach($labels_type_for_submissions as $key => $label_type_cur)
+          {
+            if($label_type_cur=="type_checkbox" || $label_type_cur=="type_radio" || $label_type_cur=="type_own_select" || $label_type_cur=="type_country" || $label_type_cur=="type_paypal_select" || $label_type_cur=="type_paypal_radio" || $label_type_cur=="type_paypal_checkbox" || $label_type_cur=="type_paypal_shipping")
+            {
+              $stats_labels_ids[] = $labels_id_for_submissions[$key];
+              $stats_labels[] = $label_titles_for_submissions[$key];
+            }
+          }
+        ?>
+        <script type="text/javascript">
+          function inArray(needle, myarray) {
+            var length = myarray.length;
+            for(var i = 0; i < length; i++) {
+                if(myarray[i] == needle) return true;
+            }
+            return false;
+          }
+
+          function checked_labels(class_name) {
+            var checked_ids ='';            
+            jQuery('.'+class_name).each(function() {
+              if(this.checked) {
+                checked_ids += this.value+',';		
+              }
+            });              
+            if(class_name == 'filed_label') {
+              document.getElementById("frontend_submit_fields").value = checked_ids ;
+              if(checked_ids == document.getElementById("all_fields").value)
+                document.getElementById("all_fields").checked = true;
+              else
+                document.getElementById("all_fields").checked = false;
+            }
+            else {
+              document.getElementById("frontend_submit_stat_fields").value = checked_ids ;
+              if(checked_ids == document.getElementById("all_stats_fields").value)
+                document.getElementById("all_stats_fields").checked = true;
+              else
+                document.getElementById("all_stats_fields").checked = false;
+            }
+          }
+          
+          jQuery(document).ready(function () {
+            jQuery('.filed_label').each(function() {
+              if(document.getElementById("frontend_submit_fields").value == document.getElementById("all_fields").value)
+                document.getElementById("all_fields").checked = true;
+              if(inArray(this.value, document.getElementById("frontend_submit_fields").value.split(","))) {
+                this.checked = true;
+              }
+            });
+
+            jQuery('.stats_filed_label').each(function() {
+              if(document.getElementById("frontend_submit_stat_fields").value == document.getElementById("all_stats_fields").value)
+                document.getElementById("all_stats_fields").checked = true;          
+              if(inArray(this.value, document.getElementById("frontend_submit_stat_fields").value.split(","))) {
+                this.checked = true;		
+              }              
+            });
+              
+            jQuery(document).on('change','input[name="all_fields"]',function() {
+                jQuery('.filed_label').prop("checked" , this.checked);
+            });
+
+            jQuery(document).on('change','input[name="all_stats_fields"]',function() {
+                jQuery('.stats_filed_label').prop("checked" , this.checked);
+            });
+          });
+        </script>
+
+        <style>
+          li{
+          list-style-type: none;
+          }
+
+          .simple_table
+          {
+          padding-left: 0px !important;
+          }
+
+          .simple_table input, .simple_table label, .simple_table img
+          {
+          display:inline-block !important;
+          float:none !important;
+          }
+        </style>
+        <fieldset class="adminform">
+          <legend style="color:#0B55C4;font-weight: bold;">Fields to hide in frontend submissions</legend>
+          <?php if(count($label_titles_for_submissions)): ?>
+            <table style="margin-left:-3px;">
+              <tr>
+                <td> 
+                  <label>Select fields:</label>
+                </td>
+                <td  class="simple_table">
+                  <ul id="form_fields">
+                    <li>
+                    <input disabled="disabled" type="checkbox" name="all_fields" id="all_fields" value="submit_id,<?php echo implode(',',$labels_id_for_submissions)."," . ($payment_info ? "payment_info" : ""); ?>" onclick="checked_labels('filed_label')"/>
+                    <label for="all_fields">Select All</label>
+                    </li>
+                    <?php 
+                    echo "<li><input disabled=\"disabled\" type=\"checkbox\" id=\"submit_id\" name=\"submit_id\" value=\"submit_id\" class=\"filed_label\"  onclick=\"checked_labels('filed_label')\"><label for=\"submit_id\">ID</label></li>";	
+                      
+                    for($i=0, $n=count($label_titles_for_submissions); $i < $n ; $i++)     
+                    {
+                      $field_label = $label_titles_for_submissions[$i];
+
+                      echo "<li><input disabled=\"disabled\" type=\"checkbox\" id=\"filed_label".$i."\" name=\"filed_label".$i."\" value=\"".$labels_id_for_submissions[$i]."\" class=\"filed_label\" onclick=\"checked_labels('filed_label')\"><label for=\"filed_label".$i."\">".(strlen($field_label) > 80 ? substr ($field_label ,0, 80).'...' : $field_label)."</label></li>";
+                           
+                    }
+                    if($payment_info)
+                    echo "<li><input disabled=\"disabled\" type=\"checkbox\" id=\"payment_info\" name=\"payment_info\" value=\"payment_info\" class=\"filed_label\" onclick=\"checked_labels('filed_label')\"><label for=\"payment_info\">Payment Info</label></li>";
+                    ?>
+                  </ul>
+                  <input type="hidden" name="frontend_submit_fields" value="<?php echo $row->frontend_submit_fields ?>" id="frontend_submit_fields" />
+                </td>	
+              </tr>
+              <?php if($stats_labels): ?>
+              <tr id="stats">
+                <td> 
+                  <label>Stats fields:</label>
+                </td>
+                <td class="simple_table">
+                  <ul id="stats_fields">
+                    <li>
+                    <input disabled="disabled" type="checkbox" name="all_stats_fields" id="all_stats_fields" value="<?php echo implode(',',$stats_labels_ids).","; ?>" onclick="checked_labels('stats_filed_label')">
+                    <label for="all_stats_fields">Select All</label>
+                    </li>
+                    <?php 
+                    for($i=0, $n=count($stats_labels); $i < $n ; $i++)     
+                    {
+                      $field_label = $stats_labels[$i];
+                      echo "<li><input disabled=\"disabled\" type=\"checkbox\" id=\"stats_filed_label".$i."\" name=\"stats_filed_label".$i."\" value=\"".$stats_labels_ids[$i]."\" class=\"stats_filed_label\" onclick=\"checked_labels('stats_filed_label')\" ><label for=\"stats_filed_label".$i."\">".(strlen($field_label) > 80 ? substr ($field_label ,0, 80).'...' : $field_label)."</label></li>";
+                    }
+                    ?>
+                  </ul>
+                  <input type="hidden" name="frontend_submit_stat_fields" value="<?php echo $row->frontend_submit_stat_fields ?>" id="frontend_submit_stat_fields" />
+                </td>	
+              </tr>
+              <?php endif; ?>
+            </table>
+          <?php endif; ?>
+        </fieldset>
       </fieldset>
       <fieldset id="custom_fieldset" class="adminform fm_fieldset_deactive">
         <legend style="color: #0B55C4; font-weight: bold;">Email Options</legend>
         <table class="admintable">
           <tr valign="top">
-            <td style="padding: 5px; width:75px;">
+            <td style="padding: 15px; width: 75px;">
               <label>Send E-mail</label>
             </td>
-            <td style="padding: 5px;">
+            <td style="padding: 15px;">
               <input type="radio" name="sendemail" id="sendemail_yes" value="1" <?php echo ($row->sendemail) ? "checked" : ""; ?> /><label for="sendemail_yes">Yes</label>
               <input type="radio" name="sendemail" id="sendemail_no" value="0" <?php echo (!$row->sendemail) ? "checked" : ""; ?> /><label for="sendemail_no">No</label>
             </td>
@@ -2785,7 +3038,7 @@ class FMViewManage_fmc {
           <table class="admintable">
             <tr valign="top">
               <td class="fm_options_label">
-                <label for="mail">Email to send submissions to</label>
+                <label for="mailToAdd">Email to send submissions to</label>
               </td>
               <td class="fm_options_value">
                 <input type="text" id="mailToAdd" name="mailToAdd" style="width: 250px;" />
@@ -2847,11 +3100,12 @@ class FMViewManage_fmc {
                 <label for="from_name">From Name</label>
               </td>
               <td class="fm_options_value">
-                <input type="text" id="from_name" name="from_name" value="<?php echo $row->from_name; ?>" style="width: 230px;" />
-                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
+                <input type="text" id="from_name" name="from_name" value="<?php echo $row->from_name; ?>" style="width: 250px;" />
+                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_labels').style.display='block';" style="vertical-align: middle; cursor: pointer;display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('from_name')";
-								echo '<div style="position:relative; top:-3px;"><div id="mail_from_labels" class="email_labels" style="display:none;">';							
+								echo '<div style="position:relative; top:-3px;"><div id="mail_from_labels" class="email_labels" style="display:none;">';
+                echo "<a onClick=\"insertAtCursor(".$choise.",'username'); document.getElementById('mail_from_labels').style.display='none';\" style=\"display:block; text-decoration:none;\">Username</a>";
 								for($i=0; $i<count($label_label); $i++)			
 								{ 			
 									if($label_type[$i]=="type_submit_reset" || $label_type[$i]=="type_editor" || $label_type[$i]=="type_map" || $label_type[$i]=="type_mark_map" || $label_type[$i]=="type_captcha"|| $label_type[$i]=="type_recaptcha" || $label_type[$i]=="type_button" || $label_type[$i]=="type_file_upload" || $label_type[$i]=="type_send_copy" || $label_type[$i]=="type_matrix")			
@@ -2922,8 +3176,8 @@ class FMViewManage_fmc {
 								<label> Subject: </label>
 							</td>
 							<td class="fm_options_value">
-								<input type="text" id="mail_subject" name="mail_subject" value="<?php echo $row->mail_subject ?>" style="width:230px;" />
-								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
+								<input type="text" id="mail_subject" name="mail_subject" value="<?php echo $row->mail_subject ?>" style="width:250px;" />
+								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_labels').style.display='block';" style="vertical-align: middle;cursor: pointer; display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('mail_subject')";
 								echo '<div style="position:relative; top:-3px;"><div id="mail_subject_labels" class="email_labels" style="display:none;">';							
@@ -2986,6 +3240,9 @@ class FMViewManage_fmc {
                     <?php
                   }
                   ?>
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="Ip" onClick="insertAtCursor(<?php echo $choise; ?>,'ip')" />
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="Username" onClick="insertAtCursor(<?php echo $choise; ?>,'username')" />
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="User Email" onClick="insertAtCursor(<?php echo $choise; ?>,'useremail')" />
                   <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="All fields list" onClick="insertAtCursor(<?php echo $choise; ?>, 'all')" />
                 </div>
                 <?php
@@ -3044,8 +3301,8 @@ class FMViewManage_fmc {
                 <label for="mail_from_name_user">From Name</label>
               </td>
               <td class="fm_options_value">
-                <input type="text" id="mail_from_name_user" name="mail_from_name_user" value="<?php echo $row->mail_from_name_user; ?>" style="width: 230px;"/>
-                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_name_user_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
+                <input type="text" id="mail_from_name_user" name="mail_from_name_user" value="<?php echo $row->mail_from_name_user; ?>" style="width: 250px;"/>
+                <img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_from_name_user_labels').style.display='block';" style="vertical-align: middle;cursor: pointer; display:inline-block; margin:0px; float:none;">
                 <?php 
                 $choise = "document.getElementById('mail_from_name_user')";
                 echo '<div style="position:relative; top:-3px;"><div id="mail_from_name_user_labels" class="email_labels" style="display:none;">';							
@@ -3100,8 +3357,8 @@ class FMViewManage_fmc {
 								<label> Subject: </label>
 							</td>
 							<td class="fm_options_value">
-								<input type="text" id="mail_subject_user" name="mail_subject_user" value="<?php echo $row->mail_subject_user ?>" style="width:230px;" />
-								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_user_labels').style.display='block';" style="cursor: pointer; vertical-align: middle; display:inline-block; margin:0px; float:none;">
+								<input type="text" id="mail_subject_user" name="mail_subject_user" value="<?php echo $row->mail_subject_user ?>" style="width:250px;" />
+								<img src="<?php echo WD_FMC_URL . '/images/add.png'; ?>" onclick="document.getElementById('mail_subject_user_labels').style.display='block';" style="vertical-align: middle; cursor: pointer; display:inline-block; margin:0px; float:none;">
 								<?php 
 								$choise = "document.getElementById('mail_subject_user')";
 								echo '<div style="position:relative; top:-3px;"><div id="mail_subject_user_labels" class="email_labels" style="display:none;">';							
@@ -3164,6 +3421,9 @@ class FMViewManage_fmc {
                     <?php
                   }
                   ?>
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="Ip" onClick="insertAtCursor(<?php echo $choise; ?>,'ip')" />
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="Username" onClick="insertAtCursor(<?php echo $choise; ?>,'username')" />
+                  <input style="border: 1px solid silver; font-size: 10px; margin: 3px;" type="button" value="User Email" onClick="insertAtCursor(<?php echo $choise; ?>,'useremail')" />
                   <input style="border: 1px solid silver; font-size: 10px; margin:3px;" type="button" value="All fields list" onClick="insertAtCursor(<?php echo $choise; ?>, 'all')" />
                 </div>
                 <?php
@@ -3349,7 +3609,7 @@ class FMViewManage_fmc {
               <label for="tax">Tax</label>
             </td>
             <td class="fm_options_value">
-              <input disabled="disabled" type="text" name="tax" id="tax" value="<?php echo $row->tax; ?>" class="text_area" style="width:30px" onKeyPress="return check_isnum(event)"> %
+              <input type="text" name="tax" id="tax" value="<?php echo $row->tax; ?>" class="text_area" style="width: 40px;" onKeyPress="return check_isnum_point(event)"> %
             </td>
           </tr>
         </table>
@@ -3361,8 +3621,8 @@ class FMViewManage_fmc {
             <td class="fm_options_label">
               <label for="javascript">Javascript</label>
             </td>
-            <td class="fm_options_value">
-              <textarea style="margin: 0px;" cols="60" rows="30" name="javascript" id="javascript"><?php echo $row->javascript; ?></textarea>
+            <td class="fm_options_value" style="width:650px;">
+              <textarea style="margin: 0px; height: 400px; width: 600px;" cols="60" rows="30" name="javascript" id="form_javascript"><?php echo $row->javascript; ?></textarea>
             </td>
           </tr>
         </table>
@@ -3456,7 +3716,7 @@ class FMViewManage_fmc {
 					?>
 					<div>
 					<span style="font-size:13px;">Add Condition<span/>
-					<img src="<?php echo WD_FM_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>', '<?php echo $all_ids_cond; ?>', '<?php echo htmlspecialchars(addslashes($all_labels_cond)); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
+					<img src="<?php echo WD_FMC_URL . '/images/add_condition.png'; ?>" title="add" onclick="add_condition('<?php echo $chose_ids; ?>', '<?php echo htmlspecialchars(addslashes($chose_labels)); ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>', '<?php echo $all_ids_cond; ?>', '<?php echo htmlspecialchars(addslashes($all_labels_cond)); ?>')" style="cursor: pointer; vertical-align: middle; margin-left:15px;">
 					</div>
 					<?php
 
@@ -3510,7 +3770,7 @@ class FMViewManage_fmc {
 								$param_values = explode('***',$_param);
 								$multiselect = explode('@@@',$param_values[2]);
 							
-								?>
+								if(in_array($param_values[0],$ids)): ?>
 								<div id="condition_div<?php echo $k; ?>_<?php echo $key; ?>">
 								<select id="field_labels<?php echo $k; ?>_<?php echo $key; ?>" onchange="change_choices(this.options[this.selectedIndex].id+'_<?php echo $key; ?>','<?php echo $chose_ids; ?>', '<?php echo $chose_types; ?>', '<?php echo htmlspecialchars(addslashes($chose_paramss)); ?>')" style="width:350px;"/>
 									<?php 
@@ -3541,7 +3801,7 @@ class FMViewManage_fmc {
 								<option value="!=" <?php if($param_values[1]=="!=") echo 'selected="selected"'; ?>>is not</option>
 								</select>
 								
-								<?php if (in_array($types[$key_select_or_input],$select_type_fields)) : ?>
+								<?php if ($key_select_or_input != '' && in_array($types[$key_select_or_input],$select_type_fields)) : ?>
 								<select id="field_value<?php echo $k; ?>_<?php echo $key; ?>" <?php echo $multiple; ?> style="vertical-align: top; width: 200px;">
 								<?php  
 								switch($types[$key_select_or_input])
@@ -3603,10 +3863,10 @@ class FMViewManage_fmc {
 									?>	
 								</select>
 								<?php else : 
-								if($types[$key_select_or_input]=="type_number" || $types[$key_select_or_input]=="type_phone")
+								if($key_select_or_input != '' && ($types[$key_select_or_input]=="type_number" || $types[$key_select_or_input]=="type_phone"))
 									$onkeypress_function = "onkeypress='return check_isnum_space(event)'";
 								else
-									if($types[$key_select_or_input]=="type_paypal_price")
+									if($key_select_or_input != '' && $types[$key_select_or_input]=="type_paypal_price")
 										$onkeypress_function = "onkeypress='return check_isnum_point(event)'";
 									else
 										$onkeypress_function = "";
@@ -3615,7 +3875,7 @@ class FMViewManage_fmc {
 								
 								<img src="<?php echo WD_FMC_URL . '/images/delete.png'; ?>" id="delete_condition<?php echo $k; ?>_<?php echo $key; ?>" onclick="delete_field_condition('<?php echo $k; ?>_<?php echo $key; ?>')" style="vertical-align: top;">
 								</div>
-								<?php
+								<?php endif;
 							}
 						}
 

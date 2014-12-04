@@ -205,10 +205,11 @@ class FMViewForm_maker_fmc {
 					$change = '';
 					$click = '';
 					
-					foreach($cond_params as $key=>$param)
+					for($m=0; $m<count($cond_params); $m++)
 					{
-						$params_value = explode('***',wp_specialchars_decode($param, 'single'));
+						$params_value = explode('***',wp_specialchars_decode($cond_params[$m], 'single'));
             if(isset($type_and_id[$params_value[0]]))
+			{
 						switch($type_and_id[$params_value[0]])
 						{
 							case "type_text":
@@ -504,8 +505,13 @@ class FMViewForm_maker_fmc {
                   break;
 						}	
 
-						if($key!=count($cond_params)-1)
-							$if .= $or_and;
+						if($m!=count($cond_params)-1)
+						    {
+								$params_value_next = explode('***',$cond_params[$m+1]);
+								if(isset($type_and_id[$params_value_next[0]]))
+								$if .= $or_and;
+							}
+					    }
 					}
 
 					if($if)
@@ -2116,7 +2122,7 @@ class FMViewForm_maker_fmc {
                 if('.($required ? 'true' : 'false').' || jQuery("#wdform_'.$id1.'_element_dollars'.$form_id.'").val()!="'.$w_title[0].'" || jQuery("#wdform_'.$id1.'_element_cents'.$form_id.'").val()!="'.$w_title[1].'")
                   if((range_max!=-1 && parseFloat(price)>range_max) || parseFloat(price)<range_min)
                   {		
-                    alert("' . (__('The', 'form_maker')) . $label . (__('value must be between', 'form_maker')) . ($param['w_range_min'] ? $param['w_range_min'] : 0) . '-' . ($param['w_range_max'] ? $param['w_range_max'] : "any") . '");
+                    alert("' . addslashes((__('The', 'form_maker')) . $label . (__('value must be between', 'form_maker')) . ($param['w_range_min'] ? $param['w_range_min'] : 0) . '-' . ($param['w_range_max'] ? $param['w_range_max'] : "any")) . '");
 
                     old_bg=x.find(jQuery("div[wdid='.$id1.']")).css("background-color");
                     x.find(jQuery("div[wdid='.$id1.']")).effect( "shake", {}, 500 ).css("background-color","#FF8F8B").animate({backgroundColor: old_bg}, {duration: 500, queue: false });
@@ -3111,7 +3117,7 @@ class FMViewForm_maker_fmc {
       FormPaypalTax_<?php echo $id; ?> = '<?php echo $form_paypal_tax ?>';  
 
       function formOnload<?php echo $id; ?>() {
-        if (jQuery.browser.msie  && parseInt(jQuery.browser.version, 10) === 8) {
+        if (navigator.userAgent.toLowerCase().indexOf('msie') != -1 && parseInt(navigator.userAgent.toLowerCase().split('msie')[1]) === 8) {
           jQuery("#form<?php echo $id; ?>").find(jQuery("input[type='radio']")).click(function() {jQuery("input[type='radio']+label").removeClass('if-ie-div-label'); jQuery("input[type='radio']:checked+label").addClass('if-ie-div-label')});	
           jQuery("#form<?php echo $id; ?>").find(jQuery("input[type='radio']:checked+label")).addClass('if-ie-div-label');
           jQuery("#form<?php echo $id; ?>").find(jQuery("input[type='checkbox']")).click(function() {jQuery("input[type='checkbox']+label").removeClass('if-ie-div-label'); jQuery("input[type='checkbox']:checked+label").addClass('if-ie-div-label')});	

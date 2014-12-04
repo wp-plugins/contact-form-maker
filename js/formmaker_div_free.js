@@ -1856,6 +1856,7 @@ function captcha_refresh(id)
 
 function up_row(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -1899,6 +1900,7 @@ function up_row(id)
 
 function down_row(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -1947,6 +1949,7 @@ function down_row(id)
 
 function right_row(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -1970,13 +1973,21 @@ function right_row(id)
 	
 	    
 	}
-	if(wdform_column.firstChild==null)
-		wdform_section.removeChild(wdform_column);
+//	if(wdform_column.firstChild==null)
+//		wdform_section.removeChild(wdform_column);	
+	
+	
+	sortable_columns();
+	remove_empty_columns();
+
+	if(document.getElementById("enable_sortable").value==0)
+		jQuery('.wdform_column').sortable( "disable" );	
 	
 }
 
 function left_row(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -1988,14 +1999,19 @@ function left_row(id)
 	
 	}
 
-	if(wdform_column.firstChild==null)
-		wdform_section.removeChild(wdform_column);
-
+//	if(wdform_column.firstChild==null)
+//		wdform_section.removeChild(wdform_column);
 	
+	sortable_columns();
+	remove_empty_columns();
+		
+	if(document.getElementById("enable_sortable").value==0)
+		jQuery('.wdform_column').sortable( "disable" );
 }
 
 function page_up(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -2028,6 +2044,7 @@ function page_up(id)
 
 function page_down(id)
 {
+  event.stopPropagation();
 	wdform_field=document.getElementById("wdform_field"+id);
 	wdform_row=wdform_field.parentNode;
 	wdform_column=wdform_row.parentNode;
@@ -3220,8 +3237,7 @@ function refresh_rowcol(num, type)
 				
 				}
 			}
-			
-						
+    refresh_attr(num, 'type_checkbox');
 	}
 }
 
@@ -4689,7 +4705,7 @@ function type_hidden(i, w_name, w_value, w_attr_name, w_attr_value){
 			
       	var div_element = document.createElement('div');
          	div_element.setAttribute("align", 'left');
-          	div_element.style.display="table-cell";
+          	div_element.style.cssText = 'display:table-cell; padding-left: 7px;';
           	div_element.setAttribute("id", i+"_element_sectionform_id_temp");
 			
       	var br1 = document.createElement('br');
@@ -4703,11 +4719,47 @@ function type_hidden(i, w_name, w_value, w_attr_name, w_attr_value){
 			label.setAttribute("id", i+"_element_labelform_id_temp");
 			label.style.cssText = 'display:none';
 			label.innerHTML = w_name;
+      
+      var label_hidden = document.createElement('span');
+			label_hidden.style.cssText = 'color:red; font-size:13px;';
+			label_hidden.innerHTML = 'Hidden field';
+		
+		
+		var div_hidden_name = document.createElement('div');
+			
+		var span_hidden_name_label = document.createElement('span');
+         	span_hidden_name_label.setAttribute("align", 'left');
+			span_hidden_name_label.innerHTML = 'Name: ';	
+			
+		var span_hidden_name = document.createElement('span');
+         	span_hidden_name.setAttribute("align", 'left');
+			span_hidden_name.innerHTML = w_name;	
+			span_hidden_name.setAttribute("id", i+"_hidden_nameform_id_temp");	
+		
+		var div_hidden_value = document.createElement('div');
+
+		var span_hidden_value_label = document.createElement('span');
+         	span_hidden_value_label.setAttribute("align", 'left');
+			span_hidden_value_label.innerHTML = 'Value: ';	
+			
+		var span_hidden_value = document.createElement('span');
+         	span_hidden_value.setAttribute("align", 'left');
+			span_hidden_value.innerHTML = w_value;	
+			span_hidden_value.setAttribute("id", i+"_hidden_valueform_id_temp");	
+			
+		div_hidden_name.appendChild(span_hidden_name_label);
+		div_hidden_name.appendChild(span_hidden_name);
+		div_hidden_value.appendChild(span_hidden_value_label);
+		div_hidden_value.appendChild(span_hidden_value);
+      
       	var main_td  = document.getElementById('show_table');
       
       	div_label.appendChild(label);
+        div_label.appendChild(label_hidden);
       	div_element.appendChild(adding);
       	div_element.appendChild(adding_type);
+        div_element.appendChild(div_hidden_name);
+        div_element.appendChild(div_hidden_value);
       	div_field.appendChild(div_label);
       	div_field.appendChild(div_element);
       	
@@ -24261,7 +24313,7 @@ function go_to_type_star_rating(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_star_rating(new_id,'Star Rating:', '150', 'left', 'yellow', '5', 'no', 'wdform_star_rating', w_attr_name, w_attr_value);			
+	type_star_rating(new_id,'Star Rating:', '100', 'left', 'yellow', '5', 'no', 'wdform_star_rating', w_attr_name, w_attr_value);			
 }
 
 
@@ -24270,14 +24322,14 @@ function go_to_type_scale_rating(new_id)
  	w_attr_name=[];
  	w_attr_value=[];
 	w_mini_labels=['Worst', 'Best'];
-	type_scale_rating(new_id,'Scale Rating:', '150', 'left', w_mini_labels, '5', 'no','wdform_scale_rating',w_attr_name, w_attr_value);			
+	type_scale_rating(new_id,'Scale Rating:', '100', 'left', w_mini_labels, '5', 'no','wdform_scale_rating',w_attr_name, w_attr_value);			
 }
 
 function go_to_type_spinner(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-type_spinner(new_id,'Spinner:', '150', 'left', '50', '', '', '1', '', 'no','',w_attr_name, w_attr_value);			
+type_spinner(new_id,'Spinner:', '100', 'left', '50', '', '', '1', '', 'no','',w_attr_name, w_attr_value);			
 
 }
 
@@ -24285,7 +24337,7 @@ function go_to_type_slider(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-type_slider(new_id,'Slider:', '150', 'left', '200', '0', '100', '0', 'no','',w_attr_name, w_attr_value);				
+type_slider(new_id,'Slider:', '100', 'left', '200', '0', '100', '0', 'no','',w_attr_name, w_attr_value);				
 }
 
 function go_to_type_range(new_id)
@@ -24293,7 +24345,7 @@ function go_to_type_range(new_id)
  	w_attr_name=[];
  	w_attr_value=[];
 	w_mini_labels = ['From', 'To'];
-type_range (new_id,'Range:', '150', 'left', '40', '1' , '', '', w_mini_labels, 'no','',w_attr_name, w_attr_value);			
+type_range (new_id,'Range:', '100', 'left', '40', '1' , '', '', w_mini_labels, 'no','',w_attr_name, w_attr_value);			
 
 }
 
@@ -24303,7 +24355,7 @@ function go_to_type_grading(new_id)
  	w_attr_value=[];
 	w_items = ['item1','item2','item3'];
 
-type_grading(new_id,'Grading:', '150', 'left', w_items, '100', 'no','wdform_grading',w_attr_name, w_attr_value);			
+type_grading(new_id,'Grading:', '100', 'left', w_items, '100', 'no','wdform_grading',w_attr_name, w_attr_value);			
 
 }
 
@@ -24314,7 +24366,7 @@ function go_to_type_matrix(new_id)
 	
 	w_rows = ['','row1','row2'];
 	w_columns = ['','column1','column2'];
-type_matrix(new_id,'Matrix:', '150', 'left', 'radio', w_rows, w_columns, 'no','wdform_matrix',w_attr_name, w_attr_value);				
+type_matrix(new_id,'Matrix:', '100', 'left', 'radio', w_rows, w_columns, 'no','wdform_matrix',w_attr_name, w_attr_value);				
 }
 
 function go_to_type_paypal_price(new_id)
@@ -24324,7 +24376,7 @@ function go_to_type_paypal_price(new_id)
  	w_first_val=['',''];
  	w_title=['',''];
 	w_mini_labels=['Dollars','Cents'];
-	type_paypal_price(new_id,'Amount:', '150', 'left', w_first_val, w_title, w_mini_labels, '100', 'no', 'no', '',w_attr_name, w_attr_value, '', '')
+	type_paypal_price(new_id,'Amount:', '100', 'left', w_first_val, w_title, w_mini_labels, '100', 'no', 'no', '',w_attr_name, w_attr_value, '', '')
 }
 
 function go_to_type_paypal_select(new_id)
@@ -24339,7 +24391,7 @@ function go_to_type_paypal_select(new_id)
  	w_property=[];
  	w_property_values=[];
 	
-	type_paypal_select(new_id, 'Select Product:', '150', 'left', '200',w_choices, w_choices_price, w_choices_checked, 'no','no', '1', 'wdform_select',w_attr_name, w_attr_value, w_choices_disabled, w_property, w_property_values);
+	type_paypal_select(new_id, 'Select Product:', '100', 'left', '200',w_choices, w_choices_price, w_choices_checked, 'no','no', '1', 'wdform_select',w_attr_name, w_attr_value, w_choices_disabled, w_property, w_property_values);
 }
 
 function go_to_type_paypal_checkbox(new_id)
@@ -24353,7 +24405,7 @@ function go_to_type_paypal_checkbox(new_id)
  	w_property=[];
  	w_property_values=[];
 	
-	type_paypal_checkbox(new_id,'Checkbox:', '150', 'left', 'ver', w_choices,w_choices_price, w_choices_checked, 'no', 'no', 'no','0', '',w_attr_name, w_attr_value, w_property, w_property_values, 'no','1');
+	type_paypal_checkbox(new_id,'Checkbox:', '100', 'left', 'ver', w_choices,w_choices_price, w_choices_checked, 'no', 'no', 'no','0', '',w_attr_name, w_attr_value, w_property, w_property_values, 'no','1');
 }
 
 function go_to_type_paypal_radio(new_id)
@@ -24366,7 +24418,7 @@ function go_to_type_paypal_radio(new_id)
 	w_property=[];
  	w_property_values=[];	
 		
-	type_paypal_radio(new_id,'Radio:', '150', 'left', 'ver', w_choices, w_choices_price, w_choices_checked, 'no', 'no', 'no','0','',w_attr_name, w_attr_value,  w_property,  w_property_values,'no', '1');
+	type_paypal_radio(new_id,'Radio:', '100', 'left', 'ver', w_choices, w_choices_price, w_choices_checked, 'no', 'no', 'no','0','',w_attr_name, w_attr_value,  w_property,  w_property_values,'no', '1');
 }
 	
 function go_to_type_paypal_shipping(new_id){
@@ -24385,13 +24437,13 @@ function go_to_type_paypal_shipping(new_id){
 
 	w_property_values=[];	
 
-	type_paypal_shipping(new_id,'Shipping:', '150', 'left', 'ver', w_choices, w_choices_price, w_choices_checked, 'no', 'no', 'no','0','',w_attr_name, w_attr_value,  w_property, w_property_values);
+	type_paypal_shipping(new_id,'Shipping:', '100', 'left', 'ver', w_choices, w_choices_price, w_choices_checked, 'no', 'no', 'no','0','',w_attr_name, w_attr_value,  w_property, w_property_values);
 	
 }
 
 function go_to_type_paypal_total(new_id){
  	
-	type_paypal_total(new_id,'Total:', '150', 'left', '');
+	type_paypal_total(new_id,'Total:', '100', 'left', '');
 	
 }
 
@@ -24789,7 +24841,7 @@ function go_to_type_text(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_text(new_id,'Text:', '150', 'left', '200', '', '', 'no', 'no', w_attr_name, w_attr_value);
+	type_text(new_id,'Text:', '100', 'left', '200', '', '', 'no', 'no', w_attr_name, w_attr_value);
 }
 
 function go_to_type_send_copy(new_id)
@@ -24810,28 +24862,28 @@ function go_to_type_number(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_number(new_id,'Number:', '150', 'left', '200', '', '', 'no', 'no', '',w_attr_name, w_attr_value);
+	type_number(new_id,'Number:', '100', 'left', '200', '', '', 'no', 'no', '',w_attr_name, w_attr_value);
 }
 
 function go_to_type_password(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_password(new_id,'Password:', '150', 'left', '200', 'no', 'no', 'wdform_input',w_attr_name, w_attr_value);
+	type_password(new_id,'Password:', '100', 'left', '200', 'no', 'no', 'wdform_input',w_attr_name, w_attr_value);
 }
 
 function go_to_type_textarea(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_textarea(new_id,'Textarea:', '150', 'left', '200', '100', '','', 'no', 'no', '',w_attr_name, w_attr_value)
+	type_textarea(new_id,'Textarea:', '100', 'left', '200', '100', '','', 'no', 'no', '',w_attr_name, w_attr_value)
 }
 
 function go_to_type_wdeditor(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_wdeditor(new_id,'Editor:', '150', 'left', '380', '200', '', 'no', '',w_attr_name, w_attr_value)
+	type_wdeditor(new_id,'Editor:', '100', 'left', '380', '200', '', 'no', '',w_attr_name, w_attr_value)
 }
 
 
@@ -24843,7 +24895,7 @@ function go_to_type_name(new_id)
  	w_first_val=['',''];
  	w_title=['',''];
 	w_mini_labels=['Title','First','Last','Middle'];
-	type_name(new_id,'Name:', '150', 'left', w_first_val, w_title, w_mini_labels, '100', 'normal', 'no', 'no', '',w_attr_name, w_attr_value)
+	type_name(new_id,'Name:', '100', 'left', w_first_val, w_title, w_mini_labels, '100', 'normal', 'no', 'no', '',w_attr_name, w_attr_value)
 }
 	
 function go_to_type_address(new_id)
@@ -24852,7 +24904,7 @@ function go_to_type_address(new_id)
  	w_attr_value=[];
 	w_mini_labels=['Street Address', 'Street Address Line 2', 'City', 'State / Province / Region', 'Postal / Zip Code', 'Country',];
 	w_disabled_fields=['no', 'no', 'no', 'no', 'no', 'no', 'no'];
-	type_address(new_id,'Address:', '150', 'left', '300', w_mini_labels, w_disabled_fields, 'no', 'wdform_address', w_attr_name, w_attr_value)
+	type_address(new_id,'Address:', '100', 'left', '300', w_mini_labels, w_disabled_fields, 'no', 'wdform_address', w_attr_name, w_attr_value)
 }
 
 function go_to_type_phone(new_id)
@@ -24862,14 +24914,14 @@ function go_to_type_phone(new_id)
  	w_first_val=['',''];
  	w_title=['',''];
 	w_mini_labels = ['Area Code','Phone Number'];
-	type_phone(new_id,'Phone:', '150', 'left', '135', w_first_val, w_title, w_mini_labels, 'no', 'no', '',w_attr_name, w_attr_value)
+	type_phone(new_id,'Phone:', '100', 'left', '135', w_first_val, w_title, w_mini_labels, 'no', 'no', '',w_attr_name, w_attr_value)
 }
 
 function go_to_type_submitter_mail(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_submitter_mail(new_id,'E-mail:', '150', 'left', '200', '', '', 'no', '', w_attr_name, w_attr_value);
+	type_submitter_mail(new_id,'E-mail:', '100', 'left', '200', '', '', 'no', '', w_attr_name, w_attr_value);
 }
 
 function go_to_type_time(new_id)
@@ -24878,7 +24930,7 @@ function go_to_type_time(new_id)
  	w_attr_name=[];
  	w_attr_value=[];
 	w_mini_labels = ['HH','MM','SS', 'AM/PM'];
-	type_time(new_id, 'Time:', '150', 'left', '24', '0', '1','','','', w_mini_labels, 'no', '',w_attr_name, w_attr_value);
+	type_time(new_id, 'Time:', '100', 'left', '24', '0', '1','','','', w_mini_labels, 'no', '',w_attr_name, w_attr_value);
 	
 }
 
@@ -24888,7 +24940,7 @@ function go_to_type_date(new_id)
  	w_attr_name=[];
  	w_attr_value=[];
 	
-	type_date(new_id, 'Date:', '150', 'left', '', 'no', '', '%Y-%m-%d', '...',w_attr_name, w_attr_value);
+	type_date(new_id, 'Date:', '100', 'left', '', 'no', '', '%Y-%m-%d', '...',w_attr_name, w_attr_value);
 }
 
 function go_to_type_date_fields(new_id)
@@ -24899,7 +24951,7 @@ function go_to_type_date_fields(new_id)
 	var current_date = new Date();
 	w_to=current_date.getFullYear();
 
-	type_date_fields(new_id, 'Date:', '150', 'left', '', '', '', 'SELECT', 'SELECT', 'SELECT', 'day', 'month', 'year', '60', '100', '80', 'no', 'wdform_date_fields', '1901', w_to, '&nbsp;/&nbsp;', w_attr_name, w_attr_value);
+	type_date_fields(new_id, 'Date:', '100', 'left', '', '', '', 'SELECT', 'SELECT', 'SELECT', 'day', 'month', 'year', '60', '100', '80', 'no', 'wdform_date_fields', '1901', w_to, '&nbsp;/&nbsp;', w_attr_name, w_attr_value);
 
 }
 
@@ -24922,7 +24974,7 @@ function go_to_type_own_select(new_id)
 	w_choices_disabled=[true, false, false];
  	w_attr_name=[];
  	w_attr_value=[];
-	type_own_select(new_id, 'Select:', '150', 'left', '200',w_choices, w_choices_checked, 'no','wdform_select',w_attr_name, w_attr_value, w_choices_disabled);
+	type_own_select(new_id, 'Select:', '100', 'left', '200',w_choices, w_choices_checked, 'no','wdform_select',w_attr_name, w_attr_value, w_choices_disabled);
 }
 
 function go_to_type_country(new_id)
@@ -25017,14 +25069,14 @@ function go_to_type_captcha(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_captcha(new_id,'Word Verification:', '150', 'left', '6','',w_attr_name, w_attr_value);
+	type_captcha(new_id,'Word Verification:', '100', 'left', '6','',w_attr_name, w_attr_value);
 }
 
 function go_to_type_recaptcha(new_id)
 {
  	w_attr_name=[];
  	w_attr_value=[];
-	type_recaptcha(new_id,'Recaptcha Word Verification:', '150', 'left', '', '', 'red', '',w_attr_name, w_attr_value);
+	type_recaptcha(new_id,'Recaptcha Word Verification:', '100', 'left', '', '', 'red', '',w_attr_name, w_attr_value);
 }
 
 
@@ -25577,8 +25629,8 @@ function refresh_pages_without_deleting(id)
 				wdform_arrows.setAttribute("id", "wdform_arrows"+i);
 				wdform_arrows.setAttribute("class", "wdform_arrows");
 				
-			wdform_row.appendChild(wdform_field);
 			wdform_row.appendChild(wdform_arrows);
+			wdform_row.appendChild(wdform_field);
 
 			var select_ = document.getElementById('sel_el_pos');
 			var option = document.createElement('option');
@@ -25765,7 +25817,7 @@ function generate_page_bar()
 {
 need_enable=false;
 el_page_navigation();
-add(0);
+add(0, false);
 need_enable=true;
 }
 
@@ -25792,8 +25844,25 @@ function remove_add_(id)
 			}
 }
 
-function add(key) {
-	if (document.getElementById("element_type").value=="type_grading") {
+function show_arrows(id)
+{
+	if(jQuery("#wdform_field"+id).attr("type")=='type_editor')
+		jQuery("#wdform_field"+id).css("margin-top","-5px");
+		
+	jQuery("#wdform_field"+id).css({"background-color":"rgb(224, 224, 224)","border":"1px solid rgb(213, 213, 213)"});
+	jQuery("#wdform_arrows"+id).removeClass("wdform_arrows");
+	jQuery("#wdform_arrows"+id).addClass("wdform_arrows_show");
+	jQuery("#wdform_arrows"+id).show();
+
+}
+
+function add(key, after_edit, wdid)
+{
+  if(after_edit && jQuery('#enable_sortable').prop( 'checked' ))
+		show_arrows(wdid);
+	if(document.getElementById("element_type").value=="type_grading")
+	{
+
 	for(k=100;k>0;k--)
 	{
 		 if(document.getElementById("el_items"+k))
@@ -25948,8 +26017,7 @@ function add(key) {
 			wdform_field_in_editor=document.getElementById(i+"_element_sectionform_id_temp");
 
 			
-						
-			ifr_id='form_maker_editor_ifr';
+      ifr_id = "form_maker_editor_ifr";	
 			ifr=getIFrameDocument(ifr_id);
 			if(document.getElementById('form_maker_editor').style.display=="none")
 				wdform_field_in_editor.innerHTML=ifr.body.innerHTML;
@@ -25976,8 +26044,8 @@ function add(key) {
 				wdform_arrows.setAttribute("id", "wdform_arrows"+i);
 				wdform_arrows.setAttribute("class", "wdform_arrows");
 				
-			wdform_row.appendChild(wdform_field);
 			wdform_row.appendChild(wdform_arrows);
+			wdform_row.appendChild(wdform_field);
 
 			var select_ = document.getElementById('sel_el_pos');
 			var option = document.createElement('option');
@@ -26029,7 +26097,7 @@ function add(key) {
          			in_editor.setAttribute("class", 'wdform_section_break');
 
 
-			ifr_id='form_maker_editor_ifr';
+			ifr_id = "form_maker_editor_ifr";
 			ifr=getIFrameDocument(ifr_id)
 
 			if(document.getElementById('form_maker_editor').style.display=="none")
@@ -26064,7 +26132,11 @@ function add(key) {
 			wdform_column_new=document.createElement('div');
 				wdform_column_new.setAttribute('class','wdform_column');
 				
+			wdform_column_new1=document.createElement('div');
+      wdform_column_new1.setAttribute('class','wdform_column');
+			
 			wdform_section_new.appendChild(wdform_column_new);
+			wdform_section_new.appendChild(wdform_column_new1);
 			
 			beforeTr=wdform_page.lastChild;
 			wdform_page.insertBefore(wdform_section_new, beforeTr);
@@ -26072,6 +26144,11 @@ function add(key) {
 			j=2;
 			
 		}
+    sortable_columns();
+    if(document.getElementById('enable_sortable').value==0)
+      jQuery('.wdform_column').sortable( "disable" );			
+    else
+      jQuery( ".wdform_arrows" ).hide();
 
 	close_window();
 	return;
@@ -26146,7 +26223,11 @@ function add(key) {
 		if(form_view_count!=1)
 
 			generate_page_nav(form_view);
-			
+			sortable_columns();
+			if(document.getElementById('enable_sortable').value==0)
+				jQuery('.wdform_column').sortable( "disable" );			
+			else
+				jQuery( ".wdform_arrows" ).hide();
 			close_window() ;
 			return;
 		}
@@ -26267,8 +26348,11 @@ function add(key) {
 		table_min=document.createElement('div');
 			table_min.setAttribute('class','wdform_column');
 
-	//	td.appendChild(table_min);
-		tr.appendChild(table_min);
+      table_min1=document.createElement('div');
+			table_min1.setAttribute('class','wdform_column');
+	
+      tr.appendChild(table_min);
+      tr.appendChild(table_min1);
 		
 			tbody_min_page_nav.appendChild(tr_min_page_nav);
 			table_min_page_nav.appendChild(tbody_min_page_nav);
@@ -26323,7 +26407,11 @@ function add(key) {
 	}
 	else
 		generate_page_nav(form_view);
-
+    sortable_columns();
+		if(document.getElementById('enable_sortable').value==0)
+			jQuery('.wdform_column').sortable( "disable" );			
+		else
+			jQuery( ".wdform_arrows" ).hide();
 		close_window() ;
 
 		return;
@@ -26358,7 +26446,7 @@ function add(key) {
 			destroyChildren(wdform_field);
 
 			
-			ifr_id='form_maker_editor_ifr';
+			ifr_id = "form_maker_editor_ifr";
 			ifr=getIFrameDocument(ifr_id);
 			if(document.getElementById('form_maker_editor').style.display=="none")
 			{
@@ -26395,15 +26483,16 @@ function add(key) {
 				wdform_field.setAttribute("id", "wdform_field"+i);
 				wdform_field.setAttribute("type", "type_editor");
 				wdform_field.setAttribute("class", "wdform_field");
-				wdform_field.style.display="table-cell";
+				wdform_field.style.cssText = 'margin-top:0px';
 				
 			var wdform_arrows = document.createElement('div');
 				wdform_arrows.setAttribute("id", "wdform_arrows"+i);
 				wdform_arrows.setAttribute("class", "wdform_arrows");
-				wdform_arrows.style.display="table-cell";
+				wdform_arrows.setAttribute("type", "type_editor");
+				wdform_arrows.style.cssText = 'margin-top:0px';
 				
-			wdform_row.appendChild(wdform_field);
 			wdform_row.appendChild(wdform_arrows);
+			wdform_row.appendChild(wdform_field);
 			
 			var img_X = document.createElement("img");
 					img_X.setAttribute("src", fmc_plugin_url + "/images/delete_el.png");
@@ -26648,13 +26737,13 @@ function add(key) {
 				document.getElementById('editing_id').value="";
 	
 				wdform_field=document.getElementById("wdform_field"+i);
-	
+        wdform_arrows=document.getElementById("wdform_arrows"+i);
 				destroyChildren(wdform_field);
 	
 	
 						var add1 = document.getElementById(i+'_label_sectionform_id_temp');
 						var add2 = document.getElementById(i+'_element_sectionform_id_temp');
-						
+						wdform_field.appendChild(wdform_arrows);
 						wdform_field.appendChild(add1);
 						wdform_field.appendChild(add2);
 	
@@ -26714,10 +26803,9 @@ function add(key) {
 			var wdform_arrows = document.createElement('div');
 				wdform_arrows.setAttribute("id", "wdform_arrows"+i);
 				wdform_arrows.setAttribute("class", "wdform_arrows");
-				wdform_arrows.style.display="table-cell";
 				
-			wdform_row.appendChild(wdform_field);
 			wdform_row.appendChild(wdform_arrows);
+			wdform_row.appendChild(wdform_field);
 			
 			
 			
@@ -26860,7 +26948,7 @@ function add(key) {
 			wdform_arrows.appendChild(td_RIGHT);
 			wdform_arrows.appendChild(td_EDIT);
 			
-			if(type!="type_captcha" && type!="type_recaptcha")
+			if(type!="type_captcha" && type!="type_recaptcha" && type!="type_send_copy")
 			{
 				wdform_arrows.appendChild(td_DUBLICATE);
 			}
@@ -26892,7 +26980,6 @@ function add(key) {
 			}
 			j=2;
 			close_window() ;
-			;
 		call(i,key);
 		
 		}
@@ -26908,16 +26995,23 @@ function add(key) {
 	undo_redo_num++;*/
 	}			
 	else alert("Please select an element to add.");
+  if(document.getElementById('enable_sortable').value==1)
+		jQuery( ".wdform_arrows" ).hide();
+
+	jQuery(".wdform_page input[type='text'], .wdform_page input[type='password'], .wdform_page input[type='file'], .wdform_page textarea, .wdform_page input[type='checkbox'], .wdform_page input[type='radio'], .wdform_page select").prop("disabled", true);
 
 }
 
 function call(i,key)
 {
 	need_enable=false;
+	after_edit= false;
 	if(key==0)
 	{
+		if(document.getElementById("pos_end").getAttribute('disabled')=='disabled')
+			after_edit= true;
 		edit(i);
-		add('1');
+		add('1',after_edit, i);
 	}
 	need_enable=true;
 }
@@ -27708,17 +27802,8 @@ function edit(id)
 				s				=document.getElementById(id+'_yearform_id_temp').style.width;
 				w_year_size		=s.substring(0,s.length-2);
 				
-				if(w_year_type=='SELECT')
-				{
-					w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
-					w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
-				}
-				else
-				{
-					w_from			='1901';
-					var current_date = new Date();
-					w_to=current_date.getFullYear();
-				}
+				w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
+				w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
 				w_divider		=document.getElementById(id+'_separator1').innerHTML;
 				type_date_fields(id, w_field_label, w_field_label_size, w_field_label_pos, w_day, w_month, w_year, w_day_type, w_month_type, w_year_type, w_day_label, w_month_label, w_year_label, w_day_size, w_month_size, w_year_size, w_required, w_class, w_from, w_to, w_divider, w_attr_name, w_attr_value); break;
 			}
@@ -28681,18 +28766,10 @@ function dublicate(id) {
 				
 				s				=document.getElementById(id+'_yearform_id_temp').style.width;
 				w_year_size		=s.substring(0,s.length-2);
+	
+        w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
+        w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
 				
-				if(w_year_type=='SELECT')
-				{
-					w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
-					w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
-				}
-				else
-				{
-					w_from			='1901';
-					var current_date = new Date();
-					w_to=current_date.getFullYear();
-				}
 				w_divider		=document.getElementById(id+'_separator1').innerHTML;
 				type_date_fields(gen, w_field_label, w_field_label_size, w_field_label_pos, w_day, w_month, w_year, w_day_type, w_month_type, w_year_type, w_day_label, w_month_label, w_year_label, w_day_size, w_month_size, w_year_size, w_required, w_class, w_from, w_to, w_divider, w_attr_name, w_attr_value); break;
 			}
@@ -28873,7 +28950,7 @@ function dublicate(id) {
 		}
 	
 	need_enable=false;
-		add(0);
+		add(0, false);
 		need_enable=true;	
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29465,6 +29542,7 @@ function gen_form_fields()
 						if(document.getElementById(id+"_elementform_id_temp"+k).getAttribute('other')=='1')
 							w_allow_other_num=tt;
 					w_choices[tt]=document.getElementById(id+"_elementform_id_temp"+k).value;
+          w_choices[tt] = w_choices[tt].replace(/"/g, "&quot;");
 					if(w_choices[tt][w_choices[tt].length-1]==' ')
 						w_choices[tt]=w_choices[tt].substring(0, w_choices[tt].length-1);
 					w_choices_checked[tt]=document.getElementById(id+"_elementform_id_temp"+k).checked;
@@ -30038,18 +30116,10 @@ function gen_form_fields()
 			
 			s				=document.getElementById(id+'_yearform_id_temp').style.width;
 			w_year_size		=s.substring(0,s.length-2);
+
+      w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
+      w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
 			
-			if(w_year_type=='SELECT')
-			{
-				w_from			=document.getElementById(id+'_yearform_id_temp').getAttribute('from');
-				w_to			=document.getElementById(id+'_yearform_id_temp').getAttribute('to');
-			}
-			else
-			{
-				w_from			='1901';
-				var current_date = new Date();
-				w_to=current_date.getFullYear();
-			}
 			w_divider		=document.getElementById(id+'_separator1').innerHTML;
 
 				form_fields+=w_field_label+"*:*w_field_label*:*";
@@ -30440,58 +30510,3 @@ function gen_form_fields()
 		}
 	}
 }
-/*
-function form_maker_open_in_popup(id) {
-  var thickDims, tbWidth, tbHeight;
-  jQuery(document).ready(function($) {
-    thickDims = function() {
-      var tbWindow = jQuery('#TB_window'), H = jQuery(window).height(), W = jQuery(window).width(), w, h;
-      w = (tbWidth && tbWidth < W - 90) ? tbWidth : W - 40;
-      h = (tbHeight && tbHeight < H - 60) ? tbHeight : H - 40;
-      if (tbWindow.size()) {
-        tbWindow.width(w).height(h);
-        jQuery('#TB_iframeContent').width(w).height(h - 27);
-        tbWindow.css({'margin-left': '-' + parseInt((w / 2),10) + 'px'});
-        if (typeof document.body.style.maxWidth != 'undefined') {
-          tbWindow.css({'top':(H-h)/2,'margin-top':'0'});
-        }
-      }
-    };
-    thickDims();
-    jQuery(window).resize( function() { thickDims() } );
-    jQuery('a.thickbox-preview' + id).click( function() {
-      tb_click.call(this);
-      var alink = jQuery(this).parents('.available-theme').find('.activatelink'), link = '', href = jQuery(this).attr('href'), url, text;
-      if (tbWidth = href.match(/&width=[0-9]+/)) {
-        tbWidth = parseInt(tbWidth[0].replace(/[^0-9]+/g, ''), 10);
-      }
-      else {
-        tbWidth = jQuery(window).width() - 120;
-      }
-      console.log(tbWidth);
-      if (tbHeight = href.match(/&height=[0-9]+/)) {
-        tbHeight = parseInt(tbHeight[0].replace(/[^0-9]+/g, ''), 10);
-      }
-      else {
-        tbHeight = jQuery(window).height() - 120;
-      }
-      if (alink.length) {
-        url = alink.attr('href') || '';
-        text = alink.attr('title') || '';
-        link = '&nbsp; <a href="' + url + '" target="_top" class="tb-theme-preview-link">' + text + '</a>';
-      }
-      else {
-        text = jQuery(this).attr('title') || '';
-        link = '&nbsp; <span class="tb-theme-preview-link">' + text + '</span>';
-      }
-      console.log(tbWidth);
-      jQuery('#TB_title').css({'background-color':'#222','color':'#dfdfdf'});
-      jQuery('#TB_closeAjaxWindow').css({'float':'left'});
-      jQuery('#TB_ajaxWindowTitle').css({'float':'right'}).html(link);
-      jQuery('#TB_iframeContent').width('100%');
-      thickDims();
-      return false;
-    });
-  });
-}
-*/

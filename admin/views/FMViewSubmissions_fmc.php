@@ -40,6 +40,11 @@ class  FMViewSubmissions_fmc {
     $style_id = $this->model->hide_or_not($lists['hide_label_list'], '@submitid@'); 
     $style_date = $this->model->hide_or_not($lists['hide_label_list'], '@submitdate@');
     $style_ip = $this->model->hide_or_not($lists['hide_label_list'], '@submitterip@');
+	
+	$style_username = $this->model->hide_or_not($lists['hide_label_list'], '@submitterusername@');
+	$style_useremail = $this->model->hide_or_not($lists['hide_label_list'], '@submitteremail@');
+	
+	
     $oder_class_default = "manage-column column-autor sortable desc";
     $oder_class = "manage-column column-title sorted " . $asc_or_desc; 
     $ispaypal = FALSE;
@@ -48,7 +53,7 @@ class  FMViewSubmissions_fmc {
     $n = count($rows);
     $group_id_s = array();	
     $group_id_s = $this->model->sort_group_ids(count($sorted_label_names),$group_ids);  
-    $ka_fielderov_search = (($lists['ip_search'] || $lists['startdate'] || $lists['enddate']) ? TRUE : FALSE);
+    $ka_fielderov_search = (($lists['ip_search'] || $lists['startdate'] || $lists['enddate'] || $lists['username_search'] || $lists['useremail_search']) ? TRUE : FALSE);
     $is_stats = false;
     $blocked_ips = $this->model->blocked_ips();
 	
@@ -60,24 +65,32 @@ class  FMViewSubmissions_fmc {
           $templabels = array_merge(array(
             'submitid',
             'submitdate',
-            'submitterip'
+            'submitterip',
+			'submitterusername',
+			'submitteremail'
           ), $sorted_labels_id);
           $sorted_label_names_for_check = array_merge(array(
             'ID',
             'Submit date',
-            "Submitter's IP"
+            "Submitter's IP",
+			"Submitter's Username",
+			"Submitter's Email Address"
           ), $sorted_label_names_original);
         }
         else {
           $templabels = array(
             'submitid',
             'submitdate',
-            'submitterip'
+            'submitterip',
+			'submitterusername',
+			'submitteremail'
           );
           $sorted_label_names_for_check = array(
             'ID',
             'Submit date',
-            "Submitter's IP"
+            "Submitter's IP",
+			'Submitter\'s Username',
+			'Submitter\'s Email Address'
           );
         }
         ?>
@@ -107,6 +120,8 @@ class  FMViewSubmissions_fmc {
         document.getElementById('startdate').value = '';
         document.getElementById('enddate').value = '';
         document.getElementById('ip_search').value = '';
+		document.getElementById('username_search').value='';
+		document.getElementById('useremail_search').value='';
         <?php
         $n = count($rows);
         for ($i = 0; $i < count($sorted_label_names); $i++) {
@@ -294,7 +309,27 @@ class  FMViewSubmissions_fmc {
                   <span>Submitter's IP</span>
                   <span class="sorting-indicator"></span>
                 </a>
-              </th>		
+              </th>	
+			  
+			   <th scope="col" id="submitterusername_fc" class="table_medium_col_uncenter submitterusername_fc <?php if ($order_by == "display_name")echo $oder_class; else echo $oder_class_default;  ?>" <?php echo $style_username;?>>
+                <a href="" onclick="spider_set_input_value('order_by', 'display_name');
+                                    spider_set_input_value('asc_or_desc', '<?php echo ((isset($_POST['asc_or_desc']) && isset($_POST['order_by']) && (esc_html(stripslashes($_POST['order_by'])) == 'display_name') && esc_html(stripslashes($_POST['asc_or_desc'])) == 'asc') ? 'desc' : 'asc'); ?>');
+                                    spider_form_submit(event, 'admin_form')">
+                  <span>Submitter's Username</span>
+                  <span class="sorting-indicator"></span>
+                </a>
+              </th>	
+			  
+			  <th scope="col" id="submitteremail_fc" class="table_medium_col_uncenter submitteremail_fc <?php if ($order_by == "user_email")echo $oder_class; else echo $oder_class_default;  ?>" <?php echo $style_useremail ;?>>
+                <a href="" onclick="spider_set_input_value('order_by', 'user_email');
+                                    spider_set_input_value('asc_or_desc', '<?php echo ((isset($_POST['asc_or_desc']) && isset($_POST['order_by']) && (esc_html(stripslashes($_POST['order_by'])) == 'user_email') && esc_html(stripslashes($_POST['asc_or_desc'])) == 'asc') ? 'desc' : 'asc'); ?>');
+                                    spider_form_submit(event, 'admin_form')">
+                  <span>Submitter's Email Address</span>
+                  <span class="sorting-indicator"></span>
+                </a>
+              </th>	
+			  
+			
               <?php
               for ($i = 0; $i < count($sorted_label_names); $i++) {
                 $styleStr = $this->model->hide_or_not($lists['hide_label_list'], $sorted_labels_id[$i]); 
@@ -360,6 +395,17 @@ class  FMViewSubmissions_fmc {
               <th class="table_medium_col_uncenter submitterip_fc" <?php echo $style_ip; ?>>
                 <input type="text" name="ip_search" id="ip_search" value="<?php echo $lists['ip_search']; ?>" onChange="this.form.submit();" />
               </th>
+			
+			   </th>
+              <th class="table_medium_col_uncenter submitterusername_fc" <?php echo $style_username; ?>>
+                <input type="text" name="username_search" id="username_search" value="<?php echo $lists['username_search']; ?>" onChange="this.form.submit();" />
+              </th>
+			  
+			  </th>
+              <th class="table_medium_col_uncenter submitteremail_fc" <?php echo $style_useremail; ?>>
+                <input type="text" name="useremail_search" id="useremail_search" value="<?php echo $lists['useremail_search']; ?>" onChange="this.form.submit();" />
+              </th>
+			  
               <?php
                 for ($i = 0; $i < count($sorted_label_names); $i++) {
                   $styleStr = $this->model->hide_or_not($lists['hide_label_list'], $sorted_labels_id[$i]);
@@ -425,6 +471,10 @@ class  FMViewSubmissions_fmc {
             $alternate = (!isset($alternate) || $alternate == 'class="alternate"') ? '' : 'class="alternate"';
             $temp = $this->model->array_for_group_id($group_id_s[$www], $rows);
             $data = $temp[0];
+			$userinfo=get_userdata($data->user_id_wd);
+			$useremail=$userinfo ? $userinfo->user_email : "";
+			$username=$userinfo ? $userinfo->display_name : "";
+
             ?>
             <tr <?php echo $alternate; ?>>
               <td class="table_small_col count_col sub-align"><?php echo $www + 1; ?></td>
@@ -458,6 +508,19 @@ class  FMViewSubmissions_fmc {
               <td class="table_medium_col_uncenter submitterip_fc sub-align" id="submitterip_fc" <?php echo $style_ip; ?>>
                 <a class="thickbox-preview" href="<?php echo add_query_arg(array('action' => 'fromipinfoinpopup_fmc', 'data_ip' => $data->ip, 'width' => '400', 'height' => '300', 'TB_iframe' => '1'), admin_url('admin-ajax.php')); ?>" title="Show submitter information" <?php echo (!in_array($data->ip, $blocked_ips)) ? '' : 'style="color: #FF0000;"'; ?>><?php echo $data->ip; ?></a>
               </td>
+			  
+			  
+			  
+			  <td  class="table_large_col submitterusername_fc sub-align" id="submitterusername_fc" <?php echo $style_username; ?>>
+               <?php   echo  $username; ?>
+              </td>
+			  
+			  <td  class="table_large_col submitteremail_fc sub-align" id="submitteremail_fc" <?php echo $style_useremail; ?>>
+                <?php  echo $useremail; ?>
+              </td>
+			  
+			  
+			  
               <?php
               for ($h = 0; $h < $m; $h++) {
                 $not_label = TRUE;
@@ -729,6 +792,10 @@ class  FMViewSubmissions_fmc {
     $labels_name = $params[2];
     $labels_type = $params[3];
     $ispaypal = $params[4];
+	$userinfo = get_userdata($rows[0]->user_id_wd);
+	$username = $userinfo ? $userinfo->display_name : "";
+	$useremail = $userinfo ? $userinfo->user_email : "";
+	
     ?>
     <form action="admin.php?page=submissions_fmc" method="post" id="adminForm" name="adminForm">
       <table width="99%">
@@ -763,6 +830,16 @@ class  FMViewSubmissions_fmc {
         <tr>
           <td class="key"><label for="IP">IP: </label></td>
           <td><?php echo $rows[0]->ip; ?></td>
+        </tr>
+		
+		
+		<tr>
+          <td class="key"><label for="Submitter's Username">Submitter's Username: </label></td>
+          <td><?php echo $username; ?></td>
+        </tr>
+		<tr>
+          <td class="key"><label for="Submitter's Email Address">Submitter's Email Address: </label></td>
+          <td><?php echo $useremail; ?></td>
         </tr>
         <?php
         foreach ($labels_id as $key => $label_id) {
@@ -972,6 +1049,10 @@ class  FMViewSubmissions_fmc {
     $ispaypal = $params[4];
     $form = $params[5];
     $form_theme = $params[6];
+	$userinfo = get_userdata($rows[0]->user_id_wd);
+	$username = $userinfo ? $userinfo->display_name : "";
+	$useremail = $userinfo ? $userinfo->user_email : "";
+	
     ?>
     <form action="admin.php?page=submissions_fmc"  method="post" id="formform_id_temp" name="formform_id_temp">
       <table width="99%">
@@ -1009,6 +1090,16 @@ class  FMViewSubmissions_fmc {
           <td class="spider_label"><label for="IP">IP: </label></td>
           <td><?php echo $rows[0]->ip; ?></td>
         </tr>
+		
+		 <tr>
+          <td class="spider_label"><label for="Submitter's Username">Submitter's Username: </label></td>
+          <td><?php echo $username; ?></td>
+        </tr>
+		 <tr>
+          <td class="spider_label"><label for="Submitter's Email Address">Submitter's Email Address: </label></td>
+          <td><?php echo $useremail; ?></td>
+        </tr>
+
       </table>
       <?php
       $css_rep1 = array("[SITE_ROOT]");

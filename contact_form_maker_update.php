@@ -88,6 +88,14 @@ function contact_form_maker_update($version) {
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
     $wpdb->query($formmaker_query);
   }
+  if (version_compare($version, '1.7.20') == -1) {
+    $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "formmaker` ADD `user_id_wd` varchar(220) NOT NULL DEFAULT 'administrator,'");
+    $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "formmaker` ADD `sortable` int(11) NOT NULL DEFAULT '1'");
+    $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "formmaker_submits` ADD `user_id_wd` int(11) NOT NULL DEFAULT '1'");
+    $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "formmaker` ADD `frontend_submit_fields` text NOT NULL DEFAULT ''");
+    $wpdb->query("ALTER TABLE `" . $wpdb->prefix . "formmaker` ADD `frontend_submit_stat_fields` text NOT NULL DEFAULT ''");
+    $wpdb->query('UPDATE ' . $wpdb->prefix . 'formmaker_themes SET `css` = CONCAT(css,"\r\n.wdform_column {\r\n	border-right: none !important;\r\n }")');
+  }
   return;
 }
 

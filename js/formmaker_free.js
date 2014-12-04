@@ -24870,9 +24870,8 @@ function add(key) {
 					in_editor.setAttribute('class', 'toolbar_padding');
 					
 	
-		if(document.getElementById('form_maker_editor_ifr') && document.getElementById('form_maker_editor').style.display=="none")
-		{
-				ifr_id='form_maker_editor_ifr';
+		if (document.getElementById("form_maker_editor_ifr") && document.getElementById('form_maker_editor').style.display == "none") {
+      ifr_id = "form_maker_editor_ifr";
 				ifr=getIFrameDocument(ifr_id);
 				in_editor.innerHTML=ifr.body.innerHTML;
 		}

@@ -55,11 +55,24 @@ fieldset label {
 	display: inline-block;
 	min-width:77px;
 }
-.wdform_arrows {
-	padding-left: 10px;
+.wdform_arrows 
+{
 	vertical-align: middle;
-	display: inline-block;
 	min-width:216px;
+	background:#D7E3EB;
+	text-align:right;
+	margin-bottom:5px;
+	border-top: 1px solid#B4C8D5;
+}
+.wdform_arrows_show
+{
+	vertical-align: middle;
+	min-width:216px;
+	background:#C0D0DB;
+	text-align:right;
+	margin-top:-11px;
+	margin-bottom:5px;
+	cursor:default !important;
 }
 .page_toolbar {
 	width: 33px;
@@ -86,20 +99,29 @@ display: inline-block;
 width: 80%;
 }
 .wdform_field{
-	padding-top:6px;
+	padding-top:10px;
+}
+
+.wdform_field_section_break {
+	padding-top:10px;
 }
 .wdform_page {
 	margin:7px;
 	float:left;
 }
 .wdform_section {
-	margin:7px
+	margin:7px;
+}
+.wdform_column:first-child {
+padding:0 15px 0 0 !important;
 }
 .wdform_column {
 	padding-right:50px !important;
 	float:left;
 	border-spacing: 1px;
 	border-collapse:separate !important;
+  min-width: 250px ; 
+	min-height: 50px;
 }
 .time_box {
 	border-width:1px;
@@ -343,4 +365,13 @@ text-align:center;
 font-size: 55px;
 color: #036EF2;
 line-height: initial;
+}
+
+.highlight 
+{ 
+border: 1px dotted red !important; 
+visibility: visible !important; 
+height: 80px !important; 	
+width: 100% !important; 
+display:inline-block 
 }

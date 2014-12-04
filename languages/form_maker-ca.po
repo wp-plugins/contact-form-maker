@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: form_maker\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 14:12+0300\n"
-"PO-Revision-Date: 2014-05-27 14:13+0300\n"
+"POT-Creation-Date: 2014-10-17 15:59+0300\n"
+"PO-Revision-Date: 2014-10-17 16:17+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -12,153 +12,153 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__\n"
 "X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.6.3\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpressraf\\wp-content\\plugins"
-"\\form-maker\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\wordpress\\wp-content\\plugins\\form-"
+"maker\n"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:221
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2846
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:233
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3314
 msgid "Street Address"
 msgstr "Adreça de carrer"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:224
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2847
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:236
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3315
 msgid "Street Address Line 2"
 msgstr "Carrer Adreça 2"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:227
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2848
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:239
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3316
 msgid "City"
 msgstr "NomDistingit"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:230
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2849
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:242
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3317
 msgid "State / Province / Region"
 msgstr "Estat / Província / Regió"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:233
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2850
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:245
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3318
 msgid "Postal / Zip Code"
 msgstr "Postal / Codi Postal"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:236
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2851
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/models/FMModelSubmissions_fm.php:248
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3319
 msgid "Country"
 msgstr "País "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2834
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3302
 msgid "January"
 msgstr "Gener"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2835
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3303
 msgid "February"
 msgstr "Febrer"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2836
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3304
 msgid "March"
 msgstr "Març"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2837
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3305
 msgid "April"
 msgstr "Abril"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2838
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3306
 msgid "May"
 msgstr "Mai"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2839
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3307
 msgid "June"
 msgstr "Juny"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2840
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3308
 msgid "July"
 msgstr "Juliol"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2841
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3309
 msgid "August"
 msgstr "Agost"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2842
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3310
 msgid "September"
 msgstr "Setembre"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2843
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3311
 msgid "October"
 msgstr "Octubre"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2844
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3312
 msgid "November"
 msgstr "Novembre"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1864
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1357
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2845
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:1942
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1777
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3313
 msgid "December"
 msgstr "Desembre"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:2275
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1788
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1828
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1882
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1919
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1973
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2014
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2857
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/admin/views/FMViewSubmissions_fm.php:2353
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2207
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2247
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2305
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2342
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2399
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2440
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3325
 msgid "Quantity"
 msgstr "quantitat "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:78
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:92
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:77
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:92
 msgid "Error, incorrect Security code."
 msgstr "Error, el codi de seguretat incorrecte."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:106
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:106
 msgid "Your ip is blacklisted. Please contact the website administrator."
 msgstr ""
 "La seva ip és la llista negra. Si us plau, poseu-vos en contacte amb "
 "l'administrador del lloc web. "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:252
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:770
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:260
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:780
 msgid "The file exceeds the allowed size of"
 msgstr "L'arxiu supera la grandària permès de"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:271
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:785
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1459
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2878
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:279
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:795
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1878
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3346
 msgid "Sorry, you are not allowed to upload this type of file."
 msgstr "Ho sentim, no estan autoritzats a pujar aquest tipus de fitxer."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:283
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:798
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:291
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:808
 msgid "Error, file cannot be moved."
 msgstr "Error, l'arxiu no es pot moure."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:661
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:1115
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:669
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:1125
 #, php-format
 msgid ""
 "This field %s requires a unique entry and this value was already submitted."
@@ -166,127 +166,143 @@ msgstr ""
 "Aquest camp %s requereix d'una entrada única i aquest valor ja s'havia "
 "presentat."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:803
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:813
 #, fuzzy
 msgid "Error, file destination does not exist."
 msgstr "Error, el correu electrònic no va ser enviat."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:1255
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:1309
 msgid "Nothing was submitted."
 msgstr "Res es va presentar."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:2619
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:2632
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:4325
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:4330
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:64
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:2095
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:2108
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:3801
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:3806
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:63
 msgid "Your form was successfully submitted."
 msgstr "El formulari s'ha enviat correctament."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:2627
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker_fmc.php:4321
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:61
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:2103
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/models/FMModelForm_maker.php:3797
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:60
 msgid "Error, email was not sent."
 msgstr "Error, el correu electrònic no va ser enviat."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:232
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:279
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:329
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:376
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:425
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:480
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:552
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:657
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:672
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:774
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:846
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:947
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1033
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1106
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1165
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1241
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1288
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1396
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1444
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1499
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1667
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1813
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1906
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1998
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2070
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2171
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2230
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2285
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2345
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2402
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2462
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2576
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2590
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2605
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2620
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2883
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:643
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:690
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:740
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:787
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:836
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:891
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:963
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1068
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1083
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1185
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1257
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1358
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1449
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1526
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1585
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1661
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1708
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1815
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1863
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1918
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2086
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2232
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2329
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2424
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2499
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2600
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2659
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2714
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2774
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2831
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2891
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3005
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3019
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3034
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3049
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3351
 msgid "field is required."
 msgstr "camp és obligatori."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:863
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2881
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:1274
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3349
 msgid "This is not a valid email address."
 msgstr "Això no és una adreça de correu electrònic vàlida."
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1706
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2884
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2125
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3352
 msgid "The"
 msgstr "la "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:1706
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2884
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2125
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3352
 msgid "value must be between"
 msgstr "valor ha d'estar entre "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2476
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2669
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2670
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2879
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2880
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:2905
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3114
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3115
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3347
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3348
 msgid "Your score should be less than"
 msgstr "La seva puntuació ha de ser inferior a "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2830
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3298
 msgid "Title"
 msgstr "Títol"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2831
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3299
 msgid "First"
 msgstr "Primer"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2832
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3300
 msgid "Last"
 msgstr "Últim"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2833
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3301
 msgid "Middle"
 msgstr "Mitjà"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2852
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3320
 msgid "Area Code"
 msgstr "Codi d'àrea"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2853
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3321
 msgid "Phone Number"
 msgstr "Número de telèfon"
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2854
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3322
 msgid "Dollars"
 msgstr "dòlars "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2855
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3323
 msgid "Cents"
 msgstr "cents "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2858
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3326
 msgid "From"
 msgstr "des "
 
-#: C:\wamp\www\wordpressraf\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker_fmc.php:2859
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_maker.php:3327
 msgid "To"
 msgstr "A"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_submissions.php:202
+msgid "GO"
+msgstr "anar "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_submissions.php:203
+msgid "Reset"
+msgstr "restablir"
+
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_submissions.php:649
+msgid "Select a Field"
+msgstr "Seleccioneu un camp "
+
+#: C:\wamp\www\wordpress\wp-content\plugins\form-maker/frontend/views/FMViewForm_submissions.php:671
+msgid "Select a Date"
+msgstr "Seleccioneu una data"

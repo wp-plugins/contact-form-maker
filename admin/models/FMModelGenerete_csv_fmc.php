@@ -25,18 +25,23 @@ class FMModelGenerete_csv_fmc {
 	$params = array();
     $form_id = $_REQUEST['form_id'];
     $paypal_info_fields = array('currency', 'ord_last_modified', 'status', 'full_name', 'fax', 'mobile_phone', 'email', 'phone', 'address', 'paypal_info',  'ipn', 'tax', 'shipping');
+	
+	$paypal_info_labels = array( 'Currency', 'Last modified', 'Status', 'Full Name', 'Fax', 'Mobile phone', 'Email', 'Phone', 'Address', 'Paypal info', 'IPN', 'Tax', 'Shipping');
+	
+		
     $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_submits where form_id= %d ORDER BY date ASC", $form_id);
     $rows = $wpdb->get_results($query);
-    $n = count($rows);
-    $labels = array();
-    for ($i = 0; $i < $n; $i++) {
-      $row = &$rows[$i];
-      if (!in_array($row->element_label, $labels)) {
-        array_push($labels, $row->element_label);
-      }
-    }
-    $label_titles = array();
-    $sorted_labels = array();
+	
+		
+	$query = $wpdb->prepare("SELECT distinct element_label FROM " . $wpdb->prefix . "formmaker_submits where form_id=%d",$form_id);	
+	$labels = $wpdb->get_col($query);
+	
+		
+	$query = $wpdb->prepare("SELECT id FROM " . $wpdb->prefix . "formmaker_submits where element_label=%s AND form_id = %d",'item_total',$form_id);	
+	$is_paypal = $wpdb->get_results($query);
+	
+
+    $n = count($rows); 
     $query_lable = $wpdb->prepare("SELECT label_order,title FROM " . $wpdb->prefix . "formmaker where id= %d", $form_id);
     $rows_lable = $wpdb->get_results($query_lable);
     $ptn = "/[^a-zA-Z0-9_]/";
@@ -74,39 +79,39 @@ class FMModelGenerete_csv_fmc {
     }
 	$m = count($sorted_labels);
     $group_id_s = array();
-    $l = 0;
-    if (count($rows) > 0 and $m)
-      for ($i = 0; $i < count($rows); $i++) {
-        $row = &$rows[$i];
-        if (!in_array($row->group_id, $group_id_s)) {
-          array_push($group_id_s, $row->group_id);
-        }
+    
+    if (count($rows) > 0 and $m){
+
+		$query = $wpdb->prepare("SELECT distinct group_id FROM " . $wpdb->prefix . "formmaker_submits where form_id=%d",$form_id);		
+		$group_id_s = $wpdb->get_col($query);	
+      
       }
+	 
     $data = array();
-    $temp_all = array();
-    for ($j = 0; $j < $n; $j++) {
-      $row = &$rows[$j];
-      $key = $row->group_id;
-      if (!isset($temp_all[$key])) {
-        $temp_all[$key] = array();
-      }
-      array_push($temp_all[$key], $row);
-    }
     for ($www = 0; $www < count($group_id_s); $www++) {
       $i = $group_id_s[$www];
-      $temp = array();
-      $temp = $temp_all[$i];
-      $f = $temp[0];
-      $date = $f->date;
-      $ip = $f->ip;
-      $data_temp['Submit date'] = $date;
-      $data_temp['Ip'] = $ip;
-      $ttt = count($temp);
+      $data_temp = array();
+    	
       for ($h = 0; $h < $m; $h++) {
-        $data_temp[stripslashes($label_titles[$h])] = '';
-        for ($g = 0; $g < $ttt; $g++) {
-          $t = $temp[$g];
-          if ($t->element_label == $sorted_labels_id[$h]) {
+	 
+        if(isset($data_temp[$label_titles[$h]]))
+				$label_titles[$h] .= '(1)';
+		
+		$t = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,$sorted_labels_id[$h]));
+		
+          if ($t) {
+		 
+		  	$f=$t;
+			$date=$t->date;
+			$ip = $t->ip;
+			$user_id = get_userdata($t->user_id_wd);
+      $username = $user_id ? $user_id->display_name : "";
+      $useremail= $user_id ? $user_id->user_email : "";
+			$data_temp['Submit date']=$date;
+			$data_temp['Ip']=$ip;
+			$data_temp['Submitter\'s Username']=$username;
+			$data_temp['Submitter\'s Email Address']=$useremail;
+		  	  
             if (strpos($t->element_value, "*@@url@@*")) {
               $file_names = '';
               $new_files = explode("*@@url@@*", $t->element_value);
@@ -226,20 +231,35 @@ class FMModelGenerete_csv_fmc {
               $data_temp[stripslashes($label_titles[$h])] = ($t->element_value ? $val : '');
             }
           }
-        }
+          else {
+            $data_temp[$label_titles[$h]]= '';
+          }
       }
-      $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_sessions where group_id= %d", $f->group_id);
+	  
+		if($is_paypal)
+		{
+			$item_total = $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'item_total'));
+			
+			$total =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'total'));
+			
+			$payment_status =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'0'));
+			
+			$data_temp['Item Total'] = $item_total;
+			$data_temp['Total'] = $total;
+			$data_temp['Payment Status'] = $payment_status;
+		}
+      $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_sessions where group_id= %d",$i);
       $paypal_info = $wpdb->get_results($query);
       if ($paypal_info) {
         $is_paypal_info = TRUE;
       }
-      if ($is_paypal_info) {
-        foreach ($paypal_info_fields as $paypal_info_field)	{
+      if ($is_paypal) {
+        foreach ($paypal_info_fields as $key=>$paypal_info_field)	{
           if ($paypal_info) {
-            $data_temp['PAYPAL_' . $paypal_info_field] = $paypal_info[0]->$paypal_info_field;
+            $data_temp['PAYPAL_'.$paypal_info_labels[$key]]=$paypal_info[0]->$paypal_info_field;
           }
           else {
-            $data_temp['PAYPAL_' . $paypal_info_field] = '';
+            $data_temp['PAYPAL_'.$paypal_info_labels[$key]]='';
           }
         }
       }

@@ -25,6 +25,7 @@ class FMModelGenerete_xml_fmc {
     $params = array();
     $form_id = $_REQUEST['form_id'];
     $paypal_info_fields = array('ip', 'ord_date', 'ord_last_modified', 'status', 'full_name', 'fax', 'mobile_phone', 'email', 'phone', 'address', 'paypal_info', 'without_paypal_info', 'ipn', 'checkout_method', 'tax', 'shipping', 'shipping_type', 'read');
+	$paypal_info_labels = array( 'Currency', 'Last modified', 'Status', 'Full Name', 'Fax', 'Mobile phone', 'Email', 'Phone', 'Address', 'Paypal info', 'IPN', 'Tax', 'Shipping');
     $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_submits where form_id= %d ORDER BY date ASC", $form_id);
     $rows = $wpdb->get_results($query);
     $n = count($rows);
@@ -99,10 +100,17 @@ class FMModelGenerete_xml_fmc {
       $f = $temp[0];
       $date = $f->date;
       $ip = $f->ip;
+	  $user_id = get_userdata($f->user_id_wd);
+	  $username = $user_id ? $user_id->display_name : "";
+    $useremail= $user_id ? $user_id->user_email : "";
       $data_temp['Submit date'] = $date;
       $data_temp['Ip'] = $ip;
+	  $data_temp['Submitter\'s Username']=$username;
+	  $data_temp['Submitter\'s Email Address']=$useremail;
       $ttt = count($temp);
       for ($h = 0; $h < $m; $h++) {
+	    if(isset($data_temp[$label_titles[$h]]))
+				$label_titles[$h] .= '(1)';
         for ($g = 0; $g < $ttt; $g++) {
           $t = $temp[$g];
           if ($t->element_label == $sorted_labels_id[$h]) {
@@ -139,8 +147,8 @@ class FMModelGenerete_xml_fmc {
 							$element = explode("***", $element);
 							$data_temp[stripslashes($label_titles[$h])] = ' ' . $element[1] . '/' . $element[0];
 						}
-            elseif (strpos($t->element_value, "@@@") || $t->element_value == "@@@" || $t->element_value == "@@@@@@@@@") {
-							$data_temp[stripslashes($label_titles[$h])] = str_replace("@@@", ' ', $t->element_value);
+            elseif (strpos($t->element_value, "@@@")>-1 || $t->element_value == "@@@" || $t->element_value == "@@@@@@@@@" || $t->element_value=="::" || $t->element_value==":" || $t->element_value=="--") {
+							$data_temp[stripslashes($label_titles[$h])] = str_replace(array("@@@",":","-"),' ', $t->element_value);
 						}
             elseif (strpos($t->element_value, "***grading***")) {
               $element = str_replace("***grading***", '', $t->element_value);
@@ -227,18 +235,44 @@ class FMModelGenerete_xml_fmc {
           }
         }
       }
-      $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_sessions where group_id= %d", $f->group_id);
+	  
+	  
+	  
+	    $item_total = $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'item_total'));
+	
+		
+		$total =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'total'));
+		
+		
+		$payment_status =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'0'));
+		
+		
+		if($item_total)
+			$data_temp['Item Total'] = $item_total;
+			
+		if($total)	
+			$data_temp['Total'] = $total;
+			
+		if($payment_status)	
+		$data_temp['Payment Status'] = $payment_status;
+	  
+	  
+	  
+      $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_sessions where group_id= %d", $i);
+	  
+	  
+	  
       $paypal_info = $wpdb->get_results($query);
       if ($paypal_info) {
         $is_paypal_info = TRUE;
       }
       if ($is_paypal_info) {
-        foreach ($paypal_info_fields as $paypal_info_field)	{
+        foreach ($paypal_info_fields as $key=>$paypal_info_field)	{
           if ($paypal_info) {
-            $data_temp['PAYPAL_' . $paypal_info_field] = $paypal_info[0]->$paypal_info_field;
+            $data_temp['PAYPAL_' . $paypal_info_labels[$key]] = $paypal_info[0]->$paypal_info_field;
           }
           else {
-            $data_temp['PAYPAL_' . $paypal_info_field] = '';
+            $data_temp['PAYPAL_' . $paypal_info_labels[$key]] = '';
           }
         }
       }

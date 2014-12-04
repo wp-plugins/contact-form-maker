@@ -43,11 +43,9 @@ class FMViewGenerete_csv_fmc {
     foreach ($data as $row) {
       if (!$flag) {
         # display field/column names as first row
-        echo "sep=,\r\n";
-        echo '"' . implode('","', array_keys($row));
-        if ($is_paypal_info) {
-          echo '","Currency","Last modified","Status","Full Name","Fax","Mobile phone","Email","Phone","Address","Paypal info","IPN","Tax","Shipping';
-        }  
+        // echo "sep=,\r\n";
+        echo '"' . implode('","', str_replace('PAYPAL_', '', array_keys($row)));
+        
         echo "\"\r\n";
         $flag = TRUE;
       }

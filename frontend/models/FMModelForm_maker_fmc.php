@@ -124,6 +124,8 @@ class FMModelForm_maker_fmc {
   
   public function save_db($counter, $id) {
     global $wpdb;
+	$current_user =  wp_get_current_user();
+	 
     $chgnac = TRUE;
     $all_files = array();
     $paypal = array();
@@ -341,7 +343,7 @@ class FMModelForm_maker_fmc {
             }
             
             case "type_hidden": {
-              $value = isset($_POST[$label_label[$key]]) ? esc_html($_POST[$label_label[$key]]) : "";
+              $value = isset($_POST[$label_order_original[$key]]) ? esc_html($_POST[$label_order_original[$key]]) : "";
               break;
             }
             
@@ -679,13 +681,15 @@ class FMModelForm_maker_fmc {
               'group_id' => ($max + 1),
               'date' => date('Y-m-d H:i:s'),
               'ip' => $_SERVER['REMOTE_ADDR'],
+              'user_id_wd' => $current_user->ID,
             ), array(
               '%d',
               '%s',
               '%s',
               '%d',
               '%s',
-              '%s'
+              '%s',
+			  '%d'
             ));
           }
           if (!$save_or_no) {
@@ -1132,13 +1136,15 @@ class FMModelForm_maker_fmc {
             'group_id' => ($max + 1),
             'date' => date('Y-m-d H:i:s'),
             'ip' => $ip,
+            'user_id_wd' => $current_user->ID,
           ), array(
             '%d',
             '%s',
             '%s',
             '%d',
             '%s',
-            '%s'
+            '%s',
+            '%d'
           ));
         if (!$save_or_no) {
           return FALSE;
@@ -1147,7 +1153,8 @@ class FMModelForm_maker_fmc {
       }
     }
 
-		$queries = $wpdb->get_results("SELECT * FROM " . $wpdb->prefix . "formmaker_query WHERE form_id=".$id);
+		$queries = $wpdb->get_results( $wpdb->prepare("SELECT * FROM " .$wpdb->prefix. "formmaker_query WHERE form_id=%d",(int)$id ));
+		
 		if($queries)
 		{
 			foreach($queries as $query)
@@ -1198,13 +1205,15 @@ class FMModelForm_maker_fmc {
             'group_id' => ($max + 1),
             'date' => date('Y-m-d H:i:s'),
             'ip' => $ip,
+            'user_id_wd' => $current_user->ID,
           ), array(
             '%d',
             '%s',
             '%s',
             '%d',
             '%s',
-            '%s'
+            '%s',
+            '%d'
           ));
           if (!$save_or_no) {
             return false;
@@ -1221,13 +1230,15 @@ class FMModelForm_maker_fmc {
             'group_id' => ($max + 1),
             'date' => date('Y-m-d H:i:s'),
             'ip' => $ip,
+            'user_id_wd' => $current_user->ID,
           ), array(
             '%d',
             '%s',
             '%s',
             '%d',
             '%s',
-            '%s'
+            '%s',
+            '%d'
           ));
           if (!$save_or_no) {
             return false;
@@ -1239,13 +1250,15 @@ class FMModelForm_maker_fmc {
             'group_id' => ($max + 1),
             'date' => date('Y-m-d H:i:s'),
             'ip' => $ip,
+            'user_id_wd' => $current_user->ID,
           ), array(
             '%d',
             '%s',
             '%s',
             '%d',
             '%s',
-            '%s'
+            '%s',
+            '%d'
           ));
           if (!$save_or_no) {
             return false;
@@ -1262,7 +1275,7 @@ class FMModelForm_maker_fmc {
           $str .= "&cmd=" . "_cart";
           $str .= "&notify_url=" . admin_url('admin-ajax.php?action=checkpaypal%26form_id=' . $id . '%26group_id=' . ($max + 1));
           $str .= "&upload=" . "1";
-          $str .= "&charsety=UTF-8";
+          $str .= "&charset=UTF-8";
           if (isset($paypal['shipping'])) {
             $str = $str . "&shipping_1=" . $paypal['shipping'];
             //	$str=$str."&weight_cart=".$paypal['shipping'];
@@ -1341,6 +1354,18 @@ class FMModelForm_maker_fmc {
     if (!$row->form_front) {
       $id = '';
     }
+    $current_user =  wp_get_current_user();
+    if ($current_user->ID != 0)
+    {
+      $username =  $current_user->display_name;
+      $useremail =  $current_user->user_email;
+    }
+    else
+    {
+      $username = '';
+      $useremail = '';
+    }
+		
     $label_order_original = array();
     $label_order_ids = array();
     $label_label = array();
@@ -1405,21 +1430,21 @@ class FMModelForm_maker_fmc {
               case "type_number": {
                 $element = isset($_POST['wdform_'.$i."_element".$id]) ? $_POST['wdform_'.$i."_element".$id] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;
               }
               case "type_wdeditor": {
                 $element = isset($_POST['wdform_'.$i.'_wd_editor'.$id]) ? $_POST['wdform_'.$i.'_wd_editor'.$id] : NULL;
-                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                 $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 break;
               }
               case "type_hidden": {
                 $element = isset($_POST[$element_label]) ? $_POST[$element_label] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;
@@ -1435,7 +1460,7 @@ class FMModelForm_maker_fmc {
               case "type_submitter_mail": {
                 $element = isset($_POST['wdform_'.$i."_element".$id]) ? $_POST['wdform_'.$i."_element".$id] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;		
@@ -1531,9 +1556,11 @@ class FMModelForm_maker_fmc {
               }
               case "type_date_fields": {
                 $day = isset($_POST['wdform_'.$i."_day".$id]) ? $_POST['wdform_'.$i."_day".$id] : NULL;
+				$month = isset($_POST['wdform_'.$i."_month".$id]) ? $_POST['wdform_'.$i."_month".$id] : "";
+				$year = isset($_POST['wdform_'.$i."_year".$id]) ? $_POST['wdform_'.$i."_year".$id] : "";
                 if(isset($day)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td >' . $day . '-' . (isset($_POST['wdform_'.$i."_month".$id]) ? $_POST['wdform_'.$i."_month".$id] : "") . '-' . (isset($_POST['wdform_'.$i."_year".$id]) ? $_POST['wdform_'.$i."_year".$id] : "") . '</td></tr>';
-                  $list_text_mode=$list_text_mode.$element_label.' - '.$day.'-'.(isset($_POST['wdform_'.$i."_month".$id]) ? $_POST['wdform_'.$i."_month".$id] : "").'-'.(isset($_POST['wdform_'.$i."_year".$id]) ? $_POST['wdform_'.$i."_year".$id] : "")."\r\n";
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td >' .(($day || $month || $year) ? $day . '-' . $month . '-' . $year : '' ). '</td></tr>';
+                  $list_text_mode=$list_text_mode.$element_label.(($day || $month || $year) ? $day.'-'.$month.'-'.$year : '')."\r\n";
                 }
                 break;
               }						
@@ -1546,7 +1573,7 @@ class FMModelForm_maker_fmc {
                 }								
                 $element = isset($_POST['wdform_'.$i."_element".$id]) ? $_POST['wdform_'.$i."_element".$id] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;	
@@ -1617,7 +1644,7 @@ class FMModelForm_maker_fmc {
                     $value .= '<br/>' . (isset($_POST['wdform_'.$i."_element_property_label".$id.$k]) ? $_POST['wdform_'.$i."_element_property_label".$id.$k] : "") . ': ' . $temp_val;
                   }
                 }							
-                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $value . '</pre></td></tr>';
+                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $value . '</pre></td></tr>';
                 $list_text_mode=$list_text_mode.$element_label.' - '.str_replace('<br/>',', ',$value)."\r\n";
                 break;
               }
@@ -1640,7 +1667,7 @@ class FMModelForm_maker_fmc {
                     $value .= '<br/>' . (isset($_POST['wdform_'.$i."_element_property_label".$id.$k]) ? $_POST['wdform_'.$i."_element_property_label".$id.$k] : "") . ': ' . $temp_val;
                   }
                 }							
-                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $value . '</pre></td></tr>';
+                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $value . '</pre></td></tr>';
                 $list_text_mode=$list_text_mode.$element_label.' - '.str_replace('<br/>',', ',$value)."\r\n";
                 break;	
               }
@@ -1652,7 +1679,7 @@ class FMModelForm_maker_fmc {
                 else {
                   $value='';
                 }							
-                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $value . '</pre></td></tr>';
+                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $value . '</pre></td></tr>';
                 $list_text_mode=$list_text_mode.$element_label.' - '.$value."\r\n";
                 break;
               }
@@ -1698,7 +1725,7 @@ class FMModelForm_maker_fmc {
               
               case "type_paypal_total": {
                 $element = isset($_POST['wdform_'.$i."_paypal_total".$id]) ? $_POST['wdform_'.$i."_paypal_total".$id] : "";
-                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                 $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 break;
               }
@@ -1706,7 +1733,7 @@ class FMModelForm_maker_fmc {
                 $element = isset($_POST['wdform_'.$i."_star_amount".$id]) ? $_POST['wdform_'.$i."_star_amount".$id] : NULL;
                 $selected = isset($_POST['wdform_'.$i."_selected_star_amount".$id]) ? $_POST['wdform_'.$i."_selected_star_amount".$id] : 0;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $selected . '/' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $selected . '/' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$selected.'/'.$element."\r\n";
                 }
                 break;
@@ -1715,7 +1742,7 @@ class FMModelForm_maker_fmc {
                 $element = isset($_POST['wdform_'.$i."_scale_amount".$id]) ? $_POST['wdform_'.$i."_scale_amount".$id] : NULL;
                 $selected = isset($_POST['wdform_'.$i."_scale_radio".$id]) ? $_POST['wdform_'.$i."_scale_radio".$id] : 0;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $selected . '/' . $element . '</pre></td></tr>';	
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $selected . '/' . $element . '</pre></td></tr>';	
                   $list_text_mode=$list_text_mode.$element_label.' - '.$selected.'/'.$element."\r\n";
                 }
                 break;
@@ -1724,7 +1751,7 @@ class FMModelForm_maker_fmc {
               case "type_spinner": {
                 $element = isset($_POST['wdform_'.$i."_element".$id]) ? $_POST['wdform_'.$i."_element".$id] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;
@@ -1733,7 +1760,7 @@ class FMModelForm_maker_fmc {
               case "type_slider": {
                 $element = isset($_POST['wdform_'.$i."_slider_value".$id]) ? $_POST['wdform_'.$i."_slider_value".$id] : NULL;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;
@@ -1742,7 +1769,7 @@ class FMModelForm_maker_fmc {
                 $element0 = isset($_POST['wdform_'.$i."_element".$id.'0']) ? $_POST['wdform_'.$i."_element".$id.'0'] : NULL;
                 $element1 = isset($_POST['wdform_'.$i."_element".$id.'1']) ? $_POST['wdform_'.$i."_element".$id.'1'] : NULL;
                 if(isset($element0) || isset($element1)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">From:' . $element0 . '<span style="margin-left:6px">To</span>:' . $element1 . '</pre></td></tr>';					
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">From:' . $element0 . '<span style="margin-left:6px">To</span>:' . $element1 . '</pre></td></tr>';					
                   $list_text_mode=$list_text_mode.$element_label.' - From:'.$element0.' To:'.$element1."\r\n";
                 }
                 break;
@@ -1760,7 +1787,7 @@ class FMModelForm_maker_fmc {
                 }
                 $element .= "Total:" . $total;
                 if(isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   $list_text_mode=$list_text_mode.$element_label.' - '.$element."\r\n";
                 }
                 break;
@@ -1831,7 +1858,7 @@ class FMModelForm_maker_fmc {
                 }
                 $matrix .= '</table>';	
                 if(isset($matrix)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $matrix . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $matrix . '</pre></td></tr>';
                 }						
                 break;
               }
@@ -1924,6 +1951,13 @@ class FMModelForm_maker_fmc {
 				if(strpos($new_script, "%ip%") > -1) {
 					$new_script = str_replace("%ip%", $ip, $new_script);	
         }
+				
+				if(strpos($new_script, "%username%")>-1){
+					$new_script = str_replace("%username%", $username, $new_script);
+        }
+				if(strpos($new_script, "%useremail%")>-1){
+					$new_script = str_replace("%useremail%", $useremail, $new_script);
+        }
 				if(strpos($new_script, "%all%") > -1) {
 					$new_script = str_replace("%all%", $list_user, $new_script);	
         }
@@ -2003,6 +2037,9 @@ class FMModelForm_maker_fmc {
             }
             $fromname = str_replace("%".$label_each."%", $new_value, $fromname);							
           }
+          if(strpos($fromname, "%username%")>-1){
+            $fromname = str_replace("%username%", $username, $fromname);
+          }
           
           if(strpos($subject, "%".$label_each."%")>-1) {
             $new_value = str_replace('<br>',', ',$this->custom_fields_mail($type, $key, $id));		
@@ -2038,6 +2075,12 @@ class FMModelForm_maker_fmc {
         
 				if(strpos($new_script, "%ip%") > -1)
 					$new_script = str_replace("%ip%", $ip, $new_script);	
+					
+				if(strpos($new_script, "%username%")>-1)
+					$new_script = str_replace("%username%", $username, $new_script);
+					
+				if(strpos($new_script, "%useremail%")>-1)
+					$new_script = str_replace("%useremail%", $useremail, $new_script);					
 					
 				if(strpos($new_script, "%all%") > -1)
 					$new_script = str_replace("%all%", $list, $new_script);	
@@ -2085,14 +2128,14 @@ class FMModelForm_maker_fmc {
                 {
                 $element = $_POST[$i . "_element" . $id];
                 if (isset($_POST[$i . "_element" . $id])) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                 }
                 break;
                 }
               case "type_hidden": {
                 $element = $_POST[$element_label];
                 if (isset($element)) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                 }
                 break;
               }
@@ -2100,7 +2143,7 @@ class FMModelForm_maker_fmc {
                 {
                 $element = $_POST[$i . "_element" . $id];
                 if (isset($_POST[$i . "_element" . $id])) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                   if ($_POST[$i . "_send" . $id] == "yes")
                     array_push($cc, $element);
                 }
@@ -2189,7 +2232,7 @@ class FMModelForm_maker_fmc {
                 }
                 $element = $_POST[$i . "_element" . $id];
                 if (isset($_POST[$i . "_element" . $id])) {
-                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">' . $element . '</pre></td></tr>';
+                  $list = $list . '<tr valign="top"><td >' . $element_label . '</td><td ><pre style="margin:0px; padding:0px">' . $element . '</pre></td></tr>';
                 }
                 break;
                 }
@@ -2247,7 +2290,7 @@ class FMModelForm_maker_fmc {
                     $value .= '<br/>'.$_POST[$i."_element_property_label".$id.$k].': '.$_POST[$i."_element_property_value".$id.$k];
                   }
                 }
-                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$value.'</pre></td></tr>';					
+                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$value.'</pre></td></tr>';					
                 break;
               }
               case "type_paypal_radio": {
@@ -2263,12 +2306,12 @@ class FMModelForm_maker_fmc {
                     $value .= '<br/>'.$_POST[$i."_element_property_label".$id.$k].': '.$_POST[$i."_element_property_value".$id.$k];
                   }
                 }
-                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$value.'</pre></td></tr>';				
+                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$value.'</pre></td></tr>';				
                 break;	
               }
               case "type_paypal_shipping": {
                 $value = $_POST[$i."_element_label".$id].' - '.$_POST[$i."_element".$id].$form_currency;		
-                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$value.'</pre></td></tr>';				
+                $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$value.'</pre></td></tr>';				
                 break;
               }
               case "type_paypal_checkbox": {
@@ -2306,32 +2349,32 @@ class FMModelForm_maker_fmc {
               case "type_star_rating": {
                 $selected = (isset($_POST[$i."_selected_star_amount".$id]) ? $_POST[$i."_selected_star_amount".$id] : 0);
                 if (isset($_POST[$i."_star_amount".$id])) {
-                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$selected.'/'.$_POST[$i."_star_amount".$id].'</pre></td></tr>';
+                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$selected.'/'.$_POST[$i."_star_amount".$id].'</pre></td></tr>';
                 }
                 break;
               }
               case "type_scale_rating": {
                 $selected = (isset($_POST[$i."_scale_radio".$id]) ? $_POST[$i."_scale_radio".$id] : 0);
                 if (isset($_POST[$i."_scale_amount".$id])) {
-                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$selected.'/'.$_POST[$i."_scale_radio".$id].'</pre></td></tr>';
+                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$selected.'/'.$_POST[$i."_scale_radio".$id].'</pre></td></tr>';
                 }
                 break;
               }
               case "type_spinner": {
                 if (isset($_POST[$i."_element".$id])) {
-                  $list=$list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$_POST[$i."_element".$id].'</pre></td></tr>';					
+                  $list=$list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$_POST[$i."_element".$id].'</pre></td></tr>';					
                 }
                 break;
               }
               case "type_slider": {
                 if (isset($_POST[$i."_slider_value".$id])) {
-                  $list=$list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$_POST[$i."_slider_value".$id].'</pre></td></tr>';					
+                  $list=$list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$_POST[$i."_slider_value".$id].'</pre></td></tr>';					
                 }
                 break;
               }
               case "type_range": {
                 if(isset($_POST[$i."_element".$id.'0']) || isset($_POST[$i."_element".$id.'1'])) {
-                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">From:'.$_POST[$i."_element".$id.'0'].'<span style="margin-left:6px">To</span>:'.$_POST[$i."_element".$id.'1'].'</pre></td></tr>';
+                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">From:'.$_POST[$i."_element".$id.'0'].'<span style="margin-left:6px">To</span>:'.$_POST[$i."_element".$id.'1'].'</pre></td></tr>';
                 }
                 break;
               }
@@ -2348,7 +2391,7 @@ class FMModelForm_maker_fmc {
                     }
                   }
                   $element .= "Total:".$total;
-                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$element.'</pre></td></tr>';
+                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$element.'</pre></td></tr>';
                 }
                 break;
               }
@@ -2425,7 +2468,7 @@ class FMModelForm_maker_fmc {
                 }
                 $matrix .= '</table>';
                 if (isset($matrix)) {
-                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="font-family:inherit; margin:0px; padding:0px">'.$matrix.'</pre></td></tr>';
+                  $list = $list.'<tr valign="top"><td >'.$element_label.'</td><td ><pre style="margin:0px; padding:0px">'.$matrix.'</pre></td></tr>';
                 }
                 break;
               }
@@ -3810,7 +3853,7 @@ class FMModelForm_maker_fmc {
     }
     else {
       $_SESSION['redirect_paypal'.$id] = 1;
-      $redirect_url = add_query_arg(array('succes' => $succes), $redirect_url);
+      
       $str .= "&return=" . urlencode($redirect_url);
       wp_redirect($str);
       exit;

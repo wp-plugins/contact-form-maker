@@ -283,6 +283,25 @@ function before_reset() {
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'form_options', 'current_id' => $current_id, 'message' => $message, 'fieldset_id' => $fieldset_id), admin_url('admin.php')));
   }
 
+  public function remove_query() {
+    global $wpdb;
+    $cid = ((isset($_POST['cid']) && $_POST['cid'] != '') ? $_POST['cid'] : NULL); 
+    if (count($cid)) {
+      $cids = implode(',', $cid);
+      $query = 'DELETE FROM ' . $wpdb->prefix . 'formmaker_query WHERE id IN ( ' . $cids . ' )';
+      if ($wpdb->query($query)) {
+        echo WDW_FM_Library::message('Items Succesfully Deleted.', 'updated');
+      }
+      else {
+        echo WDW_FM_Library::message('Error. Please install plugin again.', 'error');
+      }
+    }
+    else {
+      echo WDW_FM_Library::message('You must select at least one item.', 'error');
+    }
+    $this->apply_options();
+  }
+  
   public function cancel_options() {
     $this->edit();
   }
@@ -345,6 +364,9 @@ function before_reset() {
     $checkout_mode = (isset($_POST['checkout_mode']) ? esc_html(stripslashes($_POST['checkout_mode'])) : 'testmode');
     $paypal_mode = (isset($_POST['paypal_mode']) ? esc_html(stripslashes($_POST['paypal_mode'])) : 0);
     $javascript = (isset($_POST['javascript']) ? stripslashes($_POST['javascript']) : $javascript);
+    $user_id_wd = (isset($_POST['user_id_wd']) ? stripslashes($_POST['user_id_wd']) : 'administrator,');
+    $frontend_submit_fields = (isset($_POST['frontend_submit_fields']) ? stripslashes($_POST['frontend_submit_fields']) : '');
+    $frontend_submit_stat_fields = (isset($_POST['frontend_submit_stat_fields']) ? stripslashes($_POST['frontend_submit_stat_fields']) : '');
     $send_to = '';
     for ($i = 0; $i < 20; $i++) {
       if (isset($_POST['send_to' . $i])) {
@@ -400,7 +422,10 @@ function before_reset() {
       'checkout_mode' => $checkout_mode,
       'paypal_mode' => $paypal_mode,
       'javascript' => $javascript,
+      'user_id_wd' => $user_id_wd,
       'send_to' => $send_to,
+      'frontend_submit_fields' => $frontend_submit_fields,
+      'frontend_submit_stat_fields' => $frontend_submit_stat_fields,
     ), array('id' => $id));
     if ($save !== FALSE) {
       return 8;
@@ -637,6 +662,7 @@ function before_reset() {
     $id = WDW_FMC_Library::get('current_id', 0);
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form_front = (isset($_POST['form_front']) ? stripslashes($_POST['form_front']) : '');
+    $sortable = (isset($_POST['sortable']) ? 1 : 0);
     $counter = (isset($_POST['counter']) ? esc_html(stripslashes($_POST['counter'])) : 0);
     $label_order = (isset($_POST['label_order']) ? esc_html(stripslashes($_POST['label_order'])) : '');
     $pagination = (isset($_POST['pagination']) ? esc_html(stripslashes($_POST['pagination'])) : '');
@@ -652,6 +678,7 @@ function before_reset() {
       $save = $wpdb->update($wpdb->prefix . 'formmaker', array(
         'title' => $title,
         'form_front' => $form_front,
+        'sortable' => $sortable,
         'counter' => $counter,
         'label_order' => $label_order,
         'label_order_current' => $label_order_current,
@@ -716,6 +743,10 @@ function before_reset() {
         'mail_mode_user' => 1,
         'mail_attachment' => 1,
         'mail_attachment_user' => 1,
+        'sortable' => $sortable,
+        'user_id_wd' => 'administrator,',
+        'frontend_submit_fields' => '',
+        'frontend_submit_stat_fields' => '',
       ), array(
 				'%s',
         '%s',
@@ -767,6 +798,10 @@ function before_reset() {
         '%d',
         '%d',
         '%d',
+        '%d',
+        '%s',
+        '%s',
+        '%s',
       ));
       $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
       update_option('contact_form_forms', ((get_option('contact_form_forms')) ? (get_option('contact_form_forms')) . ',' . $id : $id));
@@ -794,6 +829,7 @@ function before_reset() {
     $row = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'formmaker WHERE id="%d"', $id));
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form_front = (isset($_POST['form_front']) ? stripslashes($_POST['form_front']) : '');
+    $sortable = (isset($_POST['sortable']) ? stripslashes($_POST['sortable']) : 1);
     $counter = (isset($_POST['counter']) ? esc_html(stripslashes($_POST['counter'])) : 0);
     $label_order = (isset($_POST['label_order']) ? esc_html(stripslashes($_POST['label_order'])) : '');
     $label_order_current = (isset($_POST['label_order_current']) ? esc_html(stripslashes($_POST['label_order_current'])) : '');
@@ -856,6 +892,10 @@ function before_reset() {
       'mail_mode_user' => $row->mail_mode_user,
       'mail_attachment' => $row->mail_attachment,
       'mail_attachment_user' => $row->mail_attachment_user,
+      'sortable' => $sortable,
+      'user_id_wd' => $row->user_id_wd,
+      'frontend_submit_fields' => $row->frontend_submit_fields,
+      'frontend_submit_stat_fields' => $row->frontend_submit_stat_fields,
     ), array(
       '%s',
       '%s',
@@ -907,6 +947,10 @@ function before_reset() {
       '%d',
       '%d',
       '%d',
+      '%d',
+      '%s',
+      '%s',
+      '%s',
     ));
     $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
     update_option('contact_form_forms', ((get_option('contact_form_forms')) ? (get_option('contact_form_forms')) . ',' . $id : $id));
