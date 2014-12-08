@@ -28,7 +28,7 @@ The product has cross-browser compatibility, which allows using the Contact form
 ###Features of the Contact Form Maker  
 
 *   WordPress 3.0+  
-*   7 field types of the Contact Form Maker  
+*   7 field types of the Contact Form Maker.  
 	*   Custom HTML  
 	*   Text Input (10 sub-types)  
 	*   Captcha  
@@ -36,20 +36,20 @@ The product has cross-browser compatibility, which allows using the Contact form
 	*   Section break  
 	*   Map  
 	*   Button  
-*   Possibility to add Custom HTML between the fields  
-*   Pagination  
-*   Support for section break  
-*   Possibility of add custom CSS and Javascript  
-*   Additional attributes for each field to add certain properties using Java Script  
-*   Submissions are send to the provided admin address(es) and submitter (optional)  
+*   Possibility to add Custom HTML between the fields . 
+*   Pagination.  
+*   Support for section break.  
+*   Possibility of add custom CSS and Javascript.  
+*   Additional attributes for each field to add certain properties using Java Script.  
+*   Submissions are send to the provided admin address(es) and submitter (optional).  
 *   Custom text for admin and users  
-*   Shortcode for easier input of the created contact form into Pages/Posts  
-*   Chance to add custom HTML  
-*   Detailed parameters for each field type  
-*   Data validation before the submission of the contact form  
-*   Detailed Submissions field including the submissions of all contact forms  
-*   10 built-in templates  
-*   Required and hidden fields for advanced contact forms  
+*   Shortcode for easier input of the created contact form into Pages/Posts.  
+*   Chance to add custom HTML.  
+*   Detailed parameters for each field type.  
+*   Data validation before the submission of the contact form.  
+*   Detailed Submissions field including the submissions of all contact forms.  
+*   10 built-in templates.  
+*   Required and hidden fields for advanced contact forms.  
 
 
 ### Supported languages Of the Contact Form Maker  
