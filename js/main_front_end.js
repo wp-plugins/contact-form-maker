@@ -77,8 +77,21 @@ function captcha_refresh(id, genid)
 	}
 }
 
-function set_checked(id,j,form_id) {
-	set_total_value(id,form_id);
+function set_checked(id,j,form_id)
+{
+  checking=document.getElementById(id+"_element"+form_id+j);
+  if(checking.getAttribute('other'))
+  if(checking.getAttribute('other')==1)
+  if(!checking.checked)
+  {	
+  if(document.getElementById(id+"_other_input"+form_id))
+  {
+  document.getElementById(id+"_other_input"+form_id).parentNode.removeChild(document.getElementById(id+"_other_br"+form_id));
+  document.getElementById(id+"_other_input"+form_id).parentNode.removeChild(document.getElementById(id+"_other_input"+form_id));
+  }
+  return false;	
+  }
+  return true;
 }
 
 function set_select(value) {
