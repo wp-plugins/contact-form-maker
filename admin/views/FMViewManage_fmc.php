@@ -81,6 +81,7 @@ class FMViewManage_fmc {
               <span>Email to send submissions to</span><span class="sorting-indicator"></span></a>
           </th>
           <th class="table_big_col" style="width: 140px;">Shortcode</th>
+          <th class="table_large_col">PHP function</th>
           <th class="table_big_col">Edit</th>
           <th class="table_big_col"><a title="Delete selected items" href="" onclick="if (confirm('Do you want to delete selected items?')) {
                                                        spider_set_input_value('task', 'delete_all');
@@ -112,6 +113,9 @@ class FMViewManage_fmc {
                 <td><?php echo $row_data->mail; ?></td>
                 <td class="table_big_col" style="padding-left: 0; padding-right: 0; width: 140px;">
                   <input type="text" value='[wd_contact_form id="<?php echo $row_data->id; ?>"]' onclick="spider_select_value(this)" size="12" readonly="readonly" style="padding-left: 1px; padding-right: 1px;width: 139px;"/>
+                </td>
+                <td class="table_large_col" style="padding-left: 0; padding-right: 0;">
+                  <input type="text" value='&#60;?php wd_contact_form_maker(<?php echo $row_data->id; ?>); ?&#62;' onclick="spider_select_value(this)"  readonly="readonly" style="padding-left: 1px; padding-right: 1px;"/>
                 </td>
                 <td class="table_big_col">
                   <a onclick="spider_set_input_value('task', 'edit<?php echo $old; ?>');
@@ -186,9 +190,12 @@ class FMViewManage_fmc {
         document.getElementById('take').style.display = "none";
         document.getElementById('page_bar').style.display = "none";
         document.getElementById('saving').style.display = "block";
-        jQuery('.wdform_section .wdform_column').each(function() {
-          if(!jQuery(this).html())
-            jQuery(this).remove();
+        jQuery('.wdform_section').each(function() {
+          var this2 = this;
+          jQuery(this2).find('.wdform_column').each(function() {
+            if(!jQuery(this).html() && jQuery(this2).children().length>1)
+              jQuery(this).remove();
+          });
         });
         remove_whitespace(document.getElementById('take'));
         l_id_array = [<?php echo $labels['id']?>];

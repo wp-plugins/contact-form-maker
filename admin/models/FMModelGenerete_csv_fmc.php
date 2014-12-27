@@ -238,11 +238,11 @@ class FMModelGenerete_csv_fmc {
 	  
 		if($is_paypal)
 		{
-			$item_total = $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'item_total'));
+			$item_total = $wpdb->get_var($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'item_total'));
 			
-			$total =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'total'));
+			$total =   $wpdb->get_var($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'total'));
 			
-			$payment_status =   $wpdb->get_results($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'0'));
+			$payment_status =   $wpdb->get_var($wpdb->prepare("SELECT `element_value` FROM " . $wpdb->prefix . "formmaker_submits where group_id=%d AND element_label=%s",$i,'0'));
 			
 			$data_temp['Item Total'] = $item_total;
 			$data_temp['Total'] = $total;

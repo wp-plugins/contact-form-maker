@@ -237,7 +237,11 @@ div.wd_preview a {
 
 .table_large_col {
   text-align: center !important;
-  width: 140px;
+  width: 200px;
+}
+
+.table_large_col input{
+  width: 180px;
 }
 
 .table_medium_col_uncenter { 
