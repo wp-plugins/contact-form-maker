@@ -145,6 +145,8 @@ If you want to update the plugin while preserving your existing contact forms, y
 == Changelog ==
 = 1.7.25 =
 remove fancybox
+= 1.7.24 =
+display php function to publish form
 = 1.6.1 =
 *  Added featured plugins  
 = 1.6.0 =
