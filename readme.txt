@@ -196,9 +196,8 @@ Click “Choose file” (“Browse”) and select the Contact Form Maker zip fil
 *For Mac Users*  
 *Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
 Click “Install Now” button.  
-If the installation succeeded you will see the message in the picture. If any problem occurs, please contact us at info@web-dorado.com.  
-Click “Activate Plugin” button for activating the plugin.  
- 
+If the installation succeeded you will see the message in the picture. Click “Activate Plugin” button for activating the plugin.    
+If any problem occurs, please contact us at info@web-dorado.com. 
 
 1.3 Updating the contact form.  
 
