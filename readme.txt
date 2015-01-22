@@ -56,7 +56,7 @@ The product has cross-browser compatibility, which allows using the Contact form
 
  *If you need language of the Contact Form Maker which is not included in this list, please contact us and we will do the translation of Contact Form Maker within 3 days. If you find any mistakes in the translation of the Contact Form Maker, please contact us and we will make relevant corrections within 3 days.*  
 
- Afrikaans (af)  
+Afrikaans (af)  
 Albanian (sq)  
 Arabic (ar)  
 Armenian (hy_AM)  
@@ -118,14 +118,13 @@ Vietnamese (vi)
 After downloading the ZIP file,  
 
 1. Log in to the administrator panel.  
-1. Go to Plugins Add > New > Upload.  
-1. Click “Choose file” (“Browse”) and select the downloaded zip file.  
+2. Go to Plugins Add > New > Upload.  
+3. Click “Choose file” (“Browse”) and select the downloaded zip file.  
 *For Mac Users*  
 *Go to your Downloads folder and locate the folder with the plugin. Right-click on the folder and select Compress. Now you have a newly created .zip file which can be installed as described here.*  
-1. Click “Install Now” button.  
-1. Click “Activate Plugin” button for activating the plugin.  
-
-If any problem occurs, please contact us at  [info@web-dorado.com](mailto:info@web-dorado.com).  
+4. Click “Install Now” button.  
+5. Click “Activate Plugin” button for activating the plugin.  
+6.If the installation does not succeed, please contact us at info@web-dorado.com. 
 
 ### Updating the contact form.  
 
