@@ -1349,6 +1349,8 @@ class FMModelForm_maker_fmc {
   }
 
   public function gen_mail($counter, $all_files, $id, $str) {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $replyto = '';
     global $wpdb;
     $row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE id=%d", $id));
     if (!$row->form_front) {
