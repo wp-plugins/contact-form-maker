@@ -142,6 +142,8 @@ If you want to update the plugin while preserving your existing contact forms, y
 8.  Contact Form Maker - Select Columns  
 
 == Changelog ==
+= 1.7.26 =
+bug fixed in email content
 = 1.7.25 =
 remove fancybox
 = 1.7.24 =
