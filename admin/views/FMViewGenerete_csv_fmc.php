@@ -50,7 +50,7 @@ class FMViewGenerete_csv_fmc {
         $flag = TRUE;
       }
       array_walk($row, 'cleanData');
-      echo '"' . implode('","', array_values($row)) . "\"\r\n";
+      echo '"' . html_entity_decode(implode('","', array_values($row))) . "\"\r\n";
     }
     die('');
   }
