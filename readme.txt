@@ -143,13 +143,15 @@ If you want to update the plugin while preserving your existing contact forms, y
 
 == Changelog ==
 = 1.7.27 =
-bug fixed in csv\xml export
+*  bug fixed in csv\xml export  
 = 1.7.26 =
-bug fixed in email content
+*  bug fixed in email content  
 = 1.7.25 =
-remove fancybox
+*  remove fancybox  
 = 1.7.24 =
-display php function to publish form
+*  display php function to publish form  
+= 1.7.20 =
+*  4.0.1 shortcode issue fixed   
 = 1.6.1 =
 *  Added featured plugins  
 = 1.6.0 =
