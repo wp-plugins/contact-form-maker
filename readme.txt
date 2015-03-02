@@ -50,6 +50,7 @@ The product has cross-browser compatibility, which allows using the Contact form
 *   Detailed Submissions field including the submissions of all contact forms.  
 *   10 built-in templates.  
 *   Required and hidden fields for advanced contact forms.  
+*   Conditional fields
 
 
 ### Supported languages Of the Contact Form Maker  
