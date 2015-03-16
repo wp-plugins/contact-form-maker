@@ -44,6 +44,7 @@ class FMViewBlocked_ips_fmc {
       </div>
     </div>
     <form onkeypress="spider_doNothing(event)" class="wrap" id="blocked_ips" method="post" action="admin.php?page=blocked_ips_fmc" style="float: left; width: 99%;">
+      <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
       <span class="block_icon"></span>
       <h2>Blocked IPs</h2>
       <div class="buttons_div">

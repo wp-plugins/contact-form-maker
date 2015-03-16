@@ -23,9 +23,8 @@ class FMControllerBlocked_ips_fmc {
     $id = WDW_FMC_Library::get('current_id', 0);
     $message = WDW_FMC_Library::get('message');
     echo WDW_FMC_Library::message_id($message);
-    // $task = ((isset($_POST['task'])) ? esc_html($_POST['task']) : '');
-    // $id = ((isset($_POST['current_id'])) ? esc_html($_POST['current_id']) : 0);
     if (method_exists($this, $task)) {
+      check_admin_referer('nonce_fmc', 'nonce_fmc');
       $this->$task($id);
     }
     else {
@@ -93,6 +92,9 @@ class FMControllerBlocked_ips_fmc {
     }
     if ($flag) {
       $message = 1;
+    }
+    else {
+      $message = 0;
     }
     // $this->display();
     $page = WDW_FMC_Library::get('page');

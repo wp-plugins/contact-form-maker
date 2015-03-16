@@ -155,6 +155,7 @@ class  FMViewSubmissions_fmc {
     </div>
     <div style="background-color: #FFFFFF; width: 350px; max-height: 350px; overflow-y: auto; padding: 20px; position: fixed; top: 100px; display: none; border: 2px solid #AAAAAA;  z-index: 65556;" id="ChBDiv">
       <form action="#">
+        <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
         <p style="font-weight: bold; font-size: 18px; margin-top: 0px;">Select Columns</p>
         <div class="fm_check_labels"><input type="checkbox" <?php echo ($lists['hide_label_list'] === '') ? 'checked="checked"' : ''; ?> onclick="clickLabChBAll(this)" id="ChBAll"/><label for="ChBAll"> All</label></div>
         <?php
@@ -202,6 +203,7 @@ class  FMViewSubmissions_fmc {
       </div>
     </div>
     <form action="admin.php?page=submissions_fmc" method="post" id="admin_form" name="admin_form">
+      <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
       <input type="hidden" name="option" value="com_formmaker" />
       <input type="hidden" id="task" name="task" value="" />
       <input type="hidden" id="current_id" name="current_id" value="" />
@@ -792,6 +794,7 @@ class  FMViewSubmissions_fmc {
 	
     ?>
     <form action="admin.php?page=submissions_fmc" method="post" id="adminForm" name="adminForm">
+      <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
       <table width="99%">
         <tbody>
           <tr>
@@ -1049,6 +1052,7 @@ class  FMViewSubmissions_fmc {
 	
     ?>
     <form action="admin.php?page=submissions_fmc"  method="post" id="formform_id_temp" name="formform_id_temp">
+      <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
       <table width="99%">
         <tbody>
           <tr>

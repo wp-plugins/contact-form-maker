@@ -23,6 +23,7 @@ class FMControllerSubmissions_fmc {
     $id = ((isset($_POST['current_id'])) ? esc_html($_POST['current_id']) : 0);
     $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	
     if (method_exists($this, $task)) {
+      check_admin_referer('nonce_fmc', 'nonce_fmc');
       $this->$task($id); 
     }
     else {
@@ -52,7 +53,6 @@ class FMControllerSubmissions_fmc {
 
   public function edit() {
     global $wpdb;
-    $new_form = false;
     require_once WD_FMC_DIR . "/admin/models/FMModelSubmissions_fmc.php";
     $model = new FMModelSubmissions_fmc();
 
@@ -61,17 +61,22 @@ class FMControllerSubmissions_fmc {
     $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
 			
     $form_id = $wpdb->get_var("SELECT form_id FROM " . $wpdb->prefix . "formmaker_submits WHERE group_id='" . $id . "'");	
-    $theme_id = $wpdb->get_var("SELECT theme FROM " . $wpdb->prefix . "formmaker WHERE id='" . $form_id . "'");	
+    $form = $wpdb->get_var("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE id='" . $form_id . "'");
+    $theme_id = $form->theme;
     $css = $wpdb->get_var("SELECT css FROM " . $wpdb->prefix . "formmaker_themes WHERE id='" . $theme_id . "'");	
-	
-    if (strpos($css,'.wdform_section') > -1) {
-      $new_form = true;
-    }
-    if ($new_form == false)	{
-      $view->edit($id);
+
+    if (isset($form->form)) {
+      $old = TRUE;
     }
     else {
+      $old = FALSE;
+    }
+
+    if ($old == FALSE || ($old == TRUE && $form->form == '')) {
       $view->new_edit($id);
+    }
+    else {
+      $view->edit($id);
     }
   }	
   

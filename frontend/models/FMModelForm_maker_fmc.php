@@ -233,75 +233,7 @@ class FMModelForm_maker_fmc {
                 $value = (isset($_POST['wdform_'.$i."_element_first".$id]) ? esc_html($_POST['wdform_'.$i."_element_first".$id]) : "") . '@@@' . (isset($_POST['wdform_'.$i."_element_last".$id]) ? esc_html($_POST['wdform_'.$i."_element_last".$id]) : "");
               }
               break;
-            }		
-            case "type_file_upload": {
-              $files = isset($_FILES['wdform_'.$i.'_file'.$id]) ? $_FILES['wdform_'.$i.'_file'.$id] : NULL;
-              foreach($files['name'] as $file_key => $file_name) {
-                if($file_name) {
-                  $untilupload = $form->form_fields;
-                  $untilupload = substr($untilupload, strpos($untilupload,$i.'*:*id*:*type_file_upload'), -1);
-                  $untilupload = substr($untilupload, 0, strpos($untilupload,'*:*new_field*:'));
-                  $untilupload = explode('*:*w_field_label_pos*:*',$untilupload);
-                  $untilupload = $untilupload[1];
-                  $untilupload = explode('*:*w_destination*:*',$untilupload);
-                  $destination = $untilupload[0];
-                  $destination = str_replace(site_url() . '/', '', $destination);
-                  $untilupload = $untilupload[1];
-                  $untilupload = explode('*:*w_extension*:*',$untilupload);
-                  $extension 	 = $untilupload[0];
-                  $untilupload = $untilupload[1];
-                  $untilupload = explode('*:*w_max_size*:*',$untilupload);
-                  $max_size 	 = $untilupload[0];
-                  $untilupload = $untilupload[1];
-                  $fileName = $files['name'][$file_key];
-                  $fileSize = $files['size'][$file_key];
-
-                  if($fileSize > $max_size * 1024) {
-                    echo "<script> alert('" . addslashes(__('The file exceeds the allowed size of', 'form_maker')) . $max_size . " KB');</script>";
-                    return array($max+1);
-                  }
-
-                  $uploadedFileNameParts = explode('.',$fileName);
-                  $uploadedFileExtension = array_pop($uploadedFileNameParts);
-                  $to = strlen($fileName) - strlen($uploadedFileExtension) - 1;
-                  
-                  $fileNameFree = substr($fileName, 0, $to);
-                  $invalidFileExts = explode(',', $extension);
-                  $extOk = false;
-
-                  foreach($invalidFileExts as $key => $valuee) {
-                    if(is_numeric(strpos(strtolower($valuee), strtolower($uploadedFileExtension)))) {
-                      $extOk = true;
-                    }
-                  }
-                   
-                  if ($extOk == false) {
-                    echo "<script> alert('" . addslashes(__('Sorry, you are not allowed to upload this type of file.', 'form_maker')) . "');</script>";
-                    return array($max+1);
-                  }
-                  
-                  $fileTemp = $files['tmp_name'][$file_key];
-                  $p=1;
-                  while(file_exists( $destination . "/" . $fileName)) {
-                    $to = strlen($files['name'][$file_key]) - strlen($uploadedFileExtension) - 1;
-                    $fileName = substr($fileName, 0, $to) . '(' . $p . ').' . $uploadedFileExtension;
-                    $p++;
-                  }
-                  if(!move_uploaded_file($fileTemp, ABSPATH . $destination . '/' . $fileName)) {	
-                    echo "<script> alert('" . addslashes(__('Error, file cannot be moved.', 'form_maker')) . "');</script>";
-                    return array($max+1);
-                  }
-
-                  $value.= site_url() . '/' . $destination . '/' . $fileName . '*@@url@@*';
-          
-                  $files['tmp_name'][$file_key]=$destination . "/" . $fileName;
-                  $temp_file = array( "name" => $files['name'][$file_key], "type" => $files['type'][$file_key], "tmp_name" => $files['tmp_name'][$file_key]);
-                  array_push($all_files,$temp_file);
-                }
-              }
-              break;
             }
-            
             case 'type_address': {
               $value = '*#*#*#';
               $element = isset($_POST['wdform_'.$i."_street1".$id]) ? esc_html($_POST['wdform_'.$i."_street1".$id]) : NULL;
@@ -757,67 +689,6 @@ class FMModelForm_maker_fmc {
             }
             else {
               $value = (isset($_POST[$i . "_element_first" . $id]) ? esc_html($_POST[$i . "_element_first" . $id]) : "") . ' ' . (isset($_POST[$i . "_element_last" . $id]) ? esc_html($_POST[$i . "_element_last" . $id]) : "");
-            }
-            break;
-          }
-          case "type_file_upload": {
-            $file = isset($_FILES[$i . '_file' . $id]) ? $_FILES[$i . '_file' . $id] : NULL;
-            if ($file['name']) {
-              $untilupload = $form->form;
-              $pos1 = strpos($untilupload, "***destinationskizb" . $i . "***");
-              $pos2 = strpos($untilupload, "***destinationverj" . $i . "***");
-              $destination = substr($untilupload, $pos1 + (23 + (strlen($i) - 1)), $pos2 - $pos1 - (23 + (strlen($i) - 1)));
-              $pos1 = strpos($untilupload, "***extensionskizb" . $i . "***");
-              $pos2 = strpos($untilupload, "***extensionverj" . $i . "***");
-              $extension = substr($untilupload, $pos1 + (21 + (strlen($i) - 1)), $pos2 - $pos1 - (21 + (strlen($i) - 1)));
-              $pos1 = strpos($untilupload, "***max_sizeskizb" . $i . "***");
-              $pos2 = strpos($untilupload, "***max_sizeverj" . $i . "***");
-              $max_size = substr($untilupload, $pos1 + (20 + (strlen($i) - 1)), $pos2 - $pos1 - (20 + (strlen($i) - 1)));
-              $fileName = $file['name'];
-              $destination = str_replace(site_url() . '/', '', $destination);
-              $fileSize = $file['size'];
-              if ($fileSize > $max_size * 1024) {
-                echo "<script> alert('" . addslashes(__('The file exceeds the allowed size of', 'form_maker')) . $max_size . " KB');</script>";
-                return array($max + 1);
-              }
-              $uploadedFileNameParts = explode('.', $fileName);
-              $uploadedFileExtension = array_pop($uploadedFileNameParts);
-              $to = strlen($fileName) - strlen($uploadedFileExtension) - 1;
-              $fileNameFree = substr($fileName, 0, $to);
-              $invalidFileExts = explode(',', $extension);
-              $extOk = FALSE;
-              foreach ($invalidFileExts as $key => $value) {
-                if (is_numeric(strpos(strtolower($value), strtolower($uploadedFileExtension)))) {
-                  $extOk = TRUE;
-                }
-              }
-              if ($extOk == FALSE) {
-                echo "<script> alert('" . addslashes(__('Sorry, you are not allowed to upload this type of file.', 'form_maker')) . "');</script>";
-                return array($max + 1);
-              }
-              $fileTemp = $file['tmp_name'];
-              $p = 1;
-              while (file_exists($destination . "/" . $fileName)) {
-                $to = strlen($file['name']) - strlen($uploadedFileExtension) - 1;
-                $fileName = substr($fileName, 0, $to) . '(' . $p . ').' . $uploadedFileExtension;
-                $file['name'] = $fileName;
-                $p++;
-              }
-              if (is_dir(ABSPATH . $destination)) {
-                if (!move_uploaded_file($fileTemp, ABSPATH . $destination . '/' . $fileName)) {
-                  echo "<script> alert('" . addslashes(__('Error, file cannot be moved.', 'form_maker')) . "');</script>";
-                  return array($max + 1);
-                }
-              }
-              else {
-                echo "<script> alert('" . addslashes(__('Error, file destination does not exist.', 'form_maker')) . "');</script>";
-                return array($max + 1);
-              }
-              $value = site_url() . '/' . $destination . '/' . $fileName . '*@@url@@*';
-              $file['tmp_name'] = $destination . "/" . $fileName;
-              $file['name'] = ABSPATH . $destination . "/" . $fileName;
-              // $temp_file = array( "name" => $files['name'][$file_key], "type" => $files['type'][$file_key], "tmp_name" => $files['tmp_name'][$file_key]);
-							array_push($all_files, $file);
             }
             break;
           }
@@ -1930,10 +1801,10 @@ class FMModelForm_maker_fmc {
         $send_tos=explode('**',$row->send_to);
 				if ($row->mail_from_user != '') {
           if ($fromname != '') {
-            $from = "From: " . $fromname . " <" . $row->mail_from_user . ">" . "\r\n";
+            $from = "From: '" . $fromname . "' <" . $row->mail_from_user . ">" . "\r\n";
           }
           else {
-            $from = "From: " . $row->mail_from_user . " <" . $row->mail_from_user . ">" . "\r\n";
+            $from = "From: '' <" . $row->mail_from_user . ">" . "\r\n";
           }
         }
         else {
@@ -2000,7 +1871,7 @@ class FMModelForm_maker_fmc {
           $fromname = $row->from_name;
         }
         else {
-          $fromname = $row->from_mail;
+          $fromname = '';
         }
         $attachment = array(); 
 				if ($row->mail_attachment) {
@@ -2057,7 +1928,7 @@ class FMModelForm_maker_fmc {
 					if (!isset($from)) {
 						$from = $row->from_mail;
           }
-          $from = "From: " . $fromname . " <" . $from . ">" . "\r\n";
+          $from = "From: '" . $fromname . "' <" . $from . ">" . "\r\n";
 				}
 				else {
 					$from = "";
@@ -2484,10 +2355,10 @@ class FMModelForm_maker_fmc {
       // add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
       if ($row->from_mail != '') {
         if ($row->from_name != '') {
-          $from_mail = "From: " . $row->from_name . " <" . $row->from_mail . ">" . "\r\n";
+          $from_mail = "From: '" . $row->from_name . "' <" . $row->from_mail . ">" . "\r\n";
         }
         else {
-          $from_mail = "From: " . $row->from_mail . " <" . $row->from_mail . ">" . "\r\n";
+          $from_mail = "From: '' <" . $row->from_mail . ">" . "\r\n";
         }
       }
       else {
@@ -2938,7 +2809,7 @@ class FMModelForm_maker_fmc {
           if ($row->mail) {
             if ($c) {
               // $headers_form_mail = "From: " . $c . " <" . $c . ">" . "\r\n";
-              $headers = "MIME-Version: 1.0\n" . "From: " . $c . " <" . $c . ">" . "\r\n" . "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
+              $headers = "MIME-Version: 1.0\n" . "From: '" . $c . "' <" . $c . ">" . "\r\n" . "Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"\n";
             }
             // else {
               // $headers_form_mail = "";

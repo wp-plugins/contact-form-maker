@@ -404,6 +404,7 @@ class WDW_FMC_Library {
   }
 
   public static function spider_redirect($url) {
+    $url = html_entity_decode(wp_nonce_url($url, 'nonce_fmc', 'nonce_fmc'));
     ?>
     <script>
       window.location = "<?php echo $url; ?>";

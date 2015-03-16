@@ -27,7 +27,7 @@ class FMViewUninstall_fmc {
     $prefix = $wpdb->prefix;
     ?>
     <form method="post" action="admin.php?page=uninstall_fmc" style="width:95%;">
-      <?php wp_nonce_field('form_maker uninstall');?>
+      <?php wp_nonce_field('nonce_fmc', 'nonce_fmc'); ?>
       <div class="wrap">
         <span class="uninstall_icon"></span>
         <h2>Uninstall Contact Form Maker</h2>
@@ -89,7 +89,8 @@ class FMViewUninstall_fmc {
     $this->model->delete_db_tables();
     global $wpdb;
     $prefix = $wpdb->prefix;
-    $deactivate_url = wp_nonce_url('plugins.php?action=deactivate&amp;plugin=contact-form-maker/contact-form-maker.php', 'deactivate-plugin_contact-form-maker/contact-form-maker.php');
+    $deactivate_url = add_query_arg(array('action' => 'deactivate', 'plugin' => 'contact-form-maker/contact-form-maker.php'), admin_url('plugins.php'));
+    $deactivate_url = wp_nonce_url($deactivate_url, 'deactivate-plugin_contact-form-maker/contact-form-maker.php');
     ?>
     <div id="message" class="updated fade">
       <p>The following Database Tables succesfully deleted:</p>

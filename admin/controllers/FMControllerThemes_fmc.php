@@ -23,9 +23,8 @@ class FMControllerThemes_fmc {
     $id = WDW_FMC_Library::get('current_id', 0);
     $message = WDW_FMC_Library::get('message');
     echo WDW_FMC_Library::message_id($message);
-    // $task = ((isset($_POST['task'])) ? esc_html($_POST['task']) : '');
-    // $id = ((isset($_POST['current_id'])) ? esc_html($_POST['current_id']) : 0);
     if (method_exists($this, $task)) {
+      check_admin_referer('nonce_fmc', 'nonce_fmc');
       $this->$task($id);
     }
     else {
@@ -117,7 +116,7 @@ class FMControllerThemes_fmc {
 
   public function delete($id) {
     global $wpdb;
-    $isDefault = $wpdb->get_var($wpdb->prepare('SELECT default FROM ' . $wpdb->prefix . 'formmaker_themes WHERE id="%d"', $id));
+    $isDefault = $wpdb->get_var($wpdb->prepare('SELECT `default` FROM ' . $wpdb->prefix . 'formmaker_themes WHERE id="%d"', $id));
     if ($isDefault) {
       $message = 4;
     }
