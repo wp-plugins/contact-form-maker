@@ -145,6 +145,8 @@ If you want to update the plugin while preserving your existing contact forms, y
 8.  Contact Form Maker - Select Columns  
 
 == Changelog ==
+= 1.7.29 =
+*  Cache issue fixed   
 = 1.7.28 =
 *  Bug fixed: Empty email "From name"
 = 1.7.27 =
