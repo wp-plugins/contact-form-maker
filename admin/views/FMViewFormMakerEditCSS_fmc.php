@@ -40,7 +40,7 @@ class FMViewFormMakerEditCSS_fmc {
     <script src="<?php echo WD_FMC_URL . '/js/layout/htmlmixed.js'; ?>" type="text/javascript"></script>
     <script src="<?php echo WD_FMC_URL . '/js/layout/xml.js'; ?>" type="text/javascript"></script>
     <script src="<?php echo WD_FMC_URL . '/js/layout/php.js'; ?>" type="text/javascript"></script>
-    <link media="all" type="text/css" href="<?php echo WD_FM_URL . '/css/codemirror.css'; ?>" rel="stylesheet">
+    <link media="all" type="text/css" href="<?php echo WD_FMC_URL . '/css/codemirror.css'; ?>" rel="stylesheet">
     
     <style>
       .CodeMirror {

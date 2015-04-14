@@ -23,6 +23,10 @@ class FMViewForm_maker_fmc {
   // Public Methods                                                                     //
   ////////////////////////////////////////////////////////////////////////////////////////
   public function display($id) {
+  
+  
+  $current_url=htmlentities($_SERVER['REQUEST_URI']);
+  
     $form_maker_front_end = "";
     $result = $this->model->showform($id);
     if (!$result) {
@@ -121,7 +125,7 @@ class FMViewForm_maker_fmc {
         $form_currency =	$currency_sign[array_search($row->payment_currency, $currency_code)];
       }
       $form_paypal_tax = $row->tax;
-      $form_maker_front_end .= '<form name="form' . $id . '" action="' . $_SERVER['REQUEST_URI'] . '" method="post" id="form' . $id . '" class="form' . $id . '" enctype="multipart/form-data"  onsubmit="check_required(\'submit\', \'' . $id . '\'); return false;">
+      $form_maker_front_end .= '<form name="form' . $id . '" action="' . $current_url . '" method="post" id="form' . $id . '" class="form' . $id . '" enctype="multipart/form-data"  onsubmit="check_required(\'submit\', \'' . $id . '\'); return false;">
       <div id="' . $id . 'pages" class="wdform_page_navigation" show_title="' . $row->show_title . '" show_numbers="' . $row->show_numbers . '" type="' . $row->pagination . '"></div>
       <input type="hidden" id="counter' . $id . '" value="' . $row->counter . '" name="counter' . $id . '" />
       <input type="hidden" id="Itemid' . $id . '" value="" name="Itemid' . $id . '" />';
@@ -3226,7 +3230,7 @@ class FMViewForm_maker_fmc {
           if (window.before_reset) {
             before_reset();
           }
-          window.location = "<?php echo $_SERVER['REQUEST_URI'] ?>";
+          window.location = "<?php echo $current_url ?>";
           return;
         }
         if (window.before_submit) {
@@ -3346,7 +3350,7 @@ class FMViewForm_maker_fmc {
       $form_maker_front_end .= 'WDF_GRADING_TEXT = \'' . addslashes(__("Your score should be less than", 'form_maker')) . '\';';
       $form_maker_front_end .= 'WDF_INVALID_GRADING_' . $id . ' 	= \'' . addslashes(sprintf(__("Your score should be less than", 'form_maker'), '`grading_label`', '`grading_total`')) . '\';';
       $form_maker_front_end .= 'WDF_INVALID_EMAIL = \'' . addslashes(__("This is not a valid email address.", 'form_maker')) . '\';';
-      $form_maker_front_end .= 'REQUEST_URI_' . $id . '	= "' . $_SERVER['REQUEST_URI'] . '";';
+      $form_maker_front_end .= 'REQUEST_URI_' . $id . '	= "' . $current_url . '";';
       $form_maker_front_end .= 'ReqFieldMsg_' . $id . '	=\'`FIELDNAME` ' . addslashes(__('field is required.', 'form_maker')) . '\';';
       $form_maker_front_end .= 'RangeFieldMsg_' . $id . '	=\'' . addslashes(__('The', 'form_maker')) . ' `FIELDNAME` ' . addslashes(__('value must be between', 'form_maker')) . ' `FROM` - `TO`\';';
       $form_maker_front_end .= 'FormCurrency_' . $id . ' = "' . $form_currency . '";';
