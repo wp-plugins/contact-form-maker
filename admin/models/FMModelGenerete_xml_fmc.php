@@ -23,7 +23,7 @@ class FMModelGenerete_xml_fmc {
 	$is_paypal_info = FALSE;
     global $wpdb;
     $params = array();
-    $form_id = $_REQUEST['form_id'];
+    $form_id = (int)$_REQUEST['form_id'];
     $paypal_info_fields = array('ip', 'ord_date', 'ord_last_modified', 'status', 'full_name', 'fax', 'mobile_phone', 'email', 'phone', 'address', 'paypal_info', 'without_paypal_info', 'ipn', 'checkout_method', 'tax', 'shipping', 'shipping_type', 'read');
 	$paypal_info_labels = array( 'Currency', 'Last modified', 'Status', 'Full Name', 'Fax', 'Mobile phone', 'Email', 'Phone', 'Address', 'Paypal info', 'IPN', 'Tax', 'Shipping');
     $query = $wpdb->prepare("SELECT * FROM " . $wpdb->prefix . "formmaker_submits where form_id= %d ORDER BY date ASC", $form_id);

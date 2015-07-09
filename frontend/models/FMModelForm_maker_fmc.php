@@ -65,7 +65,7 @@ class FMModelForm_maker_fmc {
       $id = '';
     }
     if (isset($_POST["counter" . $id])) {
-      $counter = esc_html($_POST["counter" . $id]);
+      $counter = (int)esc_html($_POST["counter" . $id]);
       if (isset($_POST["captcha_input"])) {
         $captcha_input = esc_html($_POST["captcha_input"]);
         $session_wd_captcha_code = isset($_SESSION[$id . '_wd_captcha_code']) ? $_SESSION[$id . '_wd_captcha_code'] : '-';

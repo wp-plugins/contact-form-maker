@@ -20,7 +20,7 @@ class FMControllerManage_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   public function execute() {
     $task = WDW_FMC_Library::get('task');
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $message = WDW_FMC_Library::get('message');
     echo WDW_FMC_Library::message_id($message);
     if (method_exists($this, $task)) {
@@ -56,8 +56,7 @@ class FMControllerManage_fmc {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $view->edit($id);
   }
 
@@ -82,17 +81,15 @@ class FMControllerManage_fmc {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
     global $wpdb;
-    $id = WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
+    $id = (int)WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
     $view->form_options_old($id);
   }
 
   public function save_options_old() {
     $message = $this->save_db_options_old();
-    // $this->edit_old();
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id = (int)WDW_FMC_Library::get('current_id', 0);
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'edit_old', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
   }
 
@@ -103,10 +100,8 @@ class FMControllerManage_fmc {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
-    // $view->form_options_old($id);
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id = (int)WDW_FMC_Library::get('current_id', 0);
     $fieldset_id = WDW_FMC_Library::get('fieldset_id', 'general');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'form_options_old', 'current_id' => $current_id, 'message' => $message, 'fieldset_id' => $fieldset_id), admin_url('admin.php')));
   }
@@ -125,10 +120,9 @@ function before_reset() {
   
 }";
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $mail = (isset($_POST['mail']) ? esc_html(stripslashes($_POST['mail'])) : '');
-    $theme = (isset($_POST['theme']) ? esc_html(stripslashes($_POST['theme'])) : 1);
+    $theme = (isset($_POST['theme']) ? (int)esc_html(stripslashes($_POST['theme'])) : 1);
     $javascript = (isset($_POST['javascript']) ? stripslashes($_POST['javascript']) : $javascript);
     $script1 = (isset($_POST['script1']) ? esc_html(stripslashes($_POST['script1'])) : '');
     $script2 = (isset($_POST['script2']) ? esc_html(stripslashes($_POST['script2'])) : '');
@@ -198,17 +192,15 @@ function before_reset() {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
     global $wpdb;
-    $id = WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
+    $id = (int)WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
     $view->form_layout($id);
   }
 
   public function save_layout() {
     $message = $this->save_db_layout();
-    // $this->edit();
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id =(int) WDW_FMC_Library::get('current_id', 0);
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'edit', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
   }
 
@@ -219,17 +211,14 @@ function before_reset() {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id = (int)WDW_FMC_Library::get('current_id', 0);
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'form_layout', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
-    // $view->form_layout($id);
   }
 
   public function save_db_layout() {
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $custom_front = (isset($_POST['custom_front']) ? stripslashes($_POST['custom_front']) : '');
     $autogen_layout = (isset($_POST['autogen_layout']) ? 1 : 0);
     $save = $wpdb->update($wpdb->prefix . 'formmaker', array(
@@ -253,17 +242,15 @@ function before_reset() {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
     global $wpdb;
-    $id = WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
+    $id = (int)WDW_FMC_Library::get('current_id', $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker"));
     $view->form_options($id);
   }
 
   public function save_options() {
     $message = $this->save_db_options();
-    // $this->edit();
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id = (int)WDW_FMC_Library::get('current_id', 0);
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'edit', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
   }
 
@@ -274,10 +261,8 @@ function before_reset() {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewManage_fmc.php";
     $view = new FMViewManage_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
-    // $view->form_options($id);
     $page = WDW_FMC_Library::get('page');
-    $current_id = WDW_FMC_Library::get('current_id', 0);
+    $current_id = (int)WDW_FMC_Library::get('current_id', 0);
     $fieldset_id = WDW_FMC_Library::get('fieldset_id', 'general');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'form_options', 'current_id' => $current_id, 'message' => $message, 'fieldset_id' => $fieldset_id), admin_url('admin.php')));
   }
@@ -285,7 +270,8 @@ function before_reset() {
   public function remove_query() {
     global $wpdb;
     $cid = ((isset($_POST['cid']) && $_POST['cid'] != '') ? $_POST['cid'] : NULL); 
-    if (count($cid)) {
+	if (count($cid)) {
+	  array_walk($cid, create_function('&$value', '$value = (int)$value;')); 
       $cids = implode(',', $cid);
       $query = 'DELETE FROM ' . $wpdb->prefix . 'formmaker_query WHERE id IN ( ' . $cids . ' )';
       if ($wpdb->query($query)) {
@@ -319,11 +305,10 @@ function before_reset() {
   
 }";
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
-    $published = (isset($_POST['published']) ? esc_html(stripslashes($_POST['published'])) : 1);
-    $savedb = (isset($_POST['savedb']) ? esc_html(stripslashes($_POST['savedb'])) : 1);
-    $theme = ((isset($_POST['theme']) && (esc_html($_POST['theme']) != 0)) ? esc_html(stripslashes($_POST['theme'])) : $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker_themes"));
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
+    $published = (int)(isset($_POST['published']) ? esc_html(stripslashes($_POST['published'])) : 1);
+    $savedb = (int)(isset($_POST['savedb']) ? esc_html(stripslashes($_POST['savedb'])) : 1);
+    $theme = (int)((isset($_POST['theme']) && (esc_html($_POST['theme']) != 0)) ? esc_html(stripslashes($_POST['theme'])) : $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker_themes"));
     $requiredmark = (isset($_POST['requiredmark']) ? esc_html(stripslashes($_POST['requiredmark'])) : '*');
     $sendemail = (isset($_POST['sendemail']) ? esc_html(stripslashes($_POST['sendemail'])) : 1);
     $mail = (isset($_POST['mail']) ? esc_html(stripslashes($_POST['mail'])) : '');
@@ -436,14 +421,12 @@ function before_reset() {
 
   public function save_as_copy_old() {
     $message = $this->save_db_as_copy_old();
-    // $this->display();
     $page = WDW_FMC_Library::get('page');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'display', 'message' => $message), admin_url('admin.php')));
   }
 
   public function save_old() {
     $message = $this->save_db_old();
-    // $this->display();
     $page = WDW_FMC_Library::get('page');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'display', 'message' => $message), admin_url('admin.php')));
   }
@@ -451,21 +434,20 @@ function before_reset() {
   public function apply_old() {
     global $wpdb;
     $message = $this->save_db_old();
-    // $this->edit_old();
+
     $id = (int) $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
-    $current_id = WDW_FMC_Library::get('current_id', $id);
+    $current_id = (int)WDW_FMC_Library::get('current_id', $id);
     $page = WDW_FMC_Library::get('page');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'edit_old', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
   }
 
   public function save_db_old() {
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form = (isset($_POST['form']) ? stripslashes($_POST['form']) : '');
     $form_front = (isset($_POST['form_front']) ? stripslashes($_POST['form_front']) : '');
-    $counter = (isset($_POST['counter']) ? esc_html(stripslashes($_POST['counter'])) : 0);
+    $counter = (int)(isset($_POST['counter']) ? esc_html(stripslashes($_POST['counter'])) : 0);
     $label_order = (isset($_POST['label_order']) ? esc_html(stripslashes($_POST['label_order'])) : '');
     $label_order_current = (isset($_POST['label_order_current']) ? esc_html(stripslashes($_POST['label_order_current'])) : '');
     $pagination = (isset($_POST['pagination']) ? esc_html(stripslashes($_POST['pagination'])) : '');
@@ -499,8 +481,7 @@ function before_reset() {
 
   public function save_db_as_copy_old() {
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $row = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'formmaker WHERE id="%d"', $id));
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form = (isset($_POST['form']) ? stripslashes($_POST['form']) : '');
@@ -605,7 +586,7 @@ function before_reset() {
       '%s',
       '%d'
     ));
-    $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
+    $id = (int)$wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
     update_option('contact_form_forms', ((get_option('contact_form_forms')) ? (get_option('contact_form_forms')) . ',' . $id : $id));
     $wpdb->insert($wpdb->prefix . 'formmaker_views', array(
       'form_id' => $id,
@@ -657,8 +638,8 @@ function before_submit() {
 // before form reset
 function before_reset() {	
 }";
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form_front = (isset($_POST['form_front']) ? stripslashes($_POST['form_front']) : '');
     $sortable = (isset($_POST['sortable']) ? 1 : 0);
@@ -802,7 +783,7 @@ function before_reset() {
         '%s',
         '%s',
       ));
-      $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
+      $id = (int)$wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
       update_option('contact_form_forms', ((get_option('contact_form_forms')) ? (get_option('contact_form_forms')) . ',' . $id : $id));
       // $_POST['current_id'] = $id;
       $wpdb->insert($wpdb->prefix . 'formmaker_views', array(
@@ -823,8 +804,7 @@ function before_reset() {
 
   public function save_db_as_copy() {
     global $wpdb;
-    // $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes($_POST['current_id'])) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $row = $wpdb->get_row($wpdb->prepare('SELECT * FROM ' . $wpdb->prefix . 'formmaker WHERE id="%d"', $id));
     $title = (isset($_POST['title']) ? esc_html(stripslashes($_POST['title'])) : '');
     $form_front = (isset($_POST['form_front']) ? stripslashes($_POST['form_front']) : '');
@@ -951,7 +931,7 @@ function before_reset() {
       '%s',
       '%s',
     ));
-    $id = $wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
+    $id = (int)$wpdb->get_var("SELECT MAX(id) FROM " . $wpdb->prefix . "formmaker");
     update_option('contact_form_forms', ((get_option('contact_form_forms')) ? (get_option('contact_form_forms')) . ',' . $id : $id));
     $wpdb->insert($wpdb->prefix . 'formmaker_views', array(
       'form_id' => $id,
@@ -973,7 +953,7 @@ function before_reset() {
     $query = $wpdb->prepare('DELETE FROM ' . $wpdb->prefix . 'formmaker WHERE id="%d"', $id);
     if ($wpdb->query($query)) {
       $arr = explode(',', get_option('contact_form_forms'));
-      $arr = array_diff($arr, array($id));
+      $arr = array_diff($arr, array((int)$id));
       $arr = implode(',', $arr);
       update_option('contact_form_forms', $arr);
       $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . 'formmaker_views WHERE form_id="%d"', $id));
@@ -998,7 +978,7 @@ function before_reset() {
         $flag = TRUE;
         $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . 'formmaker WHERE id="%d"', $form_id));
         $arr = explode(',', get_option('contact_form_forms'));
-        $arr = array_diff($arr, array($form_id));
+        $arr = array_diff($arr, array((int)$form_id));
         $arr = implode(',', $arr);
         update_option('contact_form_forms', $arr);
         $wpdb->query($wpdb->prepare('DELETE FROM ' . $wpdb->prefix . 'formmaker_views WHERE form_id="%d"', $form_id));

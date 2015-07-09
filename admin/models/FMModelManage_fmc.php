@@ -22,8 +22,11 @@ class FMModelManage_fmc {
     global $wpdb;
     $where = 'WHERE `id` IN (' . (get_option('contact_form_forms', '') != '' ? get_option('contact_form_forms') : 0) . ')';
     $where .= ((isset($_POST['search_value']) && (esc_html($_POST['search_value']) != '')) ? ' AND title LIKE "%' . esc_html($_POST['search_value']) . '%"' : '');
-    $asc_or_desc = ((isset($_POST['asc_or_desc'])) ? esc_html($_POST['asc_or_desc']) : 'asc');
-    $order_by = ' ORDER BY ' . ((isset($_POST['order_by']) && esc_html($_POST['order_by']) != '') ? esc_html($_POST['order_by']) : 'id') . ' ' . $asc_or_desc;
+    $asc_or_desc = ((isset($_POST['asc_or_desc']) && ($_POST['asc_or_desc'] == 'asc' || $_POST['asc_or_desc'] == 'desc')) ? esc_html($_POST['asc_or_desc']) : 'asc');
+    $order_by = ((isset($_POST['order_by']) && esc_html(stripslashes($_POST['order_by'])) != '') ? esc_html(stripslashes($_POST['order_by'])) : 'id');
+    $order_by_array = array('id', 'title', 'mail');
+    $order_by = in_array($order_by, $order_by_array) ? $order_by : 'id';
+    $order_by = ' ORDER BY `' . $order_by . '` ' . $asc_or_desc;
     if (isset($_POST['page_number']) && $_POST['page_number']) {
       $limit = ((int) $_POST['page_number'] - 1) * 20;
     }

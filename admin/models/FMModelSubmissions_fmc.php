@@ -67,8 +67,8 @@ class FMModelSubmissions_fmc {
     $sorted_label_names_original = array();
     $where_labels = array();
     $where2 = array();
-    $order_by = (isset($_POST['order_by']) ? esc_html(stripslashes($_POST['order_by'])) : 'group_id');
-    $asc_or_desc = ((isset($_POST['asc_or_desc'])) ? esc_html(stripslashes($_POST['asc_or_desc'])) : 'desc');
+    $order_by = ((isset($_POST['order_by']) && esc_html(stripslashes($_POST['order_by'])) != '') ? esc_html(stripslashes($_POST['order_by'])) : 'group_id');
+    $asc_or_desc = ((isset($_POST['asc_or_desc']) && ($_POST['asc_or_desc'] == 'asc' || $_POST['asc_or_desc'] == 'desc')) ? esc_html($_POST['asc_or_desc']) : 'asc');
     $limit = ((isset($_POST['page_number'])) ? ((int) $_POST['page_number'] - 1) * 20 : 0);
     $lists['hide_label_list'] = ((isset($_POST['hide_label_list'])) ? esc_html(stripslashes($_POST['hide_label_list'])) : '');
     $lists['startdate'] = ((isset($_POST['startdate'])) ? esc_html(stripslashes($_POST['startdate'])) : '');

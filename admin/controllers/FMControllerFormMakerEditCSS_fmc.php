@@ -69,7 +69,7 @@ class FMControllerFormMakerEditCSS_fmc {
 
   public function update_db() {
     global $wpdb;
-    $id = (isset($_POST['current_id']) ? (int) esc_html(stripslashes( $_POST['current_id'])) : 0);
+    $id = (isset($_POST['current_id']) ? (int)esc_html(stripslashes( $_POST['current_id'])) : 0);
     $title = (isset($_POST['title']) ? esc_html(stripslashes( $_POST['title'])) : '');
     $css = (isset($_POST['css']) ? stripslashes(preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $_POST['css'])) : '');
     $default = (isset($_POST['default']) ? esc_html(stripslashes( $_POST['default'])) : 0);

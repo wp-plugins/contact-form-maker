@@ -20,8 +20,8 @@ class FMControllerSubmissions_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   public function execute() {
     $task = ((isset($_POST['task'])) ? esc_html($_POST['task']) : ''); 
-    $id = ((isset($_POST['current_id'])) ? esc_html($_POST['current_id']) : 0);
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	
+    $id = ((isset($_POST['current_id'])) ? (int)esc_html($_POST['current_id']) : 0);
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);	
     if (method_exists($this, $task)) {
       check_admin_referer('nonce_fmc', 'nonce_fmc');
       $this->$task($id); 
@@ -32,7 +32,7 @@ class FMControllerSubmissions_fmc {
   }
   
   public function display($form_id) {
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);
     require_once WD_FMC_DIR . "/admin/models/FMModelSubmissions_fmc.php";
     $model = new FMModelSubmissions_fmc();
 
@@ -42,7 +42,7 @@ class FMControllerSubmissions_fmc {
   }
 
   public function show_stats() {
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);
     require_once WD_FMC_DIR . "/admin/models/FMModelSubmissions_fmc.php";
     $model = new FMModelSubmissions_fmc();
 
@@ -58,11 +58,11 @@ class FMControllerSubmissions_fmc {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewSubmissions_fmc.php";
     $view = new FMViewSubmissions_fmc($model);
-    $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
+    $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? (int)esc_html($_POST['current_id']) : 0);
 			
-    $form_id = $wpdb->get_var("SELECT form_id FROM " . $wpdb->prefix . "formmaker_submits WHERE group_id='" . $id . "'");	
+    $form_id = (int)$wpdb->get_var("SELECT form_id FROM " . $wpdb->prefix . "formmaker_submits WHERE group_id='" . $id . "'");	
     $form = $wpdb->get_var("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE id='" . $form_id . "'");
-    $theme_id = $form->theme;
+    $theme_id = (int)$form->theme;
     $css = $wpdb->get_var("SELECT css FROM " . $wpdb->prefix . "formmaker_themes WHERE id='" . $theme_id . "'");	
 
     if (isset($form->form)) {
@@ -81,7 +81,7 @@ class FMControllerSubmissions_fmc {
   }	
   
   public function save() {
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);
     $this->save_db();
     $this->display($form_id);
   }
@@ -97,7 +97,7 @@ class FMControllerSubmissions_fmc {
 	$group_id = $id;
     $date = esc_html($_POST['date']);
     $ip = esc_html($_POST['ip']);
-    $form_id = $wpdb->get_var("SELECT form_id FROM " . $wpdb->prefix . "formmaker_submits WHERE group_id='" . $id . "'");
+    $form_id = (int)$wpdb->get_var("SELECT form_id FROM " . $wpdb->prefix . "formmaker_submits WHERE group_id='" . $id . "'");
     $form = $wpdb->get_row("SELECT * FROM " . $wpdb->prefix . "formmaker WHERE id='" . $form_id . "'");
     $label_id = array();
     $label_order_original = array();
@@ -667,7 +667,7 @@ class FMControllerSubmissions_fmc {
   
   public function delete($id) {
     global $wpdb;
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	    
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);	   
     $query = $wpdb->prepare('DELETE FROM ' . $wpdb->prefix . 'formmaker_submits WHERE group_id="%d"', $id);
     if ($wpdb->query($query)) {
       echo WDW_FMC_Library::message('Item Succesfully Deleted.', 'updated');
@@ -680,9 +680,10 @@ class FMControllerSubmissions_fmc {
   
   public function delete_all() {
     global $wpdb;
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);	
     $cid = ((isset($_POST['post']) && $_POST['post'] != '') ? $_POST['post'] : NULL); 
-    if (count($cid)) {
+	if (count($cid)) {
+	  array_walk($cid, create_function('&$value', '$value = (int)$value;')); 
       $cids = implode(',', $cid);
       $query = 'DELETE FROM ' . $wpdb->prefix . 'formmaker_submits WHERE group_id IN ( ' . $cids . ' )';
       if ($wpdb->query($query)) {
@@ -701,9 +702,10 @@ class FMControllerSubmissions_fmc {
   public function block_ip() {
     global $wpdb;
     $flag = FALSE;
-    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	
+    $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? (int)esc_html($_POST['form_id']) : 0);	
     $cid = ((isset($_POST['post']) && $_POST['post'] != '') ? $_POST['post'] : NULL); 
     if (count($cid)) {
+	  array_walk($cid, create_function('&$value', '$value = (int)$value;')); 
       $cids = implode(',', $cid);
       $query = 'SELECT * FROM ' . $wpdb->prefix . 'formmaker_submits WHERE group_id IN ( '. $cids .' )';
       $rows = $wpdb->get_results($query);
@@ -734,6 +736,7 @@ class FMControllerSubmissions_fmc {
     $form_id = ((isset($_POST['form_id']) && esc_html($_POST['form_id']) != '') ? esc_html($_POST['form_id']) : 0);	
     $cid = ((isset($_POST['post']) && $_POST['post'] != '') ? $_POST['post'] : NULL); 
     if (count($cid)) {
+	 array_walk($cid, create_function('&$value', '$value = (int)$value;')); 
       $cids = implode(',', $cid);
       $query = 'SELECT * FROM ' . $wpdb->prefix . 'formmaker_submits WHERE group_id IN ( '. $cids .' )';
       $rows = $wpdb->get_results($query);

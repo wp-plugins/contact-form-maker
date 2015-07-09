@@ -20,7 +20,7 @@ class FMControllerThemes_fmc {
   ////////////////////////////////////////////////////////////////////////////////////////
   public function execute() {
     $task = WDW_FMC_Library::get('task');
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $message = WDW_FMC_Library::get('message');
     echo WDW_FMC_Library::message_id($message);
     if (method_exists($this, $task)) {
@@ -56,14 +56,12 @@ class FMControllerThemes_fmc {
 
     require_once WD_FMC_DIR . "/admin/views/FMViewThemes_fmc.php";
     $view = new FMViewThemes_fmc($model);
-    // $id = ((isset($_POST['current_id']) && esc_html($_POST['current_id']) != '') ? esc_html($_POST['current_id']) : 0);
-    $id = WDW_FMC_Library::get('current_id', 0);
+    $id = (int)WDW_FMC_Library::get('current_id', 0);
     $view->edit($id, FALSE);
   }
 
   public function save() {
     $message = $this->save_db();
-    // $this->display();
     $page = WDW_FMC_Library::get('page');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'display', 'message' => $message), admin_url('admin.php')));
   }
@@ -71,11 +69,8 @@ class FMControllerThemes_fmc {
   public function apply() {
     $message = $this->save_db();
     global $wpdb;
-    // if (!isset($_POST['current_id']) || (esc_html($_POST['current_id']) == 0) || (esc_html($_POST['current_id']) == '')) {
-      
-    // }
     $id = (int) $wpdb->get_var('SELECT MAX(`id`) FROM ' . $wpdb->prefix . 'formmaker_themes');
-    $current_id = WDW_FMC_Library::get('current_id', $id);
+    $current_id = (int)WDW_FMC_Library::get('current_id', $id);
     $page = WDW_FMC_Library::get('page');
     WDW_FMC_Library::spider_redirect(add_query_arg(array('page' => $page, 'task' => 'edit', 'current_id' => $current_id, 'message' => $message), admin_url('admin.php')));
     // $this->edit();
