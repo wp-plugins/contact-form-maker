@@ -1,7 +1,7 @@
 === Contact Form Maker ===
 Contributors: webdorado
 Donate link: http://web-dorado.com/products/wordpress-contact-form-maker-plugin.html
-Tags:  form,  forms,  contact form, contact forms,  contact form plugin, contact forms plugin, forms plugin, Contact Form Builder, contact form manager, multiple contac forms, custom  form, Contact form maker with recaptcha, contact form with google map, feedback form, feedback forms, contact us, admin, captcha, contact, database, email, javascript, jquery, page, plugin, survey, widget, custom form, forms creator, input, validation, send copy, survey form
+Tags:  form,  forms,  contact form, contact forms,  contact form plugin, contact forms plugin, forms plugin, Contact Form Builder, contact form manager, multiple contac forms, custom  form, Contact form maker with recaptcha, contact form with google map, feedback form, feedback forms, contact us, admin, captcha, contact, database, email, javascript, jquery, page, plugin, survey, widget, custom form, forms creator, input, validation, send copy, survey form, contact form with captcha
 Requires at least: 3.4
 Tested up to: 4.2
 Stable tag: 1.7.31
