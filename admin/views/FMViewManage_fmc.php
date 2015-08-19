@@ -2531,7 +2531,7 @@ class FMViewManage_fmc {
         <table class="admintable">
           <tr>
             <td colspan="2">
-              <div class="error" style="padding: 5px; font-size: 14px;">Paypal Options are disabled in free version.</div>
+              <div class="error_cfm" style="padding: 5px; font-size: 14px;">Paypal Options are disabled in free version.</div>
             </td>
           </tr>
           <tr valign="top">
@@ -2818,7 +2818,7 @@ class FMViewManage_fmc {
             </td>
           </tr>
         </table>
-        <div class="error" style="padding: 5px; font-size: 14px;">Front end submissions are disabled in free version.</div>
+        <div class="error_cfm" style="padding: 5px; font-size: 14px;">Front end submissions are disabled in free version.</div>
         <fieldset class="adminform">
           <legend style="color:#0B55C4;font-weight: bold;">Front end submissions access level</legend>
           <table>
@@ -3231,7 +3231,7 @@ class FMViewManage_fmc {
               <td class="fm_options_value">
                 <input type="radio" disabled="disabled" name="mail_attachment"  value="1" id="en_attach" <?php if($row->mail_attachment==1 ) echo "checked" ?> /> <label for="en_attach">Yes</label>
                 <input type="radio" disabled="disabled" name="mail_attachment" id="dis_attach" value="0" <?php if($row->mail_attachment==0 ) echo "checked" ?> /> <label for="dis_attach">No</label>
-				<div class="error" style="padding: 5px; font-size: 14px;">File attach is disabled in free version.</div>
+				<div class="error_cfm" style="padding: 5px; font-size: 14px;">File attach is disabled in free version.</div>
               </td>
             </tr>
             <tr>
@@ -3412,7 +3412,7 @@ class FMViewManage_fmc {
               <td class="fm_options_value">
                 <input type="radio" disabled="disabled" name="mail_attachment_user"  value="1" id="en_attach_user" <?php if($row->mail_attachment_user==1 ) echo "checked" ?> /> <label for="en_attach_user">Yes</label>
                 <input type="radio" disabled="disabled" name="mail_attachment_user" id="dis_attach_user" value="0" <?php if($row->mail_attachment_user==0 ) echo "checked" ?> /> <label for="dis_attach_user">No</label>
-				<div class="error" style="padding: 5px; font-size: 14px;">File attach is disabled in free version.</div>
+				<div class="error_cfm" style="padding: 5px; font-size: 14px;">File attach is disabled in free version.</div>
               </td>
             </tr>
             <tr>
@@ -3555,7 +3555,7 @@ class FMViewManage_fmc {
         <table class="admintable">
           <tr>
             <td colspan="2">
-              <div class="error" style="padding: 5px; font-size: 14px;">Paypal Options are disabled in free version.</div>
+              <div class="error_cfm" style="padding: 5px; font-size: 14px;">Paypal Options are disabled in free version.</div>
             </td>
           </tr>
           <tr valign="top">

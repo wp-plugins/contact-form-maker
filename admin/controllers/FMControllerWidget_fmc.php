@@ -23,7 +23,7 @@ class FMControllerWidget_fmc extends WP_Widget {
     // Widget Control Settings.
     $control_ops = array('id_base' => 'form_maker_widget');
     // Create the widget.
-    $this->WP_Widget('form_maker_widget', 'Contact Form Maker', $widget_ops, $control_ops);
+    parent::__construct('form_maker_widget', 'Contact Form Maker', $widget_ops, $control_ops);
     require_once WD_FMC_DIR . "/admin/models/FMModelWidget_fmc.php";
     $this->model = new FMModelWidget_fmc();
 
